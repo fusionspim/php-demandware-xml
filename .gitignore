@@ -1,0 +1,4 @@
+/*.sublime-*
+/.idea
+.DS_Store
+vendor
