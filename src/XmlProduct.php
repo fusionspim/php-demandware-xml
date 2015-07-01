@@ -43,10 +43,26 @@ class XmlProduct extends XmlAbstract
     }
 
     // nn.dd formatted as TAX_nn_dd - only applies to bundles?
-    // @todo: inline TaxClass::format? depends on https://trello.com/c/2XgDT683
     public function setTax($value)
     {
-        $this->elements['tax-class'] = TaxClass::format($value);
+        if (is_null($value)) {
+            return;
+        }
+
+        if ($value == 0) {
+            $value = 'TAX_0';
+        } else {
+            $value = number_format($value, 2);
+
+            // not sure why has two underscores?
+            if ($value < 1) {
+                $value = 'TAX__' . str_replace('0.', '', $value);
+            } else {
+                $value = 'TAX_' . str_replace('.', '_', $value);
+            }
+        }
+
+        $this->elements['tax-class-id'] = $value;
     }
 
     // @todo: dirty, but works and encapsulates the implementation within library for now...

@@ -16,8 +16,6 @@ foreach (['Product', 'Set', 'Bundle'] as $index => $example) {
     $element->setFlags(true, false);
     $element->setDates('2015-01-23 01:23:45', '2025-01-23 01:23:45');
     $element->setClassification('CAT123', 'TestCatalog');
-    $element->setSharedAttributes(['AT001', 'AT002']);
-    $element->setVariants(['SKU0000001' => false, 'SKU0000002' => false, 'SKU0000003' => true]);
 
     $element->setPageAttributes(
         'Amazing ' . $example,
@@ -33,14 +31,18 @@ foreach (['Product', 'Set', 'Bundle'] as $index => $example) {
         'department'   => 'PHP'
     ]);
 
-    if ('Bundle' === $type) {
+    // elements/attributes specific to bundle/set/product
+    if ('Bundle' === $example) {
         $element->setProductQuantities(['SKU0000001' => 10, 'SKU0000002' => 20]);
         $element->setTax(20);
-    } elseif ('Set' === $type) {
+    } elseif ('Set' === $example) {
         $element->setProducts(['PRODUCT123', 'PRODUCT456']);
+    } elseif ('Product' === $example) {
+        $element->setSharedAttributes(['AT001', 'AT002']);
+        $element->setVariants(['SKU0000001' => false, 'SKU0000002' => false, 'SKU0000003' => true]);
     }
 
     $document->addObject($element);
 }
 
-$document->save('products.xml');
+$document->save('out/products.xml');

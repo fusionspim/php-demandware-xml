@@ -43,6 +43,10 @@ abstract class XmlAbstract implements XmlInterface
     // all have defaults so function optional, but can be called with null priority to exclude that element
     public function setSitemap($priority = 0.5, $included = true, $frequency = 'weekly')
     {
+        if ($priority > 1) {
+            throw new \Exception('Sitemap priority must be 1.0 or less');
+        }
+
         $this->elements['sitemap-included-flag']   = $included;
         $this->elements['sitemap-changefrequency'] = $frequency;
 

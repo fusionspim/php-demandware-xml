@@ -11,7 +11,7 @@ foreach (['Socks', 'Death Stars', 'Donuts'] as $index => $example) {
     $element->setParent('CAT0');
     $element->setTemplate('cat-listings.html');
     $element->setFlags(true);
-    $element->setSitemap(3);
+    $element->setSitemap(0.2);
     $element->setPageAttributes($example, 'Buy ' . $example, strtolower($example), '/' . $example);
 
     $element->setCustomAttributes([
@@ -23,7 +23,7 @@ foreach (['Socks', 'Death Stars', 'Donuts'] as $index => $example) {
     $document->addObject($element);
 }
 
-$document->save('categories.xml');
+$document->save('out/categories.xml');
 
 // categories are done, lets create some assignments!
 
@@ -35,10 +35,12 @@ foreach (['PROD1' => 'CAT1', 'PROD1' => 'CAT2', 'PROD2' => 'CAT1', 'PROD3' => 'C
     $deleted = ('PROD2' === $product && 'CAT1' === $category);
 
     $element = new XmlAssignment($product, $category);
-    $element->setPrimary($primary);
 
+    // flag as deleted if app logic says so, otherwise handle primary flag...
     if ($deleted) {
         $element->setDeleted();
+    } else {
+        $element->setPrimary($primary);
     }
 
     $document->addObject($element);
@@ -51,4 +53,4 @@ foreach (['PROD1' => 'CAT1', 'PROD1' => 'CAT2', 'PROD2' => 'CAT1', 'PROD3' => 'C
     }
 }
 
-$document->save('assignments.xml');
+$document->save('out/assignments.xml');

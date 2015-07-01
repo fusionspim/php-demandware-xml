@@ -149,7 +149,7 @@ class XmlDocument
         $this->dom->normalizeDocument();
         $this->dom->save($fileName);
 
-        $schema = '../xsd/catalog.xsd';
+        $schema = __DIR__ . '/../xsd/catalog.xsd';
 
         if (! file_exists($schema)) {
             throw new Exception('Schema missing');

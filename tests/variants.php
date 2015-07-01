@@ -12,4 +12,4 @@ foreach ($variants as $variant => $values) {
     $document->addObject($element);
 }
 
-$document->save('variants.xml');
+$document->save('out/variants.xml');
