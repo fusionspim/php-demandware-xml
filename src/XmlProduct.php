@@ -4,6 +4,7 @@ namespace FusionsPIM\DemandwareXml;
 class XmlProduct extends XmlAbstract
 {
     public $element = 'product';
+    public $catalog = null;
 
     public function __construct($id = null)
     {
@@ -36,9 +37,11 @@ class XmlProduct extends XmlAbstract
         $this->elements['step-quantity']      = $step;
     }
 
-    // @todo: set the `catalog-id="$catalogId"` attribute
     public function setClassification($value, $catalogId)
     {
+        // hack to later set the `catalog-id="$catalogId"` attribute within `createElement()`
+        $this->catalog = $catalogId;
+
         $this->elements['classification-category'] = $value;
     }
 

@@ -28,8 +28,8 @@ foreach (['Product', 'Set', 'Bundle'] as $index => $example) {
         'type'         => 'Examples',
         'zzz'          => 'Should be exported last within custom-attributes',
         'primaryImage' => strtolower($example) . '-123.png',
-        'ageRestrict'  => 'Over 18',
-        'department'   => 'PHP'
+        'multiWow'     => ['so', 'such', 'many', 'much', 'very'],
+        'boolTest'     => true
     ]);
 
     // elements/attributes specific to bundle/set/product

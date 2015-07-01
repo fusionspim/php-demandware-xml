@@ -29,5 +29,5 @@ Future plans
 
 - Export all root elements sorted by their first attribute value (similar to custom attributes) to ease manual comparison/diffs
 - Test a large export to better understand how scales and memory usage
-- Convert nested elements currently implemented with string concatenation/loops to nodes (they work, but would be nice for consistency/robustness)
+- Convert nested elements currently implemented with string concatenation/loops to nodes (they work, but would be nice for consistency/robustness) & deal with the `setClassification()`/`catalog-id` hack ;-)
 - Inventory exports were planned, but no longer required and so may be removed as currently incomplete

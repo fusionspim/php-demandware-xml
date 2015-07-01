@@ -17,18 +17,18 @@ abstract class XmlAbstract implements XmlInterface
     // only first required. available is deprecated in xsd, we shouldn't be using
     public function setFlags($online, $searchable = null, $available = null, $both = null)
     {
-        $this->elements['online'] = $online;
+        $this->elements['online-flag'] = $online;
 
         if (! is_null($searchable)) {
-            $this->elements['searchable'] = $searchable;
+            $this->elements['searchable-flag'] = $searchable;
         }
 
         if (! is_null($available)) {
-            $this->elements['available'] = $available;
+            $this->elements['available-flag'] = $available;
         }
 
         if (! is_null($both)) {
-            $this->elements['searchable-if-unavailable'] = $both;
+            $this->elements['searchable-if-unavailable-flag'] = $both;
         }
     }
 

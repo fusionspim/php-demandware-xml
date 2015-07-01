@@ -74,6 +74,14 @@ class XmlDocument
             $value   = $object->elements[$name];
             $element = $this->createElement($name, $value);
 
+            // @todo: in_array known to be slow, simple string checks should suffice, perhaps specify when add element instead?
+            if (in_array($name, ['display-name', 'long-description'])) {
+                $this->addAttribute($element, 'xml:lang', 'x-default');
+            } elseif ('classification-category' === $name) {
+                // hack for `setClassification()`
+                $this->addAttribute($element, 'catalog-id', $object->catalog);
+            }
+
             $root->appendChild($element);
         }
 
@@ -99,11 +107,6 @@ class XmlDocument
             $element->appendXML('<' . $name . '>' . $value . '</' . $name . '>');
         } else {
             $element = $this->dom->createElement($name, static::escape($value));
-        }
-
-        // @todo: in_array known to be slow, simple string checks should suffice, perhaps specify when add element instead?
-        if (in_array($name, ['display-name', 'long-description'])) {
-            $this->addAttribute($element, 'xml:lang', 'x-default');
         }
 
         return $element;
