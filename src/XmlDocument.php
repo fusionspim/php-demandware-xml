@@ -109,7 +109,6 @@ class XmlDocument
         return $element;
     }
 
-    // @todo: this is simpler, but could escape/cast when add values to avoid many is_bool calls if inefficient?
     public static function escape($value)
     {
         if (is_bool($value)) {

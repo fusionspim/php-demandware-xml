@@ -10,7 +10,6 @@ class XmlVariant extends XmlAbstract
         $this->attributes = ['variation-attribute-id' => $id, 'attribute-id' => $id];
     }
 
-    // @todo: dirty, but works and encapsulates the implementation within library for now...
     public function addTags($map = [])
     {
         $xml = '';

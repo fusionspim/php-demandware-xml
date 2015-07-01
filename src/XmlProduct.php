@@ -36,7 +36,7 @@ class XmlProduct extends XmlAbstract
         $this->elements['step-quantity']      = $step;
     }
 
-    // @todo: set the attribute <classification-category catalog-id="ASDACatalog">
+    // @todo: set the `catalog-id="$catalogId"` attribute
     public function setClassification($value, $catalogId)
     {
         $this->elements['classification-category'] = $value;
@@ -65,7 +65,6 @@ class XmlProduct extends XmlAbstract
         $this->elements['tax-class-id'] = $value;
     }
 
-    // @todo: dirty, but works and encapsulates the implementation within library for now...
     // only applies to actual products
     public function setSharedAttributes(array $ids = [])
     {
@@ -83,7 +82,6 @@ class XmlProduct extends XmlAbstract
         $this->addVariations();
     }
 
-    // @todo: dirty, but works and encapsulates the implementation within library for now...
     // only applies to actual products
     public function setVariants(array $variants = [])
     {
@@ -114,7 +112,6 @@ class XmlProduct extends XmlAbstract
         unset($this->elements['variants']);
     }
 
-    // @todo: dirty, but works and encapsulates the implementation within library for now...
     // only applies to bundles
     public function setProductQuantities(array $variations = [])
     {
@@ -129,7 +126,6 @@ class XmlProduct extends XmlAbstract
         $this->elements['bundled-products'] = $xml;
     }
 
-    // @todo: dirty, but works and encapsulates the implementation within library for now...
     // only applies to products
     public function setProducts(array $products = [])
     {

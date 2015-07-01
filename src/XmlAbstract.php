@@ -57,7 +57,6 @@ abstract class XmlAbstract implements XmlInterface
         }
     }
 
-    // @todo: dirty, but works and encapsulates the implementation within library for now...
     public function setPageAttributes($title, $description, $keywords, $url)
     {
         $elements = [
@@ -85,8 +84,6 @@ abstract class XmlAbstract implements XmlInterface
      * Map custom attribute ids to values
      * Values can be empty, up to other side to decide if that's ok
      * Attributes are exported sorted alphabetically by id for consistency and ease of diffing exports...
-     *
-     * @todo: dirty, but works and encapsulates the implementation within library for now...
      */
     public function setCustomAttributes(array $map)
     {
