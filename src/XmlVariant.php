@@ -16,8 +16,8 @@ class XmlVariant extends XmlAbstract
         $xml = '';
 
         foreach ($map as $id => $value) {
-            $xml .= '<variation-attribute-value value="' . $this->escape($id) . '">
-                        <display-value xml:lang="x-default">' . $this->escape($value) . '</display-value>
+            $xml .= '<variation-attribute-value value="' . XmlDocument::escape($id) . '">
+                        <display-value xml:lang="x-default">' . XmlDocument::escape($value) . '</display-value>
                     </variation-attribute-value>';
         }
 

@@ -70,7 +70,7 @@ abstract class XmlAbstract implements XmlInterface
         $xml = '';
 
         foreach ($elements as $key => $value) {
-            $xml .= '<' . $key . ' xml:lang="x-default">' . $this->escape($value) . '</' . $key . '>' . PHP_EOL;
+            $xml .= '<' . $key . ' xml:lang="x-default">' . XmlDocument::escape($value) . '</' . $key . '>' . PHP_EOL;
         }
 
         $this->elements['page-attributes'] = $xml;
@@ -95,31 +95,19 @@ abstract class XmlAbstract implements XmlInterface
         $xml = '';
 
         foreach ($map as $key => $value) {
-            $xml .= '<custom-attribute attribute-id="' . $this->escape($key) . '">';
+            $xml .= '<custom-attribute attribute-id="' . XmlDocument::escape($key) . '">';
 
             if (is_array($value)) {
                 foreach ($value as $individual) {
-                    $xml .= '<value>' . $this->escape($individual) . '</value>' . PHP_EOL;
+                    $xml .= '<value>' . XmlDocument::escape($individual) . '</value>' . PHP_EOL;
                 }
             } else {
-                $xml .= $this->escape($value);
+                $xml .= XmlDocument::escape($value);
             }
 
             $xml .= '</custom-attribute>' . PHP_EOL;
         }
 
         $this->elements['custom-attributes'] = $xml;
-    }
-
-    // @todo: dupe from XmlDocument to be eliminated once all string concat is removed!
-    protected function escape($value)
-    {
-        if (is_bool($value)) {
-            return ($value ? 'true' : 'false');
-        } else {
-            $value = html_entity_decode($value); // not sure why, other than back compat
-
-            return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8', false);
-        }
     }
 }

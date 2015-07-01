@@ -83,7 +83,7 @@ class XmlDocument
     private function addAttribute($node, $name, $value)
     {
         $attribute = $this->dom->createAttribute($name);
-        $attribute->value = $this->escape($value);
+        $attribute->value = static::escape($value);
 
         $node->appendChild($attribute);
     }
@@ -98,7 +98,7 @@ class XmlDocument
 
             $element->appendXML('<' . $name . '>' . $value . '</' . $name . '>');
         } else {
-            $element = $this->dom->createElement($name, $this->escape($value));
+            $element = $this->dom->createElement($name, static::escape($value));
         }
 
         // @todo: in_array known to be slow, simple string checks should suffice, perhaps specify when add element instead?
@@ -110,7 +110,7 @@ class XmlDocument
     }
 
     // @todo: this is simpler, but could escape/cast when add values to avoid many is_bool calls if inefficient?
-    private function escape($value)
+    public static function escape($value)
     {
         if (is_bool($value)) {
             return ($value ? 'true' : 'false');
