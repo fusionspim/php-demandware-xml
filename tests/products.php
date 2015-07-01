@@ -26,6 +26,7 @@ foreach (['Product', 'Set', 'Bundle'] as $index => $example) {
 
     $element->setCustomAttributes([
         'type'         => 'Examples',
+        'zzz'          => 'Should be exported last within custom-attributes',
         'primaryImage' => strtolower($example) . '-123.png',
         'ageRestrict'  => 'Over 18',
         'department'   => 'PHP'

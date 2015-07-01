@@ -4,10 +4,6 @@ namespace FusionsPIM\DemandwareXml;
 use \DOMDocument;
 use \Exception;
 
-// You can add elements in whatever order makes most sense in your code, the class will automatically export them in the sequence defined by the XSD schema. To ease comparison of exports, all root elements and custom attributes are exported sorted by their first attribute value.
-// @todo: this (whole folder) and xsd's should eventually be moved to a generic `DemandwareXml` library
-// @todo: add test files/scripts, with 'zzzz' => 'to this should be last custom attr' etc. and massive file to know what been scaled to and memory usage
-// @todo: XmlDiff class to compare two Demandware XML files and report on differences?
 class XmlDocument
 {
     private $dom;
@@ -43,9 +39,9 @@ class XmlDocument
         'primary-flag'
     ];
 
-    // or empty if inventory
     public function __construct($catalogId = null)
     {
+        // @todo: currently unused - possibly remove?
         $this->isInventory = is_null($catalogId);
 
         $this->dom                     = new DOMDocument('1.0', 'UTF-8');
@@ -69,20 +65,13 @@ class XmlDocument
             $this->addAttribute($root, $key, $value);
         }
 
-        // interface lets us add elements in any order for ease of use, but when adding to doc need to be in order expected by schema
+        // elements may be added in any order for ease of use, but when exporting they need to be in schema defined order
         foreach ($this->elementOrder as $name) {
             if (! isset($object->elements[$name])) {
                 continue;
             }
 
-            $value = $object->elements[$name];
-
-            // @todo: nested elements such as page|custom-attributes, i.e. anything with a comment of "dirty, but works and encapsulates the implementation within library for now..."
-            if (is_array($value)) {
-                // echo '<!--' . print_r($value, true) . '-->';
-                continue;
-            }
-
+            $value   = $object->elements[$name];
             $element = $this->createElement($name, $value);
 
             $root->appendChild($element);
