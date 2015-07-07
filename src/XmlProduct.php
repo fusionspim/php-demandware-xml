@@ -3,8 +3,8 @@ namespace FusionsPIM\DemandwareXml;
 
 class XmlProduct extends XmlAbstract
 {
-    public $element = 'product';
-    public $catalog = null;
+    protected $element = 'product';
+    private $catalog   = null;
 
     public function __construct($id = null)
     {
@@ -43,6 +43,11 @@ class XmlProduct extends XmlAbstract
         $this->catalog = $catalogId;
 
         $this->elements['classification-category'] = $value;
+    }
+
+    public function getCatalog()
+    {
+        return $this->catalog;
     }
 
     // nn.dd formatted as TAX_nn_dd - only applies to bundles?

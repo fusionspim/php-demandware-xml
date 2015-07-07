@@ -57,29 +57,28 @@ class XmlDocument
         }
     }
 
-    public function addObject(XmlInterface $object)
+    public function addObject(XmlAbstract $object)
     {
-        $root = $this->createElement($object->element);
+        $root = $this->createElement($object->getElement());
 
-        foreach ($object->attributes as $key => $value) {
+        foreach ($object->getAttributes() as $key => $value) {
             $this->addAttribute($root, $key, $value);
         }
 
         // elements may be added in any order for ease of use, but when exporting they need to be in schema defined order
         foreach ($this->elementOrder as $name) {
-            if (! isset($object->elements[$name])) {
+            if (! isset($object->getElements()[$name])) {
                 continue;
             }
 
-            $value   = $object->elements[$name];
+            $value   = $object->getElements()[$name];
             $element = $this->createElement($name, $value);
 
-            // @todo: in_array known to be slow, simple string checks should suffice, perhaps specify when add element instead?
-            if (in_array($name, ['display-name', 'long-description'])) {
+            if ('display-name' === $name || 'long-description' === $name) {
                 $this->addAttribute($element, 'xml:lang', 'x-default');
             } elseif ('classification-category' === $name) {
                 // hack for `setClassification()`
-                $this->addAttribute($element, 'catalog-id', $object->catalog);
+                $this->addAttribute($element, 'catalog-id', $object->getCatalog());
             }
 
             $root->appendChild($element);

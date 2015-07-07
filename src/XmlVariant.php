@@ -3,7 +3,7 @@ namespace FusionsPIM\DemandwareXml;
 
 class XmlVariant extends XmlAbstract
 {
-    public $element = 'variation-attribute';
+    protected $element = 'variation-attribute';
 
     public function __construct($id = null)
     {

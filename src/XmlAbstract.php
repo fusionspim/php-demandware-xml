@@ -3,11 +3,11 @@ namespace FusionsPIM\DemandwareXml;
 
 use \Exception;
 
-abstract class XmlAbstract implements XmlInterface
+abstract class XmlAbstract
 {
-    public $element;
-    public $attributes = [];
-    public $elements   = [];
+    protected $attributes = [];
+    protected $element;
+    protected $elements   = [];
 
     public function setName($name)
     {
@@ -106,5 +106,20 @@ abstract class XmlAbstract implements XmlInterface
         }
 
         $this->elements['custom-attributes'] = $xml;
+    }
+
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    public function getElement()
+    {
+        return $this->element;
+    }
+
+    public function getElements()
+    {
+        return $this->elements;
     }
 }

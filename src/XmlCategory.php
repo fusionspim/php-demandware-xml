@@ -3,7 +3,7 @@ namespace FusionsPIM\DemandwareXml;
 
 class XmlCategory extends XmlAbstract
 {
-    public $element = 'category';
+    protected $element = 'category';
 
     public function __construct($id = null)
     {
