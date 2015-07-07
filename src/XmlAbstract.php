@@ -1,8 +1,6 @@
 <?php
 namespace FusionsPIM\DemandwareXml;
 
-use \Exception;
-
 abstract class XmlAbstract
 {
     protected $attributes = [];
@@ -46,7 +44,7 @@ abstract class XmlAbstract
     public function setSitemap($priority = 0.5, $included = true, $frequency = 'weekly')
     {
         if ($priority > 1) {
-            throw new Exception('Sitemap priority must be 1.0 or less');
+            throw new XmlException('Sitemap priority must be 1.0 or less');
         }
 
         $this->elements['sitemap-included-flag']   = $included;

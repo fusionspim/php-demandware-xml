@@ -2,7 +2,6 @@
 namespace FusionsPIM\DemandwareXml;
 
 use \DOMDocument;
-use \Exception;
 
 class XmlDocument
 {
@@ -142,11 +141,11 @@ class XmlDocument
         $schema = __DIR__ . '/../xsd/catalog.xsd';
 
         if (! file_exists($schema)) {
-            throw new Exception('Schema missing');
+            throw new XmlException('Schema missing');
         }
 
         if (! $this->dom->schemaValidate(realpath($schema))) {
-            throw new Exception('XML validation failed: ' . basename($fileName) . "\n\n" . print_r(libxml_get_errors(), true));
+            throw new XmlException('XML validation failed: ' . basename($fileName) . "\n\n" . print_r(libxml_get_errors(), true));
         }
     }
 }
