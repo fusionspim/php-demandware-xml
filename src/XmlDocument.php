@@ -38,24 +38,28 @@ class XmlDocument
         'primary-flag'
     ];
 
-    public function __construct($catalogId = null)
+    /**
+     * Create a new Demandware XML document for the specified catalog, in UTF-8 encoding
+     *
+     * @param $catalogId
+     */
+    public function __construct($catalogId)
     {
-        // @todo: currently unused - possibly remove?
-        $this->isInventory = is_null($catalogId);
-
         $this->dom                     = new DOMDocument('1.0', 'UTF-8');
         $this->dom->preserveWhiteSpace = false;
         $this->dom->formatOutput       = true;
 
-        $this->root = $this->createElement($this->isInventory ? 'inventory' : 'catalog');
+        $this->root = $this->createElement('catalog');
 
-        $this->addAttribute($this->root, 'xmlns', 'http://www.demandware.com/xml/impex/' . ($this->isInventory ? 'inventory/2007-05-31' : 'catalog/2006-10-31'));
-
-        if (! $this->isInventory) {
-            $this->addAttribute($this->root, 'catalog-id', $catalogId);
-        }
+        $this->addAttribute($this->root, 'xmlns', 'http://www.demandware.com/xml/impex/catalog/2006-10-31');
+        $this->addAttribute($this->root, 'catalog-id', $catalogId);
     }
 
+    /**
+     * Add a new child of the root element
+     *
+     * @param XmlAbstract $object
+     */
     public function addObject(XmlAbstract $object)
     {
         $root = $this->createElement($object->getElement());
@@ -121,6 +125,12 @@ class XmlDocument
         }
     }
 
+    /**
+     * Save the document to a path, which should include the appropriate extension (likely .xml)
+     *
+     * @param $fileName
+     * @throws XmlException
+     */
     public function save($fileName)
     {
         $this->dom->appendChild($this->root);

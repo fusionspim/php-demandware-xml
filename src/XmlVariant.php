@@ -5,11 +5,21 @@ class XmlVariant extends XmlAbstract
 {
     protected $element = 'variation-attribute';
 
+    /**
+     * Create a new <variation-attribute> element, with $id populating the `variation-attribute-id` and `attribute-id` attributes
+     *
+     * @param null $id
+     */
     public function __construct($id = null)
     {
         $this->attributes = ['variation-attribute-id' => $id, 'attribute-id' => $id];
     }
 
+    /**
+     * Populates <variation-attribute-values> child elements, from a mapping of attribute values to names
+     *
+     * @param array $map
+     */
     public function addTags($map = [])
     {
         $xml = '';

@@ -6,37 +6,73 @@ class XmlProduct extends XmlAbstract
     protected $element = 'product';
     private $catalog   = null;
 
+    /**
+     * Create a new <product> element, with $id populating the `product-id` attribute
+     *
+     * @param null $id
+     */
     public function __construct($id = null)
     {
         $this->attributes = ['product-id' => $id];
     }
 
+    /**
+     * Populates the <upc> element
+     *
+     * @param $value
+     */
     public function setUpc($value)
     {
         $this->elements['upc'] = $value;
     }
 
+    /**
+     * Populates the <brand> element
+     *
+     * @param $value
+     */
     public function setBrand($value)
     {
         $this->elements['brand'] = $value;
     }
 
+    /**
+     * Populates the description of the product/set/bundle in the <long-description xml:lang="x-default"> element
+     *
+     * @param $value
+     */
     public function setDescription($value)
     {
         $this->elements['long-description'] = $value;
     }
 
+    /**
+     * Populates the <search-rank> element, defaulting to "3"
+     *
+     * @param int $value
+     */
     public function setRank($value = 3)
     {
         $this->elements['search-rank'] = $value;
     }
 
+    /**
+     * Populates the <min-order-quantity> and <step-quantity> elements, both defaulting to "1"
+     * @param int $minOrder
+     * @param int $step
+     */
     public function setQuantities($minOrder = 1, $step = 1)
     {
         $this->elements['min-order-quantity'] = $minOrder;
         $this->elements['step-quantity']      = $step;
     }
 
+    /**
+     * Populates the <classification-category> element with category id $value, and a `classification-category` attribute
+     *
+     * @param $value
+     * @param $catalogId
+     */
     public function setClassification($value, $catalogId)
     {
         // hack to later set the `catalog-id="$catalogId"` attribute within `createElement()`
@@ -50,7 +86,11 @@ class XmlProduct extends XmlAbstract
         return $this->catalog;
     }
 
-    // nn.dd formatted as TAX_nn_dd - only applies to bundles?
+    /**
+     * Tax class in Demandware format, nn.dd as TAX_nn_dd - may only applies to bundles?
+     *
+     * @param $value
+     */
     public function setTax($value)
     {
         if (is_null($value)) {
@@ -73,7 +113,11 @@ class XmlProduct extends XmlAbstract
         $this->elements['tax-class-id'] = $value;
     }
 
-    // only applies to actual products
+    /**
+     * Only applies to complex products (aka Master Variants)
+     *
+     * @param array $ids
+     */
     public function setSharedAttributes(array $ids = [])
     {
         $xml = '';
@@ -90,7 +134,11 @@ class XmlProduct extends XmlAbstract
         $this->addVariations();
     }
 
-    // only applies to actual products
+    /**
+     * Only applies to complex products (aka Master Variants)
+     *
+     * @param array $variants
+     */
     public function setVariants(array $variants = [])
     {
         $xml = '';
@@ -104,7 +152,9 @@ class XmlProduct extends XmlAbstract
         $this->addVariations();
     }
 
-    // @todo: eliminate! hack for now that groups attributes and variants elements into variations once both available
+    /**
+     * @todo: eliminate! hack for now that groups attributes and variants elements into variations once both available
+     */
     private function addVariations()
     {
         if (! isset($this->elements['attributes']) || ! isset($this->elements['variants'])) {
@@ -120,7 +170,11 @@ class XmlProduct extends XmlAbstract
         unset($this->elements['variants']);
     }
 
-    // only applies to bundles
+    /**
+     * Only applies to Bundles
+     *
+     * @param array $variations
+     */
     public function setProductQuantities(array $variations = [])
     {
         $xml = '';
@@ -134,7 +188,11 @@ class XmlProduct extends XmlAbstract
         $this->elements['bundled-products'] = $xml;
     }
 
-    // only applies to products
+    /**
+     * Only applies to Sets
+     *
+     * @param array $products
+     */
     public function setProducts(array $products = [])
     {
         $xml = '';
