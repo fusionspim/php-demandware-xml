@@ -1,5 +1,5 @@
 <?php
-namespace FusionsPIM\DemandwareXml;
+namespace DemandwareXml;
 
 class Variant extends Base
 {

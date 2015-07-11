@@ -1,7 +1,7 @@
 <?php
-use \FusionsPIM\DemandwareXml\Document;
-use \FusionsPIM\DemandwareXml\Product;
-use \FusionsPIM\DemandwareXml\XmlException;
+use \DemandwareXml\Document;
+use \DemandwareXml\Product;
+use \DemandwareXml\XmlException;
 
 $document = new Document('TestCatalog');
 

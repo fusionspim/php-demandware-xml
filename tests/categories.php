@@ -1,8 +1,8 @@
 <?php
-use \FusionsPIM\DemandwareXml\Assignment;
-use \FusionsPIM\DemandwareXml\Category;
-use \FusionsPIM\DemandwareXml\Document;
-use \FusionsPIM\DemandwareXml\XmlException;
+use \DemandwareXml\Assignment;
+use \DemandwareXml\Category;
+use \DemandwareXml\Document;
+use \DemandwareXml\XmlException;
 
 $document = new Document('TestCatalog');
 

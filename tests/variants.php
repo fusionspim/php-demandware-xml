@@ -1,7 +1,7 @@
 <?php
-use \FusionsPIM\DemandwareXml\Document;
-use \FusionsPIM\DemandwareXml\Variant;
-use \FusionsPIM\DemandwareXml\XmlException;
+use \DemandwareXml\Document;
+use \DemandwareXml\Variant;
+use \DemandwareXml\XmlException;
 
 $document = new Document('TestCatalog');
 $variants = ['colour' => ['red' => 'Red', 'blue' => 'Blue'], 'height' => ['H1' => 'Grande', 'H2' => 'Tall']];
