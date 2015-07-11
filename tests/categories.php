@@ -2,6 +2,7 @@
 use \FusionsPIM\DemandwareXml\Assignment;
 use \FusionsPIM\DemandwareXml\Category;
 use \FusionsPIM\DemandwareXml\Document;
+use \FusionsPIM\DemandwareXml\XmlException;
 
 $document = new Document('TestCatalog');
 
@@ -23,7 +24,11 @@ foreach (['Socks', 'Death Stars', 'Donuts'] as $index => $example) {
     $document->addObject($element);
 }
 
-$document->save('out/categories.xml');
+try {
+    $document->save('out/categories.xml');
+} catch (XmlException $e) {
+    echo $e->getMessage();
+}
 
 // categories are done, lets create some assignments!
 
@@ -53,4 +58,8 @@ foreach (['PROD1' => 'CAT1', 'PROD1' => 'CAT2', 'PROD2' => 'CAT1', 'PROD3' => 'C
     }
 }
 
-$document->save('out/assignments.xml');
+try {
+    $document->save('out/assignments.xml');
+} catch (XmlException $e) {
+    echo $e->getMessage();
+}

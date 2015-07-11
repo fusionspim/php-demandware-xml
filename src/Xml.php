@@ -51,7 +51,29 @@ class Xml
         $dom->save($filePath);
 
         if (! $dom->schemaValidate(realpath($schemaPath))) {
-            throw new XmlException('XML validation failed: ' . basename($filePath) . "\n\n" . print_r(libxml_get_errors(), true));
+            throw new XmlException(static::errorSummary());
         }
+    }
+
+    /**
+     * Summarises `libxml_get_errors()`, grouping the line numbers each unique error occurred on
+     *
+     * @return string
+     */
+    private static function errorSummary()
+    {
+        $errors  = libxml_get_errors();
+        $concise = [];
+        $summary = '';
+
+        foreach ($errors as $error) {
+            $concise[$error->message][] = $error->line;
+        }
+
+        foreach ($concise as $error => $lines) {
+            $summary .= trim($error) . PHP_EOL . "\tLines: " . implode(', ', $lines) . PHP_EOL . PHP_EOL;
+        }
+
+        return trim($summary);
     }
 }

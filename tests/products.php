@@ -1,6 +1,7 @@
 <?php
 use \FusionsPIM\DemandwareXml\Document;
 use \FusionsPIM\DemandwareXml\Product;
+use \FusionsPIM\DemandwareXml\XmlException;
 
 $document = new Document('TestCatalog');
 
@@ -46,4 +47,8 @@ foreach (['Product', 'Set', 'Bundle'] as $index => $example) {
     $document->addObject($element);
 }
 
-$document->save('out/products.xml');
+try {
+    $document->save('out/products.xml');
+} catch (XmlException $e) {
+    echo $e->getMessage();
+}
