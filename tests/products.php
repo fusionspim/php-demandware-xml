@@ -1,11 +1,11 @@
 <?php
-use \FusionsPIM\DemandwareXml\XmlDocument;
-use \FusionsPIM\DemandwareXml\XmlProduct;
+use \FusionsPIM\DemandwareXml\Document;
+use \FusionsPIM\DemandwareXml\Product;
 
-$document = new XmlDocument('TestCatalog');
+$document = new Document('TestCatalog');
 
 foreach (['Product', 'Set', 'Bundle'] as $index => $example) {
-    $element = new XmlProduct(strtoupper($example) . '123');
+    $element = new Product(strtoupper($example) . '123');
     $element->setName($example . ' number 123');
     $element->setDescription('The description for an example ' . strtolower($example) . '!');
     $element->setUpc('50000000000' . $index);

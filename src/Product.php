@@ -1,7 +1,7 @@
 <?php
 namespace FusionsPIM\DemandwareXml;
 
-class XmlProduct extends XmlAbstract
+class Product extends Base
 {
     protected $element = 'product';
     private $catalog   = null;
@@ -124,8 +124,8 @@ class XmlProduct extends XmlAbstract
 
         foreach ($ids as $id) {
             $xml .= '<shared-variation-attribute
-                        variation-attribute-id="' . XmlDocument::escape($id) . '"
-                        attribute-id="' . XmlDocument::escape($id) . '"
+                        variation-attribute-id="' . Document::escape($id) . '"
+                        attribute-id="' . Document::escape($id) . '"
                     ></shared-variation-attribute>';
         }
 
@@ -144,7 +144,7 @@ class XmlProduct extends XmlAbstract
         $xml = '';
 
         foreach ($variants as $id => $default) {
-            $xml .= '<variant product-id="' . XmlDocument::escape($id) . '"' . ($default ? ' default="true"' : '') . '/>' . PHP_EOL;
+            $xml .= '<variant product-id="' . Document::escape($id) . '"' . ($default ? ' default="true"' : '') . '/>' . PHP_EOL;
         }
 
         $this->elements['variants'] = $xml;
@@ -180,8 +180,8 @@ class XmlProduct extends XmlAbstract
         $xml = '';
 
         foreach ($variations as $id => $quantity) {
-            $xml .= '<bundled-product product-id="' . XmlDocument::escape($id) . '">';
-            $xml .= '<quantity>' . XmlDocument::escape($quantity) . '</quantity>';
+            $xml .= '<bundled-product product-id="' . Document::escape($id) . '">';
+            $xml .= '<quantity>' . Document::escape($quantity) . '</quantity>';
             $xml .= '</bundled-product>' . PHP_EOL;
         }
 
@@ -198,7 +198,7 @@ class XmlProduct extends XmlAbstract
         $xml = '';
 
         foreach ($products as $id) {
-            $xml .= '<product-set-product product-id="' . XmlDocument::escape($id) . '" />' . PHP_EOL;
+            $xml .= '<product-set-product product-id="' . Document::escape($id) . '" />' . PHP_EOL;
         }
 
         $this->elements['product-set-products'] = $xml;

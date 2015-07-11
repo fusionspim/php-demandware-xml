@@ -1,12 +1,12 @@
 <?php
-use \FusionsPIM\DemandwareXml\XmlAssignment;
-use \FusionsPIM\DemandwareXml\XmlCategory;
-use \FusionsPIM\DemandwareXml\XmlDocument;
+use \FusionsPIM\DemandwareXml\Assignment;
+use \FusionsPIM\DemandwareXml\Category;
+use \FusionsPIM\DemandwareXml\Document;
 
-$document = new XmlDocument('TestCatalog');
+$document = new Document('TestCatalog');
 
 foreach (['Socks', 'Death Stars', 'Donuts'] as $index => $example) {
-    $element = new XmlCategory('CAT' . $index);
+    $element = new Category('CAT' . $index);
     $element->setName($example);
     $element->setParent('CAT0');
     $element->setTemplate('cat-listings.html');
@@ -27,14 +27,14 @@ $document->save('out/categories.xml');
 
 // categories are done, lets create some assignments!
 
-$document = new XmlDocument('TestCatalog');
+$document = new Document('TestCatalog');
 
 foreach (['PROD1' => 'CAT1', 'PROD1' => 'CAT2', 'PROD2' => 'CAT1', 'PROD3' => 'CAT3'] as $product => $category) {
     // simulate some application logic
     $primary = ('PROD1' === $product && 'CAT2' === $category);
     $deleted = ('PROD2' === $product && 'CAT1' === $category);
 
-    $element = new XmlAssignment($product, $category);
+    $element = new Assignment($product, $category);
 
     // flag as deleted if app logic says so, otherwise handle primary flag...
     if ($deleted) {
@@ -47,7 +47,7 @@ foreach (['PROD1' => 'CAT1', 'PROD1' => 'CAT2', 'PROD2' => 'CAT1', 'PROD3' => 'C
 
     // simulate some more application logic, put all primary products in CAT42
     if ($primary) {
-        $element = new XmlAssignment($product, 'CAT42');
+        $element = new Assignment($product, 'CAT42');
 
         $document->addObject($element);
     }

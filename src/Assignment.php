@@ -1,7 +1,7 @@
 <?php
 namespace FusionsPIM\DemandwareXml;
 
-class XmlAssignment extends XmlAbstract
+class Assignment extends Base
 {
     protected $element = 'category-assignment';
 

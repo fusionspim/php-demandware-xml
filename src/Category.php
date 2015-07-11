@@ -1,7 +1,7 @@
 <?php
 namespace FusionsPIM\DemandwareXml;
 
-class XmlCategory extends XmlAbstract
+class Category extends Base
 {
     protected $element = 'category';
 

@@ -3,7 +3,7 @@ namespace FusionsPIM\DemandwareXml;
 
 use \DOMDocument;
 
-class XmlDocument
+class Document
 {
     private $dom;
 
@@ -58,9 +58,9 @@ class XmlDocument
     /**
      * Add a new child of the root element
      *
-     * @param XmlAbstract $object
+     * @param Base $object
      */
-    public function addObject(XmlAbstract $object)
+    public function addObject(Base $object)
     {
         $root = $this->createElement($object->getElement());
 

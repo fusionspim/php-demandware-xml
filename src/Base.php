@@ -1,7 +1,7 @@
 <?php
 namespace FusionsPIM\DemandwareXml;
 
-abstract class XmlAbstract
+abstract class Base
 {
     protected $attributes = [];
     protected $element;
@@ -112,7 +112,7 @@ abstract class XmlAbstract
         $xml = '';
 
         foreach ($elements as $key => $value) {
-            $xml .= '<' . $key . ' xml:lang="x-default">' . XmlDocument::escape($value) . '</' . $key . '>' . PHP_EOL;
+            $xml .= '<' . $key . ' xml:lang="x-default">' . Document::escape($value) . '</' . $key . '>' . PHP_EOL;
         }
 
         $this->elements['page-attributes'] = $xml;
@@ -146,7 +146,7 @@ abstract class XmlAbstract
                 continue;
             }
 
-            $xml .= '<custom-attribute attribute-id="' . XmlDocument::escape($key) . '">';
+            $xml .= '<custom-attribute attribute-id="' . Document::escape($key) . '">';
 
             if (is_array($value)) {
                 foreach ($value as $individual) {
@@ -154,10 +154,10 @@ abstract class XmlAbstract
                         continue;
                     }
 
-                    $xml .= '<value>' . XmlDocument::escape($individual) . '</value>' . PHP_EOL;
+                    $xml .= '<value>' . Document::escape($individual) . '</value>' . PHP_EOL;
                 }
             } else {
-                $xml .= XmlDocument::escape($value);
+                $xml .= Document::escape($value);
             }
 
             $xml .= '</custom-attribute>' . PHP_EOL;

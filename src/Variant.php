@@ -1,7 +1,7 @@
 <?php
 namespace FusionsPIM\DemandwareXml;
 
-class XmlVariant extends XmlAbstract
+class Variant extends Base
 {
     protected $element = 'variation-attribute';
 
@@ -25,8 +25,8 @@ class XmlVariant extends XmlAbstract
         $xml = '';
 
         foreach ($map as $id => $value) {
-            $xml .= '<variation-attribute-value value="' . XmlDocument::escape($id) . '">
-                        <display-value xml:lang="x-default">' . XmlDocument::escape($value) . '</display-value>
+            $xml .= '<variation-attribute-value value="' . Document::escape($id) . '">
+                        <display-value xml:lang="x-default">' . Document::escape($value) . '</display-value>
                     </variation-attribute-value>';
         }
 
