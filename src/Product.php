@@ -124,8 +124,8 @@ class Product extends Base
 
         foreach ($ids as $id) {
             $xml .= '<shared-variation-attribute
-                        variation-attribute-id="' . Document::escape($id) . '"
-                        attribute-id="' . Document::escape($id) . '"
+                        variation-attribute-id="' . Xml::escape($id) . '"
+                        attribute-id="' . Xml::escape($id) . '"
                     ></shared-variation-attribute>';
         }
 
@@ -144,7 +144,7 @@ class Product extends Base
         $xml = '';
 
         foreach ($variants as $id => $default) {
-            $xml .= '<variant product-id="' . Document::escape($id) . '"' . ($default ? ' default="true"' : '') . '/>' . PHP_EOL;
+            $xml .= '<variant product-id="' . Xml::escape($id) . '"' . ($default ? ' default="true"' : '') . '/>' . PHP_EOL;
         }
 
         $this->elements['variants'] = $xml;
@@ -180,8 +180,8 @@ class Product extends Base
         $xml = '';
 
         foreach ($variations as $id => $quantity) {
-            $xml .= '<bundled-product product-id="' . Document::escape($id) . '">';
-            $xml .= '<quantity>' . Document::escape($quantity) . '</quantity>';
+            $xml .= '<bundled-product product-id="' . Xml::escape($id) . '">';
+            $xml .= '<quantity>' . Xml::escape($quantity) . '</quantity>';
             $xml .= '</bundled-product>' . PHP_EOL;
         }
 
@@ -198,7 +198,7 @@ class Product extends Base
         $xml = '';
 
         foreach ($products as $id) {
-            $xml .= '<product-set-product product-id="' . Document::escape($id) . '" />' . PHP_EOL;
+            $xml .= '<product-set-product product-id="' . Xml::escape($id) . '" />' . PHP_EOL;
         }
 
         $this->elements['product-set-products'] = $xml;

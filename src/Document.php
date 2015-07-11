@@ -93,7 +93,7 @@ class Document
     private function addAttribute($node, $name, $value)
     {
         $attribute = $this->dom->createAttribute($name);
-        $attribute->value = static::escape($value);
+        $attribute->value = Xml::escape($value);
 
         $node->appendChild($attribute);
     }
@@ -108,54 +108,23 @@ class Document
 
             $element->appendXML('<' . $name . '>' . $value . '</' . $name . '>');
         } else {
-            $element = $this->dom->createElement($name, static::escape($value));
+            $element = $this->dom->createElement($name, Xml::escape($value));
         }
 
         return $element;
     }
 
-    public static function escape($value)
-    {
-        if (is_bool($value)) {
-            return ($value ? 'true' : 'false');
-        } else {
-            $value = html_entity_decode($value); // not sure why, other than back compat
-
-            return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8', false);
-        }
-    }
-
     /**
-     * Save the document to a path, which should include the appropriate extension (likely .xml)
+     * Save the document to a path, which must include the appropriate extension (likely .xml)
      *
      * @param $fileName
      * @throws XmlException
      */
-    public function save($fileName)
+    public function save($path)
     {
         $this->dom->appendChild($this->root);
-        $this->dom->save($fileName);
+        $this->dom->save($path);
 
-        $this->validate($fileName);
-    }
-
-    private function validate($fileName)
-    {
-        libxml_use_internal_errors(true);
-
-        // @todo: not sure why need to reload etc. but causes error if don't?
-        $this->dom->load($fileName);
-        $this->dom->normalizeDocument();
-        $this->dom->save($fileName);
-
-        $schema = __DIR__ . '/../xsd/catalog.xsd';
-
-        if (! file_exists($schema)) {
-            throw new XmlException('Schema missing');
-        }
-
-        if (! $this->dom->schemaValidate(realpath($schema))) {
-            throw new XmlException('XML validation failed: ' . basename($fileName) . "\n\n" . print_r(libxml_get_errors(), true));
-        }
+        Xml::validate($path, __DIR__ . '/../xsd/catalog.xsd');
     }
 }

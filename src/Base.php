@@ -112,7 +112,7 @@ abstract class Base
         $xml = '';
 
         foreach ($elements as $key => $value) {
-            $xml .= '<' . $key . ' xml:lang="x-default">' . Document::escape($value) . '</' . $key . '>' . PHP_EOL;
+            $xml .= '<' . $key . ' xml:lang="x-default">' . Xml::escape($value) . '</' . $key . '>' . PHP_EOL;
         }
 
         $this->elements['page-attributes'] = $xml;
@@ -146,7 +146,7 @@ abstract class Base
                 continue;
             }
 
-            $xml .= '<custom-attribute attribute-id="' . Document::escape($key) . '">';
+            $xml .= '<custom-attribute attribute-id="' . Xml::escape($key) . '">';
 
             if (is_array($value)) {
                 foreach ($value as $individual) {
@@ -154,10 +154,10 @@ abstract class Base
                         continue;
                     }
 
-                    $xml .= '<value>' . Document::escape($individual) . '</value>' . PHP_EOL;
+                    $xml .= '<value>' . Xml::escape($individual) . '</value>' . PHP_EOL;
                 }
             } else {
-                $xml .= Document::escape($value);
+                $xml .= Xml::escape($value);
             }
 
             $xml .= '</custom-attribute>' . PHP_EOL;

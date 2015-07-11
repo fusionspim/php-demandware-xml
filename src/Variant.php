@@ -25,8 +25,8 @@ class Variant extends Base
         $xml = '';
 
         foreach ($map as $id => $value) {
-            $xml .= '<variation-attribute-value value="' . Document::escape($id) . '">
-                        <display-value xml:lang="x-default">' . Document::escape($value) . '</display-value>
+            $xml .= '<variation-attribute-value value="' . Xml::escape($id) . '">
+                        <display-value xml:lang="x-default">' . Xml::escape($value) . '</display-value>
                     </variation-attribute-value>';
         }
 
