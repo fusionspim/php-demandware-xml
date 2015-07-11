@@ -4,6 +4,7 @@
   "description": "PHP library for working with Demandware XML files",
   "keywords": ["demandware", "xml", "export", "php"],
   "homepage": "https://github.com/fusionspim/php-demandware-xml",
+  "license": "MIT",
   "authors": [
     {
       "name": "Wes Hooper",
