@@ -1,0 +1,20 @@
+{
+  "name": "fusionspim/php-demandware-xml",
+  "type": "library",
+  "description": "PHP library for working with Demandware XML files",
+  "keywords": ["demandware", "xml", "export", "php"],
+  "homepage": "https://github.com/fusionspim/php-demandware-xml",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Wes Hooper",
+      "email": "wes@fusionspim.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6"
+  },
+  "autoload": {
+    "psr-4": {"DemandwareXml\\": "src"}
+  }
+}
