@@ -125,6 +125,6 @@ class Document
         $this->dom->appendChild($this->root);
         $this->dom->save($path);
 
-        Xml::validate($path, __DIR__ . '/../xsd/catalog.xsd');
+        Xml::validate($path);
     }
 }

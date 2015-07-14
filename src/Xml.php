@@ -30,14 +30,10 @@ class Xml
      * @param $schemaPath
      * @throws XmlException
      */
-    public static function validate($filePath, $schemaPath)
+    public static function validate($filePath)
     {
         if (! file_exists($filePath)) {
             throw new XmlException('XML file missing');
-        }
-
-        if (! file_exists($schemaPath)) {
-            throw new XmlException('XSD schema missing');
         }
 
         libxml_use_internal_errors(true);
@@ -50,7 +46,7 @@ class Xml
         $dom->normalizeDocument();
         $dom->save($filePath);
 
-        if (! $dom->schemaValidate(realpath($schemaPath))) {
+        if (! $dom->schemaValidate(realpath(__DIR__ . '/../xsd/catalog.xsd'))) {
             throw new XmlException(static::errorSummary());
         }
     }
