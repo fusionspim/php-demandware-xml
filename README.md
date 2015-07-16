@@ -21,7 +21,7 @@ $ composer require fusionspim/php-demandware-xml
 Usage
 ---
 
-See `test.php` for usage, and `/examples` for output examples.
+To run the tests run `php vendor/bin/phpunit` from the project directory. Look in `tests/fixtures` for output examples.
 
 
 Future plans
