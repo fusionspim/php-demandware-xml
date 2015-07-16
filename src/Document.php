@@ -115,6 +115,16 @@ class Document
     }
 
     /**
+     * Build the DOMDocument object by appending the root element to it.
+     *
+     * @return void
+     */
+    private function build()
+    {
+        $this->dom->appendChild($this->root);
+    }
+
+    /**
      * Save the document to a path, which must include the appropriate extension (likely .xml)
      *
      * @param $fileName
@@ -122,9 +132,22 @@ class Document
      */
     public function save($path)
     {
-        $this->dom->appendChild($this->root);
+        $this->build();
+
         $this->dom->save($path);
 
         Xml::validate($path);
+    }
+
+    /**
+     * Get the internal DOMDocument element.
+     *
+     * @return DOMDocument
+     */
+    public function getDomDocument()
+    {
+        $this->build();
+
+        return $this->dom;
     }
 }
