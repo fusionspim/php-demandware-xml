@@ -74,8 +74,16 @@ class Document
                 continue;
             }
 
-            $value   = $object->getElements()[$name];
-            $element = $this->createElement($name, $value);
+            $raw   = false;
+            $value = $object->getElements()[$name];
+
+            // If the value is an array then it contains the actual value and whether or not it should be escaped.
+            if (is_array($value)) {
+                $raw   = $value['raw'];
+                $value = $value['value'];
+            }
+
+            $element = $this->createElement($name, $value, $raw);
 
             if ('display-name' === $name || 'long-description' === $name) {
                 $this->addAttribute($element, 'xml:lang', 'x-default');
@@ -98,7 +106,7 @@ class Document
         $node->appendChild($attribute);
     }
 
-    private function createElement($name, $value = null)
+    private function createElement($name, $value = null, $raw = false)
     {
         if (is_null($value)) {
             $element = $this->dom->createElement($name);
@@ -108,7 +116,7 @@ class Document
 
             $element->appendXML('<' . $name . '>' . $value . '</' . $name . '>');
         } else {
-            $element = $this->dom->createElement($name, Xml::escape($value));
+            $element = $this->dom->createElement($name, $raw ? $value : Xml::escape($value));
         }
 
         return $element;
