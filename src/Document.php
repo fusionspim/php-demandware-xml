@@ -74,14 +74,15 @@ class Document
                 continue;
             }
 
-            $raw = false;
+            $raw   = false;
+            $value = $object->getElements()[$name];
 
-            if (substr($name, 0, 3) === 'RAW-') {
-                $name = ltrim($name, 'RAW-');
-                $raw  = true;
+            // If the value is an array then it contains the actual value and whether or not it should be escaped.
+            if (is_array($value)) {
+                $raw   = $value['raw'];
+                $value = $value['value'];
             }
 
-            $value   = $object->getElements()[$name];
             $element = $this->createElement($name, $value, $raw);
 
             if ('display-name' === $name || 'long-description' === $name) {

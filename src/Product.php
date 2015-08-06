@@ -45,9 +45,10 @@ class Product extends Base
      */
     public function setDescription($value, $raw = false)
     {
-        $key = ($raw ? 'RAW-' : '') . 'long-description';
-
-        $this->elements[$key] = $value;
+        $this->elements['long-description'] = [
+            'value' => $value,
+            'raw'   => $raw,
+        ];
     }
 
     /**

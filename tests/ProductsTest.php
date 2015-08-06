@@ -15,7 +15,7 @@ class ProductsTest extends AbstractTest
         foreach (['Product', 'Set', 'Bundle'] as $index => $example) {
             $element = new Product(strtoupper($example) . '123');
             $element->setName($example . ' number 123');
-            $element->setDescription('The description for an example ' . strtolower($example) . '!');
+            $element->setDescription('The description for an example ' . strtolower($example) . '! &amp;bull; Bullet Point', true);
             $element->setUpc('50000000000' . $index);
             $element->setQuantities(); // include, but use defaults
             $element->setRank(1);

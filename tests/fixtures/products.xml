@@ -5,7 +5,7 @@
     <min-order-quantity>1</min-order-quantity>
     <step-quantity>1</step-quantity>
     <display-name xml:lang="x-default">Product number 123</display-name>
-    <long-description xml:lang="x-default">The description for an example product!</long-description>
+    <long-description xml:lang="x-default">The description for an example product! &amp;bull; Bullet Point</long-description>
     <online-flag>true</online-flag>
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
@@ -52,7 +52,7 @@
     <min-order-quantity>1</min-order-quantity>
     <step-quantity>1</step-quantity>
     <display-name xml:lang="x-default">Set number 123</display-name>
-    <long-description xml:lang="x-default">The description for an example set!</long-description>
+    <long-description xml:lang="x-default">The description for an example set! &amp;bull; Bullet Point</long-description>
     <online-flag>true</online-flag>
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
@@ -92,7 +92,7 @@
     <min-order-quantity>1</min-order-quantity>
     <step-quantity>1</step-quantity>
     <display-name xml:lang="x-default">Bundle number 123</display-name>
-    <long-description xml:lang="x-default">The description for an example bundle!</long-description>
+    <long-description xml:lang="x-default">The description for an example bundle! &amp;bull; Bullet Point</long-description>
     <online-flag>true</online-flag>
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
