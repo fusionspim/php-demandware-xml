@@ -38,12 +38,16 @@ class Product extends Base
 
     /**
      * Populates the description of the product/set/bundle in the <long-description xml:lang="x-default"> element
+     * @todo: Allow elements to be defined as raw or not and remove this hack.
      *
      * @param $value
+     * @param $raw
      */
-    public function setDescription($value)
+    public function setDescription($value, $raw = false)
     {
-        $this->elements['long-description'] = $value;
+        $key = ($raw ? 'RAW-' : '') . 'long-description';
+
+        $this->elements[$key] = $value;
     }
 
     /**

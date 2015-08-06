@@ -74,8 +74,15 @@ class Document
                 continue;
             }
 
+            $raw = false;
+
+            if (substr($name, 0, 3) === 'RAW-') {
+                $name = ltrim($name, 'RAW-');
+                $raw  = true;
+            }
+
             $value   = $object->getElements()[$name];
-            $element = $this->createElement($name, $value);
+            $element = $this->createElement($name, $value, $raw);
 
             if ('display-name' === $name || 'long-description' === $name) {
                 $this->addAttribute($element, 'xml:lang', 'x-default');
@@ -98,7 +105,7 @@ class Document
         $node->appendChild($attribute);
     }
 
-    private function createElement($name, $value = null)
+    private function createElement($name, $value = null, $raw)
     {
         if (is_null($value)) {
             $element = $this->dom->createElement($name);
@@ -108,7 +115,7 @@ class Document
 
             $element->appendXML('<' . $name . '>' . $value . '</' . $name . '>');
         } else {
-            $element = $this->dom->createElement($name, Xml::escape($value));
+            $element = $this->dom->createElement($name, $raw ? $value : Xml::escape($value));
         }
 
         return $element;
