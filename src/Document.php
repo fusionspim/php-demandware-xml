@@ -105,7 +105,7 @@ class Document
         $node->appendChild($attribute);
     }
 
-    private function createElement($name, $value = null, $raw)
+    private function createElement($name, $value = null, $raw = false)
     {
         if (is_null($value)) {
             $element = $this->dom->createElement($name);
