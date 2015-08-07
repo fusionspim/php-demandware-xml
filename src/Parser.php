@@ -1,7 +1,6 @@
 <?php
 namespace DemandwareXml;
 
-use \Exception;
 use \SimpleXMLElement;
 use \XMLReader;
 
@@ -24,7 +23,7 @@ class Parser
         $reader = new XMLReader;
 
         if (! $reader->open($path)) {
-            throw new Exception('Error opening ' . $path);
+            throw new XmlException('Error opening ' . $path);
         }
 
         Xml::validate($path);
