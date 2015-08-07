@@ -142,9 +142,11 @@ class Document
     {
         $this->build();
 
-        $this->dom->save($path);
+        $results = $this->dom->save($path);
 
         Xml::validate($path);
+
+        return $results > 0;
     }
 
     /**

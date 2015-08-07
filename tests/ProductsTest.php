@@ -8,7 +8,9 @@ use \DemandwareXml\XmlException;
 
 class ProductsTest extends AbstractTest
 {
-    public function testProductsXml()
+    protected $document;
+
+    public function setUp()
     {
         $document = new Document('TestCatalog');
 
@@ -50,9 +52,24 @@ class ProductsTest extends AbstractTest
             $document->addObject($element);
         }
 
+        $this->document = $document;
+    }
+
+    public function tearDown()
+    {
+        $this->document = null;
+    }
+
+    public function testProductsXml()
+    {
         $sampleXml = $this->loadFixture('products.xml');
-        $outputXml = $document->getDomDocument();
+        $outputXml = $this->document->getDomDocument();
 
         $this->assertEqualXMLStructure($sampleXml->firstChild, $outputXml->firstChild);
+    }
+
+    public function testProductsSaveXml()
+    {
+        $this->assertTrue($this->document->save(__DIR__ . '/output/products.xml'));
     }
 }
