@@ -9,28 +9,30 @@ class ParserTest extends AbstractTest
 {
     public function testAssignmentsParser()
     {
-        $path     = __DIR__ . '/fixtures/';
-        $parser   = new Parser($path . 'assignments.xml');
-        $expected = json_decode(file_get_contents($path . 'assignments.json'), true);
+        $parser   = $this->getFixtureParser('assignments.xml');
+        $expected = $this->loadJsonFixture('assignments.json');
 
         $this->assertEquals($expected, $parser->assignments());
     }
 
     public function testCategoriesParser()
     {
-        $path     = __DIR__ . '/fixtures/';
-        $parser   = new Parser($path . 'categories.xml');
-        $expected = json_decode(file_get_contents($path . 'categories.json'), true);
+        $parser   = $this->getFixtureParser('categories.xml');
+        $expected = $this->loadJsonFixture('categories.json');
 
         $this->assertEquals($expected, $parser->categories());
     }
 
     public function testProductsParser()
     {
-        $path     = __DIR__ . '/fixtures/';
-        $parser   = new Parser($path . 'products.xml');
-        $expected = json_decode(file_get_contents($path . 'products.json'), true);
+        $parser   = $this->getFixtureParser('products.xml');
+        $expected = $this->loadJsonFixture('products.json');
 
         $this->assertEquals($expected, $parser->products());
+    }
+
+    protected function getFixtureParser($filename)
+    {
+        return new Parser(__DIR__ . '/fixtures/' . $filename);
     }
 }
