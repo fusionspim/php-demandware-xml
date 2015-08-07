@@ -1,0 +1,32 @@
+{
+    "CAT0": {
+        "online-flag": true,
+        "attributes": {
+            "hasOffers": "true",
+            "itemsPerPage": "30",
+            "promoMast": "cat0-banner.png"
+        },
+        "parent": "CAT0",
+        "name": "Socks"
+    },
+    "CAT1": {
+        "online-flag": true,
+        "attributes": {
+            "hasOffers": "true",
+            "itemsPerPage": "30",
+            "promoMast": "cat1-banner.png"
+        },
+        "parent": "CAT0",
+        "name": "Death Stars"
+    },
+    "CAT2": {
+        "online-flag": true,
+        "attributes": {
+            "hasOffers": "true",
+            "itemsPerPage": "30",
+            "promoMast": "cat2-banner.png"
+        },
+        "parent": "CAT0",
+        "name": "Donuts"
+    }
+}

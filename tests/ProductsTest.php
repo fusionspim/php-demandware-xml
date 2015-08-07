@@ -1,10 +1,8 @@
 <?php
 namespace DemandwareXml\Test;
 
-use \DemandwareXml\Test\AbstractTest;
 use \DemandwareXml\Document;
 use \DemandwareXml\Product;
-use \DemandwareXml\XmlException;
 
 class ProductsTest extends AbstractTest
 {

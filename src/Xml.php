@@ -36,6 +36,12 @@ class Xml
             throw new XmlException('XML file missing');
         }
 
+        // @todo: look at using xmlreader instead as dies silently when given a big (1.7GB) file :-/
+        // @see: https://gist.github.com/tentacode/5934634 for some examples
+        if (filesize($filePath) > 500000000) { // 500Mb
+            return;
+        }
+
         libxml_use_internal_errors(true);
 
         // possibly more efficient to pass a $dom object rather than save/reload, but cleaner to assume already saved

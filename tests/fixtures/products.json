@@ -1,0 +1,53 @@
+{
+    "PRODUCT123": {
+        "online-flag": true,
+        "attributes": {
+            "boolTest": "true",
+            "multiWow": [
+                "so",
+                "such",
+                "many",
+                "much",
+                "very"
+            ],
+            "primaryImage": "product-123.png",
+            "type": "Examples",
+            "zzz": "Should be exported last within custom-attributes"
+        },
+        "online-from": "2015-01-23T01:23:45"
+    },
+    "SET123": {
+        "online-flag": true,
+        "attributes": {
+            "boolTest": "true",
+            "multiWow": [
+                "so",
+                "such",
+                "many",
+                "much",
+                "very"
+            ],
+            "primaryImage": "set-123.png",
+            "type": "Examples",
+            "zzz": "Should be exported last within custom-attributes"
+        },
+        "online-from": "2015-01-23T01:23:45"
+    },
+    "BUNDLE123": {
+        "online-flag": true,
+        "attributes": {
+            "boolTest": "true",
+            "multiWow": [
+                "so",
+                "such",
+                "many",
+                "much",
+                "very"
+            ],
+            "primaryImage": "bundle-123.png",
+            "type": "Examples",
+            "zzz": "Should be exported last within custom-attributes"
+        },
+        "online-from": "2015-01-23T01:23:45"
+    }
+}
