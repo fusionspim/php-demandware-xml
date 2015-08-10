@@ -8,7 +8,9 @@ use \DemandwareXml\XmlException;
 
 class ProductsTest extends AbstractTest
 {
-    public function testProductsXml()
+    protected $document;
+
+    public function setUp()
     {
         $document = new Document('TestCatalog');
 
@@ -50,9 +52,37 @@ class ProductsTest extends AbstractTest
             $document->addObject($element);
         }
 
+        $this->document = $document;
+    }
+
+    public function tearDown()
+    {
+        $this->document = null;
+    }
+
+    public function testProductsXml()
+    {
         $sampleXml = $this->loadFixture('products.xml');
-        $outputXml = $document->getDomDocument();
+        $outputXml = $this->document->getDomDocument();
 
         $this->assertEqualXMLStructure($sampleXml->firstChild, $outputXml->firstChild);
+    }
+
+    /**
+     * @expectedException               \DemandwareXml\XmlException
+     * @expectedExceptionMessageRegExp  /Entity 'bull' not defined/
+     */
+    public function testProductsInvalidEntitiesException()
+    {
+        $element = new Product('product123');
+        $element->setName('product number 123 &amp;bull;');
+
+        $this->document->addObject($element);
+        $this->document->save(__DIR__ . '/output/products.xml');
+    }
+
+    public function testProductsSaveXml()
+    {
+        $this->assertTrue($this->document->save(__DIR__ . '/output/products.xml'));
     }
 }

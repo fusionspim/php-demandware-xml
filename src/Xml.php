@@ -2,6 +2,7 @@
 namespace DemandwareXml;
 
 use \DOMDocument;
+use \DemandwareXml\XmlException;
 
 class Xml
 {
@@ -38,6 +39,10 @@ class Xml
 
         libxml_use_internal_errors(true);
 
+        set_error_handler(function ($errno, $errstr, $errfile, $errline, $errcontext) {
+            throw new XmlException($errstr, $errno);
+        });
+
         // possibly more efficient to pass a $dom object rather than save/reload, but cleaner to assume already saved
         $dom                     = new DOMDocument('1.0', 'UTF-8');
         $dom->preserveWhiteSpace = false;
@@ -45,6 +50,8 @@ class Xml
         $dom->load($filePath);
         $dom->normalizeDocument();
         $dom->save($filePath);
+
+        restore_error_handler();
 
         if (! $dom->schemaValidate(realpath(__DIR__ . '/../xsd/catalog.xsd'))) {
             throw new XmlException(static::errorSummary());
