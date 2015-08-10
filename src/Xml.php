@@ -39,8 +39,8 @@ class Xml
 
         libxml_use_internal_errors(true);
 
-        set_error_handler(function ($severity, $message, $file, $line) {
-            throw new XmlException($message, $severity, $severity, $file, $line);
+        set_error_handler(function ($number, $message, $file, $line, $context) {
+            throw new XmlException($message, $number);
         });
 
         // possibly more efficient to pass a $dom object rather than save/reload, but cleaner to assume already saved
