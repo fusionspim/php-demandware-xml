@@ -78,8 +78,7 @@ class ProductsTest extends AbstractTest
         $element->setName('product number 123 &amp;bull;');
 
         $this->document->addObject($element);
-
-        $this->assertTrue($this->document->save(__DIR__ . '/output/products.xml'));
+        $this->document->save(__DIR__ . '/output/products.xml');
     }
 
     public function testProductsSaveXml()
