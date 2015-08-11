@@ -15,6 +15,14 @@ class ParserTest extends AbstractTest
         $this->assertEquals($expected, $parser->assignments());
     }
 
+    public function testBundlesParser()
+    {
+        $parser   = $this->getFixtureParser('products.xml');
+        $expected = $this->loadJsonFixture('bundles.json');
+
+        $this->assertEquals($expected, $parser->bundles());
+    }
+
     public function testCategoriesParser()
     {
         $parser   = $this->getFixtureParser('categories.xml');
@@ -29,6 +37,22 @@ class ParserTest extends AbstractTest
         $expected = $this->loadJsonFixture('products.json');
 
         $this->assertEquals($expected, $parser->products());
+    }
+
+    public function testSetsParser()
+    {
+        $parser   = $this->getFixtureParser('products.xml');
+        $expected = $this->loadJsonFixture('sets.json');
+
+        $this->assertEquals($expected, $parser->sets());
+    }
+
+    public function testVariationsParser()
+    {
+        $parser   = $this->getFixtureParser('products.xml');
+        $expected = $this->loadJsonFixture('variations.json');
+
+        $this->assertEquals($expected, $parser->variations());
     }
 
     protected function getFixtureParser($filename)

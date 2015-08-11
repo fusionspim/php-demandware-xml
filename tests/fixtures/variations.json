@@ -1,0 +1,28 @@
+{
+    "VARIATION123": {
+        "attributes": {
+            "boolTest": true,
+            "multiWow": [
+                "so",
+                "such",
+                "many",
+                "much",
+                "very"
+            ],
+            "primaryImage": "variation-123.png",
+            "type": "Examples",
+            "zzz": "Should be exported last within custom-attributes"
+        },
+        "description": "The description for an example variation! \u2022 Bullet Point",
+        "name": "Variation number 123",
+        "online": true,
+        "page": {
+            "title": "Amazing Variation",
+            "description": "Buy our Variation today!",
+            "keywords": "Variation, test, example",
+            "url": "http:\/\/example.com\/variation\/123"
+        },
+        "searchable": true,
+        "start": "2015-01-23T01:23:45"
+    }
+}
