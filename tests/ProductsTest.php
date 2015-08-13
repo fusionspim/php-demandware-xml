@@ -1,10 +1,8 @@
 <?php
 namespace DemandwareXml\Test;
 
-use \DemandwareXml\Test\AbstractTest;
 use \DemandwareXml\Document;
 use \DemandwareXml\Product;
-use \DemandwareXml\XmlException;
 
 class ProductsTest extends AbstractTest
 {
@@ -14,10 +12,10 @@ class ProductsTest extends AbstractTest
     {
         $document = new Document('TestCatalog');
 
-        foreach (['Product', 'Set', 'Bundle'] as $index => $example) {
+        foreach (['Product', 'Set', 'Bundle', 'Variation'] as $index => $example) {
             $element = new Product(strtoupper($example) . '123');
             $element->setName($example . ' number 123');
-            $element->setDescription('The description for an example ' . strtolower($example) . '! &amp;bull; Bullet Point', true);
+            $element->setDescription('The description for an <i>example</i> ' . strtolower($example) . '! &amp;bull; Bullet Point', true);
             $element->setUpc('50000000000' . $index);
             $element->setQuantities(); // include, but use defaults
             $element->setRank(1);
@@ -25,7 +23,6 @@ class ProductsTest extends AbstractTest
             $element->setBrand('SampleBrand™');
             $element->setFlags(true, false);
             $element->setDates('2015-01-23 01:23:45', '2025-01-23 01:23:45');
-            $element->setClassification('CAT123', 'TestCatalog');
             $element->setPageAttributes(
                 'Amazing ' . $example,
                 'Buy our ' . $example . ' today!',
@@ -49,6 +46,11 @@ class ProductsTest extends AbstractTest
                 $element->setSharedAttributes(['AT001', 'AT002']);
                 $element->setVariants(['SKU0000001' => false, 'SKU0000002' => false, 'SKU0000003' => true]);
             }
+
+            if ('Variation' !== $example) {
+                $element->setClassification('CAT123', 'TestCatalog');
+            }
+
             $document->addObject($element);
         }
 

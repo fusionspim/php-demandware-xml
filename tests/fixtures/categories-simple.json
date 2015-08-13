@@ -1,0 +1,17 @@
+{
+    "CAT0": {
+        "name": "Socks",
+        "online": true,
+        "parent": "CAT0"
+    },
+    "CAT1": {
+        "name": "Death Stars",
+        "online": true,
+        "parent": "CAT0"
+    },
+    "CAT2": {
+        "name": "Donuts",
+        "online": true,
+        "parent": "CAT0"
+    }
+}

@@ -16,4 +16,9 @@ abstract class AbstractTest extends PHPUnit_Framework_TestCase
 
         return $dom;
     }
+
+    protected function loadJsonFixture($filename)
+    {
+        return json_decode(file_get_contents(__DIR__ . '/fixtures/' . ltrim($filename, '/')), true);
+    }
 }

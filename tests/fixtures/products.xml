@@ -5,7 +5,7 @@
     <min-order-quantity>1</min-order-quantity>
     <step-quantity>1</step-quantity>
     <display-name xml:lang="x-default">Product number 123</display-name>
-    <long-description xml:lang="x-default">The description for an example product! &amp;bull; Bullet Point</long-description>
+    <long-description xml:lang="x-default">The description for an &lt;i&gt;example&lt;/i&gt; product! &amp;bull; Bullet Point</long-description>
     <online-flag>true</online-flag>
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
@@ -52,7 +52,7 @@
     <min-order-quantity>1</min-order-quantity>
     <step-quantity>1</step-quantity>
     <display-name xml:lang="x-default">Set number 123</display-name>
-    <long-description xml:lang="x-default">The description for an example set! &amp;bull; Bullet Point</long-description>
+    <long-description xml:lang="x-default">The description for an &lt;i&gt;example&lt;/i&gt; set! &amp;bull; Bullet Point</long-description>
     <online-flag>true</online-flag>
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
@@ -92,7 +92,7 @@
     <min-order-quantity>1</min-order-quantity>
     <step-quantity>1</step-quantity>
     <display-name xml:lang="x-default">Bundle number 123</display-name>
-    <long-description xml:lang="x-default">The description for an example bundle! &amp;bull; Bullet Point</long-description>
+    <long-description xml:lang="x-default">The description for an &lt;i&gt;example&lt;/i&gt; bundle! &amp;bull; Bullet Point</long-description>
     <online-flag>true</online-flag>
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
@@ -131,5 +131,40 @@
       </bundled-product>
     </bundled-products>
     <classification-category catalog-id="TestCatalog">CAT123</classification-category>
+  </product>
+  <product product-id="VARIATION123">
+    <upc>500000000003</upc>
+    <min-order-quantity>1</min-order-quantity>
+    <step-quantity>1</step-quantity>
+    <display-name xml:lang="x-default">Variation number 123</display-name>
+    <long-description xml:lang="x-default">The description for an example variation! &amp;bull; Bullet Point</long-description>
+    <online-flag>true</online-flag>
+    <online-from>2015-01-23T01:23:45</online-from>
+    <online-to>2025-01-23T01:23:45</online-to>
+    <searchable-flag>false</searchable-flag>
+    <brand>SampleBrand™</brand>
+    <search-rank>1</search-rank>
+    <sitemap-included-flag>true</sitemap-included-flag>
+    <sitemap-changefrequency>weekly</sitemap-changefrequency>
+    <sitemap-priority>0.5</sitemap-priority>
+    <page-attributes>
+      <page-title xml:lang="x-default">Amazing Variation</page-title>
+      <page-description xml:lang="x-default">Buy our Variation today!</page-description>
+      <page-keywords xml:lang="x-default">Variation, test, example</page-keywords>
+      <page-url xml:lang="x-default">http://example.com/variation/123</page-url>
+    </page-attributes>
+    <custom-attributes>
+      <custom-attribute attribute-id="boolTest">true</custom-attribute>
+      <custom-attribute attribute-id="multiWow">
+        <value>so</value>
+        <value>such</value>
+        <value>many</value>
+        <value>much</value>
+        <value>very</value>
+      </custom-attribute>
+      <custom-attribute attribute-id="primaryImage">variation-123.png</custom-attribute>
+      <custom-attribute attribute-id="type">Examples</custom-attribute>
+      <custom-attribute attribute-id="zzz">Should be exported last within custom-attributes</custom-attribute>
+    </custom-attributes>
   </product>
 </catalog>

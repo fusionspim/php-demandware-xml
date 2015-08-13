@@ -1,0 +1,50 @@
+{
+    "CAT0": {
+        "attributes": {
+            "hasOffers": true,
+            "itemsPerPage": "30",
+            "promoMast": "cat0-banner.png"
+        },
+        "name": "Socks",
+        "online": true,
+        "page": {
+            "title": "Socks",
+            "description": "Buy Socks",
+            "keywords": "socks",
+            "url": "\/Socks"
+        },
+        "parent": "CAT0"
+    },
+    "CAT1": {
+        "attributes": {
+            "hasOffers": true,
+            "itemsPerPage": "30",
+            "promoMast": "cat1-banner.png"
+        },
+        "name": "Death Stars",
+        "online": true,
+        "page": {
+            "title": "Death Stars",
+            "description": "Buy Death Stars",
+            "keywords": "death stars",
+            "url": "\/Death Stars"
+        },
+        "parent": "CAT0"
+    },
+    "CAT2": {
+        "attributes": {
+            "hasOffers": true,
+            "itemsPerPage": "30",
+            "promoMast": "cat2-banner.png"
+        },
+        "name": "Donuts",
+        "online": true,
+        "page": {
+            "title": "Donuts",
+            "description": "Buy Donuts",
+            "keywords": "donuts",
+            "url": "\/Donuts"
+        },
+        "parent": "CAT0"
+    }
+}

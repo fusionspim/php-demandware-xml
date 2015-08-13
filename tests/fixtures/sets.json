@@ -1,0 +1,33 @@
+{
+    "SET123": {
+        "attributes": {
+            "boolTest": true,
+            "multiWow": [
+                "so",
+                "such",
+                "many",
+                "much",
+                "very"
+            ],
+            "primaryImage": "set-123.png",
+            "type": "Examples",
+            "zzz": "Should be exported last within custom-attributes"
+        },
+        "classification": "CAT123",
+        "description": "The description for an <i>example<\/i> set! \u2022 Bullet Point",
+        "name": "Set number 123",
+        "online": true,
+        "page": {
+            "title": "Amazing Set",
+            "description": "Buy our Set today!",
+            "keywords": "Set, test, example",
+            "url": "http:\/\/example.com\/set\/123"
+        },
+        "searchable": true,
+        "start": "2015-01-23T01:23:45",
+        "products": [
+            "PRODUCT123",
+            "PRODUCT456"
+        ]
+    }
+}

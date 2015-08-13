@@ -1,0 +1,34 @@
+{
+    "PRODUCT123": {
+        "attributes": {
+            "boolTest": true,
+            "multiWow": [
+                "so",
+                "such",
+                "many",
+                "much",
+                "very"
+            ],
+            "primaryImage": "product-123.png",
+            "type": "Examples",
+            "zzz": "Should be exported last within custom-attributes"
+        },
+        "classification": "CAT123",
+        "description": "The description for an <i>example<\/i> product! \u2022 Bullet Point",
+        "name": "Product number 123",
+        "online": true,
+        "page": {
+            "title": "Amazing Product",
+            "description": "Buy our Product today!",
+            "keywords": "Product, test, example",
+            "url": "http:\/\/example.com\/product\/123"
+        },
+        "searchable": true,
+        "start": "2015-01-23T01:23:45",
+        "variations": {
+            "SKU0000001": false,
+            "SKU0000002": false,
+            "SKU0000003": true
+        }
+    }
+}

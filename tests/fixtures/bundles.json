@@ -1,0 +1,34 @@
+{
+    "BUNDLE123": {
+        "attributes": {
+            "boolTest": true,
+            "multiWow": [
+                "so",
+                "such",
+                "many",
+                "much",
+                "very"
+            ],
+            "primaryImage": "bundle-123.png",
+            "type": "Examples",
+            "zzz": "Should be exported last within custom-attributes"
+        },
+        "classification": "CAT123",
+        "description": "The description for an <i>example<\/i> bundle! \u2022 Bullet Point",
+        "name": "Bundle number 123",
+        "online": true,
+        "page": {
+            "title": "Amazing Bundle",
+            "description": "Buy our Bundle today!",
+            "keywords": "Bundle, test, example",
+            "url": "http:\/\/example.com\/bundle\/123"
+        },
+        "searchable": true,
+        "start": "2015-01-23T01:23:45",
+        "tax": 20,
+        "variations": {
+            "SKU0000001": 10,
+            "SKU0000002": 20
+        }
+    }
+}
