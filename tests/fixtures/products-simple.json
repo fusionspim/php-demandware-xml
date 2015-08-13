@@ -1,0 +1,15 @@
+{
+    "PRODUCT123": {
+        "classification": "CAT123",
+        "description": "The description for an <i>example<\/i> product! \u2022 Bullet Point",
+        "name": "Product number 123",
+        "online": true,
+        "searchable": true,
+        "start": "2015-01-23T01:23:45",
+        "variations": {
+            "SKU0000001": false,
+            "SKU0000002": false,
+            "SKU0000003": true
+        }
+    }
+}

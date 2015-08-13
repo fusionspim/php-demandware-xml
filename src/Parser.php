@@ -19,14 +19,18 @@ class Parser
     private $sets        = [];
     private $variations  = [];
 
+    private $skipAttributes;
+
     /**
      * Create a new parser for the specified path, which will be validated against the XSD before parsing
+     * For better speed and memory usage, parsing page/custom attributes can be skipped if you don't need them
      *
      * @param $path
+     * @param $skipAttributes
      * @throws Exception
      * @throws XmlException
      */
-    public function __construct($path)
+    public function __construct($path, $skipAttributes = false)
     {
         $reader = new XMLReader;
 
@@ -36,6 +40,8 @@ class Parser
 
         Xml::validate($path);
 
+        $this->skipAttributes = $skipAttributes;
+
         $this->parse($reader);
     }
 
@@ -44,7 +50,7 @@ class Parser
      *
      * @return array
      */
-    public function assignments()
+    public function getAssignments()
     {
         return $this->assignments;
     }
@@ -54,7 +60,7 @@ class Parser
      *
      * @return array
      */
-    public function bundles()
+    public function getBundles()
     {
         return $this->bundles;
     }
@@ -64,7 +70,7 @@ class Parser
      *
      * @return array
      */
-    public function categories()
+    public function getCategories()
     {
         return $this->categories;
     }
@@ -74,7 +80,7 @@ class Parser
      *
      * @return array
      */
-    public function products()
+    public function getProducts()
     {
         return $this->products;
     }
@@ -84,7 +90,7 @@ class Parser
      *
      * @return array
      */
-    public function sets()
+    public function getSets()
     {
         return $this->sets;
     }
@@ -94,7 +100,7 @@ class Parser
      *
      * @return array
      */
-    public function variations()
+    public function getVariations()
     {
         return $this->variations;
     }
@@ -122,7 +128,6 @@ class Parser
                 // we can determine the specifics of what the product is used for by checking for grouping elements
                 case 'product':
                     $id = (string) $element['product-id'];
-                    // @todo: $details = $this->commonDetails($element);
 
                     if (isset($element->{'bundled-products'})) {
                         $this->addBundle($id, $element);
@@ -131,7 +136,7 @@ class Parser
                     } elseif (isset($element->{'variations'})) {
                         $this->addProduct($id, $element);
                     } else {
-                        $this->addVariation($id, $element);
+                        $this->variations[$id] = $this->commonDetails($element); // no need for own function
                     }
 
                     break;
@@ -190,18 +195,16 @@ class Parser
         $this->sets[$id] = $details;
     }
 
-    // @todo: may not need function?
-    private function addVariation($id, SimpleXMLElement $element)
-    {
-        $this->variations[$id] = $this->commonDetails($element);
-    }
-
     private function commonDetails(SimpleXMLElement $element)
     {
-        $details    = [
-            'attributes' => $this->customAttributes($element),
-            'page'       => $this->pageAttributes($element)
-        ];
+        if ($this->skipAttributes) {
+            $details = [];
+        } else {
+            $details = [
+                'attributes' => $this->customAttributes($element),
+                'page'       => $this->pageAttributes($element)
+            ];
+        }
 
         $map = [
             'description'    => 'long-description',

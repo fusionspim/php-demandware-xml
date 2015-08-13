@@ -1,0 +1,15 @@
+{
+    "BUNDLE123": {
+        "classification": "CAT123",
+        "description": "The description for an <i>example<\/i> bundle! \u2022 Bullet Point",
+        "name": "Bundle number 123",
+        "online": true,
+        "searchable": true,
+        "start": "2015-01-23T01:23:45",
+        "tax": 20,
+        "variations": {
+            "SKU0000001": 10,
+            "SKU0000002": 20
+        }
+    }
+}

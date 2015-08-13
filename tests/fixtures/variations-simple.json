@@ -1,0 +1,9 @@
+{
+    "VARIATION123": {
+        "description": "The description for an example variation! \u2022 Bullet Point",
+        "name": "Variation number 123",
+        "online": true,
+        "searchable": true,
+        "start": "2015-01-23T01:23:45"
+    }
+}
