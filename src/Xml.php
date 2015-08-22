@@ -7,7 +7,8 @@ use \DemandwareXml\XmlException;
 class Xml
 {
     /**
-     * Escapes the value suitable for inclusion in XML and converts booleans to 'true'/'false' strings
+     * Escapes the value suitable for inclusion in XML and converts booleans to 'true'/'false' strings.
+     * Accepts text and unencoded HTML (which will be encoded as UTF-8 entities).
      *
      * @param $value
      * @return string
@@ -17,8 +18,6 @@ class Xml
         if (is_bool($value)) {
             return ($value ? 'true' : 'false');
         } else {
-            $value = html_entity_decode($value); // not sure why, other than back compat
-
             return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8', false);
         }
     }
