@@ -114,6 +114,10 @@ class Parser
                 continue;
             }
 
+            if ($reader->nodeType !== XMLReader::ELEMENT) {
+                continue;
+            }
+
             $element = new SimpleXMLElement($reader->readOuterXML());
 
             switch ($nodeName) {
