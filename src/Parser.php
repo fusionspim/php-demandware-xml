@@ -32,13 +32,15 @@ class Parser
      */
     public function __construct($path, $skipAttributes = false)
     {
+        // validate before opening with reader, since validation converts line breaks such as `</product>\n\n</product>`
+        // to `</product>\n</product>` which avoids creating empty nodes or confusing `parse()` and skipping data :-o
+        Xml::validate($path);
+
         $reader = new XMLReader;
 
         if (! $reader->open($path)) {
             throw new XmlException('Error opening ' . $path);
         }
-
-        Xml::validate($path);
 
         $this->skipAttributes = $skipAttributes;
 
@@ -118,15 +120,7 @@ class Parser
                 continue;
             }
 
-            $xml = trim($reader->readOuterXML());
-
-            // handle xml with empty lines between elements `</product>\n\n</product>` instead of `</product>\n</product>`
-            // i.e. more than a line-break so we get an empty node :-/
-            if (0 === strlen($xml)) {
-                continue;
-            }
-
-            $element = new SimpleXMLElement($xml);
+            $element = new SimpleXMLElement($reader->readOuterXML());
 
             switch ($nodeName) {
                 case 'category':
