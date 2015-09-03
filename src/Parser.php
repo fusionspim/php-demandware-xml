@@ -118,7 +118,13 @@ class Parser
                 continue;
             }
 
-            $element = new SimpleXMLElement($reader->readOuterXML());
+            $xml = trim($reader->readOuterXML());
+
+            if (0 === strlen($xml)) {
+                continue;
+            }
+
+            $element = new SimpleXMLElement($xml);
 
             switch ($nodeName) {
                 case 'category':
