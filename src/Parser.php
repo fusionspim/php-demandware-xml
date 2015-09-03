@@ -118,7 +118,15 @@ class Parser
                 continue;
             }
 
-            $element = new SimpleXMLElement($reader->readOuterXML());
+            $xml = trim($reader->readOuterXML());
+
+            // handle xml with empty lines between elements `</product>\n\n</product>` instead of `</product>\n</product>`
+            // i.e. more than a line-break so we get an empty node :-/
+            if (0 === strlen($xml)) {
+                continue;
+            }
+
+            $element = new SimpleXMLElement($xml);
 
             switch ($nodeName) {
                 case 'category':
