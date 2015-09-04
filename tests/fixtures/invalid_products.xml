@@ -22,7 +22,8 @@
             <page-url xml:lang="x-default">http://example.com/product/123</page-url>
         </page-attributes>
         <custom-attributes>
-            <custom-attribute attribute-id="boolTest">true</custom-attribute>
+            <custom-attribute attribute-id="boolFalse">false</custom-attribute>
+            <custom-attribute attribute-id="boolTrue">true</custom-attribute>
             <custom-attribute attribute-id="multiWow">
                 <value>so</value>
                 <value>such</value>
@@ -69,7 +70,8 @@
             <page-url xml:lang="x-default">http://example.com/set/123</page-url>
         </page-attributes>
         <custom-attributes>
-            <custom-attribute attribute-id="boolTest">true</custom-attribute>
+            <custom-attribute attribute-id="boolFalse">false</custom-attribute>
+            <custom-attribute attribute-id="boolTrue">true</custom-attribute>
             <custom-attribute attribute-id="multiWow">
                 <value>so</value>
                 <value>such</value>
@@ -110,7 +112,8 @@
             <page-url xml:lang="x-default">http://example.com/bundle/123</page-url>
         </page-attributes>
         <custom-attributes>
-            <custom-attribute attribute-id="boolTest">true</custom-attribute>
+            <custom-attribute attribute-id="boolFalse">false</custom-attribute>
+            <custom-attribute attribute-id="boolTrue">true</custom-attribute>
             <custom-attribute attribute-id="multiWow">
                 <value>so</value>
                 <value>such</value>
