@@ -268,7 +268,7 @@ class Parser
 
                 // cast strings to booleans (only needed for single values, as multi-value booleans make no sense)
                 if ('true' === $value || 'false' === $value) {
-                    $value = (boolean) $value;
+                    $value = ('true' === $value);
                 }
             }
 

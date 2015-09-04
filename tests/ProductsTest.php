@@ -34,7 +34,8 @@ class ProductsTest extends AbstractTest
                 'zzz'          => 'Should be exported last within custom-attributes',
                 'primaryImage' => strtolower($example) . '-123.png',
                 'multiWow'     => ['so', 'such', 'many', 'much', 'very'],
-                'boolTest'     => true
+                'boolTrue'     => true,
+                'boolFalse'    => false
             ]);
             // elements/attributes specific to bundle/set/product
             if ('Bundle' === $example) {
