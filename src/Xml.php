@@ -25,6 +25,7 @@ class Xml
     /**
      * Validates the XML file against the specified XSD schema
      * Also formats/normalizes the file to improve human readability and ease diff'ing
+     * Formatting will only occur if the XML is valid, otherwise DOMDocument truncates the data making debugging impossible.
      *
      * @param $filePath
      * @param $schemaPath
@@ -34,6 +35,8 @@ class Xml
     {
         if (! file_exists($filePath)) {
             throw new XmlException('XML file missing');
+        } elseif (! is_readable($filePath)) {
+            throw new XmlException('XML file is not readable');
         }
 
         // domdocument dies silently when given a big (1.7GB) file, though known to cope with 892Mb
@@ -54,13 +57,14 @@ class Xml
         $dom->formatOutput       = true;
         $dom->load($filePath);
         $dom->normalizeDocument();
-        $dom->save($filePath);
 
         restore_error_handler();
 
         if (! $dom->schemaValidate(realpath(__DIR__ . '/../xsd/catalog.xsd'))) {
             throw new XmlException(static::errorSummary());
         }
+
+        return $dom->save($filePath) > 0;
     }
 
     /**

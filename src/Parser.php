@@ -32,13 +32,15 @@ class Parser
      */
     public function __construct($path, $skipAttributes = false)
     {
+        // validate before opening with reader, since validation converts line breaks such as `</product>\n\n</product>`
+        // to `</product>\n</product>` which avoids creating empty nodes or confusing `parse()` and skipping data :-o
+        Xml::validate($path);
+
         $reader = new XMLReader;
 
         if (! $reader->open($path)) {
             throw new XmlException('Error opening ' . $path);
         }
-
-        Xml::validate($path);
 
         $this->skipAttributes = $skipAttributes;
 
@@ -111,6 +113,10 @@ class Parser
             $nodeName = $reader->localName;
 
             if (! in_array($nodeName, ['product', 'category', 'category-assignment'])) {
+                continue;
+            }
+
+            if ($reader->nodeType !== XMLReader::ELEMENT) {
                 continue;
             }
 
@@ -262,7 +268,7 @@ class Parser
 
                 // cast strings to booleans (only needed for single values, as multi-value booleans make no sense)
                 if ('true' === $value || 'false' === $value) {
-                    $value = (boolean) $value;
+                    $value = ('true' === $value);
                 }
             }
 

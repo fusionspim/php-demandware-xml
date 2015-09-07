@@ -1,7 +1,8 @@
 {
     "PRODUCT123": {
         "attributes": {
-            "boolTest": true,
+            "boolFalse": false,
+            "boolTrue": true,
             "multiWow": [
                 "so",
                 "such",
