@@ -4,7 +4,7 @@
         "description": "The description for an <i>example<\/i> bundle! \u2022 Bullet Point",
         "name": "Bundle number 123",
         "online": true,
-        "searchable": true,
+        "searchable": false,
         "start": "2015-01-23T01:23:45",
         "tax": 20,
         "variations": {

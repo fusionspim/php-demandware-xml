@@ -234,7 +234,7 @@ class Parser
         // if they exist, online/searchable will always be a true/false string, so cast for ease of use
         foreach (['online', 'searchable'] as $name) {
             if (isset($details[$name])) {
-                $details[$name] = (boolean) $details[$name];
+                $details[$name] = filter_var($details[$name], FILTER_VALIDATE_BOOLEAN);
             }
         }
 

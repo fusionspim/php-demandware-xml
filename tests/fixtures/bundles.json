@@ -24,7 +24,7 @@
             "keywords": "Bundle, test, example",
             "url": "http:\/\/example.com\/bundle\/123"
         },
-        "searchable": true,
+        "searchable": false,
         "start": "2015-01-23T01:23:45",
         "tax": 20,
         "variations": {

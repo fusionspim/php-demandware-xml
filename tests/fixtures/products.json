@@ -24,7 +24,7 @@
             "keywords": "Product, test, example",
             "url": "http:\/\/example.com\/product\/123"
         },
-        "searchable": true,
+        "searchable": false,
         "start": "2015-01-23T01:23:45",
         "variations": {
             "SKU0000001": false,
