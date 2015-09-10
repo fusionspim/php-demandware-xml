@@ -24,7 +24,7 @@
             "keywords": "Set, test, example",
             "url": "http:\/\/example.com\/set\/123"
         },
-        "searchable": true,
+        "searchable": false,
         "start": "2015-01-23T01:23:45",
         "products": [
             "PRODUCT123",

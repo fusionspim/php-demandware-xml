@@ -23,7 +23,7 @@
             "keywords": "Variation, test, example",
             "url": "http:\/\/example.com\/variation\/123"
         },
-        "searchable": true,
+        "searchable": false,
         "start": "2015-01-23T01:23:45"
     }
 }
