@@ -5,7 +5,7 @@
     <min-order-quantity>1</min-order-quantity>
     <step-quantity>1</step-quantity>
     <display-name xml:lang="x-default">Product number 123</display-name>
-    <long-description xml:lang="x-default">The description for an &lt;i&gt;example&lt;/i&gt; product! &amp;bull; Bullet Point</long-description>
+    <long-description xml:lang="x-default">The description for an &lt;i&gt;example&lt;/i&gt; product! • Bullet Point</long-description>
     <online-flag>true</online-flag>
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
@@ -53,7 +53,7 @@
     <min-order-quantity>1</min-order-quantity>
     <step-quantity>1</step-quantity>
     <display-name xml:lang="x-default">Set number 123</display-name>
-    <long-description xml:lang="x-default">The description for an &lt;i&gt;example&lt;/i&gt; set! &amp;bull; Bullet Point</long-description>
+    <long-description xml:lang="x-default">The description for an &lt;i&gt;example&lt;/i&gt; set! • Bullet Point</long-description>
     <online-flag>true</online-flag>
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
@@ -94,7 +94,7 @@
     <min-order-quantity>1</min-order-quantity>
     <step-quantity>1</step-quantity>
     <display-name xml:lang="x-default">Bundle number 123</display-name>
-    <long-description xml:lang="x-default">The description for an &lt;i&gt;example&lt;/i&gt; bundle! &amp;bull; Bullet Point</long-description>
+    <long-description xml:lang="x-default">The description for an &lt;i&gt;example&lt;/i&gt; bundle! • Bullet Point</long-description>
     <online-flag>true</online-flag>
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
@@ -140,7 +140,7 @@
     <min-order-quantity>1</min-order-quantity>
     <step-quantity>1</step-quantity>
     <display-name xml:lang="x-default">Variation number 123</display-name>
-    <long-description xml:lang="x-default">The description for an example variation! &amp;bull; Bullet Point</long-description>
+    <long-description xml:lang="x-default">The description for an example variation! • Bullet Point</long-description>
     <online-flag>true</online-flag>
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
