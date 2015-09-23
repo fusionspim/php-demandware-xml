@@ -78,7 +78,7 @@ class ProductsTest extends AbstractTest
     public function testProductsInvalidEntitiesException()
     {
         $element = new Product('product123');
-        $element->setName('product number 123 &amp;bull;');
+        $element->setName('product number 123 &bull;');
 
         $this->document->addObject($element);
         $this->document->save(__DIR__ . '/output/products.xml');
