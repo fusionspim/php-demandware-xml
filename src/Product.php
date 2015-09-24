@@ -37,7 +37,8 @@ class Product extends Base
     }
 
     /**
-     * Populates the description of the product/set/bundle in the <long-description xml:lang="x-default"> element
+     * Populates the description of the product/set/bundle in the <long-description xml:lang="x-default"> element.
+     * Accepts text and unencoded HTML (which will be encoded as UTF-8 entities).
      * @todo: Allow elements to be defined as raw or not and remove this hack.
      *
      * @param $value

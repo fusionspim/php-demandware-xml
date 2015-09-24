@@ -15,7 +15,7 @@ class ProductsTest extends AbstractTest
         foreach (['Product', 'Set', 'Bundle', 'Variation'] as $index => $example) {
             $element = new Product(strtoupper($example) . '123');
             $element->setName($example . ' number 123');
-            $element->setDescription('The description for an <i>example</i> ' . strtolower($example) . '! &amp;bull; Bullet Point', true);
+            $element->setDescription('The description for an <i>example</i> ' . strtolower($example) . '! • Bullet Point', true);
             $element->setUpc('50000000000' . $index);
             $element->setQuantities(); // include, but use defaults
             $element->setRank(1);
@@ -78,7 +78,7 @@ class ProductsTest extends AbstractTest
     public function testProductsInvalidEntitiesException()
     {
         $element = new Product('product123');
-        $element->setName('product number 123 &amp;bull;');
+        $element->setName('product number 123 &bull;');
 
         $this->document->addObject($element);
         $this->document->save(__DIR__ . '/output/products.xml');
