@@ -1,5 +1,6 @@
 {
     "SET123": {
+        "brand": "SampleBrand™",
         "classification": "CAT123",
         "description": "The description for an <i>example<\/i> set! \u2022 Bullet Point",
         "name": "Set number 123",

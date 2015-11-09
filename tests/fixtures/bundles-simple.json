@@ -1,5 +1,6 @@
 {
     "BUNDLE123": {
+        "brand": "SampleBrand™",
         "classification": "CAT123",
         "description": "The description for an <i>example<\/i> bundle! \u2022 Bullet Point",
         "name": "Bundle number 123",
