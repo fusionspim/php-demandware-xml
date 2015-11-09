@@ -221,6 +221,7 @@ class Parser
             'searchable'     => 'searchable-flag',
             'parent'         => 'parent',
             'tax'            => 'tax-class-id',
+            'brand'          => 'brand'
         ];
 
         foreach ($map as $name => $source) {
