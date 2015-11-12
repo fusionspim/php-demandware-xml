@@ -1,5 +1,6 @@
 {
     "VARIATION123": {
+        "brand": "SampleBrand™",
         "description": "The description for an example variation! \u2022 Bullet Point",
         "name": "Variation number 123",
         "online": true,
