@@ -6,9 +6,6 @@ use \XMLReader;
 
 /**
  * Parses a Demandware XML file into the six main data structures expected, and returns arrays for ease of working with
- *
- * @package DemandwareXml
- * @todo: not currently needed, but iterator (or better, generators? http://evertpot.com/switching-to-generators/) may be more memory efficient than arrays for large files
  */
 class Parser
 {
@@ -27,7 +24,6 @@ class Parser
      *
      * @param $path
      * @param $skipAttributes
-     * @throws Exception
      * @throws XmlException
      */
     public function __construct($path, $skipAttributes = false)

@@ -39,3 +39,5 @@ Future plans
 - Export all root elements sorted by their first attribute value (similar to custom attributes) to ease manual comparison/diffs
 - Test a large export to better understand how scales and memory usage
 - Convert nested elements currently implemented with string concatenation/loops to nodes (they work, but would be nice for consistency/robustness) & deal with the `setClassification()`/`catalog-id` hack ;-)
+- Consider making Parser an iterator (or better, generator? http://evertpot.com/switching-to-generators/) as should be more memory efficient than arrays for large files - though not currently a problem
+
