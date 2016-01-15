@@ -116,7 +116,8 @@ class Document
 
             $element->appendXML('<' . $name . '>' . $value . '</' . $name . '>');
         } else {
-            $element = $this->dom->createElement($name, $raw ? $value : Xml::escape($value));
+            $value   = ($raw ? Xml::sanitise($value) : Xml::escape($value));
+            $element = $this->dom->createElement($name, $value);
         }
 
         return $element;
