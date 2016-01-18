@@ -111,10 +111,10 @@ class Document
         if (is_null($value)) {
             $element = $this->dom->createElement($name);
         } elseif ('long-description' !== $name && strlen($value) > 0 && '<' === $value[0]) {
-            // Skip long descriptions, as they should always be escaped.
-            // This is terrible, but if first char looks like is xml, just append the fragment.
+            // Skip long descriptions as they should always be inserted as elements and escaped.
+            // This is terrible, but if first char looks like it's XML then just append the fragment.
+            // This is to append pre-built XML from objects.
             $element = $this->dom->createDocumentFragment();
-
             $element->appendXML('<' . $name . '>' . $value . '</' . $name . '>');
         } else {
             $element = $this->dom->createElement($name, ($raw ? $value : Xml::escape($value)));
