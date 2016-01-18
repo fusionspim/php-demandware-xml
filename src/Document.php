@@ -110,13 +110,14 @@ class Document
     {
         if (is_null($value)) {
             $element = $this->dom->createElement($name);
-        } elseif (strlen($value) > 0 && '<' === $value[0]) {
-            // this is terrible, but if first char looks like is xml, just append the fragment
+        } elseif ('long-description' !== $name && strlen($value) > 0 && '<' === $value[0]) {
+            // Skip long descriptions, as they should always be escaped.
+            // This is terrible, but if first char looks like is xml, just append the fragment.
             $element = $this->dom->createDocumentFragment();
 
             $element->appendXML('<' . $name . '>' . $value . '</' . $name . '>');
         } else {
-            $element = $this->dom->createElement($name, $raw ? $value : Xml::escape($value));
+            $element = $this->dom->createElement($name, ($raw ? $value : Xml::escape($value)));
         }
 
         return $element;
