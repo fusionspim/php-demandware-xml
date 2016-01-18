@@ -16,7 +16,7 @@
         },
         "brand": "SampleBrand™",
         "classification": "CAT123",
-        "description": "The description for an <i>example<\/i> product! \u2022 Bullet Point",
+        "description": "<b>Product<\/b> The description for an <i>example<\/i> product! \u2022 Bullet Point",
         "name": "Product number 123",
         "online": true,
         "page": {

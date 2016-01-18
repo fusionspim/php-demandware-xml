@@ -15,7 +15,7 @@
             "zzz": "Should be exported last within custom-attributes"
         },
         "brand": "SampleBrand™",
-        "description": "The description for an example variation! \u2022 Bullet Point",
+        "description": "<b>Variation<\/b> The description for an <i>example</i> variation! \u2022 Bullet Point",
         "name": "Variation number 123",
         "online": true,
         "page": {
