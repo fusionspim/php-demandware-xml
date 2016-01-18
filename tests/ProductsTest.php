@@ -66,9 +66,9 @@ class ProductsTest extends AbstractTest
     public function testProductsXml()
     {
         $sampleXml = $this->loadFixture('products.xml');
-        $outputXml = $this->document->getDomDocument();
+        $outputXml = $this->document->getDomDocument()->saveXML();
 
-        $this->assertEqualXMLStructure($sampleXml->firstChild, $outputXml->firstChild);
+        $this->assertXmlStringEqualsXmlString($sampleXml, $outputXml);
     }
 
     /**
