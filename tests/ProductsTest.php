@@ -15,7 +15,7 @@ class ProductsTest extends AbstractTest
         foreach (['Product', 'Set', 'Bundle', 'Variation'] as $index => $example) {
             $element = new Product(strtoupper($example) . '123');
             $element->setName($example . ' number 123');
-            $element->setDescription('The description for an <i>example</i> ' . strtolower($example) . '! • Bullet Point', true);
+            $element->setDescription('<b>' . $example . '</b> The description for an <i>example</i> ' . strtolower($example) . '! • Bullet Point', true);
             $element->setUpc('50000000000' . $index);
             $element->setQuantities(); // include, but use defaults
             $element->setRank(1);
@@ -66,9 +66,9 @@ class ProductsTest extends AbstractTest
     public function testProductsXml()
     {
         $sampleXml = $this->loadFixture('products.xml');
-        $outputXml = $this->document->getDomDocument();
+        $outputXml = $this->document->getDomDocument()->saveXML();
 
-        $this->assertEqualXMLStructure($sampleXml->firstChild, $outputXml->firstChild);
+        $this->assertXmlStringEqualsXmlString($sampleXml, $outputXml);
     }
 
     /**
