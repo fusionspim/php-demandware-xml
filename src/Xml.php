@@ -28,13 +28,14 @@ class Xml
     /**
      * Sanitise a string for XML.
      *
-     * @link    http://www.phpwact.org/php/i18n/charsets#common_problem_areas_with_utf-8
+     * @link   http://www.phpwact.org/php/i18n/charsets#common_problem_areas_with_utf-8
+     * @link   http://www.xiven.com/weblog/2013/08/30/PHPInvalidUTF8InXMLRevisited
      * @param  $string
      * @return string
      */
     public static function sanitise($string)
     {
-        return preg_replace('/[^\x{0009}\x{000a}\x{000d}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}]+/u', ' ', $string);
+        return preg_replace('/[^\x{0009}\x{000A}\x{000D}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}\x{10000}-\x{10FFFF}]+/u', ' ', $string);
     }
 
     /**
