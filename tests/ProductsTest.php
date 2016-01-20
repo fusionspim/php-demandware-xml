@@ -10,12 +10,14 @@ class ProductsTest extends AbstractTest
 
     public function setUp()
     {
+        $invalidChar = ''; // Record Separator.
+
         $document = new Document('TestCatalog');
 
         foreach (['Product', 'Set', 'Bundle', 'Variation'] as $index => $example) {
             $element = new Product(strtoupper($example) . '123');
             $element->setName($example . ' number 123');
-            $element->setDescription('<b>' . $example . '</b> The description for an <i>example</i> ' . strtolower($example) . '! • Bullet Point', true);
+            $element->setDescription('<b>' . $example . '</b> The description for an <i>example</i> ' . strtolower($example) . '! • Bullet' . $invalidChar . 'Point', true);
             $element->setUpc('50000000000' . $index);
             $element->setQuantities(); // include, but use defaults
             $element->setRank(1);

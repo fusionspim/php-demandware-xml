@@ -18,8 +18,24 @@ class Xml
         if (is_bool($value)) {
             return ($value ? 'true' : 'false');
         } else {
-            return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8', false);
+            $value = htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8', false);
+            $value = static::sanitise($value);
+
+            return $value;
         }
+    }
+
+    /**
+     * Sanitise a string for XML.
+     *
+     * @link   http://www.phpwact.org/php/i18n/charsets#common_problem_areas_with_utf-8
+     * @link   http://www.xiven.com/weblog/2013/08/30/PHPInvalidUTF8InXMLRevisited
+     * @param  $string
+     * @return string
+     */
+    public static function sanitise($string)
+    {
+        return preg_replace('/[^\x{0009}\x{000A}\x{000D}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}\x{10000}-\x{10FFFF}]/u', ' ', $string);
     }
 
     /**

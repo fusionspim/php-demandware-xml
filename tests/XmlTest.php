@@ -7,6 +7,13 @@ use \DemandwareXml\XmlException;
 
 class XmlTest extends PHPUnit_Framework_TestCase
 {
+    public function testSanitise()
+    {
+        $invalidChar = ''; // Record Separator.
+
+        $this->assertEquals('Foo Bar', Xml::sanitise('Foo' . $invalidChar . 'Bar'));
+    }
+
     public function testValidateXml()
     {
         $xmlPath = __DIR__ . '/fixtures/products.xml';
