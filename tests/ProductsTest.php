@@ -10,7 +10,7 @@ class ProductsTest extends AbstractTest
 
     public function setUp()
     {
-        $invalidChar = ''; // Record Separator.
+        $invalidChar = chr(30); // Record Separator.
 
         $document = new Document('TestCatalog');
 

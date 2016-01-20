@@ -9,7 +9,7 @@ class XmlTest extends PHPUnit_Framework_TestCase
 {
     public function testSanitise()
     {
-        $invalidChar = ''; // Record Separator.
+        $invalidChar = chr(30); // Record Separator.
 
         $this->assertEquals('Foo Bar', Xml::sanitise('Foo' . $invalidChar . 'Bar'));
     }
