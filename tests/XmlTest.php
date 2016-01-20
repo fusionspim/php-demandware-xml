@@ -11,7 +11,7 @@ class XmlTest extends PHPUnit_Framework_TestCase
     {
         $invalidChar = ''; // Record Separator.
 
-        $this->assertEquals('Blah Blah', Xml::sanitise('Blah' . $invalidChar . 'Blah'));
+        $this->assertEquals('Foo Bar', Xml::sanitise('Foo' . $invalidChar . 'Bar'));
     }
 
     public function testValidateXml()
