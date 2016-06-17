@@ -1,6 +1,9 @@
 {
     "PROD1": [
         {
+            "CAT1": false
+        },
+        {
             "CAT2": true
         },
         {
