@@ -37,26 +37,27 @@ class CategoriesTest extends AbstractTest
     {
         $document = new Document('TestCatalog');
 
-        foreach (['PROD1' => ['CAT1', 'CAT2'], 'PROD2' => ['CAT1'], 'PROD3' => ['CAT3']] as $product => $categories) {
-            foreach ($categories as $category) {
-                // simulate some application logic
-                $primary = ('PROD1' === $product && 'CAT2' === $category);
-                $deleted = ('PROD2' === $product && 'CAT1' === $category);
-                $element = new Assignment($product, $category);
-                // flag as deleted if app logic says so, otherwise handle primary flag...
-                if ($deleted) {
-                    $element->setDeleted();
-                } else {
-                    $element->setPrimary($primary);
-                }
-                $document->addObject($element);
-                // simulate some more application logic, put all primary products in CAT42
-                if ($primary) {
-                    $element = new Assignment($product, 'CAT42');
-                    $document->addObject($element);
-                }
-            }
-        }
+        // PROD1 has a primary assignment, non-primary, and unspecified
+        $element = new Assignment('PROD1', 'CAT1');
+        $element->setPrimary(false);
+        $document->addObject($element);
+
+        $element = new Assignment('PROD1', 'CAT2');
+        $element->setPrimary(true);
+        $document->addObject($element);
+
+        $element = new Assignment('PROD1', 'CAT42');
+        $document->addObject($element);
+
+        // PROD2 has a deleted assignment
+        $element = new Assignment('PROD2', 'CAT1');
+        $element->setDeleted();
+        $document->addObject($element);
+
+        // PROD3 has a primary assignment
+        $element = new Assignment('PROD3', 'CAT3');
+        $element->setPrimary(false);
+        $document->addObject($element);
 
         $sampleXml = $this->loadFixture('assignments.xml');
         $outputXml = $document->getDomDocument();
