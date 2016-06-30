@@ -17,7 +17,7 @@
     ],
     "PROD3": [
         {
-            "CAT3": true
+            "CAT3": false
         }
     ]
 }

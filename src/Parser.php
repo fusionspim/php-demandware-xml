@@ -152,7 +152,7 @@ class Parser
     {
         $productId  = (string) $element['product-id'];
         $categoryId = (string) $element['category-id'];
-        $primary    = (isset($element->{'primary-flag'}) ? (boolean) $element->{'primary-flag'} : false);
+        $primary    = (isset($element->{'primary-flag'}) ? ((string) $element->{'primary-flag'}) === 'true': false);
 
         $this->assignments[$productId][] = [$categoryId => $primary];
     }
