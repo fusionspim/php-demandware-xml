@@ -167,7 +167,7 @@
         <xsd:attribute name="merge-mode" type="simpleType.MergeMode" default="replace" use="optional">
         <xsd:annotation>
             <xsd:documentation>
-                Used to control if specified variation values will be added to variation attribute, removed from variation attribute or replace 
+                Used to control if specified variation values will be added to variation attribute, removed from variation attribute or replace
                 existing variation attribute value list.
                 Attribute should only be used in import MERGE and UPDATE modes. In import REPLACE mode, using the "merge-mode" attribute is not
                 sensible, because existing variation attribute values will always be removed from the variation attribute before importing the
@@ -248,6 +248,7 @@
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="classification-category" type="complexType.Product.ClassificationCategory" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="pinterest-enabled-flag" type="xsd:boolean" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
         <xsd:attribute name="mode" type="simpleType.ImportMode" />
         <xsd:attribute name="product-id" type="simpleType.Generic.NonEmptyString.100" use="required" />
@@ -457,7 +458,7 @@
         <xsd:attribute name="merge-mode" type="simpleType.MergeMode" default="replace" use="optional">
             <xsd:annotation>
                 <xsd:documentation>Used to control if specified variants will be added to master, removed from master or replace existing variant list.
-                Attribute should only be used in import MERGE and UPDATE modes. In import REPLACE mode, using the "merge-mode" attribute is not sensible, 
+                Attribute should only be used in import MERGE and UPDATE modes. In import REPLACE mode, using the "merge-mode" attribute is not sensible,
                 because existing variants will always be removed from the master before importing the variants specified in the import file.
                 </xsd:documentation>
             </xsd:annotation>
@@ -483,7 +484,7 @@
             <xsd:element name="variation-assignment-values" type="complexType.CategoryAssignment.VariationAssignment.Values" minOccurs="0" maxOccurs="1" />
         </xsd:sequence>
         <xsd:attribute name="variation-attribute-id" type="simpleType.Generic.NonEmptyString.256" use="required"/>
-        <xsd:attribute name="slicing-attribute" type="xsd:boolean" />   
+        <xsd:attribute name="slicing-attribute" type="xsd:boolean" />
     </xsd:complexType>
 
     <!-- Variation Attribute Values  -->
@@ -618,11 +619,11 @@
             <xsd:element name="description" type="sharedType.LocalizedString" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
     </xsd:complexType>
-    
+
     <xsd:complexType name="complexType.PeriodRefinementBucket" mixed="false">
         <xsd:sequence>
             <xsd:element name="display-name" type="sharedType.LocalizedString" minOccurs="0" maxOccurs="unbounded" />
-            <xsd:element name="duration-in-days" type="xsd:int" minOccurs="1" maxOccurs="1" /> 
+            <xsd:element name="duration-in-days" type="xsd:int" minOccurs="1" maxOccurs="1" />
             <xsd:element name="presentation-id" type="simpleType.Generic.NonEmptyString.256" minOccurs="0" maxOccurs="1" />
             <xsd:element name="description" type="sharedType.LocalizedString" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
@@ -965,31 +966,31 @@
     <xsd:simpleType name="simpleType.MergeMode">
         <xsd:annotation>
             <xsd:documentation>Used to control the behavior of list elements in import file.</xsd:documentation>
-        </xsd:annotation>  
+        </xsd:annotation>
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="add">
                 <xsd:annotation>
                     <xsd:documentation>Add specified objects at the end of the existing list.</xsd:documentation>
-                </xsd:annotation>  
-            </xsd:enumeration>    
+                </xsd:annotation>
+            </xsd:enumeration>
             <xsd:enumeration value="merge">
                 <xsd:annotation>
                     <xsd:documentation>
-                    	Update existing specified objects without changing their position in the list.  
-                    	Add new specified objects at end of existing list.  
+                    	Update existing specified objects without changing their position in the list.
+                    	Add new specified objects at end of existing list.
                     	Remove existing objects not specified in list.
                     </xsd:documentation>
-                </xsd:annotation>            
+                </xsd:annotation>
             </xsd:enumeration>
             <xsd:enumeration value="remove">
                 <xsd:annotation>
                     <xsd:documentation>Remove specified objects from the existing list.</xsd:documentation>
-                </xsd:annotation>  
+                </xsd:annotation>
             </xsd:enumeration>
             <xsd:enumeration value="replace">
                 <xsd:annotation>
                     <xsd:documentation>Replace existing list with specified objects.</xsd:documentation>
-                </xsd:annotation> 
+                </xsd:annotation>
             </xsd:enumeration>
         </xsd:restriction>
     </xsd:simpleType>
