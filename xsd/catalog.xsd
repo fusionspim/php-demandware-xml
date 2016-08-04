@@ -249,6 +249,7 @@
             </xsd:element>
             <xsd:element name="classification-category" type="complexType.Product.ClassificationCategory" minOccurs="0" maxOccurs="1" />
             <xsd:element name="pinterest-enabled-flag" type="xsd:boolean" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="facebook-enabled-flag" type="xsd:boolean" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
         <xsd:attribute name="mode" type="simpleType.ImportMode" />
         <xsd:attribute name="product-id" type="simpleType.Generic.NonEmptyString.100" use="required" />
