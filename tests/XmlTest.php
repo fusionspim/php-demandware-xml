@@ -22,12 +22,12 @@ class XmlTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException       \DemandwareXml\XmlException
-     * @expectedExceptionRegExp /xmlParseEntityRef: no name/
+     * @expectedException              \DemandwareXml\XmlException
+     * @expectedExceptionMessageRegExp /xmlParseEntityRef: no name/
      */
     public function testValidateInvalidXml()
     {
-        $xmlPath = __DIR__ . '/fixtures/invalid_items.xml';
+        $xmlPath = __DIR__ . '/fixtures/invalid-products.xml';
 
         $this->assertFalse(Xml::validate($xmlPath));
     }
