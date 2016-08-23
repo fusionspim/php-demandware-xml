@@ -31,4 +31,11 @@ class XmlTest extends PHPUnit_Framework_TestCase
 
         $this->assertFalse(Xml::validate($xmlPath));
     }
+
+    public function testValidateTaxonomySample()
+    {
+        $xmlPath = __DIR__ . '/fixtures/taxonomy-sample.xml';
+
+        $this->assertTrue(Xml::validate($xmlPath));
+    }
 }
