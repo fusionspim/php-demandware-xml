@@ -54,7 +54,7 @@
       <page-title xml:lang="x-default">Another Example Page Title</page-title>
       <page-description xml:lang="x-default">Another example page description.</page-description>
       <page-keywords xml:lang="x-default">More keywords</page-keywords>
-      <page-url xml:lang="x-default">george/clothing</page-url>
+      <page-url xml:lang="x-default">example/clothing</page-url>
     </page-attributes>
     <custom-attributes>
       <custom-attribute attribute-id="autoBadge">false</custom-attribute>
