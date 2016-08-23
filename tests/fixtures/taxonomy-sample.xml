@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="ExampleCatalog">
+  <header>
+    <image-settings>
+      <internal-location base-path="/"/>
+      <view-types>
+        <view-type>large</view-type>
+        <view-type>medium</view-type>
+        <view-type>small</view-type>
+        <view-type>swatch</view-type>
+      </view-types>
+      <alt-pattern>${productname}</alt-pattern>
+      <title-pattern>${productname}</title-pattern>
+    </image-settings>
+  </header>
+  <category category-id="root">
+    <display-name xml:lang="x-default">Direct</display-name>
+    <description xml:lang="x-default">Catalog</description>
+    <online-flag>true</online-flag>
+    <template>search/template</template>
+    <page-attributes>
+      <page-title xml:lang="x-default">Example Page Title</page-title>
+      <page-description xml:lang="x-default">Example page description</page-description>
+      <page-keywords xml:lang="x-default">keywords</page-keywords>
+    </page-attributes>
+    <custom-attributes>
+      <custom-attribute attribute-id="autoBadge">false</custom-attribute>
+    </custom-attributes>
+    <attribute-groups>
+      <attribute-group group-id="Attributes">
+        <display-name xml:lang="x-default">Attributes</display-name>
+        <attribute attribute-id="unpackedHeight" system="false"/>
+        <attribute attribute-id="unpackedWidth" system="false"/>
+        <attribute attribute-id="unpackedDepth" system="false"/>
+      </attribute-group>
+    </attribute-groups>
+    <refinement-definitions>
+      <refinement-definition type="attribute" bucket-type="none" attribute-id="productEnriched" system="false">
+        <display-name xml:lang="x-default">FOOBAR</display-name>
+        <value-set>search-result</value-set>
+        <sort-mode>value-name</sort-mode>
+        <sort-direction>ascending</sort-direction>
+        <cutoff-threshold>5</cutoff-threshold>
+      </refinement-definition>
+    </refinement-definitions>
+  </category>
+  <category category-id="10">
+    <display-name xml:lang="x-default">Example</display-name>
+    <online-flag>true</online-flag>
+    <parent>root</parent>
+    <position>1.0</position>
+    <template>search/template</template>
+    <page-attributes>
+      <page-title xml:lang="x-default">Another Example Page Title</page-title>
+      <page-description xml:lang="x-default">Another example page description.</page-description>
+      <page-keywords xml:lang="x-default">More keywords</page-keywords>
+      <page-url xml:lang="x-default">example/clothing</page-url>
+    </page-attributes>
+    <custom-attributes>
+      <custom-attribute attribute-id="autoBadge">false</custom-attribute>
+    </custom-attributes>
+    <attribute-groups>
+      <attribute-group group-id="Example">
+        <display-name xml:lang="x-default">Example</display-name>
+        <attribute attribute-id="colourFamily" system="false"/>
+      </attribute-group>
+    </attribute-groups>
+    <refinement-definitions>
+      <refinement-definition type="category" bucket-type="none">
+        <display-name xml:lang="x-default">FOOBAR</display-name>
+        <sort-mode>value-name</sort-mode>
+        <sort-direction>ascending</sort-direction>
+        <cutoff-threshold>5</cutoff-threshold>
+      </refinement-definition>
+      <blocked-refinement-definition type="attribute" attribute-id="minimumAge" system="false"/>
+    </refinement-definitions>
+  </category>
+  <product product-id="Test Product">
+    <ean/>
+    <upc/>
+    <unit/>
+    <min-order-quantity>1</min-order-quantity>
+    <step-quantity>1</step-quantity>
+    <display-name xml:lang="x-default">Testing1234</display-name>
+    <short-description xml:lang="x-default">Testing1234</short-description>
+    <long-description xml:lang="x-default">Testing1234</long-description>
+    <online-flag>true</online-flag>
+    <available-flag>false</available-flag>
+    <searchable-flag>true</searchable-flag>
+    <page-attributes>
+      <page-title xml:lang="x-default">Testing1234</page-title>
+      <page-description xml:lang="x-default">Testing1234</page-description>
+    </page-attributes>
+    <custom-attributes>
+      <custom-attribute attribute-id="assemblyRequired">false</custom-attribute>
+    </custom-attributes>
+    <product-set-products>
+      <product-set-product product-id="GEM1234"/>
+    </product-set-products>
+    <pinterest-enabled-flag>false</pinterest-enabled-flag>
+    <facebook-enabled-flag>false</facebook-enabled-flag>
+  </product>
+  <product product-id="Another Test Product">
+    <ean/>
+    <upc/>
+    <unit/>
+    <min-order-quantity>1</min-order-quantity>
+    <step-quantity>1</step-quantity>
+    <display-name xml:lang="x-default">Testing4567</display-name>
+    <short-description xml:lang="x-default">Testing4567</short-description>
+    <long-description xml:lang="x-default">Testing4567</long-description>
+    <online-flag>true</online-flag>
+    <available-flag>false</available-flag>
+    <searchable-flag>true</searchable-flag>
+    <page-attributes>
+      <page-title xml:lang="x-default">Testing4567</page-title>
+      <page-description xml:lang="x-default">Testing4567</page-description>
+    </page-attributes>
+    <custom-attributes>
+      <custom-attribute attribute-id="assemblyRequired">false</custom-attribute>
+    </custom-attributes>
+    <product-set-products>
+      <product-set-product product-id="GEM4567"/>
+    </product-set-products>
+    <pinterest-enabled-flag>false</pinterest-enabled-flag>
+    <facebook-enabled-flag>false</facebook-enabled-flag>
+  </product>
+  <category-assignment category-id="10" product-id="GEM1234"/>
+  <category-assignment category-id="10" product-id="GEM4567"/>
+  <recommendation source-id="GEM1234" source-type="product" target-id="GEM4567" type="2"/>
+</catalog>

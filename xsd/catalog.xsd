@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsd:schema
-    xmlns           = "http://www.demandware.com/xml/impex/catalog/2006-10-31"
-    xmlns:xsd       = "http://www.w3.org/2001/XMLSchema"
-    xmlns:xml       = "http://www.w3.org/XML/1998/namespace"
-    targetNamespace = "http://www.demandware.com/xml/impex/catalog/2006-10-31"
-    elementFormDefault   = "qualified"
-    attributeFormDefault = "unqualified">
+        xmlns           = "http://www.demandware.com/xml/impex/catalog/2006-10-31"
+        xmlns:xsd       = "http://www.w3.org/2001/XMLSchema"
+        xmlns:xml       = "http://www.w3.org/XML/1998/namespace"
+        targetNamespace = "http://www.demandware.com/xml/impex/catalog/2006-10-31"
+        elementFormDefault   = "qualified"
+        attributeFormDefault = "unqualified">
 
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd" />
 
@@ -110,8 +110,8 @@
             <xsd:element name="display-name" type="sharedType.LocalizedString" minOccurs="0" maxOccurs="unbounded" />
             <xsd:element name="description" type="sharedType.LocalizedString" minOccurs="0" maxOccurs="unbounded" />
             <xsd:element name="online-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
-            <xsd:element name="online-from" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-            <xsd:element name="online-to" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="online-from" type="xsd:dateTime" minOccurs="0" maxOccurs="1" nillable="true" />
+            <xsd:element name="online-to" type="xsd:dateTime" minOccurs="0" maxOccurs="1" nillable="true" />
             <xsd:element name="parent" type="simpleType.Generic.NonEmptyString.256" minOccurs="0" maxOccurs="1" />
             <xsd:element name="position" type="xsd:double" minOccurs="0" maxOccurs="1" />
             <xsd:element name="thumbnail" type="simpleType.Generic.String.256" minOccurs="0" maxOccurs="1" />
@@ -165,16 +165,16 @@
             <xsd:element name="variation-attribute-value" type="complexType.VariationAttribute.Value" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
         <xsd:attribute name="merge-mode" type="simpleType.MergeMode" default="replace" use="optional">
-        <xsd:annotation>
-            <xsd:documentation>
-                Used to control if specified variation values will be added to variation attribute, removed from variation attribute or replace
-                existing variation attribute value list.
-                Attribute should only be used in import MERGE and UPDATE modes. In import REPLACE mode, using the "merge-mode" attribute is not
-                sensible, because existing variation attribute values will always be removed from the variation attribute before importing the
-                variation attribute values specified in the import file.
-            </xsd:documentation>
-        </xsd:annotation>
-    </xsd:attribute>
+            <xsd:annotation>
+                <xsd:documentation>
+                    Used to control if specified variation values will be added to variation attribute, removed from variation attribute or replace
+                    existing variation attribute value list.
+                    Attribute should only be used in import MERGE and UPDATE modes. In import REPLACE mode, using the "merge-mode" attribute is not
+                    sensible, because existing variation attribute values will always be removed from the variation attribute before importing the
+                    variation attribute values specified in the import file.
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
     </xsd:complexType>
 
     <!-- Variation Attribute Value  -->
@@ -199,7 +199,8 @@
             <xsd:element name="display-name" type="sharedType.LocalizedString" minOccurs="0" maxOccurs="unbounded" />
             <xsd:element name="short-description" type="sharedType.LocalizedText" minOccurs="0" maxOccurs="unbounded" />
             <xsd:element name="long-description" type="sharedType.LocalizedText" minOccurs="0" maxOccurs="unbounded" />
-            <xsd:element name="online-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="store-receipt-name" type="sharedType.LocalizedText" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="online-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" nillable="true" />
             <xsd:element name="online-from" type="sharedType.SiteSpecificDateTime" minOccurs="0" maxOccurs="unbounded" nillable="true" />
             <xsd:element name="online-to" type="sharedType.SiteSpecificDateTime" minOccurs="0" maxOccurs="unbounded" nillable="true" />
             <xsd:element name="available-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" >
@@ -207,7 +208,7 @@
                     <xsd:documentation>Deprecated. Use inventory feature to maintain product availability.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="searchable-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="searchable-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" nillable="true" />
             <xsd:element name="searchable-if-unavailable-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
             <xsd:element name="images" type="complexType.Product.Images" minOccurs="0" maxOccurs="1" />
             <xsd:element name="image" type="simpleType.Generic.String.256" minOccurs="0" maxOccurs="1" >
@@ -248,8 +249,8 @@
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="classification-category" type="complexType.Product.ClassificationCategory" minOccurs="0" maxOccurs="1" />
-            <xsd:element name="pinterest-enabled-flag" type="xsd:boolean" minOccurs="0" maxOccurs="unbounded" />
-            <xsd:element name="facebook-enabled-flag" type="xsd:boolean" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="pinterest-enabled-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" nillable="true" />
+            <xsd:element name="facebook-enabled-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" nillable="true" />
         </xsd:sequence>
         <xsd:attribute name="mode" type="simpleType.ImportMode" />
         <xsd:attribute name="product-id" type="simpleType.Generic.NonEmptyString.100" use="required" />
@@ -258,16 +259,57 @@
     <!-- Product Images -->
     <xsd:complexType name="complexType.Product.Images" mixed="false">
         <xsd:sequence>
-           <xsd:element name="image-group" type="complexType.Product.ImageGroup" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="image-group" type="complexType.Product.ImageGroup" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
+        <xsd:attribute name="merge-mode" type="simpleType.MergeMode" default="merge" use="optional">
+            <xsd:annotation>
+                <xsd:documentation>
+                    Used to control if specified image groups will be merged to or replace the existing image specification.
+                    The values "merge" and "replace" are the only ones supported for the "merge-mode" attribute.
+                    Attribute should only be used in import MERGE and UPDATE modes. In import REPLACE mode, using the "merge-mode" attribute is not
+                    sensible, because existing image groups will always be removed before importing the image groups
+                    specified in the import file.
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
     </xsd:complexType>
 
     <xsd:complexType name="complexType.Product.ImageGroup" mixed="false">
         <xsd:sequence>
+            <xsd:element name="variation" type="complexType.Product.ImageGroup.VariationAttributeValue" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        This element, only relevant for variation masters, represents an ordered list of variation
+                        attribute values.  It is used to identify a set of variants to which the images in this group apply.
+
+                        - The image groups related to the product master will have zero of these elements.  These
+                          represent the "fallback" images.
+                        - If an image group applies for all the red variants, for example, it will have one of these
+                          elements, namely "color=red".
+                        - If an image group applies for all the red, leather variants, for example, it will have two
+                          of these elements, namely "color=red, fabric=leather".
+
+                        The list is ordered so that, within a master product, the same variation attribute must always
+                        appear at the same index of the list.  In our example, "color" would always be specified first
+                        for each image group, and then "fabric" would always appear second.  This ensures there are
+                        clear fallback rules to identify which images relate to each variant. When retrieving the images
+                        for a variant at runtime, the system chooses the most specific matching image groups possible.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
             <xsd:element name="image" type="complexType.Product.Image" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
         <xsd:attribute name="view-type" type="simpleType.Generic.NonEmptyString.256" use="required" />
-        <xsd:attribute name="variation-value" type="simpleType.Generic.NonEmptyString.256" />
+        <xsd:attribute name="variation-value" type="simpleType.Generic.NonEmptyString.256">
+            <xsd:annotation>
+                <xsd:documentation>Deprecated. Please use the variation elements (complexType.Product.ImageGroup.VariationAttributeValue).</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="complexType.Product.ImageGroup.VariationAttributeValue" mixed="false">
+        <xsd:attribute name="attribute-id" type="simpleType.Generic.NonEmptyString.256" />
+        <xsd:attribute name="value" type="simpleType.Generic.NonEmptyString.256" />
     </xsd:complexType>
 
     <xsd:complexType name="complexType.Product.Image" mixed="false">
@@ -309,6 +351,7 @@
         <xsd:attribute name="source-id" type="simpleType.Generic.NonEmptyString.256" use="optional" />
         <xsd:attribute name="source-type" type="simpleType.RecommendationSourceType" use="optional" />
         <xsd:attribute name="target-id" type="simpleType.Generic.NonEmptyString.256" use="optional" />
+        <xsd:attribute name="target-type" type="simpleType.RecommendationTargetType" use="optional" />
         <xsd:attribute name="type" type="simpleType.RecommendationType" use="optional" />
         <xsd:attribute name="mode" type="simpleType.ImportMode" use="optional" />
     </xsd:complexType>
@@ -429,6 +472,7 @@
         <xsd:sequence>
             <xsd:element name="attributes" type="complexType.Product.Variations.Attributes" minOccurs="0" maxOccurs="1" />
             <xsd:element name="variants" type="complexType.Product.Variations.Variants" minOccurs="0" maxOccurs="2" />
+            <xsd:element name="variation-groups" type="complexType.Product.Variations.VariationGroups" minOccurs="0" maxOccurs="1" />
         </xsd:sequence>
     </xsd:complexType>
 
@@ -459,8 +503,8 @@
         <xsd:attribute name="merge-mode" type="simpleType.MergeMode" default="replace" use="optional">
             <xsd:annotation>
                 <xsd:documentation>Used to control if specified variants will be added to master, removed from master or replace existing variant list.
-                Attribute should only be used in import MERGE and UPDATE modes. In import REPLACE mode, using the "merge-mode" attribute is not sensible,
-                because existing variants will always be removed from the master before importing the variants specified in the import file.
+                    Attribute should only be used in import MERGE and UPDATE modes. In import REPLACE mode, using the "merge-mode" attribute is not sensible,
+                    because existing variants will always be removed from the master before importing the variants specified in the import file.
                 </xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
@@ -470,6 +514,31 @@
         <xsd:attribute name="product-id" type="simpleType.Generic.NonEmptyString.100" use="required" />
         <xsd:attribute name="default" type="xsd:boolean" />
     </xsd:complexType>
+    
+    <xsd:complexType name="complexType.Product.Variations.VariationGroups" mixed="false">
+        <xsd:annotation>
+            <xsd:documentation>Reserved for Beta users. Variation groups will not be created and a warning will be logged if the Variation Groups (Beta) feature is disabled.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="variation-group" type="complexType.Product.Variations.VariationGroup" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+        <xsd:attribute name="merge-mode" type="simpleType.MergeMode" default="replace" use="optional">
+            <xsd:annotation>
+                <xsd:documentation>Used to control if specified variation groups will be added to master, removed from master or replace existing variation groups list.
+                    Attribute should only be used in import MERGE and UPDATE modes. In import REPLACE mode, using the "merge-mode" attribute is not sensible,
+                    because existing variation groups will always be removed from the master before importing the variation groups specified in the import file.
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>   
+    </xsd:complexType>
+    
+    <!--  A variation group is similar to a variant but it only has some of the variation values specified -->
+    <xsd:complexType name="complexType.Product.Variations.VariationGroup" mixed="false">
+        <xsd:annotation>
+            <xsd:documentation>Reserved for Beta users. Variation groups will not be created and a warning will be logged if the Variation Groups (Beta) feature is disabled.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute name="product-id" type="simpleType.Generic.NonEmptyString.100" use="required" />
+    </xsd:complexType>   
 
     <!--  Variation Configuration -->
     <xsd:complexType name="complexType.CategoryAssignment.VariationAssignments" mixed="false">
@@ -599,7 +668,7 @@
         <xsd:attribute name="default" type="xsd:boolean">
             <xsd:annotation>
                 <xsd:documentation>If TRUE, the attribute marks a default bucket. It is used to represent the unbucketed values, if 'unbucketed-values-mode' is 'show-as-bucket'. Note: The element 'value-list' is not considered, since the unbucketed values are determined dynamically.
-                If the default bucket is not defined within import file the system creates a new one with an empty 'display-name'.</xsd:documentation>
+                    If the default bucket is not defined within import file the system creates a new one with an empty 'display-name'.</xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
     </xsd:complexType>
@@ -977,9 +1046,9 @@
             <xsd:enumeration value="merge">
                 <xsd:annotation>
                     <xsd:documentation>
-                    	Update existing specified objects without changing their position in the list.
-                    	Add new specified objects at end of existing list.
-                    	Remove existing objects not specified in list.
+                        Update existing specified objects without changing their position in the list.
+                        Add new specified objects at end of existing list.
+                        Remove existing objects not specified in list.
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:enumeration>
@@ -1000,6 +1069,12 @@
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="product" />
             <xsd:enumeration value="category" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="simpleType.RecommendationTargetType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="product" />
         </xsd:restriction>
     </xsd:simpleType>
 
