@@ -126,8 +126,6 @@ class Document
 
     /**
      * Build the DOMDocument object by appending the root element to it.
-     *
-     * @return void
      */
     private function build()
     {
@@ -153,10 +151,8 @@ class Document
 
     /**
      * Get the internal DOMDocument element.
-     *
-     * @return DOMDocument
      */
-    public function getDomDocument()
+    public function getDomDocument(): DOMDocument
     {
         $this->build();
 

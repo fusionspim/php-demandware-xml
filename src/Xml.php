@@ -11,9 +11,8 @@ class Xml
      * Accepts text and unencoded HTML (which will be encoded as UTF-8 entities).
      *
      * @param $value
-     * @return string
      */
-    public static function escape($value)
+    public static function escape($value): string
     {
         if (is_bool($value)) {
             return ($value ? 'true' : 'false');
@@ -31,9 +30,8 @@ class Xml
      * @link   http://www.phpwact.org/php/i18n/charsets#common_problem_areas_with_utf-8
      * @link   http://www.xiven.com/weblog/2013/08/30/PHPInvalidUTF8InXMLRevisited
      * @param  $string
-     * @return string
      */
-    public static function sanitise($string)
+    public static function sanitise($string): string
     {
         return preg_replace('/[^\x{0009}\x{000A}\x{000D}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}\x{10000}-\x{10FFFF}]/u', ' ', $string);
     }
@@ -47,7 +45,7 @@ class Xml
      * @param $schemaPath
      * @throws XmlException
      */
-    public static function validate($filePath)
+    public static function validate($filePath): bool
     {
         if (! file_exists($filePath)) {
             throw new XmlException('XML file missing');
@@ -85,10 +83,8 @@ class Xml
 
     /**
      * Summarises `libxml_get_errors()`, grouping the line numbers each unique error occurred on
-     *
-     * @return string
      */
-    private static function errorSummary()
+    private static function errorSummary(): string
     {
         $errors  = libxml_get_errors();
         $concise = [];

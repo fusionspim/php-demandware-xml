@@ -45,60 +45,48 @@ class Parser
 
     /**
      * Return an array containing product ids as keys, and an associative array of category ids mapped to whether primary for the values
-     *
-     * @return array
      */
-    public function getAssignments()
+    public function getAssignments(): array
     {
         return $this->assignments;
     }
 
     /**
      * Return an array containing bundle ids as keys, and an associative array of name/value details for the values
-     *
-     * @return array
      */
-    public function getBundles()
+    public function getBundles(): array
     {
         return $this->bundles;
     }
 
     /**
      * Return an array containing category ids as keys, and an associative array of name/value details for the values
-     *
-     * @return array
      */
-    public function getCategories()
+    public function getCategories(): array
     {
         return $this->categories;
     }
 
     /**
      * Return an array containing product ids as keys, and an associative array of name/value details for the values
-     *
-     * @return array
      */
-    public function getProducts()
+    public function getProducts(): array
     {
         return $this->products;
     }
 
     /**
      * Return an array containing set ids as keys, and an associative array of name/value details for the values
-     *
-     * @return array
      */
-    public function getSets()
+    public function getSets(): array
     {
         return $this->sets;
     }
 
     /**
      * Return an array containing variation ids as keys, and an associative array of name/value details for the values
-     *
-     * @return array
      */
-    public function getVariations()
+    public function getVariations(): array
     {
         return $this->variations;
     }
@@ -197,7 +185,7 @@ class Parser
         $this->sets[$id] = $details;
     }
 
-    private function commonDetails(SimpleXMLElement $element)
+    private function commonDetails(SimpleXMLElement $element): array
     {
         if ($this->skipAttributes) {
             $details = [];
@@ -245,7 +233,7 @@ class Parser
         return $details;
     }
 
-    private function customAttributes($element)
+    private function customAttributes($element): array
     {
         if (! isset($element->{'custom-attributes'}->{'custom-attribute'})) {
             return [];
@@ -277,7 +265,7 @@ class Parser
         return $attributes;
     }
 
-    private function pageAttributes($element)
+    private function pageAttributes($element): array
     {
         $attributes = [];
 

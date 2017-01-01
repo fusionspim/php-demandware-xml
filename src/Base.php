@@ -59,7 +59,7 @@ abstract class Base
         }
     }
 
-    private function isEmptyDate($value)
+    private function isEmptyDate($value): bool
     {
         return empty($value) || '0000-00-00' === substr($value, 0, 10);
     }
@@ -166,10 +166,7 @@ abstract class Base
         $this->elements['custom-attributes'] = $xml;
     }
 
-    /**
-     * @return array
-     */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return $this->attributes;
     }
@@ -182,10 +179,7 @@ abstract class Base
         return $this->element;
     }
 
-    /**
-     * @return array
-     */
-    public function getElements()
+    public function getElements(): array
     {
         return $this->elements;
     }

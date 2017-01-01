@@ -87,7 +87,7 @@ class Product extends Base
         $this->elements['classification-category'] = $value;
     }
 
-    public function getCatalog()
+    public function getCatalog(): string
     {
         return $this->catalog;
     }
