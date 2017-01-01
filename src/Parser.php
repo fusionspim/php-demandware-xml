@@ -150,7 +150,7 @@ class Parser
         $details = $this->commonDetails($element);
 
         foreach ($element->{'bundled-products'}->{'bundled-product'} as $variation) {
-            $quantity = (isset($variation->{'quantity'}) ? (int) $variation->{'quantity'} : 0);
+            $quantity = (int) ($variation->{'quantity'} ?? 0);
 
             $details['variations'][(string) $variation['product-id']] = $quantity;
         }
