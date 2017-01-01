@@ -8,30 +8,24 @@ class Product extends Base
 
     /**
      * Create a new <product> element, with $id populating the `product-id` attribute
-     *
-     * @param null $id
      */
-    public function __construct($id = null)
+    public function __construct(string $id = null)
     {
         $this->attributes = ['product-id' => $id];
     }
 
     /**
      * Populates the <upc> element
-     *
-     * @param $value
      */
-    public function setUpc($value)
+    public function setUpc(string $value)
     {
         $this->elements['upc'] = $value;
     }
 
     /**
      * Populates the <brand> element
-     *
-     * @param $value
      */
-    public function setBrand($value)
+    public function setBrand(string $value)
     {
         $this->elements['brand'] = $value;
     }
@@ -40,11 +34,8 @@ class Product extends Base
      * Populates the description of the product/set/bundle in the <long-description xml:lang="x-default"> element.
      * Accepts text and unencoded HTML (which will be encoded as UTF-8 entities).
      * @todo: Allow elements to be defined as raw or not and remove this hack.
-     *
-     * @param $value
-     * @param $raw
      */
-    public function setDescription($value, $raw = false)
+    public function setDescription(string $value, bool $raw = false)
     {
         $this->elements['long-description'] = [
             'value' => $value,
@@ -54,20 +45,16 @@ class Product extends Base
 
     /**
      * Populates the <search-rank> element, defaulting to "3"
-     *
-     * @param int $value
      */
-    public function setRank($value = 3)
+    public function setRank(int $value = 3)
     {
         $this->elements['search-rank'] = $value;
     }
 
     /**
      * Populates the <min-order-quantity> and <step-quantity> elements, both defaulting to "1"
-     * @param int $minOrder
-     * @param int $step
      */
-    public function setQuantities($minOrder = 1, $step = 1)
+    public function setQuantities(int $minOrder = 1, int $step = 1)
     {
         $this->elements['min-order-quantity'] = $minOrder;
         $this->elements['step-quantity']      = $step;
@@ -75,11 +62,8 @@ class Product extends Base
 
     /**
      * Populates the <classification-category> element with category id $value, and a `classification-category` attribute
-     *
-     * @param $value
-     * @param $catalogId
      */
-    public function setClassification($value, $catalogId)
+    public function setClassification(string $value, string $catalogId)
     {
         // hack to later set the `catalog-id="$catalogId"` attribute within `createElement()`
         $this->catalog = $catalogId;
@@ -94,10 +78,8 @@ class Product extends Base
 
     /**
      * Tax class in Demandware format, nn.dd as TAX_nn_dd - may only applies to bundles?
-     *
-     * @param $value
      */
-    public function setTax($value)
+    public function setTax(string $value)
     {
         if (is_null($value)) {
             return;
@@ -121,8 +103,6 @@ class Product extends Base
 
     /**
      * Only applies to complex products (aka Master Variants)
-     *
-     * @param array $ids
      */
     public function setSharedAttributes(array $ids = [])
     {
@@ -142,8 +122,6 @@ class Product extends Base
 
     /**
      * Only applies to complex products (aka Master Variants)
-     *
-     * @param array $variants
      */
     public function setVariants(array $variants = [])
     {
@@ -178,8 +156,6 @@ class Product extends Base
 
     /**
      * Only applies to Bundles
-     *
-     * @param array $variations
      */
     public function setProductQuantities(array $variations = [])
     {
@@ -196,8 +172,6 @@ class Product extends Base
 
     /**
      * Only applies to Sets
-     *
-     * @param array $products
      */
     public function setProducts(array $products = [])
     {

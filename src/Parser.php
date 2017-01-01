@@ -22,11 +22,9 @@ class Parser
      * Create a new parser for the specified path, which will be validated against the XSD before parsing
      * For better speed and memory usage, parsing page/custom attributes can be skipped if you don't need them
      *
-     * @param $path
-     * @param $skipAttributes
      * @throws XmlException
      */
-    public function __construct($path, $skipAttributes = false)
+    public function __construct(string $path, bool $skipAttributes = false)
     {
         // validate before opening with reader, since validation converts line breaks such as `</product>\n\n</product>`
         // to `</product>\n</product>` which avoids creating empty nodes or confusing `parse()` and skipping data :-o
@@ -145,7 +143,7 @@ class Parser
         $this->assignments[$productId][] = [$categoryId => $primary];
     }
 
-    private function addBundle($id, SimpleXMLElement $element)
+    private function addBundle(string $id, SimpleXMLElement $element)
     {
         $details = $this->commonDetails($element);
 
@@ -163,7 +161,7 @@ class Parser
         $this->categories[(string) $element['category-id']] = $this->commonDetails($element);
     }
 
-    private function addProduct($id, SimpleXMLElement $element)
+    private function addProduct(string $id, SimpleXMLElement $element)
     {
         $details = $this->commonDetails($element);
 
@@ -174,7 +172,7 @@ class Parser
         $this->products[$id] = $details;
     }
 
-    private function addSet($id, SimpleXMLElement $element)
+    private function addSet(string $id, SimpleXMLElement $element)
     {
         $details = $this->commonDetails($element);
 
@@ -233,7 +231,7 @@ class Parser
         return $details;
     }
 
-    private function customAttributes($element): array
+    private function customAttributes(SimpleXMLElement $element): array
     {
         if (! isset($element->{'custom-attributes'}->{'custom-attribute'})) {
             return [];
@@ -265,7 +263,7 @@ class Parser
         return $attributes;
     }
 
-    private function pageAttributes($element): array
+    private function pageAttributes(SimpleXMLElement $element): array
     {
         $attributes = [];
 

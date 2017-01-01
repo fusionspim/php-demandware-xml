@@ -9,10 +9,8 @@ abstract class Base
 
     /**
      * Populates the name of the product/set/bundle/category for the <display-name xml:lang="x-default"> element
-     *
-     * @param $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->elements['display-name'] = $name;
     }
@@ -21,11 +19,11 @@ abstract class Base
      * Populates flag elements - only `$online` is required. available is
      *
      * @param $online
-     * @param null $searchable
-     * @param null $available This is deprecated according to the XSD, but used so we support it
-     * @param null $both
+     * @param $searchable
+     * @param $available This is deprecated according to the XSD, but used so we support it
+     * @param $both
      */
-    public function setFlags($online, $searchable = null, $available = null, $both = null)
+    public function setFlags(bool $online, bool $searchable = null, bool $available = null, bool $both = null)
     {
         $this->elements['online-flag'] = $online;
 
@@ -44,11 +42,8 @@ abstract class Base
 
     /**
      * Populates <online-from> and <online-to> dates in Demandware format, if provided
-     *
-     * @param $from
-     * @param null $to
      */
-    public function setDates($from, $to = null)
+    public function setDates(string $from, string $to = null)
     {
         if (! $this->isEmptyDate($from)) {
             $this->elements['online-from'] = str_replace(' ', 'T', $from);
@@ -59,7 +54,7 @@ abstract class Base
         }
     }
 
-    private function isEmptyDate($value): bool
+    private function isEmptyDate(string $value = null): bool
     {
         return empty($value) || '0000-00-00' === substr($value, 0, 10);
     }
@@ -68,12 +63,9 @@ abstract class Base
      * Populates sitemap elements and can be called without parameters to use the sensible defaults
      * Pass null for any parameter to exclude the element
      *
-     * @param float $priority
-     * @param bool $included
-     * @param string $frequency
      * @throws XmlException
      */
-    public function setSitemap($priority = 0.5, $included = true, $frequency = 'weekly')
+    public function setSitemap(float $priority = 0.5, bool $included = true, string $frequency = 'weekly')
     {
         if ($priority > 1) {
             throw new XmlException('Sitemap priority must be 1.0 or less');
@@ -94,13 +86,8 @@ abstract class Base
 
     /**
      * Populates <page-attributes> child elements, all of which will be given a `xml:lang="x-default"` attribute
-     *
-     * @param $title
-     * @param $description
-     * @param $keywords
-     * @param $url
      */
-    public function setPageAttributes($title, $description, $keywords, $url)
+    public function setPageAttributes(string $title, string $description, string $keywords, string $url)
     {
         $elements = [
             'page-title'       => $title,
@@ -120,10 +107,8 @@ abstract class Base
 
     /**
      * Populates the <template> element used for categories and sets
-     *
-     * @param $value
      */
-    public function setTemplate($value)
+    public function setTemplate(string $value)
     {
         $this->elements['template'] = $value;
     }
@@ -132,8 +117,6 @@ abstract class Base
      * Populates <custom-attributes> child elements, from a mapping of attribute ids to values
      * Values can be empty and still exported, however attributes with null values aren't exported
      * Attributes are exported sorted alphabetically by id for consistency and ease of diffing exports...
-     *
-     * @param array $map
      */
     public function setCustomAttributes(array $map)
     {

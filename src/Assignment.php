@@ -7,11 +7,8 @@ class Assignment extends Base
 
     /**
      * Create a new <category-assignment> element, for the product/category ids
-     *
-     * @param null $objectId
-     * @param null $categoryId
      */
-    public function __construct($objectId = null, $categoryId = null)
+    public function __construct(string $objectId, string $categoryId)
     {
         // although passed as `product-id`, can actually represent a product/variation/set/bundle
         $this->attributes = ['product-id' => $objectId, 'category-id' => $categoryId];
@@ -27,10 +24,8 @@ class Assignment extends Base
 
     /**
      * Adds a <primary-flag> element with true/false value
-     *
-     * @param $primary
      */
-    public function setPrimary($primary)
+    public function setPrimary(bool $primary)
     {
         $this->elements['primary-flag'] = $primary;
     }
