@@ -21,7 +21,7 @@ class ProductsTest extends AbstractTest
             $element->setUpc('50000000000' . $index);
             $element->setQuantities(); // include, but use defaults
             $element->setRank(1);
-            $element->setSitemap(); // include, but use defaults
+            $element->setSitemap(0.5);
             $element->setBrand('SampleBrand™');
             $element->setFlags(true, false);
             $element->setDates('2015-01-23 01:23:45', '2025-01-23 01:23:45');
