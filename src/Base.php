@@ -39,7 +39,7 @@ abstract class Base
     /**
      * Populates <online-from> and <online-to> dates in Demandware format, if provided
      */
-    public function setDates(string $from, string $to = null)
+    public function setDates(string $from = null, string $to = null)
     {
         if (! $this->isEmptyDate($from)) {
             $this->elements['online-from'] = str_replace(' ', 'T', $from);
@@ -61,7 +61,7 @@ abstract class Base
      *
      * @throws XmlException
      */
-    public function setSitemap(float $priority = 0.5, bool $included = true, string $frequency = 'weekly')
+    public function setSitemap(float $priority = null, bool $included = true, string $frequency = 'weekly')
     {
         if ($priority > 1) {
             throw new XmlException('Sitemap priority must be 1.0 or less');
@@ -83,7 +83,7 @@ abstract class Base
     /**
      * Populates <page-attributes> child elements, all of which will be given a `xml:lang="x-default"` attribute
      */
-    public function setPageAttributes(string $title, string $description, string $keywords, string $url)
+    public function setPageAttributes(string $title = null, string $description = null, string $keywords = null, string $url = null)
     {
         $elements = [
             'page-title'       => $title,
