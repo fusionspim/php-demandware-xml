@@ -16,12 +16,8 @@ abstract class Base
     }
 
     /**
-     * Populates flag elements - only `$online` is required. available is
-     *
-     * @param $online
-     * @param $searchable
-     * @param $available This is deprecated according to the XSD, but used so we support it
-     * @param $both
+     * Populates flag elements - only `$online` is required.
+     * $available is deprecated according to the XSD, but used so we support it
      */
     public function setFlags(bool $online, bool $searchable = null, bool $available = null, bool $both = null)
     {
