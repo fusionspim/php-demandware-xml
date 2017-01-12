@@ -22,11 +22,9 @@ class Parser
      * Create a new parser for the specified path, which will be validated against the XSD before parsing
      * For better speed and memory usage, parsing page/custom attributes can be skipped if you don't need them
      *
-     * @param $path
-     * @param $skipAttributes
      * @throws XmlException
      */
-    public function __construct($path, $skipAttributes = false)
+    public function __construct(string $path, bool $skipAttributes = false)
     {
         // validate before opening with reader, since validation converts line breaks such as `</product>\n\n</product>`
         // to `</product>\n</product>` which avoids creating empty nodes or confusing `parse()` and skipping data :-o
@@ -45,60 +43,48 @@ class Parser
 
     /**
      * Return an array containing product ids as keys, and an associative array of category ids mapped to whether primary for the values
-     *
-     * @return array
      */
-    public function getAssignments()
+    public function getAssignments(): array
     {
         return $this->assignments;
     }
 
     /**
      * Return an array containing bundle ids as keys, and an associative array of name/value details for the values
-     *
-     * @return array
      */
-    public function getBundles()
+    public function getBundles(): array
     {
         return $this->bundles;
     }
 
     /**
      * Return an array containing category ids as keys, and an associative array of name/value details for the values
-     *
-     * @return array
      */
-    public function getCategories()
+    public function getCategories(): array
     {
         return $this->categories;
     }
 
     /**
      * Return an array containing product ids as keys, and an associative array of name/value details for the values
-     *
-     * @return array
      */
-    public function getProducts()
+    public function getProducts(): array
     {
         return $this->products;
     }
 
     /**
      * Return an array containing set ids as keys, and an associative array of name/value details for the values
-     *
-     * @return array
      */
-    public function getSets()
+    public function getSets(): array
     {
         return $this->sets;
     }
 
     /**
      * Return an array containing variation ids as keys, and an associative array of name/value details for the values
-     *
-     * @return array
      */
-    public function getVariations()
+    public function getVariations(): array
     {
         return $this->variations;
     }
@@ -157,12 +143,12 @@ class Parser
         $this->assignments[$productId][] = [$categoryId => $primary];
     }
 
-    private function addBundle($id, SimpleXMLElement $element)
+    private function addBundle(string $id, SimpleXMLElement $element)
     {
         $details = $this->commonDetails($element);
 
         foreach ($element->{'bundled-products'}->{'bundled-product'} as $variation) {
-            $quantity = (isset($variation->{'quantity'}) ? (int) $variation->{'quantity'} : 0);
+            $quantity = (int) ($variation->{'quantity'} ?? 0);
 
             $details['variations'][(string) $variation['product-id']] = $quantity;
         }
@@ -175,7 +161,7 @@ class Parser
         $this->categories[(string) $element['category-id']] = $this->commonDetails($element);
     }
 
-    private function addProduct($id, SimpleXMLElement $element)
+    private function addProduct(string $id, SimpleXMLElement $element)
     {
         $details = $this->commonDetails($element);
 
@@ -186,7 +172,7 @@ class Parser
         $this->products[$id] = $details;
     }
 
-    private function addSet($id, SimpleXMLElement $element)
+    private function addSet(string $id, SimpleXMLElement $element)
     {
         $details = $this->commonDetails($element);
 
@@ -197,7 +183,7 @@ class Parser
         $this->sets[$id] = $details;
     }
 
-    private function commonDetails(SimpleXMLElement $element)
+    private function commonDetails(SimpleXMLElement $element): array
     {
         if ($this->skipAttributes) {
             $details = [];
@@ -245,7 +231,7 @@ class Parser
         return $details;
     }
 
-    private function customAttributes($element)
+    private function customAttributes(SimpleXMLElement $element): array
     {
         if (! isset($element->{'custom-attributes'}->{'custom-attribute'})) {
             return [];
@@ -277,7 +263,7 @@ class Parser
         return $attributes;
     }
 
-    private function pageAttributes($element)
+    private function pageAttributes(SimpleXMLElement $element): array
     {
         $attributes = [];
 

@@ -2,6 +2,7 @@
 namespace DemandwareXml;
 
 use \DOMDocument;
+use \DOMElement;
 
 class Document
 {
@@ -40,10 +41,8 @@ class Document
 
     /**
      * Create a new Demandware XML document for the specified catalog, in UTF-8 encoding
-     *
-     * @param $catalogId
      */
-    public function __construct($catalogId)
+    public function __construct(string $catalogId)
     {
         $this->dom                     = new DOMDocument('1.0', 'UTF-8');
         $this->dom->preserveWhiteSpace = false;
@@ -57,8 +56,6 @@ class Document
 
     /**
      * Add a new child of the root element
-     *
-     * @param Base $object
      */
     public function addObject(Base $object)
     {
@@ -98,7 +95,7 @@ class Document
         $this->root->appendChild($root);
     }
 
-    private function addAttribute($node, $name, $value)
+    private function addAttribute(DOMElement $node, string $name, string $value)
     {
         $attribute = $this->dom->createAttribute($name);
         $attribute->value = Xml::escape($value);
@@ -106,7 +103,7 @@ class Document
         $node->appendChild($attribute);
     }
 
-    private function createElement($name, $value = null, $raw = false)
+    private function createElement(string $name, $value = null, bool $raw = false)
     {
         if (is_null($value)) {
             $element = $this->dom->createElement($name);
@@ -126,8 +123,6 @@ class Document
 
     /**
      * Build the DOMDocument object by appending the root element to it.
-     *
-     * @return void
      */
     private function build()
     {
@@ -137,10 +132,9 @@ class Document
     /**
      * Save the document to a path, which must include the appropriate extension (likely .xml)
      *
-     * @param $fileName
      * @throws XmlException
      */
-    public function save($path)
+    public function save(string $path): bool
     {
         $this->build();
 
@@ -153,10 +147,8 @@ class Document
 
     /**
      * Get the internal DOMDocument element.
-     *
-     * @return DOMDocument
      */
-    public function getDomDocument()
+    public function getDomDocument(): DOMDocument
     {
         $this->build();
 
