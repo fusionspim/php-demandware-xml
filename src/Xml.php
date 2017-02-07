@@ -53,7 +53,7 @@ class Xml
         // domdocument dies silently when given a big (1.7GB) file, though known to cope with 892Mb
         // @todo: look at using xmlreader instead @see: https://gist.github.com/tentacode/5934634 for some examples
         if (filesize($filePath) > 1000000000) { // 1Gb
-            return;
+            return false;
         }
 
         libxml_use_internal_errors(true);
