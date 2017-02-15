@@ -127,7 +127,8 @@
             <xsd:element name="category-links" type="complexType.CategoryLinks" minOccurs="0" maxOccurs="1" />
             <xsd:element name="attribute-groups" type="complexType.AttributeGroups" minOccurs="0" maxOccurs="1" />
             <xsd:element name="refinement-definitions" type="complexType.RefinementDefinitions" minOccurs="0" maxOccurs="1" />
-
+            <xsd:element name="product-detail-page-meta-tag-rules" type="complexType.PageMetaTagRules" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="product-listing-page-meta-tag-rules" type="complexType.PageMetaTagRules" minOccurs="0" maxOccurs="1" />
         </xsd:sequence>
         <xsd:attribute name="mode" type="simpleType.ImportMode" />
         <xsd:attribute name="category-id" type="simpleType.Generic.NonEmptyString.256" />
@@ -200,6 +201,11 @@
             <xsd:element name="short-description" type="sharedType.LocalizedText" minOccurs="0" maxOccurs="unbounded" />
             <xsd:element name="long-description" type="sharedType.LocalizedText" minOccurs="0" maxOccurs="unbounded" />
             <xsd:element name="store-receipt-name" type="sharedType.LocalizedText" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="store-tax-class" type="simpleType.Generic.String.60" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="store-force-price-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="store-non-inventory-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="store-non-revenue-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="store-non-discountable-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
             <xsd:element name="online-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" nillable="true" />
             <xsd:element name="online-from" type="sharedType.SiteSpecificDateTime" minOccurs="0" maxOccurs="unbounded" nillable="true" />
             <xsd:element name="online-to" type="sharedType.SiteSpecificDateTime" minOccurs="0" maxOccurs="unbounded" nillable="true" />
@@ -251,6 +257,7 @@
             <xsd:element name="classification-category" type="complexType.Product.ClassificationCategory" minOccurs="0" maxOccurs="1" />
             <xsd:element name="pinterest-enabled-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" nillable="true" />
             <xsd:element name="facebook-enabled-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" nillable="true" />
+            <xsd:element name="product-detail-page-meta-tag-rules" type="complexType.PageMetaTagRules" minOccurs="0" maxOccurs="1" />
         </xsd:sequence>
         <xsd:attribute name="mode" type="simpleType.ImportMode" />
         <xsd:attribute name="product-id" type="simpleType.Generic.NonEmptyString.100" use="required" />
@@ -843,6 +850,22 @@
             </xsd:extension>
         </xsd:simpleContent>
     </xsd:complexType>
+    
+    <!-- page meta tag rules -->
+    <xsd:complexType name="complexType.PageMetaTagRules" mixed="false">
+        <xsd:sequence>
+             <xsd:element name="page-meta-tag-rule" type="complexType.PageMetaTagRule" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="complexType.PageMetaTagRule" mixed="false">
+        <xsd:simpleContent>
+            <xsd:extension base="simpleType.Generic.NonEmptyString.4000">
+                <xsd:attribute name="meta-tag-id" type="simpleType.Generic.NonEmptyString.256" use="required" />
+                <xsd:attribute ref="xml:lang" />
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
 
     <!-- simple Generic types -->
     <xsd:simpleType name="simpleType.Generic.String">
@@ -860,6 +883,13 @@
         <xsd:restriction base="simpleType.Generic.String">
             <xsd:minLength value="0" />
             <xsd:maxLength value="28" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="simpleType.Generic.String.60">
+        <xsd:restriction base="simpleType.Generic.String">
+            <xsd:minLength value="0" />
+            <xsd:maxLength value="60" />
         </xsd:restriction>
     </xsd:simpleType>
 
