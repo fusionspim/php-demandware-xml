@@ -200,12 +200,36 @@
             <xsd:element name="display-name" type="sharedType.LocalizedString" minOccurs="0" maxOccurs="unbounded" />
             <xsd:element name="short-description" type="sharedType.LocalizedText" minOccurs="0" maxOccurs="unbounded" />
             <xsd:element name="long-description" type="sharedType.LocalizedText" minOccurs="0" maxOccurs="unbounded" />
-            <xsd:element name="store-receipt-name" type="sharedType.LocalizedText" minOccurs="0" maxOccurs="unbounded" />
-            <xsd:element name="store-tax-class" type="simpleType.Generic.String.60" minOccurs="0" maxOccurs="1" />
-            <xsd:element name="store-force-price-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
-            <xsd:element name="store-non-inventory-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
-            <xsd:element name="store-non-revenue-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
-            <xsd:element name="store-non-discountable-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="store-receipt-name" type="sharedType.LocalizedText" minOccurs="0" maxOccurs="unbounded" >
+                <xsd:annotation>
+                    <xsd:documentation>Deprecated. Please use element receipt-name which held by element store-attributes (complexType.Product.StoreAttributes).</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="store-tax-class" type="simpleType.Generic.String.60" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Deprecated. Please use element tax-class which held by element store-attributes (complexType.Product.StoreAttributes).</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="store-force-price-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Deprecated. Please use element force-price-flag which held by element store-attributes (complexType.Product.StoreAttributes).</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="store-non-inventory-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Deprecated. Please use element non-inventory-flag which held by element store-attributes (complexType.Product.StoreAttributes).</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="store-non-revenue-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Deprecated. Please use element non-revenue-flag which held by element store-attributes (complexType.Product.StoreAttributes).</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="store-non-discountable-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Deprecated. Please use element non-discountable-flag which held by element store-attributes (complexType.Product.StoreAttributes).</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
             <xsd:element name="online-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" nillable="true" />
             <xsd:element name="online-from" type="sharedType.SiteSpecificDateTime" minOccurs="0" maxOccurs="unbounded" nillable="true" />
             <xsd:element name="online-to" type="sharedType.SiteSpecificDateTime" minOccurs="0" maxOccurs="unbounded" nillable="true" />
@@ -258,9 +282,22 @@
             <xsd:element name="pinterest-enabled-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" nillable="true" />
             <xsd:element name="facebook-enabled-flag" type="sharedType.SiteSpecificBoolean" minOccurs="0" maxOccurs="unbounded" nillable="true" />
             <xsd:element name="product-detail-page-meta-tag-rules" type="complexType.PageMetaTagRules" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="store-attributes" type="complexType.Product.StoreAttributes" minOccurs="0" maxOccurs="1" />
         </xsd:sequence>
         <xsd:attribute name="mode" type="simpleType.ImportMode" />
         <xsd:attribute name="product-id" type="simpleType.Generic.NonEmptyString.100" use="required" />
+    </xsd:complexType>
+
+    <!-- Product Store Attributes -->
+    <xsd:complexType name="complexType.Product.StoreAttributes" mixed="false">
+        <xsd:sequence>
+            <xsd:element name="receipt-name" type="sharedType.LocalizedText" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="tax-class" type="simpleType.Generic.String.60" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="force-price-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="non-inventory-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="non-revenue-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="non-discountable-flag" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+        </xsd:sequence>
     </xsd:complexType>
 
     <!-- Product Images -->
