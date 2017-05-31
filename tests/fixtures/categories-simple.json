@@ -2,16 +2,25 @@
     "CAT0": {
         "name": "Socks",
         "online": true,
-        "parent": "CAT0"
+        "parent": "CAT0",
+        "sitemap-changefrequency": "weekly",
+        "sitemap-included-flag": "true",
+        "sitemap-priority": "0.2"
     },
     "CAT1": {
         "name": "Death Stars",
         "online": true,
-        "parent": "CAT0"
+        "parent": "CAT0",
+        "sitemap-changefrequency": "weekly",
+        "sitemap-included-flag": "true",
+        "sitemap-priority": "0.2"
     },
     "CAT2": {
         "name": "Donuts",
         "online": true,
-        "parent": "CAT0"
+        "parent": "CAT0",
+        "sitemap-changefrequency": "weekly",
+        "sitemap-included-flag": "true",
+        "sitemap-priority": "0.2"
     }
 }

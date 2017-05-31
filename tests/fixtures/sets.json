@@ -30,6 +30,9 @@
         "products": [
             "PRODUCT123",
             "PRODUCT456"
-        ]
+        ],
+        "sitemap-changefrequency": "weekly",
+        "sitemap-included-flag": "true",
+        "sitemap-priority": "0.5"
     }
 }

@@ -13,7 +13,10 @@
             "keywords": "socks",
             "url": "\/Socks"
         },
-        "parent": "CAT0"
+        "parent": "CAT0",
+        "sitemap-changefrequency": "weekly",
+        "sitemap-included-flag": "true",
+        "sitemap-priority": "0.2"
     },
     "CAT1": {
         "attributes": {
@@ -29,7 +32,10 @@
             "keywords": "death stars",
             "url": "\/Death Stars"
         },
-        "parent": "CAT0"
+        "parent": "CAT0",
+        "sitemap-changefrequency": "weekly",
+        "sitemap-included-flag": "true",
+        "sitemap-priority": "0.2"
     },
     "CAT2": {
         "attributes": {
@@ -45,6 +51,9 @@
             "keywords": "donuts",
             "url": "\/Donuts"
         },
-        "parent": "CAT0"
+        "parent": "CAT0",
+        "sitemap-changefrequency": "weekly",
+        "sitemap-included-flag": "true",
+        "sitemap-priority": "0.2"
     }
 }
