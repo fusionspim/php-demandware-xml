@@ -77,12 +77,13 @@ class ProductsTest extends AbstractTest
     {
         $document = new Document('TestCatalog');
 
-        foreach (['Product', 'Variation'] as $example) {
-            $element = new Product(strtoupper($example) . '123');
-            $element->setDeleted();
+        $element = new Product('PRODUCT123');
+        $element->setDeleted();
+        $document->addObject($element);
 
-            $document->addObject($element);
-        }
+        $element = new Product('VARIATION123');
+        $element->setDeleted();
+        $document->addObject($element);
 
         $sampleXml = $this->loadFixture('products-deleted.xml');
         $outputXml = $document->getDomDocument()->saveXML();
