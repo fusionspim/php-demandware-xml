@@ -73,6 +73,24 @@ class ProductsTest extends AbstractTest
         $this->assertXmlStringEqualsXmlString($sampleXml, $outputXml);
     }
 
+    public function testProductsDeletedXml()
+    {
+        $document = new Document('TestCatalog');
+
+        $element = new Product('PRODUCT123');
+        $element->setDeleted();
+        $document->addObject($element);
+
+        $element = new Product('VARIATION123');
+        $element->setDeleted();
+        $document->addObject($element);
+
+        $sampleXml = $this->loadFixture('products-deleted.xml');
+        $outputXml = $document->getDomDocument()->saveXML();
+
+        $this->assertXmlStringEqualsXmlString($sampleXml, $outputXml);
+    }
+
     /**
      * @expectedException               \DemandwareXml\XmlException
      * @expectedExceptionMessageRegExp  /Entity 'bull' not defined/

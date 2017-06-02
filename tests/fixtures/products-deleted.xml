@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">
+  <product product-id="PRODUCT123" mode="delete"/>
+  <product product-id="VARIATION123" mode="delete"/>
+</catalog>

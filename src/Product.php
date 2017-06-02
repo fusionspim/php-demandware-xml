@@ -15,6 +15,14 @@ class Product extends Base
     }
 
     /**
+     * Sets the `mode` attribute to "delete"
+     */
+    public function setDeleted()
+    {
+        $this->attributes['mode'] = 'delete';
+    }
+
+    /**
      * Populates the <upc> element
      */
     public function setUpc(string $value)
