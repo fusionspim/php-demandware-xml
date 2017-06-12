@@ -7,6 +7,24 @@ use \DemandwareXml\Parser;
 // rebuild fixtures: file_put_contents(__DIR__ . '/fixtures/categories.json', json_encode($parser->categories(), JSON_PRETTY_PRINT) . PHP_EOL);
 class ParserTest extends AbstractTest
 {
+    public function testMixedParser()
+    {
+        $parser = $this->getFixtureParser('mixed.xml', true);
+
+        $this->assertEquals($this->loadJsonFixture('mixed-products.json'), $parser->getProducts());
+        $this->assertEquals($this->loadJsonFixture('mixed-categories.json'), $parser->getCategories());
+        $this->assertEquals($this->loadJsonFixture('mixed-assignments.json'), $parser->getAssignments());
+    }
+
+    public function testMixedParserWithExclusions()
+    {
+        $parser = $this->getFixtureParser('mixed.xml', true, ['product', 'category-assignment']);
+
+        $this->assertEmpty($parser->getProducts());
+        $this->assertEquals($this->loadJsonFixture('mixed-categories.json'), $parser->getCategories());
+        $this->assertEmpty($parser->getAssignments());
+    }
+
     public function testAssignmentsParser()
     {
         $parser   = $this->getFixtureParser('assignments.xml');
@@ -95,8 +113,8 @@ class ParserTest extends AbstractTest
         $this->assertEquals($expected, $parser->getVariations());
     }
 
-    protected function getFixtureParser($filename, $skipAttributes = false)
+    protected function getFixtureParser($filename, $skipAttributes = false, array $excludedAttributes = [])
     {
-        return new Parser(__DIR__ . '/fixtures/' . $filename, $skipAttributes);
+        return new Parser(__DIR__ . '/fixtures/' . $filename, $skipAttributes, $excludedAttributes);
     }
 }

@@ -1,0 +1,19 @@
+{
+    "PRD1": {
+        "brand": "SampleBrand™",
+        "classification": "CAT1",
+        "description": "<b>Product<\/b> The description for an <i>example<\/i> product! \u2022 Bullet Point",
+        "name": "Product number 1",
+        "online": true,
+        "searchable": false,
+        "start": "2015-01-23T01:23:45",
+        "variations": {
+            "SKU0000001": false,
+            "SKU0000002": false,
+            "SKU0000003": true
+        },
+        "sitemap-changefrequency": "weekly",
+        "sitemap-included-flag": "true",
+        "sitemap-priority": "0.5"
+    }
+}

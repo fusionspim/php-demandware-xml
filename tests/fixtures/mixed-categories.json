@@ -1,0 +1,10 @@
+{
+    "CAT1": {
+        "name": "Socks",
+        "online": true,
+        "parent": "CAT0",
+        "sitemap-changefrequency": "weekly",
+        "sitemap-included-flag": "true",
+        "sitemap-priority": "0.2"
+    }
+}

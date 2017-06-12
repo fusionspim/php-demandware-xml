@@ -15,16 +15,17 @@ class Parser
     private $products    = [];
     private $sets        = [];
     private $variations  = [];
+    private $nodes       = ['product', 'category', 'category-assignment'];
 
     private $skipAttributes;
 
     /**
      * Create a new parser for the specified path, which will be validated against the XSD before parsing
-     * For better speed and memory usage, parsing page/custom attributes can be skipped if you don't need them
+     * For better speed and memory usage, parsing page/custom attributes and/or nodes can be skipped if not needed
      *
      * @throws XmlException
      */
-    public function __construct(string $path, bool $skipAttributes = false)
+    public function __construct(string $path, bool $skipAttributes = false, array $excludedNodes = [])
     {
         // validate before opening with reader, since validation converts line breaks such as `</product>\n\n</product>`
         // to `</product>\n</product>` which avoids creating empty nodes or confusing `parse()` and skipping data :-o
@@ -37,6 +38,7 @@ class Parser
         }
 
         $this->skipAttributes = $skipAttributes;
+        $this->nodes          = array_diff($this->nodes, $excludedNodes);
 
         $this->parse($reader);
     }
@@ -94,7 +96,7 @@ class Parser
         while ($reader->read()) {
             $nodeName = $reader->localName;
 
-            if (! in_array($nodeName, ['product', 'category', 'category-assignment'])) {
+            if (! in_array($nodeName, $this->nodes)) {
                 continue;
             }
 
