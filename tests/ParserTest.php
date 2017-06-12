@@ -113,8 +113,8 @@ class ParserTest extends AbstractTest
         $this->assertEquals($expected, $parser->getVariations());
     }
 
-    protected function getFixtureParser($filename, $skipAttributes = false, array $excludedAttributes = [])
+    protected function getFixtureParser($filename, $skipAttributes = false, array $excludedNodes = [])
     {
-        return new Parser(__DIR__ . '/fixtures/' . $filename, $skipAttributes, $excludedAttributes);
+        return new Parser(__DIR__ . '/fixtures/' . $filename, $skipAttributes, $excludedNodes);
     }
 }
