@@ -9,13 +9,15 @@ use \XMLReader;
  */
 class Parser
 {
-    private $assignments = [];
-    private $bundles     = [];
-    private $categories  = [];
-    private $products    = [];
-    private $sets        = [];
-    private $variations  = [];
-    private $nodes       = ['product', 'category', 'category-assignment'];
+    const AVAILABLE_NODES = ['product', 'category', 'category-assignment'];
+
+    private $assignments  = [];
+    private $bundles      = [];
+    private $categories   = [];
+    private $products     = [];
+    private $sets         = [];
+    private $variations   = [];
+    private $includeNodes = self::AVAILABLE_NODES;
 
     private $skipAttributes;
 
@@ -25,7 +27,7 @@ class Parser
      *
      * @throws XmlException
      */
-    public function __construct(string $path, bool $skipAttributes = false, array $excludedNodes = [])
+    public function __construct(string $path, bool $skipAttributes = false, array $includeNodes = self::AVAILABLE_NODES)
     {
         // validate before opening with reader, since validation converts line breaks such as `</product>\n\n</product>`
         // to `</product>\n</product>` which avoids creating empty nodes or confusing `parse()` and skipping data :-o
@@ -38,7 +40,7 @@ class Parser
         }
 
         $this->skipAttributes = $skipAttributes;
-        $this->nodes          = array_diff($this->nodes, $excludedNodes);
+        $this->includeNodes   = array_intersect(self::AVAILABLE_NODES, $includeNodes);
 
         $this->parse($reader);
     }
@@ -96,7 +98,7 @@ class Parser
         while ($reader->read()) {
             $nodeName = $reader->localName;
 
-            if (! in_array($nodeName, $this->nodes)) {
+            if (! in_array($nodeName, $this->includeNodes)) {
                 continue;
             }
 

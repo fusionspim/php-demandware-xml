@@ -18,7 +18,7 @@ class ParserTest extends AbstractTest
 
     public function testMixedParserWithExclusions()
     {
-        $parser = $this->getFixtureParser('mixed.xml', true, ['product', 'category-assignment']);
+        $parser = $this->getFixtureParser('mixed.xml', true, ['category']);
 
         $this->assertEmpty($parser->getProducts());
         $this->assertEquals($this->loadJsonFixture('mixed-categories.json'), $parser->getCategories());
@@ -113,8 +113,8 @@ class ParserTest extends AbstractTest
         $this->assertEquals($expected, $parser->getVariations());
     }
 
-    protected function getFixtureParser($filename, $skipAttributes = false, array $excludedNodes = [])
+    protected function getFixtureParser($filename, $skipAttributes = false, array $includeNodes = Parser::AVAILABLE_NODES)
     {
-        return new Parser(__DIR__ . '/fixtures/' . $filename, $skipAttributes, $excludedNodes);
+        return new Parser(__DIR__ . '/fixtures/' . $filename, $skipAttributes, $includeNodes);
     }
 }
