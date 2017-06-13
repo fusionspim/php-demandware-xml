@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">
+  <category category-id="CAT1">
+    <display-name xml:lang="x-default">Socks</display-name>
+    <online-flag>true</online-flag>
+    <parent>CAT0</parent>
+    <template>cat-listings.html</template>
+    <sitemap-included-flag>true</sitemap-included-flag>
+    <sitemap-changefrequency>weekly</sitemap-changefrequency>
+    <sitemap-priority>0.2</sitemap-priority>
+  </category>
+  <product product-id="PRD1">
+    <upc>500000000000</upc>
+    <min-order-quantity>1</min-order-quantity>
+    <step-quantity>1</step-quantity>
+    <display-name xml:lang="x-default">Product number 1</display-name>
+    <long-description xml:lang="x-default">&lt;b&gt;Product&lt;/b&gt; The description for an &lt;i&gt;example&lt;/i&gt; product! • Bullet Point</long-description>
+    <online-flag>true</online-flag>
+    <online-from>2015-01-23T01:23:45</online-from>
+    <online-to>2025-01-23T01:23:45</online-to>
+    <searchable-flag>false</searchable-flag>
+    <brand>SampleBrand™</brand>
+    <search-rank>1</search-rank>
+    <sitemap-included-flag>true</sitemap-included-flag>
+    <sitemap-changefrequency>weekly</sitemap-changefrequency>
+    <sitemap-priority>0.5</sitemap-priority>
+    <variations>
+      <attributes>
+        <shared-variation-attribute variation-attribute-id="AT001" attribute-id="AT001"/>
+        <shared-variation-attribute variation-attribute-id="AT002" attribute-id="AT002"/>
+      </attributes>
+      <variants>
+        <variant product-id="SKU0000001"/>
+        <variant product-id="SKU0000002"/>
+        <variant product-id="SKU0000003" default="true"/>
+      </variants>
+    </variations>
+    <classification-category catalog-id="TestCatalog">CAT1</classification-category>
+  </product>
+  <category-assignment product-id="PROD1" category-id="CAT1">
+    <primary-flag>false</primary-flag>
+  </category-assignment>
+</catalog>
