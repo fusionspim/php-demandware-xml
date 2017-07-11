@@ -1,9 +1,7 @@
 <?php
 namespace DemandwareXml\Test;
 
-use DemandwareXml\Assignment;
-use DemandwareXml\Category;
-use DemandwareXml\Document;
+use DemandwareXml\{Assignment, Category, Document};
 
 class CategoriesTest extends AbstractTest
 {

@@ -1,8 +1,7 @@
 <?php
 namespace DemandwareXml\Test;
 
-use DemandwareXml\Xml;
-use DemandwareXml\XmlException;
+use DemandwareXml\{Xml, XmlException};
 use PHPUnit\Framework\TestCase;
 
 class XmlTest extends TestCase
