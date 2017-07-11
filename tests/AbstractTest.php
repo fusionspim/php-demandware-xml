@@ -1,10 +1,10 @@
 <?php
 namespace DemandwareXml\Test;
 
-use \PHPUnit_Framework_TestCase;
-use \DOMDocument;
+use DOMDocument;
+use PHPUnit\Framework\TestCase;
 
-abstract class AbstractTest extends PHPUnit_Framework_TestCase
+abstract class AbstractTest extends TestCase
 {
     protected function loadFixture($filename)
     {

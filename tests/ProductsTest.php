@@ -1,8 +1,8 @@
 <?php
 namespace DemandwareXml\Test;
 
-use \DemandwareXml\Document;
-use \DemandwareXml\Product;
+use DemandwareXml\Document;
+use DemandwareXml\Product;
 
 class ProductsTest extends AbstractTest
 {

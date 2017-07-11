@@ -1,9 +1,9 @@
 <?php
 namespace FusionsPIM\DemandwareXml\Test;
 
-use \DemandwareXml\Test\AbstractTest;
-use \DemandwareXml\Document;
-use \DemandwareXml\Variant;
+use DemandwareXml\Test\AbstractTest;
+use DemandwareXml\Document;
+use DemandwareXml\Variant;
 
 class VariantsTest extends AbstractTest
 {

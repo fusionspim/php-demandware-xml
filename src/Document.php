@@ -1,8 +1,8 @@
 <?php
 namespace DemandwareXml;
 
-use \DOMDocument;
-use \DOMElement;
+use DOMDocument;
+use DOMElement;
 
 class Document
 {
