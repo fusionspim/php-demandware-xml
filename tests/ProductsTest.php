@@ -1,8 +1,7 @@
 <?php
 namespace DemandwareXml\Test;
 
-use DemandwareXml\Document;
-use DemandwareXml\Product;
+use DemandwareXml\{Document, Product};
 
 class ProductsTest extends AbstractTest
 {
@@ -37,7 +36,7 @@ class ProductsTest extends AbstractTest
                 'primaryImage' => strtolower($example) . '-123.png',
                 'multiWow'     => ['so', 'such', 'many', 'much', 'very'],
                 'boolTrue'     => true,
-                'boolFalse'    => false
+                'boolFalse'    => false,
             ]);
             // elements/attributes specific to bundle/set/product
             if ('Bundle' === $example) {

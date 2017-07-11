@@ -36,7 +36,7 @@ class Document
         'variations',
         'classification-category',
         'variation-attribute-values',
-        'primary-flag'
+        'primary-flag',
     ];
 
     /**

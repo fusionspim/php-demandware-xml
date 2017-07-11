@@ -194,7 +194,7 @@ class Parser
         } else {
             $details = [
                 'attributes' => $this->customAttributes($element),
-                'page'       => $this->pageAttributes($element)
+                'page'       => $this->pageAttributes($element),
             ];
         }
 

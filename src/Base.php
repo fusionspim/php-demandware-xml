@@ -89,7 +89,7 @@ abstract class Base
             'page-title'       => $title,
             'page-description' => $description,
             'page-keywords'    => $keywords,
-            'page-url'         => $url
+            'page-url'         => $url,
         ];
 
         $xml = '';

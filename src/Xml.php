@@ -1,8 +1,8 @@
 <?php
 namespace DemandwareXml;
 
-use DOMDocument;
 use DemandwareXml\XmlException;
+use DOMDocument;
 
 class Xml
 {
