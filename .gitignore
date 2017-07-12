@@ -5,3 +5,4 @@ out
 vendor
 tests/output/*
 .gitkeep
+.php_cs.cache

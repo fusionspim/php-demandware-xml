@@ -1,11 +1,10 @@
 <?php
 namespace DemandwareXml\Test;
 
-use \PHPUnit_Framework_TestCase;
-use \DemandwareXml\Xml;
-use \DemandwareXml\XmlException;
+use DemandwareXml\{Xml, XmlException};
+use PHPUnit\Framework\TestCase;
 
-class XmlTest extends PHPUnit_Framework_TestCase
+class XmlTest extends TestCase
 {
     public function testSanitise()
     {

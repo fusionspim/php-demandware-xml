@@ -1,8 +1,8 @@
 <?php
 namespace DemandwareXml;
 
-use \SimpleXMLElement;
-use \XMLReader;
+use SimpleXMLElement;
+use XMLReader;
 
 /**
  * Parses a Demandware XML file into the six main data structures expected, and returns arrays for ease of working with
@@ -194,7 +194,7 @@ class Parser
         } else {
             $details = [
                 'attributes' => $this->customAttributes($element),
-                'page'       => $this->pageAttributes($element)
+                'page'       => $this->pageAttributes($element),
             ];
         }
 

@@ -1,7 +1,7 @@
 <?php
 namespace DemandwareXml;
 
-use \Exception;
+use Exception;
 
 /**
  * Extends the default Exception class for ease of catching errors thrown by this library

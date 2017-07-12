@@ -1,8 +1,8 @@
 <?php
 namespace DemandwareXml;
 
-use \DOMDocument;
-use \DOMElement;
+use DOMDocument;
+use DOMElement;
 
 class Document
 {
@@ -36,7 +36,7 @@ class Document
         'variations',
         'classification-category',
         'variation-attribute-values',
-        'primary-flag'
+        'primary-flag',
     ];
 
     /**

@@ -1,9 +1,7 @@
 <?php
 namespace DemandwareXml\Test;
 
-use \DemandwareXml\Assignment;
-use \DemandwareXml\Category;
-use \DemandwareXml\Document;
+use DemandwareXml\{Assignment, Category, Document};
 
 class CategoriesTest extends AbstractTest
 {
@@ -22,7 +20,7 @@ class CategoriesTest extends AbstractTest
             $element->setCustomAttributes([
                 'itemsPerPage' => 30,
                 'promoMast'    => 'cat' . $index . '-banner.png',
-                'hasOffers'    => true
+                'hasOffers'    => true,
             ]);
             $document->addObject($element);
         }
