@@ -191,4 +191,13 @@ class Product extends Base
 
         $this->elements['product-set-products'] = $xml;
     }
+
+    public function setImages(string $path, string $viewType = 'large')
+    {
+        $xml  = '<image-group view-type="' . Xml::escape($viewType) . '">' . PHP_EOL;
+        $xml .= '<image path="' . Xml::escape($path) . '" />' . PHP_EOL;
+        $xml .= '</image-group>' . PHP_EOL;
+
+        $this->elements['images'] = $xml;
+    }
 }

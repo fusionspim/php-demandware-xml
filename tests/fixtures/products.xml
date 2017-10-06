@@ -10,6 +10,11 @@
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
     <searchable-flag>false</searchable-flag>
+    <images>
+      <image-group view-type="large">
+        <image path="product-123.png"/>
+      </image-group>
+    </images>
     <brand>SampleBrand™</brand>
     <search-rank>1</search-rank>
     <sitemap-included-flag>true</sitemap-included-flag>
@@ -58,6 +63,11 @@
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
     <searchable-flag>false</searchable-flag>
+    <images>
+      <image-group view-type="large">
+        <image path="set-123.png"/>
+      </image-group>
+    </images>
     <brand>SampleBrand™</brand>
     <search-rank>1</search-rank>
     <sitemap-included-flag>true</sitemap-included-flag>
@@ -99,6 +109,11 @@
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
     <searchable-flag>false</searchable-flag>
+    <images>
+      <image-group view-type="large">
+        <image path="bundle-123.png"/>
+      </image-group>
+    </images>
     <tax-class-id>TAX_20_00</tax-class-id>
     <brand>SampleBrand™</brand>
     <search-rank>1</search-rank>
@@ -145,6 +160,11 @@
     <online-from>2015-01-23T01:23:45</online-from>
     <online-to>2025-01-23T01:23:45</online-to>
     <searchable-flag>false</searchable-flag>
+    <images>
+      <image-group view-type="large">
+        <image path="variation-123.png"/>
+      </image-group>
+    </images>
     <brand>SampleBrand™</brand>
     <search-rank>1</search-rank>
     <sitemap-included-flag>true</sitemap-included-flag>
