@@ -38,6 +38,8 @@ class ProductsTest extends AbstractTest
                 'boolTrue'     => true,
                 'boolFalse'    => false,
             ]);
+            $element->setImages(strtolower($example) . '-123.png');
+
             // elements/attributes specific to bundle/set/product
             if ('Bundle' === $example) {
                 $element->setProductQuantities(['SKU0000001' => 10, 'SKU0000002' => 20]);
