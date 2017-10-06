@@ -22,6 +22,7 @@ class Document
         'available-flag',
         'searchable-flag',
         'searchable-if-unavailable-flag',
+        'images',
         'template',
         'tax-class-id',
         'brand',
