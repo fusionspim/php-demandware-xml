@@ -19,7 +19,7 @@
     <search-rank>1</search-rank>
     <sitemap-included-flag>true</sitemap-included-flag>
     <sitemap-changefrequency>weekly</sitemap-changefrequency>
-    <sitemap-priority>0.5</sitemap-priority>
+    <sitemap-priority>1.0</sitemap-priority>
     <page-attributes>
       <page-title xml:lang="x-default">Amazing Product</page-title>
       <page-description xml:lang="x-default">Buy our Product today!</page-description>

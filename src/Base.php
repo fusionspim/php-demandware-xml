@@ -76,7 +76,7 @@ abstract class Base
         }
 
         if (! is_null($priority)) {
-            $this->elements['sitemap-priority'] = $priority;
+            $this->elements['sitemap-priority'] = number_format($priority, 1);
         }
     }
 
