@@ -34,6 +34,6 @@
         },
         "sitemap-changefrequency": "weekly",
         "sitemap-included-flag": "true",
-        "sitemap-priority": "0.5"
+        "sitemap-priority": "1.0"
     }
 }
