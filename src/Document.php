@@ -3,6 +3,7 @@ namespace DemandwareXml;
 
 use DOMDocument;
 use DOMElement;
+use Throwable;
 
 class Document
 {
@@ -56,44 +57,50 @@ class Document
     }
 
     /**
-     * Add a new child of the root element
+     * Add a new child of the root element.
+     *
+     * @throws XmlException
      */
     public function addObject(Base $object)
     {
-        $root = $this->createElement($object->getElement());
+        try {
+            $root = $this->createElement($object->getElement());
 
-        foreach ($object->getAttributes() as $key => $value) {
-            $this->addAttribute($root, $key, $value);
+            foreach ($object->getAttributes() as $key => $value) {
+                $this->addAttribute($root, $key, $value);
+            }
+
+            // elements may be added in any order for ease of use, but when exporting they need to be in schema defined order
+            foreach ($this->elementOrder as $name) {
+                if (! isset($object->getElements()[$name])) {
+                    continue;
+                }
+
+                $raw   = false;
+                $value = $object->getElements()[$name];
+
+                // If the value is an array then it contains the actual value and whether or not it should be escaped.
+                if (is_array($value)) {
+                    $raw   = $value['raw'];
+                    $value = $value['value'];
+                }
+
+                $element = $this->createElement($name, $value, $raw);
+
+                if ('display-name' === $name || 'long-description' === $name) {
+                    $this->addAttribute($element, 'xml:lang', 'x-default');
+                } elseif ('classification-category' === $name) {
+                    // hack for `setClassification()`
+                    $this->addAttribute($element, 'catalog-id', $object->getCatalog());
+                }
+
+                $root->appendChild($element);
+            }
+
+            $this->root->appendChild($root);
+        } catch (Throwable $throwable) {
+            throw new XmlException('Unable to create ' . $object->getElement() . ' node with details: ' . implode(', ', $object->getAttributes()), 0, $throwable);
         }
-
-        // elements may be added in any order for ease of use, but when exporting they need to be in schema defined order
-        foreach ($this->elementOrder as $name) {
-            if (! isset($object->getElements()[$name])) {
-                continue;
-            }
-
-            $raw   = false;
-            $value = $object->getElements()[$name];
-
-            // If the value is an array then it contains the actual value and whether or not it should be escaped.
-            if (is_array($value)) {
-                $raw   = $value['raw'];
-                $value = $value['value'];
-            }
-
-            $element = $this->createElement($name, $value, $raw);
-
-            if ('display-name' === $name || 'long-description' === $name) {
-                $this->addAttribute($element, 'xml:lang', 'x-default');
-            } elseif ('classification-category' === $name) {
-                // hack for `setClassification()`
-                $this->addAttribute($element, 'catalog-id', $object->getCatalog());
-            }
-
-            $root->appendChild($element);
-        }
-
-        $this->root->appendChild($root);
     }
 
     private function addAttribute(DOMElement $node, string $name, string $value)

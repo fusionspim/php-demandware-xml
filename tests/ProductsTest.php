@@ -105,6 +105,26 @@ class ProductsTest extends AbstractTest
         $this->document->save(__DIR__ . '/output/products.xml');
     }
 
+    /**
+     * @expectedException               \DemandwareXml\XmlException
+     * @expectedExceptionMessageRegExp  /Unable to create product node with details: variation123/
+     */
+    public function testProductsInvalidAddObjectException()
+    {
+        $element = new Product('product123');
+        $element->setName('product number 123 &bull;');
+
+        $this->document->addObject($element);
+
+        $element = new Product('variation123');
+        $element->setBrand('This is an example brand');
+        $element->setName('product number 123 &bull;');
+        $element->setCustomAttributes(['foobar' => 'This is invalid &bull;']);
+
+        $this->document->addObject($element);
+        $this->document->save(__DIR__ . '/output/products.xml');
+    }
+
     public function testProductsSaveXml()
     {
         $this->assertTrue($this->document->save(__DIR__ . '/output/products.xml'));
