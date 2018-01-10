@@ -99,7 +99,7 @@ class Document
 
             $this->root->appendChild($root);
         } catch (Throwable $throwable) {
-            throw new XmlException('Unable to create ' . $object->getElement() . ' node with details: ' . implode(', ', $object->getAttributes()), 0, $throwable);
+            throw new XmlException('Unable to create ' . $object->getElement() . ' node containing invalid XML (' . implode(', ', $object->getAttributes()) . ')', 0, $throwable);
         }
     }
 
