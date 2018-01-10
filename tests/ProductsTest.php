@@ -106,8 +106,8 @@ class ProductsTest extends AbstractTest
     }
 
     /**
-     * @expectedException               \DemandwareXml\XmlException
-     * @expectedExceptionMessageRegExp  /Unable to create product node with details: variation123/
+     * @expectedException        \DemandwareXml\XmlException
+     * @expectedExceptionMessag  Unable to create product node containing invalid XML (variation123)
      */
     public function testProductsInvalidAddObjectException()
     {
