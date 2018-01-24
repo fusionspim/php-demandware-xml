@@ -2,9 +2,12 @@
 namespace DemandwareXml\Test;
 
 use DemandwareXml\{Assignment, Category, Document};
+use PHPUnit\Framework\TestCase;
 
-class CategoriesTest extends AbstractTest
+class CategoriesTest extends TestCase
 {
+    use FixtureHelper;
+
     public function testCategoriesXml()
     {
         $document = new Document('TestCatalog');

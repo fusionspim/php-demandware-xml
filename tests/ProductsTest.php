@@ -2,9 +2,13 @@
 namespace DemandwareXml\Test;
 
 use DemandwareXml\{Document, Product};
+use DemandwareXml\Test\FixtureHelper;
+use PHPUnit\Framework\TestCase;
 
-class ProductsTest extends AbstractTest
+class ProductsTest extends TestCase
 {
+    use FixtureHelper;
+
     public function testProductsXml()
     {
         $this->assertXmlStringEqualsXmlString(
