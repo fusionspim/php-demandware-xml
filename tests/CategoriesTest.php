@@ -17,6 +17,7 @@ class CategoriesTest extends AbstractTest
             $element->setFlags(true);
             $element->setSitemap(0.2);
             $element->setPageAttributes($example, 'Buy ' . $example, strtolower($example), '/' . $example);
+            $element->setDates('2018-01-01 01:01:01', '2018-02-02 02:02:02');
             $element->setCustomAttributes([
                 'itemsPerPage' => 30,
                 'promoMast'    => 'cat' . $index . '-banner.png',
