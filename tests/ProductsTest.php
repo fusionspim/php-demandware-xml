@@ -68,7 +68,17 @@ class ProductsTest extends AbstractTest
         $document->save(__DIR__ . '/output/products.xml');
     }
 
-    public function buildDocument(): Document
+    /**
+     * @expectedException       \DemandwareXml\XmlException
+     * @expectedExceptionMessage Sitemap priority must be 1.0 or less
+     */
+    public function testInvalidSitemapPriority()
+    {
+        $element = new Product('PRODUCT123');
+        $element->setSitemap(42.5);
+    }
+
+    protected function buildDocument(): Document
     {
         $document = new Document('TestCatalog');
         $document->addObject($this->buildProductElement());
