@@ -5,73 +5,17 @@ use DemandwareXml\{Document, Product};
 
 class ProductsTest extends AbstractTest
 {
-    protected $document;
-
-    public function setUp()
-    {
-        $invalidChar = chr(30); // Record Separator.
-
-        $document = new Document('TestCatalog');
-
-        foreach (['Product', 'Set', 'Bundle', 'Variation'] as $index => $example) {
-            $element = new Product(strtoupper($example) . '123');
-            $element->setName($example . ' number 123');
-            $element->setDescription('<b>' . $example . '</b> The description for an <i>example</i> ' . strtolower($example) . '! • Bullet' . $invalidChar . 'Point', true);
-            $element->setUpc('50000000000' . $index);
-            $element->setQuantities(); // include, but use defaults
-            $element->setRank(1);
-            $element->setSitemap(($example === 'Product' ? 1.0 : 0.5));
-            $element->setBrand('SampleBrand™');
-            $element->setFlags(true, false);
-            $element->setDates('2015-01-23 01:23:45', '2025-01-23 01:23:45');
-            $element->setPageAttributes(
-                'Amazing ' . $example,
-                'Buy our ' . $example . ' today!',
-                $example . ', test, example',
-                'http://example.com/' . strtolower($example) . '/123'
-            );
-            $element->setCustomAttributes([
-                'type'         => 'Examples',
-                'zzz'          => 'Should be exported last within custom-attributes',
-                'primaryImage' => strtolower($example) . '-123.png',
-                'multiWow'     => ['so', 'such', 'many', 'much', 'very'],
-                'boolTrue'     => true,
-                'boolFalse'    => false,
-            ]);
-            $element->setImages(strtolower($example) . '-123.png');
-
-            // elements/attributes specific to bundle/set/product
-            if ('Bundle' === $example) {
-                $element->setProductQuantities(['SKU0000001' => 10, 'SKU0000002' => 20]);
-                $element->setTax(20);
-            } elseif ('Set' === $example) {
-                $element->setProducts(['PRODUCT123', 'PRODUCT456']);
-            } elseif ('Product' === $example) {
-                $element->setSharedAttributes(['AT001', 'AT002']);
-                $element->setVariants(['SKU0000001' => false, 'SKU0000002' => false, 'SKU0000003' => true]);
-            }
-
-            if ('Variation' !== $example) {
-                $element->setClassification('CAT123', 'TestCatalog');
-            }
-
-            $document->addObject($element);
-        }
-
-        $this->document = $document;
-    }
-
-    public function tearDown()
-    {
-        $this->document = null;
-    }
-
     public function testProductsXml()
     {
-        $sampleXml = $this->loadFixture('products.xml');
-        $outputXml = $this->document->getDomDocument()->saveXML();
+        $this->assertXmlStringEqualsXmlString(
+            $this->loadFixture('products.xml'),
+            $this->buildDocument()->getDomDocument()->saveXML()
+        );
+    }
 
-        $this->assertXmlStringEqualsXmlString($sampleXml, $outputXml);
+    public function testProductsSaveXml()
+    {
+        $this->assertTrue($this->buildDocument()->save(__DIR__ . '/output/products.xml'));
     }
 
     public function testProductsDeletedXml()
@@ -98,15 +42,99 @@ class ProductsTest extends AbstractTest
      */
     public function testProductsInvalidEntitiesException()
     {
+        $document = new Document('TestCatalog');
+
         $element = new Product('product123');
         $element->setName('product number 123 &bull;');
 
-        $this->document->addObject($element);
-        $this->document->save(__DIR__ . '/output/products.xml');
+        $document->addObject($element);
+        $document->save(__DIR__ . '/output/products.xml');
     }
 
-    public function testProductsSaveXml()
+    protected function buildDocument(): Document
     {
-        $this->assertTrue($this->document->save(__DIR__ . '/output/products.xml'));
+        $document = new Document('TestCatalog');
+        $document->addObject($this->buildProductElement());
+        $document->addObject($this->buildSetElement());
+        $document->addObject($this->buildBundleElement());
+        $document->addObject($this->buildVariationElement());
+
+        return $document;
+    }
+
+    protected function buildBaseElement(string $type, int $number = 0): Product
+    {
+        $invalidChar = chr(30); // Record Separator.
+
+        $element = new Product(strtoupper($type) . '123');
+        $element->setName($type . ' number 123');
+        $element->setDescription('<b>' . $type . '</b> The description for an <i>example</i> ' . strtolower($type) . '! • Bullet' . $invalidChar . 'Point', true);
+        $element->setUpc('50000000000' . $number);
+        $element->setQuantities(); // include, but use defaults
+        $element->setRank(1);
+        $element->setBrand('SampleBrand™');
+        $element->setFlags(true, false);
+        $element->setDates('2015-01-23 01:23:45', '2025-01-23 01:23:45');
+
+        $element->setPageAttributes(
+            'Amazing ' . $type,
+            'Buy our ' . $type . ' today!',
+            $type . ', test, example',
+            'http://example.com/' . strtolower($type) . '/123'
+        );
+
+        $element->setCustomAttributes([
+            'type'         => 'Examples',
+            'zzz'          => 'Should be exported last within custom-attributes',
+            'primaryImage' => strtolower($type) . '-123.png',
+            'multiWow'     => ['so', 'such', 'many', 'much', 'very'],
+            'boolTrue'     => true,
+            'boolFalse'    => false,
+        ]);
+
+        $element->setImages(strtolower($type) . '-123.png');
+
+        return $element;
+    }
+
+    protected function buildProductElement(): Product
+    {
+        $element = $this->buildBaseElement('Product');
+        $element->setClassification('CAT123', 'TestCatalog');
+        $element->setSitemap(1.0);
+        $element->setImages('product-123.png');
+        $element->setSharedAttributes(['AT001', 'AT002']);
+        $element->setVariants(['SKU0000001' => false, 'SKU0000002' => false, 'SKU0000003' => true]);
+
+        return $element;
+    }
+
+    protected function buildSetElement(): Product
+    {
+        $element = $this->buildBaseElement('Set', 1);
+        $element->setClassification('CAT123', 'TestCatalog');
+        $element->setSitemap(0.5);
+        $element->setProducts(['PRODUCT123', 'PRODUCT456']);
+
+        return $element;
+    }
+
+    protected function buildBundleElement(): Product
+    {
+        $element = $this->buildBaseElement('Bundle', 2);
+        $element->setClassification('CAT123', 'TestCatalog');
+        $element->setSitemap(0.5);
+        $element->setProductQuantities(['SKU0000001' => 10, 'SKU0000002' => 20]);
+        $element->setTax(20);
+
+        return $element;
+    }
+
+    protected function buildVariationElement(): Product
+    {
+        $element = $this->buildBaseElement('Variation', 3);
+        $element->setSitemap(0.5);
+
+        return $element;
     }
 }
