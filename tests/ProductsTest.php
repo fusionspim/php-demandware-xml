@@ -1,8 +1,8 @@
 <?php
 namespace DemandwareXml\Test;
 
-use DemandwareXml\{Document, Product};
 use DemandwareXml\Test\FixtureHelper;
+use DemandwareXml\{Document, Product};
 use PHPUnit\Framework\TestCase;
 
 class ProductsTest extends TestCase
