@@ -51,7 +51,24 @@ class ProductsTest extends AbstractTest
         $document->save(__DIR__ . '/output/products.xml');
     }
 
-    protected function buildDocument(): Document
+    /**
+     * @expectedException        \DemandwareXml\XmlException
+     * @expectedExceptionMessag  Unable to create product node containing invalid XML (variation123)
+     */
+    public function testProductsInvalidAddObjectException()
+    {
+        $document = new Document('TestCatalog');
+
+        $element = new Product('variation123');
+        $element->setBrand('This is an example brand');
+        $element->setName('product number 123 &bull;');
+        $element->setCustomAttributes(['foobar' => 'This is invalid &bull;']);
+
+        $document->addObject($element);
+        $document->save(__DIR__ . '/output/products.xml');
+    }
+
+    public function buildDocument(): Document
     {
         $document = new Document('TestCatalog');
         $document->addObject($this->buildProductElement());
