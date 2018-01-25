@@ -5,19 +5,19 @@ use XMLReader;
 
 class StreamingParser
 {
-    protected $path;
+    protected $file;
 
-    public function __construct(string $path)
+    public function __construct(string $file)
     {
-        $this->path = $path;
+        $this->file = $file;
     }
 
     public function validate(): bool
     {
-        if (! file_exists($this->path)) {
-            throw new XmlException('XML file does not exist: ' . basename($this->path));
-        } elseif (! is_readable($this->path)) {
-            throw new XmlException('XML file is not readable: ' . basename($this->path));
+        if (! file_exists($this->file)) {
+            throw new XmlException('XML file does not exist: ' . basename($this->file));
+        } elseif (! is_readable($this->file)) {
+            throw new XmlException('XML file is not readable: ' . basename($this->file));
         }
 
         $previousErrors = libxml_use_internal_errors(true);
@@ -28,7 +28,7 @@ class StreamingParser
 
         try {
             $reader = new XMLReader;
-            $reader->open($this->path);
+            $reader->open($this->file);
             $reader->setSchema(realpath(__DIR__ . '/../xsd/catalog.xsd'));
 
             while ($reader->read());
