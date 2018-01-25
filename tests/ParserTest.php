@@ -2,11 +2,14 @@
 namespace DemandwareXml\Test;
 
 use DemandwareXml\Parser;
+use PHPUnit\Framework\TestCase;
 
 // note: don't need to parse variants, so no test for those!
 // rebuild fixtures: file_put_contents(__DIR__ . '/fixtures/categories.json', json_encode($parser->categories(), JSON_PRETTY_PRINT) . PHP_EOL);
-class ParserTest extends AbstractTest
+class ParserTest extends TestCase
 {
+    use FixtureHelper;
+
     public function testMixedParser()
     {
         $parser = $this->getFixtureParser('mixed.xml', true);

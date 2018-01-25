@@ -2,9 +2,12 @@
 namespace DemandwareXml\Test;
 
 use DemandwareXml\{Assignment, Category, Document};
+use PHPUnit\Framework\TestCase;
 
-class CategoriesTest extends AbstractTest
+class CategoriesTest extends TestCase
 {
+    use FixtureHelper;
+
     public function testCategoriesXml()
     {
         $document = new Document('TestCatalog');
@@ -17,6 +20,7 @@ class CategoriesTest extends AbstractTest
             $element->setFlags(true);
             $element->setSitemap(0.2);
             $element->setPageAttributes($example, 'Buy ' . $example, strtolower($example), '/' . $example);
+            $element->setDates('2018-01-01 01:01:01', '2018-02-02 02:02:02');
             $element->setCustomAttributes([
                 'itemsPerPage' => 30,
                 'promoMast'    => 'cat' . $index . '-banner.png',

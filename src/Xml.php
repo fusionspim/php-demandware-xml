@@ -1,7 +1,6 @@
 <?php
 namespace DemandwareXml;
 
-use DemandwareXml\XmlException;
 use DOMDocument;
 
 class Xml
@@ -32,6 +31,7 @@ class Xml
      */
     public static function sanitise(string $string): string
     {
+        // Only allow Tab (9), LF (10), CR (13), Space (32) - 55295, 57344 - 65533, 65536 - 1114111.
         return preg_replace('/[^\x{0009}\x{000A}\x{000D}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}\x{10000}-\x{10FFFF}]/u', ' ', $string);
     }
 

@@ -22,6 +22,6 @@
     "psr-4": { "DemandwareXml\\": "src" }
   },
   "autoload-dev": {
-    "psr-4": { "DemandwareXml\\Test\\": "test" }
+    "psr-4": { "DemandwareXml\\Test\\": "tests" }
   }
 }

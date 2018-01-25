@@ -1,11 +1,13 @@
 <?php
-namespace FusionsPIM\DemandwareXml\Test;
+namespace DemandwareXml\Test;
 
-use DemandwareXml\Test\AbstractTest;
 use DemandwareXml\{Document, Variant};
+use PHPUnit\Framework\TestCase;
 
-class VariantsTest extends AbstractTest
+class VariantsTest extends TestCase
 {
+    use FixtureHelper;
+
     public function testVariantsXml()
     {
         $document = new Document('TestCatalog');

@@ -4,5 +4,6 @@
 out
 vendor
 tests/output/*
+tests/coverage/*
 .gitkeep
 .php_cs.cache

@@ -16,7 +16,8 @@
         "parent": "CAT0",
         "sitemap-changefrequency": "weekly",
         "sitemap-included-flag": "true",
-        "sitemap-priority": "0.2"
+        "sitemap-priority": "0.2",
+        "start": "2018-01-01T01:01:01"
     },
     "CAT1": {
         "attributes": {
@@ -35,7 +36,8 @@
         "parent": "CAT0",
         "sitemap-changefrequency": "weekly",
         "sitemap-included-flag": "true",
-        "sitemap-priority": "0.2"
+        "sitemap-priority": "0.2",
+        "start": "2018-01-01T01:01:01"
     },
     "CAT2": {
         "attributes": {
@@ -54,6 +56,7 @@
         "parent": "CAT0",
         "sitemap-changefrequency": "weekly",
         "sitemap-included-flag": "true",
-        "sitemap-priority": "0.2"
+        "sitemap-priority": "0.2",
+        "start": "2018-01-01T01:01:01"
     }
 }
