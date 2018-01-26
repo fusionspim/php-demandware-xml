@@ -223,15 +223,4 @@ class StreamingParser
 
         return $attributes;
     }
-
-    public static function toArrayGroupedByKey(iterable $items): array
-    {
-        $results = [];
-
-        foreach ($items as $key => $item) {
-            $results[$key][] = $item;
-        }
-
-        return $results;
-    }
 }

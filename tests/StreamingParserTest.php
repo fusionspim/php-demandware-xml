@@ -37,9 +37,15 @@ class StreamingParserTest extends TestCase
     {
         $parser = new StreamingParser(__DIR__ . '/fixtures/assignments.xml');
 
+        $assignments = [];
+
+        foreach ($parser->getAssignments() as $productId => $assignment) {
+            $assignments[$productId][] = $assignment;
+        }
+
         $this->assertEquals(
             $this->loadJsonFixture('assignments.json'),
-            StreamingParser::toArrayGroupedByKey($parser->getAssignments())
+            $assignments
         );
     }
 
