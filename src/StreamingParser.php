@@ -22,6 +22,7 @@ class StreamingParser
         }
 
         $previousErrors = libxml_use_internal_errors(true);
+        libxml_clear_errors();
 
         set_error_handler(function (int $severity, string $message, string $file, int $line) {
             throw new XmlException($message . ' in ' . basename($file) . ' on line ' . $line, $severity);
@@ -37,13 +38,13 @@ class StreamingParser
             $reader->close();
 
             $errors = libxml_get_errors();
-            libxml_clear_errors();
 
             if (count($errors) > 0) {
                 throw $this->libXmlErrorToException(reset($errors));
             }
         } finally {
             libxml_use_internal_errors($previousErrors);
+            libxml_clear_errors();
             restore_error_handler();
         }
 
