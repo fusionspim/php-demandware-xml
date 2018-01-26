@@ -11,8 +11,8 @@ class StreamingParserTest extends TestCase
     use FixtureHelper;
 
     /**
-     * @expectedException        \DemandwareXml\XmlException
-     * @expectedExceptionMessage Fatal: xmlParseEntityRef: no name in invalid-products.xml on line 8 column 113
+     * @expectedException              \DemandwareXml\XmlException
+     * @expectedExceptionMessageRegExp /Fatal: xmlParseEntityRef: no name in invalid-products.xml/
      */
     public function testParserValidateInvalidXml()
     {
