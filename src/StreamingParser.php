@@ -176,11 +176,30 @@ class StreamingParser
         return [(string) $element['category-id'] => $this->commonDetails($element)];
     }
 
+    public function getSets(): Generator
+    {
+        foreach ($this->parseNodes(static::ITEM_SET) as $element) {
+            $set = $this->extractSet($element);
+            yield key($set) => reset($set);
+        }
+    }
+
+    protected function extractSet(SimpleXMLElement $element)
+    {
+        $details = $this->commonDetails($element);
+
+        foreach ($element->{'product-set-products'}->{'product-set-product'} as $product) {
+            $details['products'][] = (string) $product['product-id'];
+        }
+
+        return [(string) $element['product-id'] => $details];
+    }
+
     protected function commonDetails(SimpleXMLElement $element): array
     {
-        if ($this->skipAttributes) {
-            $details = [];
-        } else {
+        $details = [];
+
+        if (! $this->skipAttributes) {
             $details = [
                 'attributes' => $this->customAttributes($element),
                 'page'       => $this->pageAttributes($element),
