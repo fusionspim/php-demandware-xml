@@ -1,7 +1,8 @@
 <?php
 namespace DemandwareXml;
 
-use SimpleXMLElement;
+use Generator;
+use SimpleXMLElement;;
 use XMLReader;
 
 class StreamingParser
@@ -79,7 +80,7 @@ class StreamingParser
         return $reader;
     }
 
-    protected function parseNodes(array $nodes): iterable
+    protected function parseNodes(array $nodes): Generator
     {
         try {
             $reader = $this->getXmlReader();
@@ -96,7 +97,7 @@ class StreamingParser
         }
     }
 
-    public function getAssignments(): iterable
+    public function getAssignments(): Generator
     {
         foreach ($this->parseNodes(['category-assignment']) as $element) {
             $assignment = $this->extractAssignment($element);
@@ -113,7 +114,7 @@ class StreamingParser
         return [$productId => [$categoryId => $primary]];
     }
 
-    public function getCategories(): iterable
+    public function getCategories(): Generator
     {
         foreach ($this->parseNodes(['category']) as $element) {
             $category = $this->extractCategory($element);
