@@ -2,7 +2,7 @@
 namespace DemandwareXml;
 
 use Generator;
-use SimpleXMLElement;;
+use SimpleXMLElement;
 use XMLReader;
 
 class StreamingParser
