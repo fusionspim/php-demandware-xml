@@ -7,6 +7,22 @@ use XMLReader;
 
 class StreamingParser
 {
+    const ITEM_ASSIGNMENT = 'Assignment';
+    const ITEM_CATEGORY   = 'Category';
+    const ITEM_BUNDLE     = 'Bundle';
+    const ITEM_SET        = 'Set';
+    const ITEM_PRODUCT    = 'Product';
+    const ITEM_VARIATION  = 'Variation';
+
+    const ITEM_NODES = [
+        self::ITEM_ASSIGNMENT => 'category-assignment',
+        self::ITEM_CATEGORY   => 'category',
+        self::ITEM_BUNDLE     => 'product',
+        self::ITEM_SET        => 'product',
+        self::ITEM_PRODUCT    => 'product',
+        self::ITEM_VARIATION  => 'product',
+    ];
+
     protected $file;
     protected $skipAttributes;
 
@@ -80,17 +96,29 @@ class StreamingParser
         return $reader;
     }
 
-    protected function parseNodes(array $nodes): Generator
+    protected function parseNodes(string $item): Generator
     {
+        $node = static::ITEM_NODES[$item];
+
         try {
             $reader = $this->getXmlReader();
 
             while ($reader->read()) {
-                if ($reader->nodeType !== XMLReader::ELEMENT || ! in_array($reader->localName, $nodes)) {
+                if ($reader->nodeType !== XMLReader::ELEMENT || $reader->localName !== $node) {
                     continue;
                 }
 
-                yield new SimpleXMLElement($reader->readOuterXml());
+                $element = new SimpleXMLElement($reader->readOuterXml());
+
+                if (
+                    in_array($item, [static::ITEM_ASSIGNMENT, static::ITEM_CATEGORY]) ||
+                    ($item === static::ITEM_BUNDLE && isset($element->{'bundled-products'})) ||
+                    ($item === static::ITEM_SET && isset($element->{'product-set-products'})) ||
+                    ($item === static::ITEM_PRODUCT && isset($element->{'variations'})) ||
+                    ($item === static::ITEM_VARIATION && ! isset($element->{'bundled-products'}, $element->{'product-set-products'}, $element->{'variations'}))
+                ) {
+                    yield $element;
+                }
             }
         } finally {
             $reader->close();
@@ -99,7 +127,7 @@ class StreamingParser
 
     public function getAssignments(): Generator
     {
-        foreach ($this->parseNodes(['category-assignment']) as $element) {
+        foreach ($this->parseNodes(static::ITEM_ASSIGNMENT) as $element) {
             $assignment = $this->extractAssignment($element);
             yield key($assignment) => reset($assignment);
         }
@@ -114,9 +142,30 @@ class StreamingParser
         return [$productId => [$categoryId => $primary]];
     }
 
+    public function getBundles(): Generator
+    {
+        foreach ($this->parseNodes(static::ITEM_BUNDLE) as $element) {
+            $bundle = $this->extractBundle($element);
+            yield key($bundle) => reset($bundle);
+        }
+    }
+
+    protected function extractBundle(SimpleXMLElement $element): array
+    {
+        $details = $this->commonDetails($element);
+
+        foreach ($element->{'bundled-products'}->{'bundled-product'} as $variation) {
+            $quantity = (int) ($variation->{'quantity'} ?? 0);
+
+            $details['variations'][(string) $variation['product-id']] = $quantity;
+        }
+
+        return [(string) $element['product-id'] => $details];
+    }
+
     public function getCategories(): Generator
     {
-        foreach ($this->parseNodes(['category']) as $element) {
+        foreach ($this->parseNodes(static::ITEM_CATEGORY) as $element) {
             $category = $this->extractCategory($element);
             yield key($category) => reset($category);
         }
