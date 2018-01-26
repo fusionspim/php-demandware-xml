@@ -115,7 +115,7 @@ class StreamingParser
                     ($item === static::ITEM_BUNDLE && isset($element->{'bundled-products'})) ||
                     ($item === static::ITEM_SET && isset($element->{'product-set-products'})) ||
                     ($item === static::ITEM_PRODUCT && isset($element->{'variations'})) ||
-                    ($item === static::ITEM_VARIATION && ! isset($element->{'bundled-products'}, $element->{'product-set-products'}, $element->{'variations'}))
+                    ($item === static::ITEM_VARIATION && ! isset($element->{'bundled-products'}) && ! isset($element->{'product-set-products'}) && ! isset($element->{'variations'}))
                 ) {
                     yield $element;
                 }
@@ -198,7 +198,7 @@ class StreamingParser
     public function getSets(): Generator
     {
         foreach ($this->parseNodes(static::ITEM_SET) as $element) {
-            $set = $this->extractSet($element);
+            $set = $this->extractSet($element); // @todo: Use array destructuring when on PHP 7.1.
             yield key($set) => reset($set);
         }
     }
@@ -212,6 +212,19 @@ class StreamingParser
         }
 
         return [(string) $element['product-id'] => $details];
+    }
+
+    public function getVariations(): Generator
+    {
+        foreach ($this->parseNodes(static::ITEM_VARIATION) as $element) {
+            $variation = $this->extractVariation($element); // @todo: Use array destructuring when on PHP 7.1.
+            yield key($variation) => reset($variation);
+        }
+    }
+
+    protected function extractVariation(SimpleXMLElement $element)
+    {
+        return [(string) $element['product-id'] => $this->commonDetails($element)];
     }
 
     protected function commonDetails(SimpleXMLElement $element): array

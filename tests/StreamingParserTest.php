@@ -128,4 +128,24 @@ class StreamingParserTest extends TestCase
             iterator_to_array($parser->getSets())
         );
     }
+
+    public function testVariationsParser()
+    {
+        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+
+        $this->assertEquals(
+            $this->loadJsonFixture('variations.json'),
+            iterator_to_array($parser->getVariations())
+        );
+    }
+
+    public function testSimpleVariationsParser()
+    {
+        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml', $skipAttributes = true);
+
+        $this->assertEquals(
+            $this->loadJsonFixture('variations-simple.json'),
+            iterator_to_array($parser->getVariations())
+        );
+    }
 }
