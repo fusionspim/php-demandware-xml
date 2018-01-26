@@ -1,6 +1,7 @@
 <?php
 namespace DemandwareXml;
 
+use SimpleXMLElement;
 use XMLReader;
 
 class StreamingParser
@@ -33,6 +34,8 @@ class StreamingParser
 
             while ($reader->read());
 
+            $reader->close();
+
             $errors = libxml_get_errors();
             libxml_clear_errors();
 
@@ -64,5 +67,52 @@ class StreamingParser
         }
 
         return new XmlException($level . ': ' . trim($error->message) . ' in ' . basename($error->file) . ' on line ' . $error->line . ' column ' . $error->column, $error->code);
+    }
+
+    protected function getXmlReader(): XMLReader
+    {
+        $reader = new XMLReader;
+        $reader->open($this->file);
+
+        return $reader;
+    }
+
+    public function getAssignments(): iterable
+    {
+        $reader = $this->getXmlReader();
+
+        while ($reader->read()) {
+            if ($reader->nodeType !== XMLReader::ELEMENT || $reader->localName !== 'category-assignment') {
+                continue;
+            }
+
+            $assignment = $this->extractAssignment(
+                new SimpleXMLElement($reader->readOuterXml())
+            );
+
+            yield key($assignment) => reset($assignment);
+        }
+
+        $reader->close();
+    }
+
+    protected function extractAssignment(SimpleXMLElement $element): array
+    {
+        $productId  = (string) $element['product-id'];
+        $categoryId = (string) $element['category-id'];
+        $primary    = (isset($element->{'primary-flag'}) ? ((string) $element->{'primary-flag'}) === 'true': false);
+
+        return [$productId => [$categoryId => $primary]];
+    }
+
+    public static function toArrayGroupedByKey(iterable $items): array
+    {
+        $results = [];
+
+        foreach ($items as $key => $item) {
+            $results[$key][] = $item;
+        }
+
+        return $results;
     }
 }

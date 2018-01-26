@@ -32,4 +32,14 @@ class StreamingParserTest extends TestCase
     {
         $this->assertTrue((new StreamingParser(__DIR__ . '/fixtures/products.xml'))->validate());
     }
+
+    public function testAssignmentsParser()
+    {
+        $parser = new StreamingParser(__DIR__ . '/fixtures/assignments.xml');
+
+        $this->assertEquals(
+            $this->loadJsonFixture('assignments.json'),
+            StreamingParser::toArrayGroupedByKey($parser->getAssignments())
+        );
+    }
 }
