@@ -128,7 +128,7 @@ class StreamingParser
     public function getAssignments(): Generator
     {
         foreach ($this->parseNodes(static::ITEM_ASSIGNMENT) as $element) {
-            $assignment = $this->extractAssignment($element);
+            $assignment = $this->extractAssignment($element); // @todo: Use array destructuring when on PHP 7.1.
             yield key($assignment) => reset($assignment);
         }
     }
@@ -145,7 +145,7 @@ class StreamingParser
     public function getBundles(): Generator
     {
         foreach ($this->parseNodes(static::ITEM_BUNDLE) as $element) {
-            $bundle = $this->extractBundle($element);
+            $bundle = $this->extractBundle($element); // @todo: Use array destructuring when on PHP 7.1.
             yield key($bundle) => reset($bundle);
         }
     }
@@ -166,7 +166,7 @@ class StreamingParser
     public function getCategories(): Generator
     {
         foreach ($this->parseNodes(static::ITEM_CATEGORY) as $element) {
-            $category = $this->extractCategory($element);
+            $category = $this->extractCategory($element); // @todo: Use array destructuring when on PHP 7.1.
             yield key($category) => reset($category);
         }
     }
@@ -179,7 +179,7 @@ class StreamingParser
     public function getProducts(): Generator
     {
         foreach ($this->parseNodes(static::ITEM_PRODUCT) as $element) {
-            $product = $this->extractProduct($element);
+            $product = $this->extractProduct($element); // @todo: Use array destructuring when on PHP 7.1.
             yield key($product) => reset($product);
         }
     }
