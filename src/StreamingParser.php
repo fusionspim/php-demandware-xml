@@ -35,14 +35,13 @@ class StreamingParser
 
             while ($reader->read());
 
-            $reader->close();
-
             $errors = libxml_get_errors();
 
             if (count($errors) > 0) {
                 throw $this->libXmlErrorToException(reset($errors));
             }
         } finally {
+            $reader->close();
             libxml_use_internal_errors($previousErrors);
             libxml_clear_errors();
             restore_error_handler();
