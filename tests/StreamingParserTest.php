@@ -42,4 +42,24 @@ class StreamingParserTest extends TestCase
             StreamingParser::toArrayGroupedByKey($parser->getAssignments())
         );
     }
+
+    public function testCategoriesParser()
+    {
+        $parser = new StreamingParser(__DIR__ . '/fixtures/categories.xml');
+
+        $this->assertEquals(
+            $this->loadJsonFixture('categories.json'),
+            iterator_to_array($parser->getCategories())
+        );
+    }
+
+    public function testSimpleCategoriesParser()
+    {
+        $parser = new StreamingParser(__DIR__ . '/fixtures/categories.xml', $skipAttributes = true);
+
+        $this->assertEquals(
+            $this->loadJsonFixture('categories-simple.json'),
+            iterator_to_array($parser->getCategories())
+        );
+    }
 }
