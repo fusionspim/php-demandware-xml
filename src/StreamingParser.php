@@ -77,23 +77,29 @@ class StreamingParser
         return $reader;
     }
 
+    protected function parseNodes(array $nodes): iterable
+    {
+        try {
+            $reader = $this->getXmlReader();
+
+            while ($reader->read()) {
+                if ($reader->nodeType !== XMLReader::ELEMENT || ! in_array($reader->localName, $nodes)) {
+                    continue;
+                }
+
+                yield new SimpleXMLElement($reader->readOuterXml());
+            }
+        } finally {
+            $reader->close();
+        }
+    }
+
     public function getAssignments(): iterable
     {
-        $reader = $this->getXmlReader();
-
-        while ($reader->read()) {
-            if ($reader->nodeType !== XMLReader::ELEMENT || $reader->localName !== 'category-assignment') {
-                continue;
-            }
-
-            $assignment = $this->extractAssignment(
-                new SimpleXMLElement($reader->readOuterXml())
-            );
-
+        foreach ($this->parseNodes(['category-assignment']) as $element) {
+            $assignment = $this->extractAssignment($element);
             yield key($assignment) => reset($assignment);
         }
-
-        $reader->close();
     }
 
     protected function extractAssignment(SimpleXMLElement $element): array
