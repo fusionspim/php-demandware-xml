@@ -1,6 +1,7 @@
 <?php
 namespace DemandwareXml\Test;
 
+use Generator;
 use DemandwareXml\StreamingParser;
 use PHPUnit\Framework\TestCase;
 
@@ -31,6 +32,19 @@ class StreamingParserTest extends TestCase
     public function testParserValidate()
     {
         $this->assertTrue((new StreamingParser(__DIR__ . '/fixtures/products.xml'))->validate());
+    }
+
+    public function testEmptyParser()
+    {
+        $parser = new StreamingParser(__DIR__ . '/fixtures/empty.xml');
+
+        $this->assertEmpty(iterator_to_array($parser->getAssignments()));
+        $this->assertEmpty(iterator_to_array($parser->getBundles()));
+        $this->assertEmpty(iterator_to_array($parser->getCategories()));
+        $this->assertEmpty(iterator_to_array($parser->getPhotos()));
+        $this->assertEmpty(iterator_to_array($parser->getProducts()));
+        $this->assertEmpty(iterator_to_array($parser->getSets()));
+        $this->assertEmpty(iterator_to_array($parser->getVariations()));
     }
 
     public function testAssignmentsParser()
