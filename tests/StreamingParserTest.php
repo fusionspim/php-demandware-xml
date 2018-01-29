@@ -1,8 +1,8 @@
 <?php
 namespace DemandwareXml\Test;
 
-use Generator;
 use DemandwareXml\StreamingParser;
+use Generator;
 use PHPUnit\Framework\TestCase;
 
 // note: don't need to parse variants, so no test for those!
