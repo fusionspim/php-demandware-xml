@@ -7,24 +7,6 @@ use XMLReader;
 
 class StreamingParser
 {
-    const ITEM_ASSIGNMENT = 'Assignment';
-    const ITEM_CATEGORY   = 'Category';
-    const ITEM_BUNDLE     = 'Bundle';
-    const ITEM_SET        = 'Set';
-    const ITEM_PHOTO      = 'Photo';
-    const ITEM_PRODUCT    = 'Product';
-    const ITEM_VARIATION  = 'Variation';
-
-    const ITEM_NODES = [
-        self::ITEM_ASSIGNMENT => 'category-assignment',
-        self::ITEM_CATEGORY   => 'category',
-        self::ITEM_BUNDLE     => 'product',
-        self::ITEM_SET        => 'product',
-        self::ITEM_PHOTO      => 'product',
-        self::ITEM_PRODUCT    => 'product',
-        self::ITEM_VARIATION  => 'product',
-    ];
-
     protected $file;
     protected $skipAttributes = false;
 
@@ -103,9 +85,8 @@ class StreamingParser
         return $reader;
     }
 
-    protected function parseNodes(string $item): Generator
+    protected function parseNodes(string $node): Generator
     {
-        $node   = static::ITEM_NODES[$item];
         $reader = $this->getXmlReader();
 
         while ($reader->read()) {
@@ -113,17 +94,7 @@ class StreamingParser
                 continue;
             }
 
-            $element = new SimpleXMLElement($reader->readOuterXml());
-
-            if (
-                in_array($item, [static::ITEM_ASSIGNMENT, static::ITEM_CATEGORY, static::ITEM_PHOTO]) ||
-                ($item === static::ITEM_BUNDLE && isset($element->{'bundled-products'})) ||
-                ($item === static::ITEM_SET && isset($element->{'product-set-products'})) ||
-                ($item === static::ITEM_PRODUCT && isset($element->{'variations'})) ||
-                ($item === static::ITEM_VARIATION && ! isset($element->{'bundled-products'}) && ! isset($element->{'product-set-products'}) && ! isset($element->{'variations'}))
-            ) {
-                yield $element;
-            }
+            yield new SimpleXMLElement($reader->readOuterXml());
         }
 
         $reader->close();
@@ -131,7 +102,7 @@ class StreamingParser
 
     public function getAssignments(): Generator
     {
-        foreach ($this->parseNodes(static::ITEM_ASSIGNMENT) as $element) {
+        foreach ($this->parseNodes('category-assignment') as $element) {
             $assignment = $this->extractAssignment($element); // @todo: Use array destructuring when on PHP 7.1.
             yield key($assignment) => reset($assignment);
         }
@@ -148,7 +119,11 @@ class StreamingParser
 
     public function getBundles(): Generator
     {
-        foreach ($this->parseNodes(static::ITEM_BUNDLE) as $element) {
+        foreach ($this->parseNodes('product') as $element) {
+            if (! isset($element->{'bundled-products'})) {
+                continue;
+            }
+
             $bundle = $this->extractBundle($element); // @todo: Use array destructuring when on PHP 7.1.
             yield key($bundle) => reset($bundle);
         }
@@ -169,7 +144,7 @@ class StreamingParser
 
     public function getCategories(): Generator
     {
-        foreach ($this->parseNodes(static::ITEM_CATEGORY) as $element) {
+        foreach ($this->parseNodes('category') as $element) {
             $category = $this->extractCategory($element); // @todo: Use array destructuring when on PHP 7.1.
             yield key($category) => reset($category);
         }
@@ -182,7 +157,7 @@ class StreamingParser
 
     public function getPhotos(): Generator
     {
-        foreach ($this->parseNodes(static::ITEM_PHOTO) as $element) {
+        foreach ($this->parseNodes('product') as $element) {
             $photo = $this->extractPhoto($element); // @todo: Use array destructuring when on PHP 7.1.
             yield key($photo) => reset($photo);
         }
@@ -229,7 +204,11 @@ class StreamingParser
 
     public function getProducts(): Generator
     {
-        foreach ($this->parseNodes(static::ITEM_PRODUCT) as $element) {
+        foreach ($this->parseNodes('product') as $element) {
+            if (! isset($element->{'variations'})) {
+                continue;
+            }
+
             $product = $this->extractProduct($element); // @todo: Use array destructuring when on PHP 7.1.
             yield key($product) => reset($product);
         }
@@ -248,7 +227,11 @@ class StreamingParser
 
     public function getSets(): Generator
     {
-        foreach ($this->parseNodes(static::ITEM_SET) as $element) {
+        foreach ($this->parseNodes('product') as $element) {
+            if (! isset($element->{'product-set-products'})) {
+                continue;
+            }
+
             $set = $this->extractSet($element); // @todo: Use array destructuring when on PHP 7.1.
             yield key($set) => reset($set);
         }
@@ -267,7 +250,11 @@ class StreamingParser
 
     public function getVariations(): Generator
     {
-        foreach ($this->parseNodes(static::ITEM_VARIATION) as $element) {
+        foreach ($this->parseNodes('product') as $element) {
+            if (isset($element->{'bundled-products'}) || isset($element->{'product-set-products'}) || isset($element->{'variations'})) {
+                continue;
+            }
+
             $variation = $this->extractVariation($element); // @todo: Use array destructuring when on PHP 7.1.
             yield key($variation) => reset($variation);
         }
