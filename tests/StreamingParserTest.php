@@ -21,6 +21,15 @@ class StreamingParserTest extends TestCase
     }
 
     /**
+     * @expectedException              \DemandwareXml\XmlException
+     * @expectedExceptionMessageRegExp /Error: Element '{.*}upc': This element is not expected. Expected is one of \( {.*}step-quantity, {.*}display-name, {.*}short-description, {.*}long-description, {.*}store-receipt-name, {.*}store-tax-class, {.*}store-force-price-flag, {.*}store-non-inventory-flag, {.*}store-non-revenue-flag, {.*}store-non-discountable-flag \). in invalid-schema-products.xml/
+     */
+    public function testParserValidateInvalidSchemaXml()
+    {
+        (new StreamingParser(__DIR__ . '/fixtures/invalid-schema-products.xml'))->validate();
+    }
+
+    /**
      * @expectedException        \DemandwareXml\XMLException
      * @expectedExceptionMessage XML file does not exist: fake-products.xml
      */
