@@ -26,11 +26,15 @@ class StreamingParser
     ];
 
     protected $file;
-    protected $skipAttributes;
+    protected $skipAttributes = false;
 
-    public function __construct(string $file, bool $skipAttributes = false)
+    public function __construct(string $file)
     {
-        $this->file           = $file;
+        $this->file = $file;
+    }
+
+    public function skipAttributes(bool $skipAttributes)
+    {
         $this->skipAttributes = $skipAttributes;
     }
 

@@ -61,7 +61,8 @@ class StreamingParserTest extends TestCase
 
     public function testSimpleBundlesParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml', $skipAttributes = true);
+        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+        $parser->skipAttributes(true);
 
         $this->assertEquals(
             $this->loadJsonFixture('bundles-simple.json'),
@@ -81,7 +82,8 @@ class StreamingParserTest extends TestCase
 
     public function testSimpleCategoriesParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/categories.xml', $skipAttributes = true);
+        $parser = new StreamingParser(__DIR__ . '/fixtures/categories.xml');
+        $parser->skipAttributes(true);
 
         $this->assertEquals(
             $this->loadJsonFixture('categories-simple.json'),
@@ -111,7 +113,8 @@ class StreamingParserTest extends TestCase
 
     public function testSimpleProductsParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml', $skipAttributes = true);
+        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+        $parser->skipAttributes(true);
 
         $this->assertEquals(
             $this->loadJsonFixture('products-simple.json'),
@@ -131,7 +134,8 @@ class StreamingParserTest extends TestCase
 
     public function testSimpleSetsParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml', $skipAttributes = true);
+        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+        $parser->skipAttributes(true);
 
         $this->assertEquals(
             $this->loadJsonFixture('sets-simple.json'),
@@ -151,7 +155,8 @@ class StreamingParserTest extends TestCase
 
     public function testSimpleVariationsParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml', $skipAttributes = true);
+        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+        $parser->skipAttributes(true);
 
         $this->assertEquals(
             $this->loadJsonFixture('variations-simple.json'),
