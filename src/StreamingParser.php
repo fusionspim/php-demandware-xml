@@ -77,17 +77,10 @@ class StreamingParser
         return new XmlException($level . ': ' . trim($error->message) . ' in ' . basename($error->file) . ' on line ' . $error->line . ' column ' . $error->column, $error->code);
     }
 
-    protected function getXmlReader(): XMLReader
+    protected function parseNodes(string $node): Generator
     {
         $reader = new XMLReader;
         $reader->open($this->file);
-
-        return $reader;
-    }
-
-    protected function parseNodes(string $node): Generator
-    {
-        $reader = $this->getXmlReader();
 
         while ($reader->read()) {
             if ($reader->nodeType !== XMLReader::ELEMENT || $reader->localName !== $node) {
