@@ -60,13 +60,14 @@ class StreamingParser
 
             while ($reader->read());
 
+            $reader->close();
+
             $errors = libxml_get_errors();
 
             if (count($errors) > 0) {
                 throw $this->libXmlErrorToException(reset($errors));
             }
         } finally {
-            $reader->close();
             libxml_use_internal_errors($previousErrors);
             libxml_clear_errors();
             restore_error_handler();
@@ -104,31 +105,28 @@ class StreamingParser
 
     protected function parseNodes(string $item): Generator
     {
-        $node = static::ITEM_NODES[$item];
+        $node   = static::ITEM_NODES[$item];
+        $reader = $this->getXmlReader();
 
-        try {
-            $reader = $this->getXmlReader();
-
-            while ($reader->read()) {
-                if ($reader->nodeType !== XMLReader::ELEMENT || $reader->localName !== $node) {
-                    continue;
-                }
-
-                $element = new SimpleXMLElement($reader->readOuterXml());
-
-                if (
-                    in_array($item, [static::ITEM_ASSIGNMENT, static::ITEM_CATEGORY, static::ITEM_PHOTO]) ||
-                    ($item === static::ITEM_BUNDLE && isset($element->{'bundled-products'})) ||
-                    ($item === static::ITEM_SET && isset($element->{'product-set-products'})) ||
-                    ($item === static::ITEM_PRODUCT && isset($element->{'variations'})) ||
-                    ($item === static::ITEM_VARIATION && ! isset($element->{'bundled-products'}) && ! isset($element->{'product-set-products'}) && ! isset($element->{'variations'}))
-                ) {
-                    yield $element;
-                }
+        while ($reader->read()) {
+            if ($reader->nodeType !== XMLReader::ELEMENT || $reader->localName !== $node) {
+                continue;
             }
-        } finally {
-            $reader->close();
+
+            $element = new SimpleXMLElement($reader->readOuterXml());
+
+            if (
+                in_array($item, [static::ITEM_ASSIGNMENT, static::ITEM_CATEGORY, static::ITEM_PHOTO]) ||
+                ($item === static::ITEM_BUNDLE && isset($element->{'bundled-products'})) ||
+                ($item === static::ITEM_SET && isset($element->{'product-set-products'})) ||
+                ($item === static::ITEM_PRODUCT && isset($element->{'variations'})) ||
+                ($item === static::ITEM_VARIATION && ! isset($element->{'bundled-products'}) && ! isset($element->{'product-set-products'}) && ! isset($element->{'variations'}))
+            ) {
+                yield $element;
+            }
         }
+
+        $reader->close();
     }
 
     public function getAssignments(): Generator
