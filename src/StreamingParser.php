@@ -20,7 +20,8 @@ class StreamingParser
         $this->skipAttributes = $skipAttributes;
     }
 
-    public function validate(): bool
+    // Validation without a schema is allowed for photos as they don't have one.
+    public function validate($useSchema = true): bool
     {
         if (! file_exists($this->file)) {
             throw new XmlException('XML file does not exist: ' . basename($this->file));
@@ -38,7 +39,10 @@ class StreamingParser
         try {
             $reader = new XMLReader;
             $reader->open($this->file);
-            $reader->setSchema(realpath(__DIR__ . '/../xsd/catalog.xsd'));
+
+            if ($useSchema) {
+                $reader->setSchema(realpath(__DIR__ . '/../xsd/catalog.xsd'));
+            }
 
             while ($reader->read());
 
