@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+    <product product-id="PROD1">
+        <custom-attribute attribute-id="primaryImage">FOOBAR</custom-attribute>
+        <custom-attribute attribute-id="productEnriched">true</custom-attribute>
+        <custom-attribute attribute-id="imageSwatch">FOOBAR_swatch</custom-attribute>
+    </product>
+
+    <product product-id="PROD2">
+        <custom-attribute attribute-id="primaryImage">FOOBAR</custom-attribute>
+        <custom-attribute attribute-id="productEnriched">true</custom-attribute>
+        <custom-attribute attribute-id="secondaryImage1">FOOBAR_B</custom-attribute>
+        <custom-attribute attribute-id="secondaryImage2">FOOBAR_C</custom-attribute>
+        <custom-attribute attribute-id="secondaryImage3">FOOBAR_D</custom-attribute>
+    </product>
+</products>

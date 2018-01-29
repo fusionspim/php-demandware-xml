@@ -89,6 +89,16 @@ class StreamingParserTest extends TestCase
         );
     }
 
+    public function testPhotosParser()
+    {
+        $parser = new StreamingParser(__DIR__ . '/fixtures/photos.xml');
+
+        $this->assertEquals(
+            $this->loadJsonFixture('photos.json'),
+            iterator_to_array($parser->getPhotos())
+        );
+    }
+
     public function testProductsParser()
     {
         $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');

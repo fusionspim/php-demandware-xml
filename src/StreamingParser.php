@@ -11,6 +11,7 @@ class StreamingParser
     const ITEM_CATEGORY   = 'Category';
     const ITEM_BUNDLE     = 'Bundle';
     const ITEM_SET        = 'Set';
+    const ITEM_PHOTO      = 'Photo';
     const ITEM_PRODUCT    = 'Product';
     const ITEM_VARIATION  = 'Variation';
 
@@ -19,6 +20,7 @@ class StreamingParser
         self::ITEM_CATEGORY   => 'category',
         self::ITEM_BUNDLE     => 'product',
         self::ITEM_SET        => 'product',
+        self::ITEM_PHOTO      => 'product',
         self::ITEM_PRODUCT    => 'product',
         self::ITEM_VARIATION  => 'product',
     ];
@@ -112,6 +114,7 @@ class StreamingParser
 
                 if (
                     in_array($item, [static::ITEM_ASSIGNMENT, static::ITEM_CATEGORY]) ||
+                    $item === static::ITEM_PHOTO ||
                     ($item === static::ITEM_BUNDLE && isset($element->{'bundled-products'})) ||
                     ($item === static::ITEM_SET && isset($element->{'product-set-products'})) ||
                     ($item === static::ITEM_PRODUCT && isset($element->{'variations'})) ||
@@ -174,6 +177,53 @@ class StreamingParser
     protected function extractCategory(SimpleXMLElement $element): array
     {
         return [(string) $element['category-id'] => $this->commonDetails($element)];
+    }
+
+    public function getPhotos(): Generator
+    {
+        foreach ($this->parseNodes(static::ITEM_PHOTO) as $element) {
+            $photo = $this->extractPhoto($element); // @todo: Use array destructuring when on PHP 7.1.
+            yield key($photo) => reset($photo);
+        }
+    }
+
+    protected function extractPhoto(SimpleXMLElement $element): array
+    {
+        $details = [
+            'enriched' => false,
+            'images'   => [],
+        ];
+
+        $total = count($element->{'custom-attribute'});
+
+        for ($i = 0; $i < $total; $i++) {
+            if (! isset($element->{'custom-attribute'}[$i])) {
+                continue;
+            }
+
+            $name = (string) $element->{'custom-attribute'}[$i];
+            $type = (string) $element->{'custom-attribute'}[$i]['attribute-id'];
+
+            if ($type === 'productEnriched') {
+                $details['enriched'] = filter_var($name, FILTER_VALIDATE_BOOLEAN);
+            } else {
+                switch ($type) {
+                    case 'primaryImage':
+                        $type = 'main';
+                        break;
+                    case 'imageSwatch':
+                        $type = 'swatch';
+                        break;
+                    default:
+                        $type = 'image' . substr($type, -1);
+                        break;
+                }
+
+                $details['images'][$type] = $name;
+            }
+        }
+
+        return [(string) $element['product-id'] => $details];
     }
 
     public function getProducts(): Generator
