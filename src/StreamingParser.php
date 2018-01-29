@@ -311,14 +311,14 @@ class StreamingParser
             }
         }
 
-        // if they exist, online/searchable will always be a true/false string, so cast for ease of use
+        // If they exist, online/searchable will always be a true/false string, so cast for ease of use.
         foreach (['online', 'searchable'] as $name) {
             if (isset($details[$name])) {
                 $details[$name] = filter_var($details[$name], FILTER_VALIDATE_BOOLEAN);
             }
         }
 
-        // convert the tax string to a meaningful number
+        // Convert the tax string to a meaningful number.
         if (isset($details['tax'])) {
             $details['tax'] = (float) str_replace(['TAX_', '_'], ['', '.'], $details['tax']);
         }
@@ -346,7 +346,7 @@ class StreamingParser
             } else {
                 $value = trim((string) $attribute);
 
-                // cast strings to booleans (only needed for single values, as multi-value booleans make no sense)
+                // Cast strings to booleans (only needed for single values, as multi-value booleans make no sense).
                 if ('true' === $value || 'false' === $value) {
                     $value = ('true' === $value);
                 }
