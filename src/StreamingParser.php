@@ -230,7 +230,7 @@ class StreamingParser
         }
     }
 
-    protected function extractSet(SimpleXMLElement $element)
+    protected function extractSet(SimpleXMLElement $element): array
     {
         $details = $this->commonDetails($element);
 
@@ -253,7 +253,7 @@ class StreamingParser
         }
     }
 
-    protected function extractVariation(SimpleXMLElement $element)
+    protected function extractVariation(SimpleXMLElement $element): array
     {
         return [(string) $element['product-id'] => $this->commonDetails($element)];
     }
