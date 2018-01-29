@@ -117,8 +117,7 @@ class StreamingParser
                 $element = new SimpleXMLElement($reader->readOuterXml());
 
                 if (
-                    in_array($item, [static::ITEM_ASSIGNMENT, static::ITEM_CATEGORY]) ||
-                    $item === static::ITEM_PHOTO ||
+                    in_array($item, [static::ITEM_ASSIGNMENT, static::ITEM_CATEGORY, static::ITEM_PHOTO]) ||
                     ($item === static::ITEM_BUNDLE && isset($element->{'bundled-products'})) ||
                     ($item === static::ITEM_SET && isset($element->{'product-set-products'})) ||
                     ($item === static::ITEM_PRODUCT && isset($element->{'variations'})) ||
