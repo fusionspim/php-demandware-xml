@@ -1,8 +1,20 @@
 <?php
 namespace DemandwareXml\Test;
 
+use DemandwareXml\Parser\{
+    AssignmentNodeParser,
+    BundleNodeParser,
+    BundleSimpleNodeParser,
+    CategoryNodeParser,
+    CategorySimpleNodeParser,
+    ProductNodeParser,
+    ProductSimpleNodeParser,
+    SetNodeParser,
+    SetSimpleNodeParser,
+    VariationNodeParser,
+    VariationSimpleNodeParser
+};
 use DemandwareXml\StreamingParser;
-use Generator;
 use PHPUnit\Framework\TestCase;
 
 // note: don't need to parse variants, so no test for those!
@@ -47,13 +59,12 @@ class StreamingParserTest extends TestCase
     {
         $parser = new StreamingParser(__DIR__ . '/fixtures/empty.xml');
 
-        $this->assertEmpty(iterator_to_array($parser->getAssignments()));
-        $this->assertEmpty(iterator_to_array($parser->getBundles()));
-        $this->assertEmpty(iterator_to_array($parser->getCategories()));
-        $this->assertEmpty(iterator_to_array($parser->getPhotos()));
-        $this->assertEmpty(iterator_to_array($parser->getProducts()));
-        $this->assertEmpty(iterator_to_array($parser->getSets()));
-        $this->assertEmpty(iterator_to_array($parser->getVariations()));
+        $this->assertEmpty(iterator_to_array($parser->parse(AssignmentNodeParser::class)));
+        $this->assertEmpty(iterator_to_array($parser->parse(BundleNodeParser::class)));
+        $this->assertEmpty(iterator_to_array($parser->parse(CategoryNodeParser::class)));
+        $this->assertEmpty(iterator_to_array($parser->parse(ProductNodeParser::class)));
+        $this->assertEmpty(iterator_to_array($parser->parse(SetNodeParser::class)));
+        $this->assertEmpty(iterator_to_array($parser->parse(VariationNodeParser::class)));
     }
 
     public function testAssignmentsParser()
@@ -62,7 +73,7 @@ class StreamingParserTest extends TestCase
 
         $assignments = [];
 
-        foreach ($parser->getAssignments() as $productId => $assignment) {
+        foreach ($parser->parse(AssignmentNodeParser::class) as $productId => $assignment) {
             $assignments[$productId][] = $assignment;
         }
 
@@ -78,18 +89,17 @@ class StreamingParserTest extends TestCase
 
         $this->assertEquals(
             $this->loadJsonFixture('bundles.json'),
-            iterator_to_array($parser->getBundles())
+            iterator_to_array($parser->parse(BundleNodeParser::class))
         );
     }
 
     public function testSimpleBundlesParser()
     {
         $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
-        $parser->skipAttributes(true);
 
         $this->assertEquals(
             $this->loadJsonFixture('bundles-simple.json'),
-            iterator_to_array($parser->getBundles())
+            iterator_to_array($parser->parse(BundleSimpleNodeParser::class))
         );
     }
 
@@ -99,28 +109,17 @@ class StreamingParserTest extends TestCase
 
         $this->assertEquals(
             $this->loadJsonFixture('categories.json'),
-            iterator_to_array($parser->getCategories())
+            iterator_to_array($parser->parse(CategoryNodeParser::class))
         );
     }
 
     public function testSimpleCategoriesParser()
     {
         $parser = new StreamingParser(__DIR__ . '/fixtures/categories.xml');
-        $parser->skipAttributes(true);
 
         $this->assertEquals(
             $this->loadJsonFixture('categories-simple.json'),
-            iterator_to_array($parser->getCategories())
-        );
-    }
-
-    public function testPhotosParser()
-    {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/photos.xml');
-
-        $this->assertEquals(
-            $this->loadJsonFixture('photos.json'),
-            iterator_to_array($parser->getPhotos())
+            iterator_to_array($parser->parse(CategorySimpleNodeParser::class))
         );
     }
 
@@ -130,18 +129,17 @@ class StreamingParserTest extends TestCase
 
         $this->assertEquals(
             $this->loadJsonFixture('products.json'),
-            iterator_to_array($parser->getProducts())
+            iterator_to_array($parser->parse(ProductNodeParser::class))
         );
     }
 
     public function testSimpleProductsParser()
     {
         $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
-        $parser->skipAttributes(true);
 
         $this->assertEquals(
             $this->loadJsonFixture('products-simple.json'),
-            iterator_to_array($parser->getProducts())
+            iterator_to_array($parser->parse(ProductSimpleNodeParser::class))
         );
     }
 
@@ -151,18 +149,17 @@ class StreamingParserTest extends TestCase
 
         $this->assertEquals(
             $this->loadJsonFixture('sets.json'),
-            iterator_to_array($parser->getSets())
+            iterator_to_array($parser->parse(SetNodeParser::class))
         );
     }
 
     public function testSimpleSetsParser()
     {
         $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
-        $parser->skipAttributes(true);
 
         $this->assertEquals(
             $this->loadJsonFixture('sets-simple.json'),
-            iterator_to_array($parser->getSets())
+            iterator_to_array($parser->parse(SetSimpleNodeParser::class))
         );
     }
 
@@ -172,18 +169,17 @@ class StreamingParserTest extends TestCase
 
         $this->assertEquals(
             $this->loadJsonFixture('variations.json'),
-            iterator_to_array($parser->getVariations())
+            iterator_to_array($parser->parse(VariationNodeParser::class))
         );
     }
 
     public function testSimpleVariationsParser()
     {
         $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
-        $parser->skipAttributes(true);
 
         $this->assertEquals(
             $this->loadJsonFixture('variations-simple.json'),
-            iterator_to_array($parser->getVariations())
+            iterator_to_array($parser->parse(VariationSimpleNodeParser::class))
         );
     }
 }

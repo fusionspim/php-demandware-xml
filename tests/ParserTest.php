@@ -116,8 +116,8 @@ class ParserTest extends TestCase
         $this->assertEquals($expected, $parser->getVariations());
     }
 
-    protected function getFixtureParser($filename, $skipAttributes = false, array $includeNodes = Parser::AVAILABLE_NODES)
+    protected function getFixtureParser($filename, $skipAttributes = false)
     {
-        return new Parser(__DIR__ . '/fixtures/' . $filename, $skipAttributes, $includeNodes);
+        return new Parser(__DIR__ . '/fixtures/' . $filename, $skipAttributes);
     }
 }
