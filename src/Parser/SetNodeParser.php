@@ -44,6 +44,9 @@ class SetNodeParser implements NodeParserInterface
             $details['products'][] = (string) $product['product-id'];
         }
 
-        return [(string) $this->element['product-id'] => $details];
+        return [
+            'id'   => (string)$this->element['product-id'],
+            'data' => $details,
+        ];
     }
 }

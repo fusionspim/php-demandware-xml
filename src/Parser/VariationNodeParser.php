@@ -38,6 +38,9 @@ class VariationNodeParser implements NodeParserInterface
 
     public function parse(): array
     {
-        return [(string) $this->element['product-id'] => $this->getCommonDetails($this->element)];
+        return [
+            'id'   => (string)$this->element['product-id'],
+            'data' => $this->getCommonDetails($this->element),
+        ];
     }
 }

@@ -22,10 +22,12 @@ class AssignmentNodeParser implements NodeParserInterface
     {
         $element = new SimpleXMLElement($this->reader->readOuterXml());
 
-        $productId  = (string) $element['product-id'];
         $categoryId = (string) $element['category-id'];
         $primary    = (isset($element->{'primary-flag'}) ? ((string) $element->{'primary-flag'}) === 'true': false);
 
-        return [$productId => [$categoryId => $primary]];
+        return [
+            'id'   => (string) $element['product-id'],
+            'data' => [$categoryId => $primary],
+        ];
     }
 }

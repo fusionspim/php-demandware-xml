@@ -93,8 +93,8 @@ class Parser
             $nodeParser = new $class($reader);
 
             if ($nodeParser->isMatch()) {
-                $result = $nodeParser->parse(); // @todo: Use array destructuring when on PHP 7.1.
-                yield key($result) => reset($result);
+                ['id' => $id, 'data' => $data] = $nodeParser->parse();
+                yield $id => $data;
             }
         }
 
@@ -117,12 +117,12 @@ class Parser
                 $nodeParser = new $class($reader);
 
                 if ($nodeParser->isMatch()) {
-                    $result = $nodeParser->parse(); // @todo: Use array destructuring when on PHP 7.1.
+                    ['id' => $id, 'data' => $data] = $nodeParser->parse();
 
                     if (in_array($index, $groupedByKey)) {
-                        $this->parsed[$index][key($result)][] = reset($result);
+                        $this->parsed[$index][$id][] = $data;
                     } else {
-                        $this->parsed[$index][key($result)] = reset($result);
+                        $this->parsed[$index][$id] = $data;
                     }
                 }
             }

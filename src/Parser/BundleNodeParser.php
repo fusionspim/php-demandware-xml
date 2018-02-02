@@ -46,6 +46,9 @@ class BundleNodeParser implements NodeParserInterface
             $details['variations'][(string) $variation['product-id']] = $quantity;
         }
 
-        return [(string) $this->element['product-id'] => $details];
+        return [
+            'id'   => (string) $this->element['product-id'],
+            'data' => $details,
+        ];
     }
 }

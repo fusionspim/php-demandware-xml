@@ -29,6 +29,9 @@ class CategoryNodeParser implements NodeParserInterface
     {
         $element = new SimpleXMLElement($this->reader->readOuterXml());
 
-        return [(string) $element['category-id'] => $this->getCommonDetails($element)];
+        return [
+            'id'   => (string)$element['category-id'],
+            'data' => $this->getCommonDetails($element),
+        ];
     }
 }
