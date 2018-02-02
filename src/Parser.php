@@ -5,7 +5,7 @@ use DemandwareXml\Parser\NodeParserInterface;
 use Generator;
 use XMLReader;
 
-class StreamingParser
+class Parser
 {
     protected $file;
     protected $parsed = [];

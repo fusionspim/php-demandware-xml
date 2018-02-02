@@ -14,13 +14,13 @@ use DemandwareXml\Parser\{
     VariationNodeParser,
     VariationSimpleNodeParser
 };
-use DemandwareXml\StreamingParser;
+use DemandwareXml\Parser;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
 // note: don't need to parse variants, so no test for those!
 // rebuild fixtures: file_put_contents(__DIR__ . '/fixtures/categories.json', json_encode($parser->categories(), JSON_PRETTY_PRINT) . PHP_EOL);
-class StreamingParserTest extends TestCase
+class ParserTest extends TestCase
 {
     use FixtureHelper;
 
@@ -30,7 +30,7 @@ class StreamingParserTest extends TestCase
      */
     public function testParserValidateInvalidXml()
     {
-        (new StreamingParser(__DIR__ . '/fixtures/invalid-products.xml'))->validate();
+        (new Parser(__DIR__ . '/fixtures/invalid-products.xml'))->validate();
     }
 
     /**
@@ -39,7 +39,7 @@ class StreamingParserTest extends TestCase
      */
     public function testParserValidateInvalidSchemaXml()
     {
-        (new StreamingParser(__DIR__ . '/fixtures/invalid-schema-products.xml'))->validate();
+        (new Parser(__DIR__ . '/fixtures/invalid-schema-products.xml'))->validate();
     }
 
     /**
@@ -48,7 +48,7 @@ class StreamingParserTest extends TestCase
      */
     public function testParserValidateFileDoesNotExist()
     {
-        (new StreamingParser(__DIR__ . '/fixtures/fake-products.xml'))->validate();
+        (new Parser(__DIR__ . '/fixtures/fake-products.xml'))->validate();
     }
 
     /**
@@ -57,7 +57,7 @@ class StreamingParserTest extends TestCase
      */
     public function testParserInvalidClass()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/mixed.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/mixed.xml');
         $parser->parse(stdClass::class)->next();
     }
 
@@ -67,18 +67,18 @@ class StreamingParserTest extends TestCase
      */
     public function testArrayParserInvalidClass()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/mixed.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/mixed.xml');
         $parser->parseToArray(['FOOBAR' => stdClass::class]);
     }
 
     public function testParserValidate()
     {
-        $this->assertTrue((new StreamingParser(__DIR__ . '/fixtures/products.xml'))->validate());
+        $this->assertTrue((new Parser(__DIR__ . '/fixtures/products.xml'))->validate());
     }
 
     public function testEmptyParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/empty.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/empty.xml');
 
         $this->assertEmpty(iterator_to_array($parser->parse(AssignmentNodeParser::class)));
         $this->assertEmpty(iterator_to_array($parser->parse(BundleNodeParser::class)));
@@ -90,7 +90,7 @@ class StreamingParserTest extends TestCase
 
     public function testArrayParser()
     {
-        $parser  = new StreamingParser(__DIR__ . '/fixtures/mixed.xml');
+        $parser  = new Parser(__DIR__ . '/fixtures/mixed.xml');
         $results = $parser->parseToArray([
             'products'    => ProductSimpleNodeParser::class,
             'categories'  => CategorySimpleNodeParser::class,
@@ -105,7 +105,7 @@ class StreamingParserTest extends TestCase
 
     public function testAssignmentsParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/assignments.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/assignments.xml');
 
         $assignments = [];
 
@@ -121,7 +121,7 @@ class StreamingParserTest extends TestCase
 
     public function testBundlesParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
         $this->assertEquals(
             $this->loadJsonFixture('bundles.json'),
@@ -131,7 +131,7 @@ class StreamingParserTest extends TestCase
 
     public function testSimpleBundlesParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
         $this->assertEquals(
             $this->loadJsonFixture('bundles-simple.json'),
@@ -141,7 +141,7 @@ class StreamingParserTest extends TestCase
 
     public function testCategoriesParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/categories.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/categories.xml');
 
         $this->assertEquals(
             $this->loadJsonFixture('categories.json'),
@@ -151,7 +151,7 @@ class StreamingParserTest extends TestCase
 
     public function testSimpleCategoriesParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/categories.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/categories.xml');
 
         $this->assertEquals(
             $this->loadJsonFixture('categories-simple.json'),
@@ -161,7 +161,7 @@ class StreamingParserTest extends TestCase
 
     public function testProductsParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
         $this->assertEquals(
             $this->loadJsonFixture('products.json'),
@@ -171,7 +171,7 @@ class StreamingParserTest extends TestCase
 
     public function testSimpleProductsParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
         $this->assertEquals(
             $this->loadJsonFixture('products-simple.json'),
@@ -181,7 +181,7 @@ class StreamingParserTest extends TestCase
 
     public function testSetsParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
         $this->assertEquals(
             $this->loadJsonFixture('sets.json'),
@@ -191,7 +191,7 @@ class StreamingParserTest extends TestCase
 
     public function testSimpleSetsParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
         $this->assertEquals(
             $this->loadJsonFixture('sets-simple.json'),
@@ -201,7 +201,7 @@ class StreamingParserTest extends TestCase
 
     public function testVariationsParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
         $this->assertEquals(
             $this->loadJsonFixture('variations.json'),
@@ -211,7 +211,7 @@ class StreamingParserTest extends TestCase
 
     public function testSimpleVariationsParser()
     {
-        $parser = new StreamingParser(__DIR__ . '/fixtures/products.xml');
+        $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
         $this->assertEquals(
             $this->loadJsonFixture('variations-simple.json'),
