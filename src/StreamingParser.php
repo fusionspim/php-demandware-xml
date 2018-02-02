@@ -8,14 +8,14 @@ use XMLReader;
 class StreamingParser
 {
     protected $file;
+    protected $parsed = [];
 
     public function __construct(string $file)
     {
         $this->file = $file;
     }
 
-    // Validation without a schema is allowed for photos as they don't have one.
-    public function validate($useSchema = true): bool
+    public function validate(bool $useSchema = true): bool
     {
         if (! file_exists($this->file)) {
             throw new XmlException('XML file does not exist: ' . basename($this->file));
@@ -75,11 +75,16 @@ class StreamingParser
         return new XmlException($level . ': ' . trim($error->message) . ' in ' . basename($error->file) . ' on line ' . $error->line . ' column ' . $error->column, $error->code);
     }
 
-    public function parse(string $class): Generator
+    protected function validateNodeParserClass(string $class)
     {
         if (! is_subclass_of($class, NodeParserInterface::class)) {
             throw new XmlException('Node parser class "' . $class . '" must implement ' . NodeParserInterface::class);
         }
+    }
+
+    public function parse(string $class): Generator
+    {
+        $this->validateNodeParserClass($class);
 
         $reader = new XMLReader;
         $reader->open($this->file);
@@ -94,5 +99,32 @@ class StreamingParser
         }
 
         $reader->close();
+    }
+
+    public function parseToArray(array $classes): array
+    {
+        foreach ($classes as $index => $class) {
+            $this->validateNodeParserClass($class);
+        }
+
+        $this->parsed = [];
+
+        $reader = new XMLReader;
+        $reader->open($this->file);
+
+        while ($reader->read()) {
+            foreach ($classes as $index => $class) {
+                $nodeParser = new $class($reader);
+
+                if ($nodeParser->isMatch()) {
+                    $result = $nodeParser->parse(); // @todo: Use array destructuring when on PHP 7.1.
+                    $this->parsed[$index][key($result)] = reset($result);
+                }
+            }
+        }
+
+        $reader->close();
+
+        return $this->parsed;
     }
 }

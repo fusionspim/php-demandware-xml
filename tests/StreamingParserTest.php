@@ -67,6 +67,28 @@ class StreamingParserTest extends TestCase
         $this->assertEmpty(iterator_to_array($parser->parse(VariationNodeParser::class)));
     }
 
+    public function testMixedParser()
+    {
+        $parser  = new StreamingParser(__DIR__ . '/fixtures/mixed.xml');
+        $results = $parser->parseToArray([
+            'products'    => ProductSimpleNodeParser::class,
+            'categories'  => CategorySimpleNodeParser::class,
+            'assignments' => AssignmentNodeParser::class,
+        ]);
+
+        $this->assertCount(3, $results);
+
+        $assignments = [];
+
+        foreach ($results['assignments'] as $productId => $assignment) {
+            $assignments[$productId][] = $assignment;
+        }
+
+        $this->assertEquals($this->loadJsonFixture('mixed-products.json'), $results['products']);
+        $this->assertEquals($this->loadJsonFixture('mixed-categories.json'), $results['categories']);
+        $this->assertEquals($this->loadJsonFixture('mixed-assignments.json'), $assignments);
+    }
+
     public function testAssignmentsParser()
     {
         $parser = new StreamingParser(__DIR__ . '/fixtures/assignments.xml');
