@@ -1,6 +1,7 @@
 <?php
 namespace DemandwareXml\Test;
 
+use DemandwareXml\Parser;
 use DemandwareXml\Parser\{
     AssignmentNodeParser,
     BundleNodeParser,
@@ -14,7 +15,6 @@ use DemandwareXml\Parser\{
     VariationNodeParser,
     VariationSimpleNodeParser
 };
-use DemandwareXml\Parser;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
