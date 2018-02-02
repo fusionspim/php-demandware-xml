@@ -101,7 +101,7 @@ class StreamingParser
         $reader->close();
     }
 
-    public function parseToArray(array $classes): array
+    public function parseToArray(array $classes, array $groupedByKey = []): array
     {
         foreach ($classes as $index => $class) {
             $this->validateNodeParserClass($class);
@@ -118,7 +118,12 @@ class StreamingParser
 
                 if ($nodeParser->isMatch()) {
                     $result = $nodeParser->parse(); // @todo: Use array destructuring when on PHP 7.1.
-                    $this->parsed[$index][key($result)] = reset($result);
+
+                    if (in_array($index, $groupedByKey)) {
+                        $this->parsed[$index][key($result)][] = reset($result);
+                    } else {
+                        $this->parsed[$index][key($result)] = reset($result);
+                    }
                 }
             }
         }
