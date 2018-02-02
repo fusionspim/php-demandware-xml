@@ -16,6 +16,7 @@ use DemandwareXml\Parser\{
 };
 use DemandwareXml\StreamingParser;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 // note: don't need to parse variants, so no test for those!
 // rebuild fixtures: file_put_contents(__DIR__ . '/fixtures/categories.json', json_encode($parser->categories(), JSON_PRETTY_PRINT) . PHP_EOL);
@@ -50,6 +51,26 @@ class StreamingParserTest extends TestCase
         (new StreamingParser(__DIR__ . '/fixtures/fake-products.xml'))->validate();
     }
 
+    /**
+     * @expectedException        \DemandwareXML\XmlException
+     * @expectedExceptionMessage Node parser class "stdClass" must implement DemandwareXml\Parser\NodeParserInterface
+     */
+    public function testParserInvalidClass()
+    {
+        $parser = new StreamingParser(__DIR__ . '/fixtures/mixed.xml');
+        $parser->parse(stdClass::class)->next();
+    }
+
+    /**
+     * @expectedException        \DemandwareXML\XmlException
+     * @expectedExceptionMessage Node parser class "stdClass" must implement DemandwareXml\Parser\NodeParserInterface
+     */
+    public function testArrayParserInvalidClass()
+    {
+        $parser = new StreamingParser(__DIR__ . '/fixtures/mixed.xml');
+        $parser->parseToArray(['FOOBAR' => stdClass::class]);
+    }
+
     public function testParserValidate()
     {
         $this->assertTrue((new StreamingParser(__DIR__ . '/fixtures/products.xml'))->validate());
@@ -67,7 +88,7 @@ class StreamingParserTest extends TestCase
         $this->assertEmpty(iterator_to_array($parser->parse(VariationNodeParser::class)));
     }
 
-    public function testMixedParser()
+    public function testArrayParser()
     {
         $parser  = new StreamingParser(__DIR__ . '/fixtures/mixed.xml');
         $results = $parser->parseToArray([
