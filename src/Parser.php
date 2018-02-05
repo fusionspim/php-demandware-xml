@@ -103,11 +103,12 @@ class Parser
 
     public function parseToArray(array $classes, array $groupedByKey = []): array
     {
+        $this->parsed = [];
+
         foreach ($classes as $index => $class) {
             $this->validateNodeParserClass($class);
+            $this->parsed[$index] = [];
         }
-
-        $this->parsed = [];
 
         $reader = new XMLReader;
         $reader->open($this->file);
