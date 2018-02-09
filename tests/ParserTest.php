@@ -52,7 +52,7 @@ class ParserTest extends TestCase
     }
 
     /**
-     * @expectedException        \DemandwareXML\XmlException
+     * @expectedException        \InvalidArgumentException
      * @expectedExceptionMessage Node parser class "stdClass" must implement DemandwareXml\Parser\NodeParserInterface
      */
     public function testParserInvalidClass()
@@ -62,7 +62,7 @@ class ParserTest extends TestCase
     }
 
     /**
-     * @expectedException        \DemandwareXML\XmlException
+     * @expectedException        \InvalidArgumentException
      * @expectedExceptionMessage Node parser class "stdClass" must implement DemandwareXml\Parser\NodeParserInterface
      */
     public function testArrayParserInvalidClass()

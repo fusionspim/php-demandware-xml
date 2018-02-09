@@ -3,6 +3,7 @@ namespace DemandwareXml;
 
 use DemandwareXml\Parser\NodeParserInterface;
 use Generator;
+use InvalidArgumentException;
 use XMLReader;
 
 class Parser
@@ -78,7 +79,7 @@ class Parser
     protected function validateNodeParserClass(string $class)
     {
         if (! is_subclass_of($class, NodeParserInterface::class)) {
-            throw new XmlException('Node parser class "' . $class . '" must implement ' . NodeParserInterface::class);
+            throw new InvalidArgumentException('Node parser class "' . $class . '" must implement ' . NodeParserInterface::class);
         }
     }
 
