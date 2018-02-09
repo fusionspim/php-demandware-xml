@@ -7,6 +7,6 @@ class BundleSimpleNodeParser extends BundleNodeParser implements NodeParserInter
 {
     protected function getCommonDetails(SimpleXMLElement $element)
     {
-        return $this->commonDetails($element, $skipAttributes = true);
+        return $this->commonDetails($element, true);
     }
 }

@@ -7,6 +7,6 @@ class VariationSimpleNodeParser extends VariationNodeParser implements NodeParse
 {
     protected function getCommonDetails(SimpleXMLElement $element)
     {
-        return $this->commonDetails($element, $skipAttributes = true);
+        return $this->commonDetails($element, true);
     }
 }

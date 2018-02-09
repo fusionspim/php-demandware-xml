@@ -7,6 +7,6 @@ class CategorySimpleNodeParser extends CategoryNodeParser implements NodeParserI
 {
     protected function getCommonDetails(SimpleXMLElement $element)
     {
-        return $this->commonDetails($element, $skipAttributes = true);
+        return $this->commonDetails($element, true);
     }
 }

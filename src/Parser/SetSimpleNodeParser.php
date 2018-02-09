@@ -7,6 +7,6 @@ class SetSimpleNodeParser extends SetNodeParser implements NodeParserInterface
 {
     protected function getCommonDetails(SimpleXMLElement $element)
     {
-        return $this->commonDetails($element, $skipAttributes = true);
+        return $this->commonDetails($element, true);
     }
 }
