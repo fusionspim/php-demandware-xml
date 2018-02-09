@@ -30,7 +30,7 @@ class CategoryNodeParser implements NodeParserInterface
         $element = new SimpleXMLElement($this->reader->readOuterXml());
 
         return [
-            'id'   => (string)$element['category-id'],
+            'id'   => (string) $element['category-id'],
             'data' => $this->getCommonDetails($element),
         ];
     }
