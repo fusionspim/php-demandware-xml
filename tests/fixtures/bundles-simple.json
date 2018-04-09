@@ -6,14 +6,14 @@
         "name": "Bundle number 123",
         "online": true,
         "searchable": false,
+        "sitemap-changefrequency": "weekly",
+        "sitemap-included-flag": "true",
+        "sitemap-priority": "0.5",
         "start": "2015-01-23T01:23:45",
-        "tax": 20,
+        "tax": 20.0,
         "variations": {
             "SKU0000001": 10,
             "SKU0000002": 20
-        },
-        "sitemap-changefrequency": "weekly",
-        "sitemap-included-flag": "true",
-        "sitemap-priority": "0.5"
+        }
     }
 }

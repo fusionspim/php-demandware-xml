@@ -98,9 +98,9 @@ class ParserTest extends TestCase
         ], ['assignments']);
 
         $this->assertCount(3, $results);
-        $this->assertEquals($this->loadJsonFixture('mixed-products.json'), $results['products']);
-        $this->assertEquals($this->loadJsonFixture('mixed-categories.json'), $results['categories']);
-        $this->assertEquals($this->loadJsonFixture('mixed-assignments.json'), $results['assignments']);
+        $this->assertSame($this->loadJsonFixture('mixed-products.json'), $results['products']);
+        $this->assertSame($this->loadJsonFixture('mixed-categories.json'), $results['categories']);
+        $this->assertSame($this->loadJsonFixture('mixed-assignments.json'), $results['assignments']);
     }
 
     public function testAssignmentsParser()
@@ -113,7 +113,7 @@ class ParserTest extends TestCase
             $assignments[$productId][] = $assignment;
         }
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->loadJsonFixture('assignments.json'),
             $assignments
         );
@@ -123,7 +123,7 @@ class ParserTest extends TestCase
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->loadJsonFixture('bundles.json'),
             iterator_to_array($parser->parse(BundleNodeParser::class))
         );
@@ -133,7 +133,7 @@ class ParserTest extends TestCase
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->loadJsonFixture('bundles-simple.json'),
             iterator_to_array($parser->parse(BundleSimpleNodeParser::class))
         );
@@ -143,7 +143,7 @@ class ParserTest extends TestCase
     {
         $parser = new Parser(__DIR__ . '/fixtures/categories.xml');
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->loadJsonFixture('categories.json'),
             iterator_to_array($parser->parse(CategoryNodeParser::class))
         );
@@ -153,7 +153,7 @@ class ParserTest extends TestCase
     {
         $parser = new Parser(__DIR__ . '/fixtures/categories.xml');
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->loadJsonFixture('categories-simple.json'),
             iterator_to_array($parser->parse(CategorySimpleNodeParser::class))
         );
@@ -163,7 +163,7 @@ class ParserTest extends TestCase
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->loadJsonFixture('products.json'),
             iterator_to_array($parser->parse(ProductNodeParser::class))
         );
@@ -173,7 +173,7 @@ class ParserTest extends TestCase
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->loadJsonFixture('products-simple.json'),
             iterator_to_array($parser->parse(ProductSimpleNodeParser::class))
         );
@@ -183,7 +183,7 @@ class ParserTest extends TestCase
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->loadJsonFixture('sets.json'),
             iterator_to_array($parser->parse(SetNodeParser::class))
         );
@@ -193,7 +193,7 @@ class ParserTest extends TestCase
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->loadJsonFixture('sets-simple.json'),
             iterator_to_array($parser->parse(SetSimpleNodeParser::class))
         );
@@ -203,7 +203,7 @@ class ParserTest extends TestCase
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->loadJsonFixture('variations.json'),
             iterator_to_array($parser->parse(VariationNodeParser::class))
         );
@@ -213,7 +213,7 @@ class ParserTest extends TestCase
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->loadJsonFixture('variations-simple.json'),
             iterator_to_array($parser->parse(VariationSimpleNodeParser::class))
         );

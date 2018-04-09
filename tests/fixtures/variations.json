@@ -25,9 +25,9 @@
             "url": "http:\/\/example.com\/variation\/123"
         },
         "searchable": false,
-        "start": "2015-01-23T01:23:45",
         "sitemap-changefrequency": "weekly",
         "sitemap-included-flag": "true",
-        "sitemap-priority": "0.5"
+        "sitemap-priority": "0.5",
+        "start": "2015-01-23T01:23:45"
     }
 }
