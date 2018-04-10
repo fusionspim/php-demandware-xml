@@ -11,7 +11,7 @@ class XmlTest extends TestCase
      */
     public function testEscape($unescaped, string $escaped)
     {
-        $this->assertEquals($escaped, Xml::escape($unescaped));
+        $this->assertSame($escaped, Xml::escape($unescaped));
     }
 
     public function escapeDataProvider()
@@ -30,7 +30,7 @@ class XmlTest extends TestCase
     {
         $invalidChar = chr(30); // Record Separator.
 
-        $this->assertEquals('Foo Bar', Xml::sanitise('Foo' . $invalidChar . 'Bar'));
+        $this->assertSame('Foo Bar', Xml::sanitise('Foo' . $invalidChar . 'Bar'));
     }
 
     public function testValidateXml()

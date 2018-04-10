@@ -26,14 +26,14 @@
             "url": "http:\/\/example.com\/product\/123"
         },
         "searchable": false,
+        "sitemap-changefrequency": "weekly",
+        "sitemap-included-flag": "true",
+        "sitemap-priority": "1.0",
         "start": "2015-01-23T01:23:45",
         "variations": {
             "SKU0000001": false,
             "SKU0000002": false,
             "SKU0000003": true
-        },
-        "sitemap-changefrequency": "weekly",
-        "sitemap-included-flag": "true",
-        "sitemap-priority": "1.0"
+        }
     }
 }

@@ -6,13 +6,13 @@
         "name": "Set number 123",
         "online": true,
         "searchable": false,
+        "sitemap-changefrequency": "weekly",
+        "sitemap-included-flag": "true",
+        "sitemap-priority": "0.5",
         "start": "2015-01-23T01:23:45",
         "products": [
             "PRODUCT123",
             "PRODUCT456"
-        ],
-        "sitemap-changefrequency": "weekly",
-        "sitemap-included-flag": "true",
-        "sitemap-priority": "0.5"
+        ]
     }
 }
