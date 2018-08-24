@@ -66,4 +66,22 @@ class CategoriesTest extends TestCase
 
         $this->assertEqualXMLStructure($sampleXml->firstChild, $outputXml->firstChild);
     }
+
+    public function testCategoriesDeletedXml()
+    {
+        $document = new Document('TestCatalog');
+
+        $element = new Category('CAT123');
+        $element->setDeleted();
+        $document->addObject($element);
+
+        $element = new Category('CAT456');
+        $element->setDeleted();
+        $document->addObject($element);
+
+        $sampleXml = $this->loadFixture('category-deleted.xml');
+        $outputXml = $document->getDomDocument()->saveXML();
+
+        $this->assertXmlStringEqualsXmlString($sampleXml, $outputXml);
+    }
 }

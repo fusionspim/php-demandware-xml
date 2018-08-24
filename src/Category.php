@@ -20,4 +20,12 @@ class Category extends Base
     {
         $this->elements['parent'] = $value;
     }
+
+    /**
+     * Sets the `mode` attribute to "delete"
+     */
+    public function setDeleted()
+    {
+        $this->attributes['mode'] = 'delete';
+    }
 }
