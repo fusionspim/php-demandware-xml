@@ -8,19 +8,17 @@ class Xml
     /**
      * Escapes the value suitable for inclusion in XML and converts booleans to 'true'/'false' strings.
      * Accepts text and unencoded HTML (which will be encoded as UTF-8 entities).
-     *
-     * @param mixed $value
      */
     public static function escape($value): string
     {
         if (is_bool($value)) {
             return ($value ? 'true' : 'false');
-        } else {
-            $value = htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8', false);
-            $value = static::sanitise($value);
-
-            return $value;
         }
+
+        $value = htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8', false);
+        $value = static::sanitise($value);
+
+        return $value;
     }
 
     /**
@@ -58,7 +56,7 @@ class Xml
 
         libxml_use_internal_errors(true);
 
-        set_error_handler(function ($errno, $errstr, $errfile, $errline, $errcontext) {
+        set_error_handler(function ($errno, $errstr, $errfile, $errline, $errcontext): void {
             throw new XmlException($errstr, $errno);
         });
 

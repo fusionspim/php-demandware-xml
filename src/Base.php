@@ -10,7 +10,7 @@ abstract class Base
     /**
      * Populates the name of the product/set/bundle/category for the <display-name xml:lang="x-default"> element
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->elements['display-name'] = $name;
     }
@@ -19,7 +19,7 @@ abstract class Base
      * Populates flag elements - only `$online` is required.
      * $available is deprecated according to the XSD, but used so we support it
      */
-    public function setFlags(bool $online, bool $searchable = null, bool $available = null, bool $both = null)
+    public function setFlags(bool $online, bool $searchable = null, bool $available = null, bool $both = null): void
     {
         $this->elements['online-flag'] = $online;
 
@@ -39,7 +39,7 @@ abstract class Base
     /**
      * Populates <online-from> and <online-to> dates in Demandware format, if provided
      */
-    public function setDates(string $from = null, string $to = null)
+    public function setDates(string $from = null, string $to = null): void
     {
         if (! $this->isEmptyDate($from)) {
             $this->elements['online-from'] = str_replace(' ', 'T', $from);
@@ -52,7 +52,7 @@ abstract class Base
 
     private function isEmptyDate(string $value = null): bool
     {
-        return empty($value) || '0000-00-00' === substr($value, 0, 10);
+        return empty($value) || '0000-00-00' === mb_substr($value, 0, 10);
     }
 
     /**
@@ -61,7 +61,7 @@ abstract class Base
      *
      * @throws XmlException
      */
-    public function setSitemap(float $priority = null, bool $included = true, string $frequency = 'weekly')
+    public function setSitemap(float $priority = null, bool $included = true, string $frequency = 'weekly'): void
     {
         if ($priority > 1) {
             throw new XmlException('Sitemap priority must be 1.0 or less');
@@ -83,7 +83,7 @@ abstract class Base
     /**
      * Populates <page-attributes> child elements, all of which will be given a `xml:lang="x-default"` attribute
      */
-    public function setPageAttributes(string $title = null, string $description = null, string $keywords = null, string $url = null)
+    public function setPageAttributes(string $title = null, string $description = null, string $keywords = null, string $url = null): void
     {
         $elements = [
             'page-title'       => $title,
@@ -104,7 +104,7 @@ abstract class Base
     /**
      * Populates the <template> element used for categories and sets
      */
-    public function setTemplate(string $value)
+    public function setTemplate(string $value): void
     {
         $this->elements['template'] = $value;
     }
@@ -114,7 +114,7 @@ abstract class Base
      * Values can be empty and still exported, however attributes with null values aren't exported
      * Attributes are exported sorted alphabetically by id for consistency and ease of diffing exports...
      */
-    public function setCustomAttributes(array $map)
+    public function setCustomAttributes(array $map): void
     {
         ksort($map);
 
@@ -150,9 +150,6 @@ abstract class Base
         return $this->attributes;
     }
 
-    /**
-     * @return mixed
-     */
     public function getElement()
     {
         return $this->element;

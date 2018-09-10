@@ -17,7 +17,7 @@ class Product extends Base
     /**
      * Sets the `mode` attribute to "delete"
      */
-    public function setDeleted()
+    public function setDeleted(): void
     {
         $this->attributes['mode'] = 'delete';
     }
@@ -25,7 +25,7 @@ class Product extends Base
     /**
      * Populates the <upc> element
      */
-    public function setUpc(string $value)
+    public function setUpc(string $value): void
     {
         $this->elements['upc'] = $value;
     }
@@ -33,7 +33,7 @@ class Product extends Base
     /**
      * Populates the <brand> element
      */
-    public function setBrand(string $value)
+    public function setBrand(string $value): void
     {
         $this->elements['brand'] = $value;
     }
@@ -43,7 +43,7 @@ class Product extends Base
      * Accepts text and unencoded HTML (which will be encoded as UTF-8 entities).
      * @todo: Allow elements to be defined as raw or not and remove this hack.
      */
-    public function setDescription(string $value, bool $raw = false)
+    public function setDescription(string $value, bool $raw = false): void
     {
         $this->elements['long-description'] = [
             'value' => $value,
@@ -54,7 +54,7 @@ class Product extends Base
     /**
      * Populates the <search-rank> element, defaulting to "3"
      */
-    public function setRank(int $value = 3)
+    public function setRank(int $value = 3): void
     {
         $this->elements['search-rank'] = $value;
     }
@@ -62,7 +62,7 @@ class Product extends Base
     /**
      * Populates the <min-order-quantity> and <step-quantity> elements, both defaulting to "1"
      */
-    public function setQuantities(int $minOrder = 1, int $step = 1)
+    public function setQuantities(int $minOrder = 1, int $step = 1): void
     {
         $this->elements['min-order-quantity'] = $minOrder;
         $this->elements['step-quantity']      = $step;
@@ -71,7 +71,7 @@ class Product extends Base
     /**
      * Populates the <classification-category> element with category id $value, and a `classification-category` attribute
      */
-    public function setClassification(string $value, string $catalogId)
+    public function setClassification(string $value, string $catalogId): void
     {
         // hack to later set the `catalog-id="$catalogId"` attribute within `createElement()`
         $this->catalog = $catalogId;
@@ -87,7 +87,7 @@ class Product extends Base
     /**
      * Tax class in Demandware format, nn.dd as TAX_nn_dd - may only applies to bundles?
      */
-    public function setTax(string $value)
+    public function setTax(string $value): void
     {
         if (is_null($value)) {
             return;
@@ -112,7 +112,7 @@ class Product extends Base
     /**
      * Only applies to complex products (aka Master Variants)
      */
-    public function setSharedAttributes(array $ids = [])
+    public function setSharedAttributes(array $ids = []): void
     {
         $xml = '';
 
@@ -131,7 +131,7 @@ class Product extends Base
     /**
      * Only applies to complex products (aka Master Variants)
      */
-    public function setVariants(array $variants = [])
+    public function setVariants(array $variants = []): void
     {
         $xml = '';
 
@@ -147,7 +147,7 @@ class Product extends Base
     /**
      * @todo: eliminate! hack for now that groups attributes and variants elements into variations once both available
      */
-    private function addVariations()
+    private function addVariations(): void
     {
         if (! isset($this->elements['attributes']) || ! isset($this->elements['variants'])) {
             return;
@@ -165,7 +165,7 @@ class Product extends Base
     /**
      * Only applies to Bundles
      */
-    public function setProductQuantities(array $variations = [])
+    public function setProductQuantities(array $variations = []): void
     {
         $xml = '';
 
@@ -181,7 +181,7 @@ class Product extends Base
     /**
      * Only applies to Sets
      */
-    public function setProducts(array $products = [])
+    public function setProducts(array $products = []): void
     {
         $xml = '';
 
@@ -192,7 +192,7 @@ class Product extends Base
         $this->elements['product-set-products'] = $xml;
     }
 
-    public function setImages(string $path, string $viewType = 'large')
+    public function setImages(string $path, string $viewType = 'large'): void
     {
         $xml  = '<image-group view-type="' . Xml::escape($viewType) . '">' . PHP_EOL;
         $xml .= '<image path="' . Xml::escape($path) . '" />' . PHP_EOL;
