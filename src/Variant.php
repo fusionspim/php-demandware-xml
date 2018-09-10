@@ -16,7 +16,7 @@ class Variant extends Base
     /**
      * Populates <variation-attribute-values> child elements, from a mapping of attribute values to names
      */
-    public function addTags(array $map = [])
+    public function addTags(array $map = []): void
     {
         $xml = '';
 

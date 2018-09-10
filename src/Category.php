@@ -16,7 +16,7 @@ class Category extends Base
     /**
      * Relates to another category id
      */
-    public function setParent(string $value)
+    public function setParent(string $value): void
     {
         $this->elements['parent'] = $value;
     }
@@ -24,7 +24,7 @@ class Category extends Base
     /**
      * Sets the `mode` attribute to "delete"
      */
-    public function setDeleted()
+    public function setDeleted(): void
     {
         $this->attributes['mode'] = 'delete';
     }

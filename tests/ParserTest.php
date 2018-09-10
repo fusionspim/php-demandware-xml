@@ -28,7 +28,7 @@ class ParserTest extends TestCase
      * @expectedException              \DemandwareXml\XmlException
      * @expectedExceptionMessageRegExp /Fatal: xmlParseEntityRef: no name in invalid-products.xml/
      */
-    public function testParserValidateInvalidXml()
+    public function testParserValidateInvalidXml(): void
     {
         (new Parser(__DIR__ . '/fixtures/invalid-products.xml'))->validate();
     }
@@ -37,7 +37,7 @@ class ParserTest extends TestCase
      * @expectedException              \DemandwareXml\XmlException
      * @expectedExceptionMessageRegExp /Error: Element '{.*}upc': This element is not expected. Expected is one of \( {.*}step-quantity, {.*}display-name, {.*}short-description, {.*}long-description, {.*}store-receipt-name, {.*}store-tax-class, {.*}store-force-price-flag, {.*}store-non-inventory-flag, {.*}store-non-revenue-flag, {.*}store-non-discountable-flag \). in invalid-schema-products.xml/
      */
-    public function testParserValidateInvalidSchemaXml()
+    public function testParserValidateInvalidSchemaXml(): void
     {
         (new Parser(__DIR__ . '/fixtures/invalid-schema-products.xml'))->validate();
     }
@@ -46,7 +46,7 @@ class ParserTest extends TestCase
      * @expectedException        \DemandwareXml\XMLException
      * @expectedExceptionMessage XML file does not exist: fake-products.xml
      */
-    public function testParserValidateFileDoesNotExist()
+    public function testParserValidateFileDoesNotExist(): void
     {
         (new Parser(__DIR__ . '/fixtures/fake-products.xml'))->validate();
     }
@@ -55,7 +55,7 @@ class ParserTest extends TestCase
      * @expectedException        \InvalidArgumentException
      * @expectedExceptionMessage Node parser class "stdClass" must implement DemandwareXml\Parser\NodeParserInterface
      */
-    public function testParserInvalidClass()
+    public function testParserInvalidClass(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/mixed.xml');
         $parser->parse(stdClass::class)->next();
@@ -65,18 +65,18 @@ class ParserTest extends TestCase
      * @expectedException        \InvalidArgumentException
      * @expectedExceptionMessage Node parser class "stdClass" must implement DemandwareXml\Parser\NodeParserInterface
      */
-    public function testArrayParserInvalidClass()
+    public function testArrayParserInvalidClass(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/mixed.xml');
         $parser->parseToArray(['FOOBAR' => stdClass::class]);
     }
 
-    public function testParserValidate()
+    public function testParserValidate(): void
     {
         $this->assertTrue((new Parser(__DIR__ . '/fixtures/products.xml'))->validate());
     }
 
-    public function testEmptyParser()
+    public function testEmptyParser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/empty.xml');
 
@@ -88,7 +88,7 @@ class ParserTest extends TestCase
         $this->assertEmpty(iterator_to_array($parser->parse(VariationNodeParser::class)));
     }
 
-    public function testArrayParser()
+    public function testArrayParser(): void
     {
         $parser  = new Parser(__DIR__ . '/fixtures/mixed.xml');
         $results = $parser->parseToArray([
@@ -103,7 +103,7 @@ class ParserTest extends TestCase
         $this->assertSame($this->loadJsonFixture('mixed-assignments.json'), $results['assignments']);
     }
 
-    public function testAssignmentsParser()
+    public function testAssignmentsParser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/assignments.xml');
 
@@ -119,7 +119,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testBundlesParser()
+    public function testBundlesParser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -129,7 +129,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testSimpleBundlesParser()
+    public function testSimpleBundlesParser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -139,7 +139,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testCategoriesParser()
+    public function testCategoriesParser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/categories.xml');
 
@@ -149,7 +149,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testSimpleCategoriesParser()
+    public function testSimpleCategoriesParser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/categories.xml');
 
@@ -159,7 +159,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testProductsParser()
+    public function testProductsParser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -169,7 +169,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testSimpleProductsParser()
+    public function testSimpleProductsParser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -179,7 +179,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testSetsParser()
+    public function testSetsParser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -189,7 +189,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testSimpleSetsParser()
+    public function testSimpleSetsParser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -199,7 +199,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testVariationsParser()
+    public function testVariationsParser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -209,7 +209,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testSimpleVariationsParser()
+    public function testSimpleVariationsParser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 

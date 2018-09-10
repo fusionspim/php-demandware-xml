@@ -8,7 +8,7 @@ class CategoriesTest extends TestCase
 {
     use FixtureHelper;
 
-    public function testCategoriesXml()
+    public function testCategoriesXml(): void
     {
         $document = new Document('TestCatalog');
 
@@ -19,7 +19,7 @@ class CategoriesTest extends TestCase
             $element->setTemplate('cat-listings.html');
             $element->setFlags(true);
             $element->setSitemap(0.2);
-            $element->setPageAttributes($example, 'Buy ' . $example, strtolower($example), '/' . $example);
+            $element->setPageAttributes($example, 'Buy ' . $example, mb_strtolower($example), '/' . $example);
             $element->setDates('2018-01-01 01:01:01', '2018-02-02 02:02:02');
             $element->setCustomAttributes([
                 'itemsPerPage' => 30,
@@ -35,7 +35,7 @@ class CategoriesTest extends TestCase
         $this->assertEqualXMLStructure($sampleXml->firstChild, $outputXml->firstChild);
     }
 
-    public function testAssignmentsXml()
+    public function testAssignmentsXml(): void
     {
         $document = new Document('TestCatalog');
 
@@ -67,7 +67,7 @@ class CategoriesTest extends TestCase
         $this->assertEqualXMLStructure($sampleXml->firstChild, $outputXml->firstChild);
     }
 
-    public function testCategoriesDeletedXml()
+    public function testCategoriesDeletedXml(): void
     {
         $document = new Document('TestCatalog');
 

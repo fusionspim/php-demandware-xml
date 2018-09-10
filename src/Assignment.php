@@ -17,7 +17,7 @@ class Assignment extends Base
     /**
      * Sets the `mode` attribute to "delete"
      */
-    public function setDeleted()
+    public function setDeleted(): void
     {
         $this->attributes['mode'] = 'delete';
     }
@@ -25,7 +25,7 @@ class Assignment extends Base
     /**
      * Adds a <primary-flag> element with true/false value
      */
-    public function setPrimary(bool $primary)
+    public function setPrimary(bool $primary): void
     {
         $this->elements['primary-flag'] = $primary;
     }

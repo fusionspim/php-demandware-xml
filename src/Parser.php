@@ -27,7 +27,7 @@ class Parser
         $previousErrors = libxml_use_internal_errors(true);
         libxml_clear_errors();
 
-        set_error_handler(function (int $severity, string $message, string $file, int $line) {
+        set_error_handler(function (int $severity, string $message, string $file, int $line): void {
             throw new XmlException($message . ' in ' . basename($file) . ' on line ' . $line, $severity);
         });
 
@@ -76,7 +76,7 @@ class Parser
         return new XmlException($level . ': ' . trim($error->message) . ' in ' . basename($error->file) . ' on line ' . $error->line . ' column ' . $error->column, $error->code);
     }
 
-    protected function validateNodeParserClass(string $class)
+    protected function validateNodeParserClass(string $class): void
     {
         if (! is_subclass_of($class, NodeParserInterface::class)) {
             throw new InvalidArgumentException('Node parser class "' . $class . '" must implement ' . NodeParserInterface::class);
@@ -95,6 +95,7 @@ class Parser
 
             if ($nodeParser->isMatch()) {
                 ['id' => $id, 'data' => $data] = $nodeParser->parse();
+
                 yield $id => $data;
             }
         }

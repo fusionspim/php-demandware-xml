@@ -34,7 +34,7 @@ trait CommonDetailsNodeParserTrait
         foreach ($map as $name => $source) {
             $cleansed = html_entity_decode(trim((string) $element->{$source}));
 
-            if (strlen($cleansed) > 0) {
+            if (mb_strlen($cleansed) > 0) {
                 $details[$name] = $cleansed;
             }
         }
@@ -95,7 +95,7 @@ trait CommonDetailsNodeParserTrait
         foreach (['title', 'description', 'keywords', 'url'] as $part) {
             $value = html_entity_decode(trim((string) $element->{'page-attributes'}->{'page-' . $part}));
 
-            if (strlen($value) > 0) {
+            if (mb_strlen($value) > 0) {
                 $attributes[$part] = $value;
             }
         }

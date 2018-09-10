@@ -1,7 +1,6 @@
 <?php
 namespace DemandwareXml\Test;
 
-use DemandwareXml\Test\FixtureHelper;
 use DemandwareXml\{Document, Product};
 use PHPUnit\Framework\TestCase;
 
@@ -9,7 +8,7 @@ class ProductsTest extends TestCase
 {
     use FixtureHelper;
 
-    public function testProductsXml()
+    public function testProductsXml(): void
     {
         $this->assertXmlStringEqualsXmlString(
             $this->loadFixture('products.xml'),
@@ -17,12 +16,12 @@ class ProductsTest extends TestCase
         );
     }
 
-    public function testProductsSaveXml()
+    public function testProductsSaveXml(): void
     {
         $this->assertTrue($this->buildDocument()->save(__DIR__ . '/output/products.xml'));
     }
 
-    public function testProductsDeletedXml()
+    public function testProductsDeletedXml(): void
     {
         $document = new Document('TestCatalog');
 
@@ -44,7 +43,7 @@ class ProductsTest extends TestCase
      * @expectedException               \DemandwareXml\XmlException
      * @expectedExceptionMessageRegExp  /Entity 'bull' not defined/
      */
-    public function testProductsInvalidEntitiesException()
+    public function testProductsInvalidEntitiesException(): void
     {
         $document = new Document('TestCatalog');
 
@@ -59,7 +58,7 @@ class ProductsTest extends TestCase
      * @expectedException        \DemandwareXml\XmlException
      * @expectedExceptionMessag  Unable to create product node containing invalid XML (variation123)
      */
-    public function testProductsInvalidAddObjectException()
+    public function testProductsInvalidAddObjectException(): void
     {
         $document = new Document('TestCatalog');
 
@@ -76,7 +75,7 @@ class ProductsTest extends TestCase
      * @expectedException       \DemandwareXml\XmlException
      * @expectedExceptionMessage Sitemap priority must be 1.0 or less
      */
-    public function testInvalidSitemapPriority()
+    public function testInvalidSitemapPriority(): void
     {
         $element = new Product('PRODUCT123');
         $element->setSitemap(42.5);
@@ -97,9 +96,9 @@ class ProductsTest extends TestCase
     {
         $invalidChar = chr(30); // Record Separator.
 
-        $element = new Product(strtoupper($type) . '123');
+        $element = new Product(mb_strtoupper($type) . '123');
         $element->setName($type . ' number 123');
-        $element->setDescription('<b>' . $type . '</b> The description for an <i>example</i> ' . strtolower($type) . '! • Bullet' . $invalidChar . 'Point', true);
+        $element->setDescription('<b>' . $type . '</b> The description for an <i>example</i> ' . mb_strtolower($type) . '! • Bullet' . $invalidChar . 'Point', true);
         $element->setUpc('50000000000' . $number);
         $element->setQuantities(); // include, but use defaults
         $element->setRank(1);
@@ -111,19 +110,19 @@ class ProductsTest extends TestCase
             'Amazing ' . $type,
             'Buy our ' . $type . ' today!',
             $type . ', test, example',
-            'http://example.com/' . strtolower($type) . '/123'
+            'http://example.com/' . mb_strtolower($type) . '/123'
         );
 
         $element->setCustomAttributes([
             'type'         => 'Examples',
             'zzz'          => 'Should be exported last within custom-attributes',
-            'primaryImage' => strtolower($type) . '-123.png',
+            'primaryImage' => mb_strtolower($type) . '-123.png',
             'multiWow'     => ['so', 'such', 'many', 'much', 'very'],
             'boolTrue'     => true,
             'boolFalse'    => false,
         ]);
 
-        $element->setImages(strtolower($type) . '-123.png');
+        $element->setImages(mb_strtolower($type) . '-123.png');
 
         return $element;
     }

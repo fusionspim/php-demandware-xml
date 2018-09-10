@@ -61,7 +61,7 @@ class Document
      *
      * @throws XmlException
      */
-    public function addObject(Base $object)
+    public function addObject(Base $object): void
     {
         try {
             $root = $this->createElement($object->getElement());
@@ -103,9 +103,9 @@ class Document
         }
     }
 
-    private function addAttribute(DOMElement $node, string $name, string $value)
+    private function addAttribute(DOMElement $node, string $name, string $value): void
     {
-        $attribute = $this->dom->createAttribute($name);
+        $attribute        = $this->dom->createAttribute($name);
         $attribute->value = Xml::escape($value);
 
         $node->appendChild($attribute);
@@ -115,7 +115,7 @@ class Document
     {
         if (is_null($value)) {
             $element = $this->dom->createElement($name);
-        } elseif ('long-description' !== $name && strlen($value) > 0 && '<' === $value[0]) {
+        } elseif ('long-description' !== $name && mb_strlen($value) > 0 && '<' === $value[0]) {
             // Skip long descriptions as they should always be inserted as elements and escaped.
             // This is terrible, but if first char looks like it's XML then just append the fragment.
             // This is to append pre-built XML from objects.
@@ -132,7 +132,7 @@ class Document
     /**
      * Build the DOMDocument object by appending the root element to it.
      */
-    private function build()
+    private function build(): void
     {
         $this->dom->appendChild($this->root);
     }
