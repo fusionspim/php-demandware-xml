@@ -79,6 +79,7 @@ class ProductSerializer implements SerializerInterface
             return;
         }
 
+        $this->writer->startElement('images');
         $this->writer->startElement('image-group');
         $this->writer->writeAttribute('view-type', 'large');
 
@@ -86,6 +87,7 @@ class ProductSerializer implements SerializerInterface
             $this->writer->ifNotEmpty()->writeEmptyElementWithAttributes('image', ['path' => $image]);
         }
 
+        $this->writer->endElement();
         $this->writer->endElement();
     }
 
