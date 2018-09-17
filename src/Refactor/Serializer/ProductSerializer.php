@@ -35,7 +35,7 @@ class ProductSerializer implements SerializerInterface
         $this->writeImages();
         $this->writer->ifNotEmpty()->writeElement('brand', $this->product->brand);
         $this->writer->ifNotEmpty()->writeElement('sitemap-included-flag', Formatter::asBoolean($this->product->sitemapIncludedFlag));
-        $this->writer->ifNotEmpty()->writeElement('sitemap-change-frequency', $this->product->sitemapChangeFrequency);
+        $this->writer->ifNotEmpty()->writeElement('sitemap-changefrequency', $this->product->sitemapChangeFrequency);
         $this->writer->ifNotEmpty()->writeElement('sitemap-priority', $this->product->sitemapPriority);
         $this->writePageAttributes();
         $this->writeCustomAttributes();
