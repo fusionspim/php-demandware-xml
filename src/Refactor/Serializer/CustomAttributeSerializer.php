@@ -41,6 +41,7 @@ class CustomAttributeSerializer implements SerializerInterface
         }
 
         $this->writer->startElement('custom-attribute');
+        $this->writer->writeAttribute('attribute-id', $this->customAttribute->id);
 
         foreach ($values as $value) {
             $this->writer->writeElement('value', Formatter::fromType($value));
