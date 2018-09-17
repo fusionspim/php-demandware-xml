@@ -31,8 +31,8 @@ class ProductSerializer implements SerializerInterface
         $this->writer->ifNotEmpty()->writeElement('available-flag', Formatter::asBoolean($this->product->availableFlag));
         $this->writer->ifNotEmpty()->writeElement('searchable-flag', Formatter::asBoolean($this->product->searchableFlag));
         $this->writer->ifNotEmpty()->writeElement('searchable-if-unavailable-flag', Formatter::asBoolean($this->product->searchableIfUnavailableFlag));
-        $this->writeTax();
         $this->writeImages();
+        $this->writeTax();
         $this->writer->ifNotEmpty()->writeElement('brand', $this->product->brand);
         $this->writer->ifNotEmpty()->writeElement('sitemap-included-flag', Formatter::asBoolean($this->product->sitemapIncludedFlag));
         $this->writer->ifNotEmpty()->writeElement('sitemap-changefrequency', $this->product->sitemapChangeFrequency);
