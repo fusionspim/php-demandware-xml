@@ -30,7 +30,7 @@ class ProductSerializer implements SerializerInterface
         $this->writer->ifNotEmpty()->writeElement('online-to', Formatter::asDateTime($this->product->onlineTo));
         $this->writer->ifNotEmpty()->writeElement('available-flag', Formatter::asBoolean($this->product->availableFlag));
         $this->writer->ifNotEmpty()->writeElement('searchable-flag', Formatter::asBoolean($this->product->searchableFlag));
-        $this->writer->ifNotEmpty()->writeElement('searchable-if-unavailable', Formatter::asBoolean($this->product->searchableIfUnavailableFlag));
+        $this->writer->ifNotEmpty()->writeElement('searchable-if-unavailable-flag', Formatter::asBoolean($this->product->searchableIfUnavailableFlag));
         $this->writeTax();
         $this->writeImages();
         $this->writer->ifNotEmpty()->writeElement('brand', $this->product->brand);
