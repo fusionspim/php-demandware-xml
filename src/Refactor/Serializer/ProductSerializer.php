@@ -33,7 +33,7 @@ class ProductSerializer implements SerializerInterface
         $this->writer->ifNotEmpty()->writeElement('searchable-if-unavailable-flag', Formatter::asBoolean($this->product->searchableIfUnavailableFlag));
         $this->writeImages();
         $this->writeTax();
-        $this->writer->ifNotEmpty()->writeElement('brand', $this->product->brand);
+        $this->writeBrand();
         $this->writer->ifNotEmpty()->writeElement('sitemap-included-flag', Formatter::asBoolean($this->product->sitemapIncludedFlag));
         $this->writer->ifNotEmpty()->writeElement('sitemap-changefrequency', $this->product->sitemapChangeFrequency);
         $this->writer->ifNotEmpty()->writeElement('sitemap-priority', $this->product->sitemapPriority);
@@ -66,6 +66,15 @@ class ProductSerializer implements SerializerInterface
         }
 
         $this->writer->writeElement('tax-class-id', $value);
+    }
+
+    private function writeBrand()
+    {
+        if (! Formatter::isEmpty($this->product->brand)) {
+            $this->writer->writeElement('brand', $this->product->brand);
+        } else {
+            $this->writer->writeEmptyElement('brand');
+        }
     }
 
     private function writeImages(): void

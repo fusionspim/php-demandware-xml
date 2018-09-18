@@ -63,6 +63,13 @@ class Writer extends XMLWriter
         return true;
     }
 
+    public function writeEmptyElement($name): bool
+    {
+        $this->writeElement($name);
+
+        return true;
+    }
+
     public function writeEmptyElementWithAttributes($name, array $attributes = []): bool
     {
         $this->startElement($name);
