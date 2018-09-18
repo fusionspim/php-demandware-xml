@@ -198,12 +198,18 @@ class ProductSerializer implements SerializerInterface
 
     public function writeClassificationCategory()
     {
-        if (Formatter::isEmpty($this->product->classificationCatalogId) || Formatter::isEmpty($this->product->classificationCategoryId)) {
+        if (Formatter::isEmpty($this->product->classificationCatalogId) && Formatter::isEmpty($this->product->classificationCategoryId)) {
             return;
         }
 
-        $this->writer->writeElementWithAttributes('classification-category', $this->product->classificationCategoryId, [
-            'catalog-id' => $this->product->classificationCatalogId
-        ]);
+        if (! Formatter::isEmpty($this->product->classificationCategoryId)) {
+            $this->writer->writeElementWithAttributes('classification-category', $this->product->classificationCategoryId, [
+                'catalog-id' => $this->product->classificationCatalogId
+            ]);
+        } else {
+            $this->writer->writeEmptyElementWithAttributes('classification-category', [
+                'catalog-id' => $this->product->classificationCatalogId
+            ]);
+        }
     }
 }
