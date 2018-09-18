@@ -19,6 +19,12 @@ class Writer extends XMLWriter
         $this->openUri($filename);
     }
 
+    public function setIndentDefaults()
+    {
+        $this->setIndent(true);
+        $this->setIndentString('  '); // Two spaces.
+    }
+
     public function startCatalog(string $catalogId): void
     {
         $this->startDocument('1.0', 'UTF-8');

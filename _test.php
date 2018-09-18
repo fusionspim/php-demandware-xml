@@ -62,7 +62,7 @@ $writer->entityMap = [
 ];
 //$writer->openMemory();
 $writer->openFile($file);
-$writer->setIndent(true);
+$writer->setIndentDefaults();
 $writer->startCatalog('TestCatalog');
 
 for ($i = 1; $i <= 100000; $i++) {
