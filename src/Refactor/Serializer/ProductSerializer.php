@@ -39,10 +39,7 @@ class ProductSerializer implements SerializerInterface
         $this->writer->ifNotEmpty()->writeElement('sitemap-priority', $this->product->sitemapPriority);
         $this->writePageAttributes();
         $this->writeCustomAttributes();
-        $this->writer->startElement('variations'); // need to check bits in between exist before we render.
-        $this->writeSharedVariationAttributes();
-        $this->writeVariants();
-        $this->writer->endElement();
+        $this->writeVariations();
         $this->writer->writeElementWithAttributes('classification-category', $this->product->classificationCategory, ['catalog-id' => $this->writer->catalogId]);
         $this->writer->endElement();
     }
@@ -113,6 +110,21 @@ class ProductSerializer implements SerializerInterface
             $this->writer->writeEntity($customAttribute);
         }
 
+        $this->writer->endElement();
+    }
+
+    private function writeVariations(): void
+    {
+        $attributes = Formatter::filterEmpty($this->product->sharedVariationAttributes);
+        $variants   = Formatter::filterEmpty($this->product->variants);
+
+        if (count($attributes) === 0 && count($variants) === 0) {
+            return;
+        }
+
+        $this->writer->startElement('variations');
+        $this->writeSharedVariationAttributes();
+        $this->writeVariants();
         $this->writer->endElement();
     }
 
