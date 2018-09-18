@@ -40,7 +40,7 @@ class ProductSerializer implements SerializerInterface
         $this->writePageAttributes();
         $this->writeCustomAttributes();
         $this->writeVariations();
-        $this->writer->writeElementWithAttributes('classification-category', $this->product->classificationCategory, ['catalog-id' => $this->writer->catalogId]);
+        $this->writeClassificationCategory();
         $this->writer->endElement();
     }
 
@@ -90,11 +90,23 @@ class ProductSerializer implements SerializerInterface
 
     private function writePageAttributes(): void
     {
+        $pageAttributes = Formatter::filterEmpty([
+            'page-title'       => $this->product->pageTitle,
+            'page-description' => $this->product->pageDescription,
+            'page-keywords'    => $this->product->pageKeywords,
+            'page-url'         => $this->product->pageUrl,
+        ]);
+
+        if (count($pageAttributes) === 0) {
+            return;
+        }
+
         $this->writer->startElement('page-attributes');
-        $this->writer->ifNotEmpty()->writeElementWithAttributes('page-title', $this->product->pageTitle, ['xml:lang' => 'x-default']);
-        $this->writer->ifNotEmpty()->writeElementWithAttributes('page-description', $this->product->pageDescription, ['xml:lang' => 'x-default']);
-        $this->writer->ifNotEmpty()->writeElementWithAttributes('page-keywords', $this->product->pageKeywords, ['xml:lang' => 'x-default']);
-        $this->writer->ifNotEmpty()->writeElementWithAttributes('page-url', $this->product->pageUrl, ['xml:lang' => 'x-default']);
+
+        foreach ($pageAttributes as $elemName => $elemContent) {
+            $this->writer->ifNotEmpty()->writeElementWithAttributes($elemName, $elemContent, ['xml:lang' => 'x-default']);
+        }
+
         $this->writer->endElement();
     }
 
@@ -164,5 +176,16 @@ class ProductSerializer implements SerializerInterface
         }
 
         $this->writer->endElement();
+    }
+
+    public function writeClassificationCategory()
+    {
+        if (Formatter::isEmpty($this->product->classificationCatalogId) || Formatter::isEmpty($this->product->classificationCategoryId)) {
+            return;
+        }
+
+        $this->writer->writeElementWithAttributes('classification-category', $this->product->classificationCategoryId, [
+            'catalog-id' => $this->product->classificationCatalogId
+        ]);
     }
 }

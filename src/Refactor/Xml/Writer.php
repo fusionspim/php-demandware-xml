@@ -10,7 +10,6 @@ class Writer extends XMLWriter
 {
     const NAMESPACE = 'http://www.demandware.com/xml/impex/catalog/2006-10-31';
 
-    public $catalogId;
     public $entityMap = [];
     private $notEmptyWriter;
 
@@ -22,12 +21,10 @@ class Writer extends XMLWriter
 
     public function startCatalog(string $catalogId): void
     {
-        $this->catalogId = $catalogId;
-
         $this->startDocument('1.0', 'UTF-8');
         $this->startElement('catalog');
         $this->writeAttribute('xmlns', self::NAMESPACE);
-        $this->writeAttribute('catalog-id', $this->catalogId);
+        $this->writeAttribute('catalog-id', $catalogId);
         $this->flush(true);
     }
 

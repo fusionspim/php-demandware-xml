@@ -30,5 +30,6 @@ class Product implements EntityInterface
     public $sharedVariationAttributes = [];
     public $variants = [];
     public $defaultVariant;
-    public $classificationCategory;
+    public $classificationCategoryId;
+    public $classificationCatalogId;
 }

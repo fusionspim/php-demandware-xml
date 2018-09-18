@@ -5,29 +5,30 @@ use DemandwareXml\Refactor\Entity\{CustomAttribute, Product};
 use DemandwareXml\Refactor\Serializer\{CustomAttributeSerializer, ProductSerializer};
 use DemandwareXml\Refactor\Xml\Writer;
 
-$product                         = new Product();
-$product->id                     = 'GEM665896';
-$product->upc                    = '5057796043570';
-$product->minOrderQuantity       = 1;
-$product->stepQuantity           = 1;
-$product->displayName            = 'Pink Polka Dot Wellington Boots';
-$product->longDescription        = 'If they’re simply dotty about the great outdoors, then these welly boots are an essential to help them stay warm and dry. The brightly-coloured spot print makes it fun to brave even the worst of British weather.<br /> • Fully lined<br />Fabric composition: Upper: other materials<br />';
-$product->onlineFlag             = true;
-$product->onlineFrom             = new DateTime('2018-01-01 10:10:10');
-$product->onlineTo               = null;
-$product->searchableFlag         = false;
-$product->images                 = ['5057796043570'];
-$product->brand                  = 'George';
-$product->searchRank             = 1;
-$product->sitemapIncludedFlag    = true;
-$product->sitemapChangeFrequency = 'weekly';
-$product->sitemapPriority        = 1.0;
-$product->pageTitle              = 'Amazing Product';
-$product->pageDescription        = 'Buy our Product today!';
-$product->pageKeywords           = 'Product, test, example';
-$product->pageUrl                = 'http://example.com/product/123';
-$product->classificationCategory = 'CAT123';
-$product->defaultVariant         = 'SKU0000003';
+$product                           = new Product();
+$product->id                       = 'GEM665896';
+$product->upc                      = '5057796043570';
+$product->minOrderQuantity         = 1;
+$product->stepQuantity             = 1;
+$product->displayName              = 'Pink Polka Dot Wellington Boots';
+$product->longDescription          = 'If they’re simply dotty about the great outdoors, then these welly boots are an essential to help them stay warm and dry. The brightly-coloured spot print makes it fun to brave even the worst of British weather.<br /> • Fully lined<br />Fabric composition: Upper: other materials<br />';
+$product->onlineFlag               = true;
+$product->onlineFrom               = new DateTime('2018-01-01 10:10:10');
+$product->onlineTo                 = null;
+$product->searchableFlag           = false;
+$product->images                   = ['5057796043570'];
+$product->brand                    = 'George';
+$product->searchRank               = 1;
+$product->sitemapIncludedFlag      = true;
+$product->sitemapChangeFrequency   = 'weekly';
+$product->sitemapPriority          = 1.0;
+$product->pageTitle                = 'Amazing Product';
+$product->pageDescription          = 'Buy our Product today!';
+$product->pageKeywords             = 'Product, test, example';
+$product->pageUrl                  = 'http://example.com/product/123';
+$product->classificationCatalogId  = 'ExampleCatalog';
+$product->classificationCategoryId = 'CAT123';
+$product->defaultVariant           = 'SKU0000003';
 
 $product->customAttributes = [
     new CustomAttribute('boolFalse', false),
@@ -62,7 +63,7 @@ $writer->entityMap = [
 //$writer->openMemory();
 $writer->openFile($file);
 $writer->setIndent(true);
-$writer->startCatalog('GeorgeCatalog');
+$writer->startCatalog('TestCatalog');
 
 for ($i = 1; $i <= 100000; $i++) {
     $writer->writeEntity($product);
