@@ -90,21 +90,30 @@ class ProductSerializer implements SerializerInterface
 
     private function writePageAttributes(): void
     {
-        $pageAttributes = Formatter::filterEmpty([
-            'page-title'       => $this->product->pageTitle,
-            'page-description' => $this->product->pageDescription,
-            'page-keywords'    => $this->product->pageKeywords,
-            'page-url'         => $this->product->pageUrl,
-        ]);
-
-        if (count($pageAttributes) === 0) {
+        if (
+            Formatter::isEmpty($this->product->pageTitle) &&
+            Formatter::isEmpty($this->product->pageDescription) &&
+            Formatter::isEmpty($this->product->pageKeywords) &&
+            Formatter::isEmpty($this->product->pageUrl)
+        ) {
             return;
         }
 
         $this->writer->startElement('page-attributes');
 
+        $pageAttributes = [
+            'page-title'       => $this->product->pageTitle,
+            'page-description' => $this->product->pageDescription,
+            'page-keywords'    => $this->product->pageKeywords,
+            'page-url'         => $this->product->pageUrl,
+        ];
+
         foreach ($pageAttributes as $elemName => $elemContent) {
-            $this->writer->ifNotEmpty()->writeElementWithAttributes($elemName, $elemContent, ['xml:lang' => 'x-default']);
+            if (! Formatter::isEmpty($elemContent)) {
+                $this->writer->writeElementWithAttributes($elemName, $elemContent, ['xml:lang' => 'x-default']);
+            } else {
+                $this->writer->writeEmptyElementWithAttributes($elemName, ['xml:lang' => 'x-default']);
+            }
         }
 
         $this->writer->endElement();
