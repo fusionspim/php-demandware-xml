@@ -4,25 +4,27 @@ namespace DemandwareXml\Refactor\Xml;
 use DemandwareXml\Refactor\Entity\EntityInterface;
 use DemandwareXml\Refactor\Serializer\SerializerInterface;
 use InvalidArgumentException;
-use XMLWriter;
+use SplFileObject;
+use XMLWriter as PhpXmlWriter;
 
-class Writer extends XMLWriter
+class XmlWriter extends PhpXmlWriter
 {
-    const NAMESPACE = 'http://www.demandware.com/xml/impex/catalog/2006-10-31';
+    const NAMESPACE    = 'http://www.demandware.com/xml/impex/catalog/2006-10-31';
+    const INDENT_SPACE = ' ';
 
     public $entityMap = [];
     private $notEmptyWriter;
 
     public function openFile(string $filename): void
     {
-        fopen($filename, 'w');
+        new SplFileObject($filename, 'w');
         $this->openUri($filename);
     }
 
     public function setIndentDefaults(): void
     {
         $this->setIndent(true);
-        $this->setIndentString('  '); // Two spaces.
+        $this->setIndentString(str_repeat(self::INDENT_SPACE, 2));
     }
 
     public function startCatalog(string $catalogId): void
@@ -31,13 +33,12 @@ class Writer extends XMLWriter
         $this->startElement('catalog');
         $this->writeAttribute('xmlns', self::NAMESPACE);
         $this->writeAttribute('catalog-id', $catalogId);
-        $this->flush(true);
     }
 
     public function endCatalog(): void
     {
         $this->endElement();
-        $this->flush(true);
+        $this->endDocument();
     }
 
     public function ifNotEmpty(): NotEmptyWriter
