@@ -7,6 +7,7 @@ use InvalidArgumentException;
 use SplFileObject;
 use XMLWriter as PhpXmlWriter;
 
+// Enhances XMLWriter with additional functionality and Demandware specific formatting.
 class XmlWriter extends PhpXmlWriter
 {
     const NAMESPACE    = 'http://www.demandware.com/xml/impex/catalog/2006-10-31';
