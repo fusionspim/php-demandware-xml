@@ -44,7 +44,7 @@ class ProductSerializer implements SerializerInterface
         $this->writer->endElement();
     }
 
-    private function writeTax()
+    private function writeTax(): void
     {
         if ($this->product->tax === null) {
             return;
@@ -68,7 +68,7 @@ class ProductSerializer implements SerializerInterface
         $this->writer->writeElement('tax-class-id', $value);
     }
 
-    private function writeBrand()
+    private function writeBrand(): void
     {
         if (! Formatter::isEmpty($this->product->brand)) {
             $this->writer->writeElement('brand', $this->product->brand);
@@ -178,7 +178,7 @@ class ProductSerializer implements SerializerInterface
         $this->writer->endElement();
     }
 
-    private function writeVariants()
+    private function writeVariants(): void
     {
         $variants = Formatter::filterEmpty($this->product->variants);
 
@@ -196,7 +196,7 @@ class ProductSerializer implements SerializerInterface
         $this->writer->endElement();
     }
 
-    public function writeClassificationCategory()
+    public function writeClassificationCategory(): void
     {
         if (Formatter::isEmpty($this->product->classificationCatalogId) && Formatter::isEmpty($this->product->classificationCategoryId)) {
             return;
@@ -204,11 +204,11 @@ class ProductSerializer implements SerializerInterface
 
         if (! Formatter::isEmpty($this->product->classificationCategoryId)) {
             $this->writer->writeElementWithAttributes('classification-category', $this->product->classificationCategoryId, [
-                'catalog-id' => $this->product->classificationCatalogId
+                'catalog-id' => $this->product->classificationCatalogId,
             ]);
         } else {
             $this->writer->writeEmptyElementWithAttributes('classification-category', [
-                'catalog-id' => $this->product->classificationCatalogId
+                'catalog-id' => $this->product->classificationCatalogId,
             ]);
         }
     }

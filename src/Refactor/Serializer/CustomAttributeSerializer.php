@@ -25,22 +25,22 @@ class CustomAttributeSerializer implements SerializerInterface
         }
     }
 
-    private function serializeSingle()
+    private function serializeSingle(): void
     {
         $value = Formatter::fromType($this->customAttribute->value);
 
         if (! Formatter::isEmpty($value)) {
             $this->writer->writeElementWithAttributes('custom-attribute', Formatter::fromType($this->customAttribute->value), [
-                'attribute-id' => $this->customAttribute->id
+                'attribute-id' => $this->customAttribute->id,
             ]);
         } else {
             $this->writer->writeEmptyElementWithAttributes('custom-attribute', [
-                'attribute-id' => $this->customAttribute->id
+                'attribute-id' => $this->customAttribute->id,
             ]);
         }
     }
 
-    private function serializeMultiple()
+    private function serializeMultiple(): void
     {
         $values = Formatter::filterEmpty($this->customAttribute->value);
 
@@ -55,7 +55,7 @@ class CustomAttributeSerializer implements SerializerInterface
             $this->writer->endElement();
         } else {
             $this->writer->writeEmptyElementWithAttributes('custom-attribute', [
-                'attribute-id' => $this->customAttribute->id
+                'attribute-id' => $this->customAttribute->id,
             ]);
         }
     }

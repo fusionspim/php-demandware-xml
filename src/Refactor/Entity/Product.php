@@ -26,9 +26,9 @@ class Product implements EntityInterface
     public $pageDescription;
     public $pageKeywords;
     public $pageUrl;
-    public $customAttributes = [];
+    public $customAttributes          = [];
     public $sharedVariationAttributes = [];
-    public $variants = [];
+    public $variants                  = [];
     public $defaultVariant;
     public $classificationCategoryId;
     public $classificationCatalogId;
