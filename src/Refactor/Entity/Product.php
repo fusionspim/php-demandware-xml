@@ -2,12 +2,11 @@
 namespace DemandwareXml\Refactor\Entity;
 
 use DateTimeInterface;
-use DemandwareXml\Refactor\EntityWriter\EntityWriterInterface;
 use DemandwareXml\Refactor\EntityWriter\ProductXmlWriter;
 use DemandwareXml\Refactor\Xml\XmlWriter;
 use InvalidArgumentException;
 
-class Product implements EntityWriterInterface
+class Product implements WriteableEntityInteface
 {
     public $id;
     public $upc;
@@ -179,7 +178,7 @@ class Product implements EntityWriterInterface
         $this->classificationCatalogId  = $classificationCatalogId;
     }
 
-    public function writeXml(XmlWriter $writer): void
+    public function write(XmlWriter $writer): void
     {
         (new ProductXmlWriter($writer, $this))->write();
     }

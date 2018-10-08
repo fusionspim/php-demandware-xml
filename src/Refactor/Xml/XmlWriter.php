@@ -1,7 +1,7 @@
 <?php
 namespace DemandwareXml\Refactor\Xml;
 
-use DemandwareXml\Refactor\EntityWriter\EntityWriterInterface;
+use DemandwareXml\Refactor\Entity\WriteableEntityInteface;
 use SplFileObject;
 use XMLWriter as PhpXmlWriter;
 
@@ -88,8 +88,8 @@ class XmlWriter extends PhpXmlWriter
         return true;
     }
 
-    public function writeEntity(EntityWriterInterface $entity): void
+    public function writeEntity(WriteableEntityInteface $entity): void
     {
-        $entity->writeXml($this);
+        $entity->write($this);
     }
 }
