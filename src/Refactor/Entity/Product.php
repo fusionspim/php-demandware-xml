@@ -10,8 +10,8 @@ class Product implements WriteableEntityInteface
 {
     public $id;
     public $upc;
-    public $minOrderQuantity          = 1;
-    public $stepQuantity              = 1;
+    public $minOrderQuantity;
+    public $stepQuantity;
     public $displayName;
     public $longDescription;
     public $onlineFlag;
