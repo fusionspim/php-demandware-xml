@@ -111,7 +111,7 @@ class ProductsTest extends TestCase
         $element->setSearchRank(1);
         $element->setBrand('SampleBrand™');
         $element->setOnlineFlag(true);
-        $element->setSearchableFlags(false, true, false);
+        $element->setSearchableFlags(null, false);
 
         $element->setOnlineFromTo(
             new DateTimeImmutable('2015-01-23 01:23:45'),

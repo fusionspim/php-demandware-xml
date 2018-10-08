@@ -77,11 +77,19 @@ class Product implements WriteableEntityInteface
         }
     }
 
-    public function setSearchableFlags(bool $searchableFlag, bool $availableFlag, bool $searchableIfUnavailableFlag): void
+    public function setSearchableFlags(?bool $availableFlag = null, ?bool $searchableFlag = null, ?bool $searchableIfUnavailableFlag = null): void
     {
-        $this->searchableFlag              = $searchableFlag;
-        $this->availableFlag               = $availableFlag;
-        $this->searchableIfUnavailableFlag = $searchableIfUnavailableFlag;
+        if ($availableFlag !== null) {
+            $this->availableFlag = $availableFlag;
+        }
+
+        if ($searchableFlag !== null) {
+            $this->searchableFlag = $searchableFlag;
+        }
+
+        if ($searchableIfUnavailableFlag !== null) {
+            $this->searchableIfUnavailableFlag = $searchableIfUnavailableFlag;
+        }
     }
 
     public function setTax(?float $tax): void
