@@ -27,9 +27,11 @@ class XmlWriterTest extends TestCase
     public function test_simple_catalog_memory()
     {
         $xml = $this->getMemoryXmlWriter();
+        $xml->startDocument('1.0', 'UTF-8');
         $xml->startCatalog('TestCatalog');
         $xml->writeElement('test', 'FOOBAR');
         $xml->endCatalog();
+        $xml->endDocument();
 
         $this->assertXmlStringEqualsXmlString(
             '<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">' .
@@ -44,9 +46,11 @@ class XmlWriterTest extends TestCase
         $output = TEST_OUTPUT_DIR . '/catalog_simple.xml';
 
         $xml = $this->getFileXmlWriter($output);
+        $xml->startDocument('1.0', 'UTF-8');
         $xml->startCatalog('TestCatalog');
         $xml->writeElement('test', 'FOOBAR');
         $xml->endCatalog();
+        $xml->endDocument();
         $xml->flush(true);
 
         $this->assertXmlStringEqualsXmlString(

@@ -13,30 +13,36 @@ class XmlWriter extends PhpXmlWriter
 
     private $notEmptyWriter;
 
-    public function openFile(string $filename): void
+    public function openFile(string $filename): bool
     {
         new SplFileObject($filename, 'w');
         $this->openUri($filename);
+
+        return true;
     }
 
-    public function setIndentDefaults(): void
+    public function setIndentDefaults(): bool
     {
         $this->setIndent(true);
         $this->setIndentString(str_repeat(self::INDENT_SPACE, 2));
+
+        return true;
     }
 
-    public function startCatalog(string $catalogId): void
+    public function startCatalog(string $catalogId): bool
     {
-        $this->startDocument('1.0', 'UTF-8');
         $this->startElement('catalog');
         $this->writeAttribute('xmlns', self::NAMESPACE);
         $this->writeAttribute('catalog-id', $catalogId);
+
+        return true;
     }
 
-    public function endCatalog(): void
+    public function endCatalog(): bool
     {
         $this->endElement();
-        $this->endDocument();
+
+        return true;
     }
 
     public function ifNotEmpty(): NotEmptyWriter
