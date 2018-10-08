@@ -1,9 +1,7 @@
 <?php
 namespace DemandwareXml\Refactor\Xml;
 
-use DemandwareXml\Refactor\Entity\EntityInterface;
-use DemandwareXml\Refactor\Serializer\SerializerInterface;
-use InvalidArgumentException;
+use DemandwareXml\Refactor\EntityWriter\EntityWriterInterface;
 use SplFileObject;
 use XMLWriter as PhpXmlWriter;
 
@@ -13,7 +11,6 @@ class XmlWriter extends PhpXmlWriter
     const NAMESPACE    = 'http://www.demandware.com/xml/impex/catalog/2006-10-31';
     const INDENT_SPACE = ' ';
 
-    public $entityMap = [];
     private $notEmptyWriter;
 
     public function openFile(string $filename): void
@@ -85,19 +82,8 @@ class XmlWriter extends PhpXmlWriter
         return true;
     }
 
-    public function writeEntity(EntityInterface $object): void
+    public function writeEntity(EntityWriterInterface $entity): void
     {
-        if (! isset($this->entityMap[get_class($object)])) {
-            throw new InvalidArgumentException('The "' . get_class($object) . '" entity is not registered in the entity map.');
-        }
-
-        $class = $this->entityMap[get_class($object)];
-
-        if (! is_subclass_of($class, SerializerInterface::class)) {
-            throw new InvalidArgumentException('Entity serializer class "' . $class . '" must implement ' . SerializerInterface::class);
-        }
-
-        $serializer = new $class($this, $object);
-        $serializer->serialize();
+        $entity->writeXml($this);
     }
 }

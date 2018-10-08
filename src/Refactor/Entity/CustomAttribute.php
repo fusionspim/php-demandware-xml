@@ -1,7 +1,11 @@
 <?php
 namespace DemandwareXml\Refactor\Entity;
 
-class CustomAttribute implements EntityInterface
+use DemandwareXml\Refactor\EntityWriter\CustomAttributeWriter;
+use DemandwareXml\Refactor\EntityWriter\EntityWriterInterface;
+use DemandwareXml\Refactor\Xml\XmlWriter;
+
+class CustomAttribute implements EntityWriterInterface
 {
     public $id;
     public $value;
@@ -10,5 +14,10 @@ class CustomAttribute implements EntityInterface
     {
         $this->id    = $id;
         $this->value = $value;
+    }
+
+    public function writeXml(XmlWriter $writer): void
+    {
+        (new CustomAttributeWriter($writer, $this))->write();
     }
 }

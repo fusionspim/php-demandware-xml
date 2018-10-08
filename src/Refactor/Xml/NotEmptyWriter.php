@@ -1,21 +1,18 @@
 <?php
 namespace DemandwareXml\Refactor\Xml;
 
-use DemandwareXml\Refactor\Helper\Formatter;
-use XMLWriter;
-
 class NotEmptyWriter
 {
     private $writer;
 
-    public function __construct(XMLWriter $writer)
+    public function __construct(XmlWriter $writer)
     {
         $this->writer = $writer;
     }
 
     public function writeElement($name, $content = null): bool
     {
-        if (Formatter::isEmpty($content)) {
+        if (XmlFormatter::isEmptyValue($content)) {
             return true;
         }
 
@@ -24,7 +21,7 @@ class NotEmptyWriter
 
     public function writeAttribute($name, $value): bool
     {
-        if (Formatter::isEmpty($value)) {
+        if (XmlFormatter::isEmptyValue($value)) {
             return true;
         }
 
@@ -33,7 +30,7 @@ class NotEmptyWriter
 
     public function writeElementWithAttributes($name, $content = null, array $attributes = []): bool
     {
-        if (Formatter::isEmpty($content)) {
+        if (XmlFormatter::isEmptyValue($content)) {
             return true;
         }
 
@@ -52,7 +49,7 @@ class NotEmptyWriter
     public function writeEmptyElementWithAttributes($name, array $attributes = []): bool
     {
         $attributes = array_filter($attributes, function ($value) {
-            return Formatter::isEmpty($value) === false;
+            return XmlFormatter::isEmptyValue($value) === false;
         });
 
         if (count($attributes) === 0) {

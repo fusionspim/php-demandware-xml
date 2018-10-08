@@ -1,36 +1,35 @@
 <?php
-namespace DemandwareXml\Refactor\Serializer;
+namespace DemandwareXml\Refactor\EntityWriter;
 
-use DemandwareXml\Refactor\Entity\EntityInterface;
-use DemandwareXml\Refactor\Helper\Formatter;
-use DemandwareXml\Refactor\Xml\Writer;
+use DemandwareXml\Refactor\Entity\CustomAttribute;
+use DemandwareXml\Refactor\Xml\{XmlFormatter, XmlWriter};
 
-class CustomAttributeSerializer implements SerializerInterface
+class CustomAttributeWriter
 {
     private $writer;
     private $customAttribute;
 
-    public function __construct(Writer $writer, EntityInterface $customAttribute)
+    public function __construct(XmlWriter $writer, CustomAttribute $customAttribute)
     {
         $this->writer          = $writer;
         $this->customAttribute = $customAttribute;
     }
 
-    public function serialize(): void
+    public function write(): void
     {
         if (is_array($this->customAttribute->value)) {
-            $this->serializeMultiple();
+            $this->writeMultiple();
         } else {
-            $this->serializeSingle();
+            $this->writeSingle();
         }
     }
 
-    private function serializeSingle(): void
+    private function writeSingle(): void
     {
-        $value = Formatter::fromType($this->customAttribute->value);
+        $value = XmlFormatter::fromType($this->customAttribute->value);
 
-        if (! Formatter::isEmpty($value)) {
-            $this->writer->writeElementWithAttributes('custom-attribute', Formatter::fromType($this->customAttribute->value), [
+        if (! XmlFormatter::isEmptyValue($value)) {
+            $this->writer->writeElementWithAttributes('custom-attribute', XmlFormatter::fromType($this->customAttribute->value), [
                 'attribute-id' => $this->customAttribute->id,
             ]);
         } else {
@@ -40,16 +39,16 @@ class CustomAttributeSerializer implements SerializerInterface
         }
     }
 
-    private function serializeMultiple(): void
+    private function writeMultiple(): void
     {
-        $values = Formatter::filterEmpty($this->customAttribute->value);
+        $values = XmlFormatter::filterEmptyValues($this->customAttribute->value);
 
         if (count($values) > 0) {
             $this->writer->startElement('custom-attribute');
             $this->writer->writeAttribute('attribute-id', $this->customAttribute->id);
 
             foreach ($values as $value) {
-                $this->writer->writeElement('value', Formatter::fromType($value));
+                $this->writer->writeElement('value', XmlFormatter::fromType($value));
             }
 
             $this->writer->endElement();

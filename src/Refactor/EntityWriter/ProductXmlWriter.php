@@ -1,22 +1,21 @@
 <?php
-namespace DemandwareXml\Refactor\Serializer;
+namespace DemandwareXml\Refactor\EntityWriter;
 
-use DemandwareXml\Refactor\Entity\EntityInterface;
-use DemandwareXml\Refactor\Helper\Formatter;
-use DemandwareXml\Refactor\Xml\Writer;
+use DemandwareXml\Refactor\Entity\Product;
+use DemandwareXml\Refactor\Xml\{XmlFormatter, XmlWriter};
 
-class ProductSerializer implements SerializerInterface
+class ProductXmlWriter
 {
     private $writer;
     private $product;
 
-    public function __construct(Writer $writer, EntityInterface $product)
+    public function __construct(XmlWriter $writer, Product $product)
     {
         $this->writer  = $writer;
         $this->product = $product;
     }
 
-    public function serialize(): void
+    public function write(): void
     {
         $this->writer->startElement('product');
         $this->writer->ifNotEmpty()->writeAttribute('product-id', $this->product->id);
@@ -24,17 +23,17 @@ class ProductSerializer implements SerializerInterface
         $this->writer->ifNotEmpty()->writeElement('min-order-quantity', $this->product->minOrderQuantity);
         $this->writer->ifNotEmpty()->writeElement('step-quantity', $this->product->stepQuantity);
         $this->writer->ifNotEmpty()->writeElementWithAttributes('display-name', $this->product->displayName, ['xml:lang' => 'x-default']);
-        $this->writer->ifNotEmpty()->writeElementWithAttributes('long-description', $this->product->longDescription, ['xml:lang' => 'x-default']);
-        $this->writer->ifNotEmpty()->writeElement('online-flag', Formatter::asBoolean($this->product->onlineFlag));
-        $this->writer->ifNotEmpty()->writeElement('online-from', Formatter::asDateTime($this->product->onlineFrom));
-        $this->writer->ifNotEmpty()->writeElement('online-to', Formatter::asDateTime($this->product->onlineTo));
-        $this->writer->ifNotEmpty()->writeElement('available-flag', Formatter::asBoolean($this->product->availableFlag));
-        $this->writer->ifNotEmpty()->writeElement('searchable-flag', Formatter::asBoolean($this->product->searchableFlag));
-        $this->writer->ifNotEmpty()->writeElement('searchable-if-unavailable-flag', Formatter::asBoolean($this->product->searchableIfUnavailableFlag));
+        $this->writer->ifNotEmpty()->writeElementWithAttributes('long-description', XmlFormatter::sanitise($this->product->longDescription), ['xml:lang' => 'x-default']);
+        $this->writer->ifNotEmpty()->writeElement('online-flag', XmlFormatter::fromBoolean($this->product->onlineFlag));
+        $this->writer->ifNotEmpty()->writeElement('online-from', XmlFormatter::fromDateTime($this->product->onlineFrom));
+        $this->writer->ifNotEmpty()->writeElement('online-to', XmlFormatter::fromDateTime($this->product->onlineTo));
+        $this->writer->ifNotEmpty()->writeElement('available-flag', XmlFormatter::fromBoolean($this->product->availableFlag));
+        $this->writer->ifNotEmpty()->writeElement('searchable-flag', XmlFormatter::fromBoolean($this->product->searchableFlag));
+        $this->writer->ifNotEmpty()->writeElement('searchable-if-unavailable-flag', XmlFormatter::fromBoolean($this->product->searchableIfUnavailableFlag));
         $this->writeImages();
-        $this->writeTax();
+        $this->writer->ifNotEmpty()->writeElement('tax-class-id', $this->product->tax);
         $this->writeBrand();
-        $this->writer->ifNotEmpty()->writeElement('sitemap-included-flag', Formatter::asBoolean($this->product->sitemapIncludedFlag));
+        $this->writer->ifNotEmpty()->writeElement('sitemap-included-flag', XmlFormatter::fromBoolean($this->product->sitemapIncludedFlag));
         $this->writer->ifNotEmpty()->writeElement('sitemap-changefrequency', $this->product->sitemapChangeFrequency);
         $this->writer->ifNotEmpty()->writeElement('sitemap-priority', $this->product->sitemapPriority);
         $this->writePageAttributes();
@@ -44,33 +43,9 @@ class ProductSerializer implements SerializerInterface
         $this->writer->endElement();
     }
 
-    private function writeTax(): void
-    {
-        if ($this->product->tax === null) {
-            return;
-        }
-
-        $value = $this->product->tax;
-
-        if ($value == 0) {
-            $value = 'TAX_0';
-        } else {
-            $value = number_format($value, 2);
-
-            // not sure why has two underscores?
-            if ($value < 1) {
-                $value = 'TAX__' . str_replace('0.', '', $value);
-            } else {
-                $value = 'TAX_' . str_replace('.', '_', $value);
-            }
-        }
-
-        $this->writer->writeElement('tax-class-id', $value);
-    }
-
     private function writeBrand(): void
     {
-        if (! Formatter::isEmpty($this->product->brand)) {
+        if (! XmlFormatter::isEmptyValue($this->product->brand)) {
             $this->writer->writeElement('brand', $this->product->brand);
         } else {
             $this->writer->writeEmptyElement('brand');
@@ -79,7 +54,7 @@ class ProductSerializer implements SerializerInterface
 
     private function writeImages(): void
     {
-        $images = Formatter::filterEmpty($this->product->images);
+        $images = XmlFormatter::filterEmptyValues($this->product->images);
 
         if (count($images) === 0) {
             return;
@@ -100,10 +75,10 @@ class ProductSerializer implements SerializerInterface
     private function writePageAttributes(): void
     {
         if (
-            Formatter::isEmpty($this->product->pageTitle) &&
-            Formatter::isEmpty($this->product->pageDescription) &&
-            Formatter::isEmpty($this->product->pageKeywords) &&
-            Formatter::isEmpty($this->product->pageUrl)
+            XmlFormatter::isEmptyValue($this->product->pageTitle) &&
+            XmlFormatter::isEmptyValue($this->product->pageDescription) &&
+            XmlFormatter::isEmptyValue($this->product->pageKeywords) &&
+            XmlFormatter::isEmptyValue($this->product->pageUrl)
         ) {
             return;
         }
@@ -118,7 +93,7 @@ class ProductSerializer implements SerializerInterface
         ];
 
         foreach ($pageAttributes as $elemName => $elemContent) {
-            if (! Formatter::isEmpty($elemContent)) {
+            if (! XmlFormatter::isEmptyValue($elemContent)) {
                 $this->writer->writeElementWithAttributes($elemName, $elemContent, ['xml:lang' => 'x-default']);
             } else {
                 $this->writer->writeEmptyElementWithAttributes($elemName, ['xml:lang' => 'x-default']);
@@ -134,6 +109,8 @@ class ProductSerializer implements SerializerInterface
             return;
         }
 
+        ksort($this->product->customAttributes);
+
         $this->writer->startElement('custom-attributes');
 
         foreach ($this->product->customAttributes as $customAttribute) {
@@ -145,8 +122,8 @@ class ProductSerializer implements SerializerInterface
 
     private function writeVariations(): void
     {
-        $attributes = Formatter::filterEmpty($this->product->sharedVariationAttributes);
-        $variants   = Formatter::filterEmpty($this->product->variants);
+        $attributes = XmlFormatter::filterEmptyValues($this->product->sharedVariationAttributes);
+        $variants   = XmlFormatter::filterEmptyValues($this->product->variants);
 
         if (count($attributes) === 0 && count($variants) === 0) {
             return;
@@ -160,7 +137,7 @@ class ProductSerializer implements SerializerInterface
 
     private function writeSharedVariationAttributes(): void
     {
-        $attributes = Formatter::filterEmpty($this->product->sharedVariationAttributes);
+        $attributes = XmlFormatter::filterEmptyValues($this->product->sharedVariationAttributes);
 
         if (count($attributes) === 0) {
             return;
@@ -180,7 +157,7 @@ class ProductSerializer implements SerializerInterface
 
     private function writeVariants(): void
     {
-        $variants = Formatter::filterEmpty($this->product->variants);
+        $variants = XmlFormatter::filterEmptyValues($this->product->variants);
 
         if (count($variants) === 0) {
             return;
@@ -188,9 +165,14 @@ class ProductSerializer implements SerializerInterface
 
         $this->writer->startElement('variants');
 
-        foreach ($variants as $variant) {
-            $default = ($variant === $this->product->defaultVariant ? ['default' => 'true'] : []);
-            $this->writer->writeEmptyElementWithAttributes('variant', array_merge(['product-id' => $variant], $default));
+        foreach ($variants as $variantId => $variantDefault) {
+            $attributes = ['product-id' => $variantId];
+
+            if ($variantDefault) {
+                $attributes['default'] = 'true';
+            }
+
+            $this->writer->writeEmptyElementWithAttributes('variant', $attributes);
         }
 
         $this->writer->endElement();
@@ -198,11 +180,11 @@ class ProductSerializer implements SerializerInterface
 
     public function writeClassificationCategory(): void
     {
-        if (Formatter::isEmpty($this->product->classificationCatalogId) && Formatter::isEmpty($this->product->classificationCategoryId)) {
+        if (XmlFormatter::isEmptyValue($this->product->classificationCatalogId) && XmlFormatter::isEmptyValue($this->product->classificationCategoryId)) {
             return;
         }
 
-        if (! Formatter::isEmpty($this->product->classificationCategoryId)) {
+        if (! XmlFormatter::isEmptyValue($this->product->classificationCategoryId)) {
             $this->writer->writeElementWithAttributes('classification-category', $this->product->classificationCategoryId, [
                 'catalog-id' => $this->product->classificationCatalogId,
             ]);

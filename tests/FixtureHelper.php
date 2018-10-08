@@ -11,13 +11,13 @@ trait FixtureHelper
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput       = false;
 
-        $dom->load(__DIR__ . '/fixtures/' . ltrim($filename, '/'));
+        $dom->load(TEST_FIXTURE_DIR . '/' . ltrim($filename, '/'));
 
         return $dom;
     }
 
     protected function loadJsonFixture(string $filename): array
     {
-        return json_decode(file_get_contents(__DIR__ . '/fixtures/' . ltrim($filename, '/')), true);
+        return json_decode(file_get_contents(TEST_FIXTURE_DIR . '/' . ltrim($filename, '/')), true);
     }
 }
