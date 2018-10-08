@@ -93,7 +93,7 @@ class ProductsTest extends TestCase
         $xml->writeEntity($this->buildProductElement());
 //        $xml->writeEntity($this->buildSetElement());
 //        $xml->writeEntity($this->buildBundleElement());
-//        $xml->writeEntity($this->buildVariationElement());
+        $xml->writeEntity($this->buildVariationElement());
         $xml->endCatalog();
 
         return $xml;
@@ -180,11 +180,11 @@ class ProductsTest extends TestCase
 //        return $element;
 //    }
 //
-//    protected function buildVariationElement(): Product
-//    {
-//        $element = $this->buildBaseElement('Variation', 3);
-//        $element->setSitemap(0.5);
-//
-//        return $element;
-//    }
+    protected function buildVariationElement(): Product
+    {
+        $element = $this->buildBaseElement('Variation', 3);
+        $element->setSitemap(0.5);
+
+        return $element;
+    }
 }
