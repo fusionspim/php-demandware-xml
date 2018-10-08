@@ -10,6 +10,13 @@ use stdClass;
 
 class XmlFormatterTest extends TestCase
 {
+    public function test_sanitise()
+    {
+        $invalidChar = chr(30); // Record Separator.
+
+        $this->assertSame('Foo Bar', XmlFormatter::sanitise('Foo' . $invalidChar . 'Bar'));
+    }
+
     /**
      * @dataProvider from_boolean_data_provider
      */
