@@ -131,7 +131,7 @@ class Product implements EntityWriterInterface
         }
 
         if ($sitemapPriority !== null) {
-            $this->sitemapPriority = $sitemapPriority;
+            $this->sitemapPriority = number_format($sitemapPriority, 1);
         }
 
         $this->sitemapIncludedFlag    = $sitemapIncludedFlag;

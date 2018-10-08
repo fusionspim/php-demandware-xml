@@ -33,6 +33,7 @@ class ProductXmlWriter
         $this->writeImages();
         $this->writer->ifNotEmpty()->writeElement('tax-class-id', $this->product->tax);
         $this->writeBrand();
+        $this->writer->ifNotEmpty()->writeElement('search-rank', $this->product->searchRank);
         $this->writer->ifNotEmpty()->writeElement('sitemap-included-flag', XmlFormatter::fromBoolean($this->product->sitemapIncludedFlag));
         $this->writer->ifNotEmpty()->writeElement('sitemap-changefrequency', $this->product->sitemapChangeFrequency);
         $this->writer->ifNotEmpty()->writeElement('sitemap-priority', $this->product->sitemapPriority);
@@ -74,23 +75,13 @@ class ProductXmlWriter
 
     private function writePageAttributes(): void
     {
-        if (
-            XmlFormatter::isEmptyValue($this->product->pageTitle) &&
-            XmlFormatter::isEmptyValue($this->product->pageDescription) &&
-            XmlFormatter::isEmptyValue($this->product->pageKeywords) &&
-            XmlFormatter::isEmptyValue($this->product->pageUrl)
-        ) {
+        $pageAttributes = XmlFormatter::filterEmptyValues($this->product->pageAttributes);
+
+        if (count($pageAttributes) === 0) {
             return;
         }
 
         $this->writer->startElement('page-attributes');
-
-        $pageAttributes = [
-            'page-title'       => $this->product->pageTitle,
-            'page-description' => $this->product->pageDescription,
-            'page-keywords'    => $this->product->pageKeywords,
-            'page-url'         => $this->product->pageUrl,
-        ];
 
         foreach ($pageAttributes as $elemName => $elemContent) {
             if (! XmlFormatter::isEmptyValue($elemContent)) {
