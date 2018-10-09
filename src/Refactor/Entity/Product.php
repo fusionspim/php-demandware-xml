@@ -32,6 +32,8 @@ class Product implements WriteableEntityInteface
     public $customAttributes          = [];
     public $sharedVariationAttributes = [];
     public $variants                  = [];
+    public $bundleProducts            = [];
+    public $setProducts               = [];
     public $classificationCategoryId;
     public $classificationCatalogId;
 
@@ -160,7 +162,7 @@ class Product implements WriteableEntityInteface
         $this->customAttributes[$customAttribute->id] = $customAttribute;
     }
 
-    public function setSharedVariationAttributes(array $sharedVariationAttributes = []): void
+    public function setSharedVariationAttributes(array $sharedVariationAttributes): void
     {
         $this->sharedVariationAttributes = $sharedVariationAttributes;
     }
@@ -178,6 +180,34 @@ class Product implements WriteableEntityInteface
         }
 
         $this->variants = $variants;
+    }
+
+    // Applies to bundles only.
+    public function setBundleProducts(array $bundleProducts): void
+    {
+        foreach ($bundleProducts as $key => $value) {
+            if (! is_string($key)) {
+                throw new InvalidArgumentException('Bundle Product array keys must all be strings');
+            }
+
+            if (! is_int($value)) {
+                throw new InvalidArgumentException('Bundle Product array values must all be integers');
+            }
+        }
+
+        $this->bundleProducts = $bundleProducts;
+    }
+
+    // Applies to sets only.
+    public function setSetProducts(array $setProducts): void
+    {
+        foreach ($setProducts as $value) {
+            if (! is_string($value)) {
+                throw new InvalidArgumentException('Set Product array values must all be strings');
+            }
+        }
+
+        $this->setProducts = $setProducts;
     }
 
     public function setClassificationCategory(string $classificationCategoryId, string $classificationCatalogId): void

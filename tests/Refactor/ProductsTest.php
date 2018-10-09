@@ -91,8 +91,8 @@ class ProductsTest extends TestCase
         $xml->setIndentDefaults();
         $xml->startCatalog('TestCatalog');
         $xml->writeEntity($this->buildProductElement());
-//        $xml->writeEntity($this->buildSetElement());
-//        $xml->writeEntity($this->buildBundleElement());
+        $xml->writeEntity($this->buildSetElement());
+        $xml->writeEntity($this->buildBundleElement());
         $xml->writeEntity($this->buildVariationElement());
         $xml->endCatalog();
 
@@ -159,27 +159,30 @@ class ProductsTest extends TestCase
         return $element;
     }
 
-//    protected function buildSetElement(): Product
-//    {
-//        $element = $this->buildBaseElement('Set', 1);
-//        $element->setClassificationCategory('CAT123', 'TestCatalog');
-//        $element->setSitemap(0.5);
-//        $element->setProducts(['PRODUCT123', 'PRODUCT456']);
-//
-//        return $element;
-//    }
-//
-//    protected function buildBundleElement(): Product
-//    {
-//        $element = $this->buildBaseElement('Bundle', 2);
-//        $element->setClassification('CAT123', 'TestCatalog');
-//        $element->setSitemap(0.5);
-//        $element->setProductQuantities(['SKU0000001' => 10, 'SKU0000002' => 20]);
-//        $element->setTax(20);
-//
-//        return $element;
-//    }
-//
+    protected function buildSetElement(): Product
+    {
+        $element = $this->buildBaseElement('Set', 1);
+        $element->setClassificationCategory('CAT123', 'TestCatalog');
+        $element->setSitemap(0.5);
+        $element->setSetProducts(['PRODUCT123', 'PRODUCT456']);
+
+        return $element;
+    }
+
+    protected function buildBundleElement(): Product
+    {
+        $element = $this->buildBaseElement('Bundle', 2);
+        $element->setClassificationCategory('CAT123', 'TestCatalog');
+        $element->setSitemap(0.5);
+        $element->setBundleProducts([
+            'SKU0000001' => 10,
+            'SKU0000002' => 20,
+        ]);
+        $element->setTax(20);
+
+        return $element;
+    }
+
     protected function buildVariationElement(): Product
     {
         $element = $this->buildBaseElement('Variation', 3);

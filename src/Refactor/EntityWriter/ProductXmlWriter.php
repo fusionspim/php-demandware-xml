@@ -40,6 +40,8 @@ class ProductXmlWriter
         $this->writePageAttributes();
         $this->writeCustomAttributes();
         $this->writeVariations();
+        $this->writeBundleProducts();
+        $this->writeSetProducts();
         $this->writeClassificationCategory();
         $this->writer->endElement();
     }
@@ -164,6 +166,43 @@ class ProductXmlWriter
             }
 
             $this->writer->writeEmptyElementWithAttributes('variant', $attributes);
+        }
+
+        $this->writer->endElement();
+    }
+
+    public function writeBundleProducts(): void
+    {
+        $products = XmlFormatter::filterEmptyValues($this->product->bundleProducts);
+
+        if (count($products) === 0) {
+            return;
+        }
+
+        $this->writer->startElement('bundled-products');
+
+        foreach ($products as $productId => $quantity) {
+            $this->writer->startElement('bundled-product');
+            $this->writer->writeAttribute('product-id', $productId);
+            $this->writer->writeElement('quantity', $quantity);
+            $this->writer->endElement();
+        }
+
+        $this->writer->endElement();
+    }
+
+    public function writeSetProducts(): void
+    {
+        $products = XmlFormatter::filterEmptyValues($this->product->setProducts);
+
+        if (count($products) === 0) {
+            return;
+        }
+
+        $this->writer->startElement('product-set-products');
+
+        foreach ($products as $productId) {
+            $this->writer->writeEmptyElementWithAttributes('product-set-product', ['product-id' => $productId]);
         }
 
         $this->writer->endElement();
