@@ -11,7 +11,7 @@ class ProductsTest extends TestCase
 {
     use FixtureHelper;
 
-    public function testProductsXml(): void
+    public function test_products_xml(): void
     {
         $this->assertXmlStringEqualsXmlString(
             $this->loadFixture('products.xml'),
@@ -19,7 +19,7 @@ class ProductsTest extends TestCase
         );
     }
 
-    public function testProductsDeletedXml(): void
+    public function test_products_deleted_xml(): void
     {
         $xml = new XmlWriter;
         $xml->openMemory();
@@ -40,7 +40,7 @@ class ProductsTest extends TestCase
 //     * @expectedException               \DemandwareXml\XmlException
 //     * @expectedExceptionMessageRegExp  /Entity 'bull' not defined/
 //     */
-//    public function testProductsInvalidEntitiesException(): void
+//    public function test_products_invalid_entities_exception(): void
 //    {
 //        $document = new Document('TestCatalog');
 //
@@ -55,7 +55,7 @@ class ProductsTest extends TestCase
 //     * @expectedException        \DemandwareXml\XmlException
 //     * @expectedExceptionMessag  Unable to create product node containing invalid XML (variation123)
 //     */
-//    public function testProductsInvalidAddObjectException(): void
+//    public function test_products_invalid_add_object_exception(): void
 //    {
 //        $document = new Document('TestCatalog');
 //
@@ -72,7 +72,7 @@ class ProductsTest extends TestCase
 //     * @expectedException       \DemandwareXml\XmlException
 //     * @expectedExceptionMessage Sitemap priority must be 1.0 or less
 //     */
-//    public function testInvalidSitemapPriority(): void
+//    public function test_invalid_sitemap_priority(): void
 //    {
 //        $element = new Product('PRODUCT123');
 //        $element->setSitemap(42.5);
