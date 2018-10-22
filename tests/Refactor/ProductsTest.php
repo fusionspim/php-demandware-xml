@@ -2,7 +2,7 @@
 namespace DemandwareXml\Test\Refactor;
 
 use DateTimeImmutable;
-use DemandwareXml\Refactor\Entity\{CustomAttribute, Product};
+use DemandwareXml\Refactor\Entity\{CustomAttribute, DeletedProduct, Product};
 use DemandwareXml\Refactor\Xml\XmlWriter;
 use DemandwareXml\Test\FixtureHelper;
 use PHPUnit\Framework\TestCase;
@@ -19,28 +19,22 @@ class ProductsTest extends TestCase
         );
     }
 
-//    public function testProductsSaveXml(): void
-//    {
-//        $this->assertTrue($this->buildDocument()->save(__DIR__ . '/output/products.xml'));
-//    }
-//
-//    public function testProductsDeletedXml(): void
-//    {
-//        $document = new Document('TestCatalog');
-//
-//        $element = new Product('PRODUCT123');
-//        $element->setDeleted();
-//        $document->addObject($element);
-//
-//        $element = new Product('VARIATION123');
-//        $element->setDeleted();
-//        $document->addObject($element);
-//
-//        $sampleXml = $this->loadFixture('products-deleted.xml');
-//        $outputXml = $document->getDomDocument()->saveXML();
-//
-//        $this->assertXmlStringEqualsXmlString($sampleXml, $outputXml);
-//    }
+    public function testProductsDeletedXml(): void
+    {
+        $xml = new XmlWriter;
+        $xml->openMemory();
+        $xml->setIndentDefaults();
+        $xml->startDocument();
+        $xml->startCatalog('TestCatalog');
+        $xml->writeEntity(new DeletedProduct('PRODUCT123'));
+        $xml->writeEntity(new DeletedProduct('VARIATION123'));
+        $xml->endDocument();
+
+        $this->assertXmlStringEqualsXmlString(
+            $this->loadFixture('products-deleted.xml'),
+            $xml->outputMemory(true)
+        );
+    }
 //
 //    /**
 //     * @expectedException               \DemandwareXml\XmlException
@@ -89,12 +83,14 @@ class ProductsTest extends TestCase
         $xml = new XmlWriter;
         $xml->openMemory();
         $xml->setIndentDefaults();
+        $xml->startDocument();
         $xml->startCatalog('TestCatalog');
         $xml->writeEntity($this->buildProductElement());
         $xml->writeEntity($this->buildSetElement());
         $xml->writeEntity($this->buildBundleElement());
         $xml->writeEntity($this->buildVariationElement());
         $xml->endCatalog();
+        $xml->endDocument();
 
         return $xml;
     }
