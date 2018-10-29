@@ -24,7 +24,7 @@ class XmlWriterTest extends TestCase
         return $xml;
     }
 
-    public function test_simple_catalog_memory()
+    public function test_simple_catalog_memory(): void
     {
         $xml = $this->getMemoryXmlWriter();
         $xml->startDocument('1.0', 'UTF-8');
@@ -41,7 +41,7 @@ class XmlWriterTest extends TestCase
         );
     }
 
-    public function test_simple_catalog_file()
+    public function test_simple_catalog_file(): void
     {
         $output = TEST_OUTPUT_DIR . '/catalog_simple.xml';
 
@@ -61,21 +61,21 @@ class XmlWriterTest extends TestCase
         );
     }
 
-    public function test_write_element_with_attributes()
+    public function test_write_element_with_attributes(): void
     {
         $xml = $this->getMemoryXmlWriter();
         $xml->writeElementWithAttributes('test', 'FOOBAR', ['foo' => 'bar']);
         $this->assertXmlStringEqualsXmlString('<test foo="bar">FOOBAR</test>', $xml->outputMemory(true));
     }
 
-    public function test_write_empty_element()
+    public function test_write_empty_element(): void
     {
         $xml = $this->getMemoryXmlWriter();
         $xml->writeEmptyElement('test');
         $this->assertXmlStringEqualsXmlString('<test/>', $xml->outputMemory(true));
     }
 
-    public function test_write_empty_element_with_attributes()
+    public function test_write_empty_element_with_attributes(): void
     {
         $xml = $this->getMemoryXmlWriter();
         $xml->writeEmptyElementWithAttributes('test', ['foo' => 'bar']);

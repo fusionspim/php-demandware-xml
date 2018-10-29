@@ -10,7 +10,7 @@ use stdClass;
 
 class XmlFormatterTest extends TestCase
 {
-    public function test_sanitise()
+    public function test_sanitise(): void
     {
         $invalidChar = chr(30); // Record Separator.
 
@@ -20,7 +20,7 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider from_boolean_data_provider
      */
-    public function test_from_boolean($value, $expectedResult)
+    public function test_from_boolean($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::fromBoolean($value));
     }
@@ -39,7 +39,7 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider from_datetime_data_provider
      */
-    public function test_from_datetime($value, $expectedResult)
+    public function test_from_datetime($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::fromDateTime($value));
     }
@@ -56,15 +56,14 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider from_type_data_provider
      */
-    public function test_from_type($value, $expectedResult)
+    public function test_from_type($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::fromType($value));
     }
 
     public function from_type_data_provider(): array
     {
-        $toStringClass = new class
-        {
+        $toStringClass = new class {
             public function __toString()
             {
                 return 'TOSTRING';
@@ -89,7 +88,7 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider from_type_exception_data_provider
      */
-    public function test_from_type_exception($value, $expectedExceptionClass, $expectedExceptionMessage)
+    public function test_from_type_exception($value, $expectedExceptionClass, $expectedExceptionMessage): void
     {
         $this->expectException($expectedExceptionClass);
         $this->expectExceptionMessage($expectedExceptionMessage);
@@ -117,7 +116,7 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider is_empty_value_data_provider
      */
-    public function test_is_empty_value($value, $expectedResult)
+    public function test_is_empty_value($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::isEmptyValue($value));
     }
@@ -138,7 +137,7 @@ class XmlFormatterTest extends TestCase
         ];
     }
 
-    public function test_filter_empty_values_with_keys()
+    public function test_filter_empty_values_with_keys(): void
     {
         $this->assertEquals(
             [
@@ -165,7 +164,7 @@ class XmlFormatterTest extends TestCase
         );
     }
 
-    public function test_filter_empty_values_without_keys()
+    public function test_filter_empty_values_without_keys(): void
     {
         $this->assertEquals(
             array_values([

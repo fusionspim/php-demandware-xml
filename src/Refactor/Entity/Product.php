@@ -122,7 +122,6 @@ class Product implements WriteableEntityInteface
         $this->images        = $images;
     }
 
-
     public function setBrand(string $brand): void
     {
         $this->brand = $brand;
