@@ -5,6 +5,7 @@ use DateTimeImmutable;
 use DemandwareXml\Refactor\Entity\{CustomAttribute, DeletedProduct, Product};
 use DemandwareXml\Refactor\Xml\XmlWriter;
 use DemandwareXml\Test\FixtureHelper;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class ProductsTest extends TestCase
@@ -35,48 +36,36 @@ class ProductsTest extends TestCase
             $xml->outputMemory(true)
         );
     }
-//
-//    /**
-//     * @expectedException               \DemandwareXml\XmlException
-//     * @expectedExceptionMessageRegExp  /Entity 'bull' not defined/
-//     */
-//    public function test_products_invalid_entities_exception(): void
-//    {
-//        $document = new Document('TestCatalog');
-//
-//        $element = new Product('product123');
-//        $element->setName('product number 123 &bull;');
-//
-//        $document->addObject($element);
-//        $document->save(__DIR__ . '/output/products.xml');
-//    }
-//
-//    /**
-//     * @expectedException        \DemandwareXml\XmlException
-//     * @expectedExceptionMessag  Unable to create product node containing invalid XML (variation123)
-//     */
-//    public function test_products_invalid_add_object_exception(): void
-//    {
-//        $document = new Document('TestCatalog');
-//
-//        $element = new Product('variation123');
-//        $element->setBrand('This is an example brand');
-//        $element->setName('product number 123 &bull;');
-//        $element->setCustomAttributes(['foobar' => 'This is invalid &bull;']);
-//
-//        $document->addObject($element);
-//        $document->save(__DIR__ . '/output/products.xml');
-//    }
-//
-//    /**
-//     * @expectedException       \DemandwareXml\XmlException
-//     * @expectedExceptionMessage Sitemap priority must be 1.0 or less
-//     */
-//    public function test_invalid_sitemap_priority(): void
-//    {
-//        $element = new Product('PRODUCT123');
-//        $element->setSitemap(42.5);
-//    }
+
+    public function test_xml_escaping(): void
+    {
+        $entity = $this->buildProductElement();
+        $entity->setDisplayName('Product number 123 &bull;');
+        $entity->addCustomAttribute(new CustomAttribute('foobar', '&bull;'));
+
+        $xml = new XmlWriter;
+        $xml->openMemory();
+        $xml->setIndentDefaults();
+        $xml->startDocument();
+        $xml->startCatalog('TestCatalog');
+        $xml->writeEntity($entity);
+        $xml->endDocument();
+
+        $this->assertXmlStringEqualsXmlString(
+            $this->loadFixture('product-xml-escaped.xml'),
+            $xml->outputMemory(true)
+        );
+    }
+
+    /**
+     * @expectedException       InvalidArgumentException
+     * @expectedExceptionMessage Sitemap priority must be 1.0 or less
+     */
+    public function test_invalid_sitemap_priority(): void
+    {
+        $entity = $this->buildProductElement();
+        $entity->setSitemap(42.5);
+    }
 
     protected function buildDocument(): XmlWriter
     {
