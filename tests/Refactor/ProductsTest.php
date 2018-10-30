@@ -29,6 +29,7 @@ class ProductsTest extends TestCase
         $xml->startCatalog('TestCatalog');
         $xml->writeEntity(new DeletedProduct('PRODUCT123'));
         $xml->writeEntity(new DeletedProduct('VARIATION123'));
+        $xml->endCatalog();
         $xml->endDocument();
 
         $this->assertXmlStringEqualsXmlString(
@@ -49,6 +50,7 @@ class ProductsTest extends TestCase
         $xml->startDocument();
         $xml->startCatalog('TestCatalog');
         $xml->writeEntity($entity);
+        $xml->endCatalog();
         $xml->endDocument();
 
         $this->assertXmlStringEqualsXmlString(

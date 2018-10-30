@@ -33,6 +33,7 @@ class VariantsTest extends TestCase
             $xml->writeEntity($element);
         }
 
+        $xml->endCatalog();
         $xml->endDocument();
 
         $this->assertXmlStringEqualsXmlString(

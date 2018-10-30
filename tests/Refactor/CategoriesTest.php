@@ -45,6 +45,7 @@ class CategoriesTest extends TestCase
             $xml->writeEntity($element);
         }
 
+        $xml->endCatalog();
         $xml->endDocument();
 
         $this->assertXmlStringEqualsXmlString(
@@ -80,6 +81,7 @@ class CategoriesTest extends TestCase
         $element->setPrimary(false);
         $xml->writeEntity($element);
 
+        $xml->endCatalog();
         $xml->endDocument();
 
         $this->assertXmlStringEqualsXmlString(
@@ -97,6 +99,7 @@ class CategoriesTest extends TestCase
         $xml->startCatalog('TestCatalog');
         $xml->writeEntity(new DeletedCategory('CAT123'));
         $xml->writeEntity(new DeletedCategory('CAT456'));
+        $xml->endCatalog();
         $xml->endDocument();
 
         $this->assertXmlStringEqualsXmlString(
