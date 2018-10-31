@@ -18,8 +18,8 @@ class DeletedCategoryXmlWriter
     public function write(): void
     {
         $this->writer->writeEmptyElementWithAttributes('category', [
-            'mode'        => 'delete',
             'category-id' => $this->category->id,
+            'mode'        => 'delete',
         ]);
     }
 }

@@ -18,8 +18,8 @@ class VariantXmlWriter
     public function write(): void
     {
         $this->writer->startElement('variation-attribute');
-        $this->writer->ifNotEmpty()->writeAttribute('attribute-id', $this->variant->id);
         $this->writer->ifNotEmpty()->writeAttribute('variation-attribute-id', $this->variant->id);
+        $this->writer->ifNotEmpty()->writeAttribute('attribute-id', $this->variant->id);
         $this->writeDisplayValues();
         $this->writer->endElement();
     }

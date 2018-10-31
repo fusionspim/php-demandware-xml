@@ -18,8 +18,8 @@ class DeletedProductXmlWriter
     public function write(): void
     {
         $this->writer->writeEmptyElementWithAttributes('product', [
-            'mode'       => 'delete',
             'product-id' => $this->product->id,
+            'mode'       => 'delete',
         ]);
     }
 }

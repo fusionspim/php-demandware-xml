@@ -24,7 +24,7 @@ class CategoryXmlWriter
         $this->writer->ifNotEmpty()->writeElement('online-from', XmlFormatter::fromDateTime($this->category->onlineFrom));
         $this->writer->ifNotEmpty()->writeElement('online-to', XmlFormatter::fromDateTime($this->category->onlineTo));
         $this->writer->ifNotEmpty()->writeElement('parent', $this->category->parentId);
-        $this->writer->ifNotEmpty()->writeElement('template', $this->category->template);
+        $this->writeTemplate();
         $this->writer->ifNotEmpty()->writeElement('sitemap-included-flag', XmlFormatter::fromBoolean($this->category->sitemapIncludedFlag));
         $this->writer->ifNotEmpty()->writeElement('sitemap-changefrequency', $this->category->sitemapChangeFrequency);
         $this->writer->ifNotEmpty()->writeElement('sitemap-priority', $this->category->sitemapPriority);
@@ -33,9 +33,22 @@ class CategoryXmlWriter
         $this->writer->endElement();
     }
 
+    private function writeTemplate(): void
+    {
+        if (! XmlFormatter::isEmptyValue($this->category->template)) {
+            $this->writer->writeElement('template', $this->category->template);
+        } else {
+            $this->writer->writeEmptyElement('template');
+        }
+    }
+
     private function writePageAttributes(): void
     {
+        /*
         $pageAttributes = XmlFormatter::filterEmptyValues($this->category->pageAttributes);
+        */
+
+        $pageAttributes = $this->category->pageAttributes;
 
         if (count($pageAttributes) === 0) {
             return;
