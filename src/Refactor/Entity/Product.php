@@ -32,7 +32,7 @@ class Product implements WriteableEntityInteface
     public $customAttributes          = [];
     public $sharedVariationAttributes = [];
     public $variants                  = [];
-    public $bundleProducts            = [];
+    public $bundleProducts            = null;
     public $setProducts               = [];
     public $classificationCategoryId;
     public $classificationCatalogId;

@@ -184,11 +184,11 @@ class ProductXmlWriter
 
     public function writeBundleProducts(): void
     {
-        $products = XmlFormatter::filterEmptyValues($this->product->bundleProducts);
-
-        if (count($products) === 0) {
+        if ($this->product->bundleProducts === null) {
             return;
         }
+
+        $products = XmlFormatter::filterEmptyValues($this->product->bundleProducts);
 
         $this->writer->startElement('bundled-products');
 
