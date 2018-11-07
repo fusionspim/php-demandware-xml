@@ -204,11 +204,11 @@ class ProductXmlWriter
 
     public function writeSetProducts(): void
     {
-        $products = XmlFormatter::filterEmptyValues($this->product->setProducts);
-
-        if (count($products) === 0) {
+        if ($this->product->setProducts === null) {
             return;
         }
+
+        $products = XmlFormatter::filterEmptyValues($this->product->setProducts);
 
         $this->writer->startElement('product-set-products');
 
