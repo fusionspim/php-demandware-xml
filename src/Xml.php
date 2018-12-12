@@ -54,6 +54,7 @@ class Xml
             return false;
         }
 
+        libxml_clear_errors();
         libxml_use_internal_errors(true);
 
         set_error_handler(function ($errno, $errstr, $errfile, $errline, $errcontext): void {
