@@ -49,7 +49,7 @@ class NotEmptyWriter
     public function writeEmptyElementWithAttributes($name, array $attributes = []): bool
     {
         $attributes = array_filter($attributes, function ($value) {
-            return XmlFormatter::isEmptyValue($value) === false;
+            return (XmlFormatter::isEmptyValue($value) === false);
         });
 
         if (count($attributes) === 0) {
