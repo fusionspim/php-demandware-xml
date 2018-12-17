@@ -127,15 +127,13 @@ class ProductXmlWriter
         }
 
         $this->writer->startElement('variations');
-        $this->writeSharedVariationAttributes();
-        $this->writeVariants();
+        $this->writeSharedVariationAttributes($attributes);
+        $this->writeVariants($variants);
         $this->writer->endElement();
     }
 
-    private function writeSharedVariationAttributes(): void
+    private function writeSharedVariationAttributes(array $attributes): void
     {
-        $attributes = XmlFormatter::filterEmptyValues($this->product->sharedVariationAttributes);
-
         if (count($attributes) === 0) {
             return;
         }
@@ -152,10 +150,8 @@ class ProductXmlWriter
         $this->writer->endElement();
     }
 
-    private function writeVariants(): void
+    private function writeVariants(array $variants): void
     {
-        $variants = XmlFormatter::filterEmptyValues($this->product->variants);
-
         if (count($variants) === 0) {
             return;
         }
