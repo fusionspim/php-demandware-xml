@@ -47,18 +47,15 @@ class ProductXmlWriter
     }
 
     /*
-     * Bundles need to export a brand for online products, but not offline ones - it is set explicitly where required
-     * Sets never export a brand
-     *
+     * Bundles need to export a brand for online products, but not offline ones - it is set explicitly where required.
+     * Sets never export a brand.
      */
     private function writeBrand(): void
     {
         if (! XmlFormatter::isEmptyValue($this->product->brand)) {
             $this->writer->writeElement('brand', $this->product->brand);
-        } else {
-            if (! is_null($this->product->brand)) {
-                $this->writer->writeEmptyElement('brand');
-            }
+        } elseif (! is_null($this->product->brand)) {
+            $this->writer->writeEmptyElement('brand');
         }
     }
 
