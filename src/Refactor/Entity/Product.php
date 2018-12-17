@@ -79,7 +79,7 @@ class Product implements WriteableEntityInteface
         }
     }
 
-    public function setSearchableFlags(?bool $availableFlag = null, ?bool $searchableFlag = null, ?bool $searchableIfUnavailableFlag = null): void
+    public function setSearchableFlags(?bool $availableFlag, ?bool $searchableFlag, ?bool $searchableIfUnavailableFlag): void
     {
         if ($availableFlag !== null) {
             $this->availableFlag = $availableFlag;
@@ -146,7 +146,7 @@ class Product implements WriteableEntityInteface
         $this->sitemapChangeFrequency = $sitemapChangeFrequency;
     }
 
-    public function setPageAttributes(?string $pageTitle = null, ?string $pageDescription = null, ?string $pageKeywords = null, ?string $pageUrl = null): void
+    public function setPageAttributes(?string $pageTitle, ?string $pageDescription, ?string $pageKeywords, ?string $pageUrl): void
     {
         $this->pageAttributes = [
             'page-title'       => $pageTitle,
