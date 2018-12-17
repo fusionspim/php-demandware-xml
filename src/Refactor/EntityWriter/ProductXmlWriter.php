@@ -84,10 +84,6 @@ class ProductXmlWriter
 
     private function writePageAttributes(): void
     {
-        /*
-        $pageAttributes = XmlFormatter::filterEmptyValues($this->product->pageAttributes);
-        */
-
         $pageAttributes = $this->product->pageAttributes;
 
         if (count($pageAttributes) === 0) {

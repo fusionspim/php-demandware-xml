@@ -44,10 +44,6 @@ class CategoryXmlWriter
 
     private function writePageAttributes(): void
     {
-        /*
-        $pageAttributes = XmlFormatter::filterEmptyValues($this->category->pageAttributes);
-        */
-
         $pageAttributes = $this->category->pageAttributes;
 
         if (count($pageAttributes) === 0) {
