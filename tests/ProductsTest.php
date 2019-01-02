@@ -71,28 +71,41 @@ class ProductsTest extends TestCase
         $document->save(__DIR__ . '/output/products.xml');
     }
 
-    public function testSetSitemap(): void
+    /**
+     * @dataProvider setSitemapDataProvider
+     */
+    public function testSetSitemap(array $params, array $expectedElements): void
     {
         $element = new Product('PRODUCT123');
-        $element->setSitemap(0.5);
-        $this->assertEquals([
-            'sitemap-priority'        => '0.5',
-            'sitemap-included-flag'   => true,
-            'sitemap-changefrequency' => 'weekly',
-        ], $element->getElements());
+        $element->setSitemap(...$params);
+        $this->assertEquals($expectedElements, $element->getElements());
+    }
 
-        $element = new Product('PRODUCT123');
-        $element->setSitemap(1, null, null);
-        $this->assertEquals([
-            'sitemap-priority' => '1.0',
-        ], $element->getElements());
-
-        $element = new Product('PRODUCT123');
-        $element->setSitemap(null, true, 'daily');
-        $this->assertEquals([
-            'sitemap-included-flag'   => true,
-            'sitemap-changefrequency' => 'daily',
-        ], $element->getElements());
+    public function setSitemapDataProvider(): array
+    {
+        return [
+            [
+                ['0.5'],
+                [
+                    'sitemap-priority'        => '0.5',
+                    'sitemap-included-flag'   => true,
+                    'sitemap-changefrequency' => 'weekly',
+                ],
+            ],
+            [
+                [1, null, null],
+                [
+                    'sitemap-priority' => '1.0',
+                ],
+            ],
+            [
+                [null, true, 'daily'],
+                [
+                    'sitemap-included-flag'   => true,
+                    'sitemap-changefrequency' => 'daily',
+                ],
+            ],
+        ];
     }
 
     /**
