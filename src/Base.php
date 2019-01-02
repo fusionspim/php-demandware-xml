@@ -61,7 +61,7 @@ abstract class Base
      *
      * @throws XmlException
      */
-    public function setSitemap(float $priority = null, bool $included = true, string $frequency = 'weekly'): void
+    public function setSitemap(?float $priority = null, ?bool $included = true, ?string $frequency = 'weekly'): void
     {
         if ($priority > 1) {
             throw new XmlException('Sitemap priority must be 1.0 or less');

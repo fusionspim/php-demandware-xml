@@ -72,6 +72,43 @@ class ProductsTest extends TestCase
     }
 
     /**
+     * @dataProvider setSitemapDataProvider
+     */
+    public function testSetSitemap(array $params, array $expectedElements): void
+    {
+        $element = new Product('PRODUCT123');
+        $element->setSitemap(...$params);
+        $this->assertEquals($expectedElements, $element->getElements());
+    }
+
+    public function setSitemapDataProvider(): array
+    {
+        return [
+            [
+                ['0.5'],
+                [
+                    'sitemap-priority'        => '0.5',
+                    'sitemap-included-flag'   => true,
+                    'sitemap-changefrequency' => 'weekly',
+                ],
+            ],
+            [
+                [1, null, null],
+                [
+                    'sitemap-priority' => '1.0',
+                ],
+            ],
+            [
+                [null, true, 'daily'],
+                [
+                    'sitemap-included-flag'   => true,
+                    'sitemap-changefrequency' => 'daily',
+                ],
+            ],
+        ];
+    }
+
+    /**
      * @expectedException       \DemandwareXml\XmlException
      * @expectedExceptionMessage Sitemap priority must be 1.0 or less
      */
