@@ -84,7 +84,7 @@ class ProductsTest extends TestCase
         $element = new Product('PRODUCT123');
         $element->setSitemap(1, null, null);
         $this->assertEquals([
-            'sitemap-priority' => '1.0'
+            'sitemap-priority' => '1.0',
         ], $element->getElements());
 
         $element = new Product('PRODUCT123');
