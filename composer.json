@@ -12,7 +12,9 @@
     }
   ],
   "require": {
-    "php": ">=7.2"
+    "php": ">=7.2",
+    "ext-json": "*",
+    "ext-xmlwriter": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "^7.3",
