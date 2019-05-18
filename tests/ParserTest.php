@@ -2,19 +2,7 @@
 namespace DemandwareXml\Test;
 
 use DemandwareXml\Parser;
-use DemandwareXml\Parser\{
-    AssignmentNodeParser,
-    BundleNodeParser,
-    BundleSimpleNodeParser,
-    CategoryNodeParser,
-    CategorySimpleNodeParser,
-    ProductNodeParser,
-    ProductSimpleNodeParser,
-    SetNodeParser,
-    SetSimpleNodeParser,
-    VariationNodeParser,
-    VariationSimpleNodeParser,
-};
+use DemandwareXml\Parser\{AssignmentNodeParser, BundleNodeParser, BundleSimpleNodeParser, CategoryNodeParser, CategorySimpleNodeParser, ProductNodeParser, ProductSimpleNodeParser, SetNodeParser, SetSimpleNodeParser, VariationNodeParser, VariationSimpleNodeParser};
 use DemandwareXml\XmlException;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
