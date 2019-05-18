@@ -6,6 +6,8 @@
   "require": {
     "php": ">=7.2",
     "ext-json": "*",
+    "ext-SimpleXML": "*",
+    "ext-xmlreader": "*",
     "ext-xmlwriter": "*"
   },
   "require-dev": {
