@@ -1,8 +1,8 @@
 <?php
 namespace DemandwareXml\Test;
 
-use DemandwareXml\{Parser, XmlException};
 use DemandwareXml\Parser\{AssignmentNodeParser, BundleNodeParser, BundleSimpleNodeParser, CategoryNodeParser, CategorySimpleNodeParser, ProductNodeParser, ProductSimpleNodeParser, SetNodeParser, SetSimpleNodeParser, VariationNodeParser, VariationSimpleNodeParser};
+use DemandwareXml\{Parser, XmlException};
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
