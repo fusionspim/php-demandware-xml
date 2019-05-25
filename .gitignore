@@ -1,9 +1,13 @@
 /*.sublime-*
 /.idea
 .DS_Store
-out
+
+composer.phar
 vendor
+
+.phpunit.result.cache
+.php_cs.cache
+cs_fixer_tmp_*
+
 tests/output/*
 tests/coverage/*
-.gitkeep
-.php_cs.cache

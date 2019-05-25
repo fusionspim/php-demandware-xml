@@ -1,20 +1,9 @@
 <?php
 namespace DemandwareXml\Test;
 
-use DemandwareXml\Parser;
-use DemandwareXml\Parser\{
-    AssignmentNodeParser,
-    BundleNodeParser,
-    BundleSimpleNodeParser,
-    CategoryNodeParser,
-    CategorySimpleNodeParser,
-    ProductNodeParser,
-    ProductSimpleNodeParser,
-    SetNodeParser,
-    SetSimpleNodeParser,
-    VariationNodeParser,
-    VariationSimpleNodeParser
-};
+use DemandwareXml\Parser\{AssignmentNodeParser, BundleNodeParser, BundleSimpleNodeParser, CategoryNodeParser, CategorySimpleNodeParser, ProductNodeParser, ProductSimpleNodeParser, SetNodeParser, SetSimpleNodeParser, VariationNodeParser, VariationSimpleNodeParser};
+use DemandwareXml\{Parser, XmlException};
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -24,49 +13,44 @@ class ParserTest extends TestCase
 {
     use FixtureHelper;
 
-    /**
-     * @expectedException              \DemandwareXml\XmlException
-     * @expectedExceptionMessageRegExp /Fatal: xmlParseEntityRef: no name in invalid-products.xml/
-     */
     public function testParserValidateInvalidXml(): void
     {
+        $this->expectException(XmlException::class);
+        $this->expectExceptionMessageRegExp('/Fatal: xmlParseEntityRef: no name in invalid-products.xml/');
+
         (new Parser(__DIR__ . '/fixtures/invalid-products.xml'))->validate();
     }
 
-    /**
-     * @expectedException              \DemandwareXml\XmlException
-     * @expectedExceptionMessageRegExp /Error: Element '{.*}upc': This element is not expected. Expected is one of \( {.*}step-quantity, {.*}display-name, {.*}short-description, {.*}long-description, {.*}store-receipt-name, {.*}store-tax-class, {.*}store-force-price-flag, {.*}store-non-inventory-flag, {.*}store-non-revenue-flag, {.*}store-non-discountable-flag \). in invalid-schema-products.xml/
-     */
     public function testParserValidateInvalidSchemaXml(): void
     {
+        $this->expectException(XmlException::class);
+        $this->expectExceptionMessageRegExp('/Error: Element \'{.*}upc\': This element is not expected. Expected is one of \( {.*}step-quantity, {.*}display-name, {.*}short-description, {.*}long-description, {.*}store-receipt-name, {.*}store-tax-class, {.*}store-force-price-flag, {.*}store-non-inventory-flag, {.*}store-non-revenue-flag, {.*}store-non-discountable-flag \). in invalid-schema-products.xml/');
+
         (new Parser(__DIR__ . '/fixtures/invalid-schema-products.xml'))->validate();
     }
 
-    /**
-     * @expectedException        \DemandwareXml\XMLException
-     * @expectedExceptionMessage XML file does not exist: fake-products.xml
-     */
     public function testParserValidateFileDoesNotExist(): void
     {
+        $this->expectException(XmlException::class);
+        $this->expectExceptionMessage('XML file does not exist: fake-products.xml');
+
         (new Parser(__DIR__ . '/fixtures/fake-products.xml'))->validate();
     }
 
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Node parser class "stdClass" must implement DemandwareXml\Parser\NodeParserInterface
-     */
     public function testParserInvalidClass(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Node parser class "stdClass" must implement DemandwareXml\Parser\NodeParserInterface');
+
         $parser = new Parser(__DIR__ . '/fixtures/mixed.xml');
         $parser->parse(stdClass::class)->next();
     }
 
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Node parser class "stdClass" must implement DemandwareXml\Parser\NodeParserInterface
-     */
     public function testArrayParserInvalidClass(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Node parser class "stdClass" must implement DemandwareXml\Parser\NodeParserInterface');
+
         $parser = new Parser(__DIR__ . '/fixtures/mixed.xml');
         $parser->parseToArray(['FOOBAR' => stdClass::class]);
     }

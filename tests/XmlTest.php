@@ -1,7 +1,7 @@
 <?php
 namespace DemandwareXml\Test;
 
-use DemandwareXml\Xml;
+use DemandwareXml\{Xml, XmlException};
 use PHPUnit\Framework\TestCase;
 
 class XmlTest extends TestCase
@@ -40,12 +40,11 @@ class XmlTest extends TestCase
         $this->assertTrue(Xml::validate($xmlPath));
     }
 
-    /**
-     * @expectedException              \DemandwareXml\XmlException
-     * @expectedExceptionMessageRegExp /xmlParseEntityRef: no name/
-     */
     public function testValidateInvalidXml(): void
     {
+        $this->expectException(XmlException::class);
+        $this->expectExceptionMessageRegExp('/xmlParseEntityRef: no name/');
+
         $xmlPath = __DIR__ . '/fixtures/invalid-products.xml';
 
         $this->assertFalse(Xml::validate($xmlPath));

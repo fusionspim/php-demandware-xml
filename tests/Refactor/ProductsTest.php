@@ -59,12 +59,11 @@ class ProductsTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException       InvalidArgumentException
-     * @expectedExceptionMessage Sitemap priority must be 1.0 or less
-     */
     public function test_invalid_sitemap_priority(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Sitemap priority must be 1.0 or less');
+
         $entity = $this->buildProductElement();
         $entity->setSitemap(42.5);
     }

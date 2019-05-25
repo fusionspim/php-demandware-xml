@@ -1,7 +1,7 @@
 <?php
 namespace DemandwareXml\Test;
 
-use DemandwareXml\{Document, Product};
+use DemandwareXml\{Document, Product, XmlException};
 use PHPUnit\Framework\TestCase;
 
 class ProductsTest extends TestCase
@@ -39,12 +39,11 @@ class ProductsTest extends TestCase
         $this->assertXmlStringEqualsXmlString($sampleXml, $outputXml);
     }
 
-    /**
-     * @expectedException               \DemandwareXml\XmlException
-     * @expectedExceptionMessageRegExp  /Entity 'bull' not defined/
-     */
     public function testProductsInvalidEntitiesException(): void
     {
+        $this->expectException(XmlException::class);
+        $this->expectExceptionMessageRegExp('/Entity \'bull\' not defined/');
+
         $document = new Document('TestCatalog');
 
         $element = new Product('product123');
@@ -54,12 +53,11 @@ class ProductsTest extends TestCase
         $document->save(__DIR__ . '/output/products.xml');
     }
 
-    /**
-     * @expectedException        \DemandwareXml\XmlException
-     * @expectedExceptionMessag  Unable to create product node containing invalid XML (variation123)
-     */
     public function testProductsInvalidAddObjectException(): void
     {
+        $this->expectException(XmlException::class);
+        $this->expectExceptionMessage('Unable to create product node containing invalid XML (variation123)');
+
         $document = new Document('TestCatalog');
 
         $element = new Product('variation123');
@@ -108,12 +106,11 @@ class ProductsTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException       \DemandwareXml\XmlException
-     * @expectedExceptionMessage Sitemap priority must be 1.0 or less
-     */
     public function testInvalidSitemapPriority(): void
     {
+        $this->expectException(XmlException::class);
+        $this->expectExceptionMessage('Sitemap priority must be 1.0 or less');
+
         $element = new Product('PRODUCT123');
         $element->setSitemap(42.5);
     }

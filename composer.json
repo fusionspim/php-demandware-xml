@@ -1,24 +1,18 @@
 {
   "name": "fusionspim/php-demandware-xml",
-  "type": "library",
   "description": "PHP library for working with Demandware XML files",
-  "keywords": ["demandware", "xml", "export", "php"],
-  "homepage": "https://github.com/fusionspim/php-demandware-xml",
+  "keywords": ["demandware", "ecommerce", "export", "php", "xml"],
   "license": "MIT",
-  "authors": [
-    {
-      "name": "Wes Hooper",
-      "email": "wes@fusionspim.com"
-    }
-  ],
   "require": {
     "php": ">=7.2",
     "ext-json": "*",
+    "ext-SimpleXML": "*",
+    "ext-xmlreader": "*",
     "ext-xmlwriter": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "^7.3",
-    "friendsofphp/php-cs-fixer": "^2.13"
+    "friendsofphp/php-cs-fixer": "2.15.*",
+    "phpunit/phpunit": "8.1.*"
   },
   "autoload": {
     "psr-4": { "DemandwareXml\\": "src" }
