@@ -8,7 +8,7 @@ class VariantsTest extends TestCase
 {
     use FixtureHelper;
 
-    public function testVariantsXml(): void
+    public function test_variants_xml(): void
     {
         $document = new Document('TestCatalog');
 

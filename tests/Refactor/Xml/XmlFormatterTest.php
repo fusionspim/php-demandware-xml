@@ -139,7 +139,7 @@ class XmlFormatterTest extends TestCase
 
     public function test_filter_empty_values_with_keys(): void
     {
-        $this->assertEquals(
+        $this->assertEqualsCanonicalizing(
             [
                 'string' => 'FOOBAR',
                 'int'    => 42,
@@ -166,7 +166,7 @@ class XmlFormatterTest extends TestCase
 
     public function test_filter_empty_values_without_keys(): void
     {
-        $this->assertEquals(
+        $this->assertEqualsCanonicalizing(
             array_values([
                 'FOOBAR',
                 42,

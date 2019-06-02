@@ -13,7 +13,7 @@ class ParserTest extends TestCase
 {
     use FixtureHelper;
 
-    public function testParserValidateInvalidXml(): void
+    public function test_parser_validate_invalid_xml(): void
     {
         $this->expectException(XmlException::class);
         $this->expectExceptionMessageRegExp('/Fatal: xmlParseEntityRef: no name in invalid-products.xml/');
@@ -21,7 +21,7 @@ class ParserTest extends TestCase
         (new Parser(__DIR__ . '/fixtures/invalid-products.xml'))->validate();
     }
 
-    public function testParserValidateInvalidSchemaXml(): void
+    public function test_parser_validate_invalid_schema_xml(): void
     {
         $this->expectException(XmlException::class);
         $this->expectExceptionMessageRegExp('/Error: Element \'{.*}upc\': This element is not expected. Expected is one of \( {.*}step-quantity, {.*}display-name, {.*}short-description, {.*}long-description, {.*}store-receipt-name, {.*}store-tax-class, {.*}store-force-price-flag, {.*}store-non-inventory-flag, {.*}store-non-revenue-flag, {.*}store-non-discountable-flag \). in invalid-schema-products.xml/');
@@ -29,7 +29,7 @@ class ParserTest extends TestCase
         (new Parser(__DIR__ . '/fixtures/invalid-schema-products.xml'))->validate();
     }
 
-    public function testParserValidateFileDoesNotExist(): void
+    public function test_parser_validate_file_does_not_exist(): void
     {
         $this->expectException(XmlException::class);
         $this->expectExceptionMessage('XML file does not exist: fake-products.xml');
@@ -37,7 +37,7 @@ class ParserTest extends TestCase
         (new Parser(__DIR__ . '/fixtures/fake-products.xml'))->validate();
     }
 
-    public function testParserInvalidClass(): void
+    public function test_parser_invalid_class(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Node parser class "stdClass" must implement DemandwareXml\Parser\NodeParserInterface');
@@ -46,7 +46,7 @@ class ParserTest extends TestCase
         $parser->parse(stdClass::class)->next();
     }
 
-    public function testArrayParserInvalidClass(): void
+    public function test_array_parser_invalid_class(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Node parser class "stdClass" must implement DemandwareXml\Parser\NodeParserInterface');
@@ -55,12 +55,12 @@ class ParserTest extends TestCase
         $parser->parseToArray(['FOOBAR' => stdClass::class]);
     }
 
-    public function testParserValidate(): void
+    public function test_parser_validate(): void
     {
         $this->assertTrue((new Parser(__DIR__ . '/fixtures/products.xml'))->validate());
     }
 
-    public function testEmptyParser(): void
+    public function test_empty_parser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/empty.xml');
 
@@ -72,7 +72,7 @@ class ParserTest extends TestCase
         $this->assertEmpty(iterator_to_array($parser->parse(VariationNodeParser::class)));
     }
 
-    public function testArrayParser(): void
+    public function test_array_parser(): void
     {
         $parser  = new Parser(__DIR__ . '/fixtures/mixed.xml');
         $results = $parser->parseToArray([
@@ -87,7 +87,7 @@ class ParserTest extends TestCase
         $this->assertSame($this->loadJsonFixture('mixed-assignments.json'), $results['assignments']);
     }
 
-    public function testAssignmentsParser(): void
+    public function test_assignments_parser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/assignments.xml');
 
@@ -103,7 +103,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testBundlesParser(): void
+    public function test_bundles_parser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -113,7 +113,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testSimpleBundlesParser(): void
+    public function test_simple_bundles_parser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -123,7 +123,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testCategoriesParser(): void
+    public function test_categories_parser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/categories.xml');
 
@@ -133,7 +133,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testSimpleCategoriesParser(): void
+    public function test_simple_categories_parser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/categories.xml');
 
@@ -143,7 +143,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testProductsParser(): void
+    public function test_products_parser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -153,7 +153,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testSimpleProductsParser(): void
+    public function test_simple_products_parser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -163,7 +163,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testSetsParser(): void
+    public function test_sets_parser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -173,7 +173,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testSimpleSetsParser(): void
+    public function test_simple_sets_parser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -183,7 +183,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testVariationsParser(): void
+    public function test_variations_parser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
@@ -193,7 +193,7 @@ class ParserTest extends TestCase
         );
     }
 
-    public function testSimpleVariationsParser(): void
+    public function test_simple_variations_parser(): void
     {
         $parser = new Parser(__DIR__ . '/fixtures/products.xml');
 
