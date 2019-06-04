@@ -9,7 +9,7 @@ class XmlTest extends TestCase
     /**
      * @dataProvider escapeDataProvider
      */
-    public function testEscape($unescaped, string $escaped): void
+    public function test_escape($unescaped, string $escaped): void
     {
         $this->assertSame($escaped, Xml::escape($unescaped));
     }
@@ -26,21 +26,21 @@ class XmlTest extends TestCase
         ];
     }
 
-    public function testSanitise(): void
+    public function test_sanitise(): void
     {
         $invalidChar = chr(30); // Record Separator.
 
         $this->assertSame('Foo Bar', Xml::sanitise('Foo' . $invalidChar . 'Bar'));
     }
 
-    public function testValidateXml(): void
+    public function test_validate_xml(): void
     {
         $xmlPath = __DIR__ . '/fixtures/products.xml';
 
         $this->assertTrue(Xml::validate($xmlPath));
     }
 
-    public function testValidateInvalidXml(): void
+    public function test_validate_invalid_xml(): void
     {
         $this->expectException(XmlException::class);
         $this->expectExceptionMessageRegExp('/xmlParseEntityRef: no name/');
@@ -50,7 +50,7 @@ class XmlTest extends TestCase
         $this->assertFalse(Xml::validate($xmlPath));
     }
 
-    public function testValidateTaxonomySample(): void
+    public function test_validate_taxonomy_sample(): void
     {
         $xmlPath = __DIR__ . '/fixtures/taxonomy-sample.xml';
 

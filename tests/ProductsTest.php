@@ -8,7 +8,7 @@ class ProductsTest extends TestCase
 {
     use FixtureHelper;
 
-    public function testProductsXml(): void
+    public function test_products_xml(): void
     {
         $this->assertXmlStringEqualsXmlString(
             $this->loadFixture('products.xml'),
@@ -16,12 +16,12 @@ class ProductsTest extends TestCase
         );
     }
 
-    public function testProductsSaveXml(): void
+    public function test_products_save_xml(): void
     {
         $this->assertTrue($this->buildDocument()->save(__DIR__ . '/output/products.xml'));
     }
 
-    public function testProductsDeletedXml(): void
+    public function test_products_deleted_xml(): void
     {
         $document = new Document('TestCatalog');
 
@@ -39,7 +39,7 @@ class ProductsTest extends TestCase
         $this->assertXmlStringEqualsXmlString($sampleXml, $outputXml);
     }
 
-    public function testProductsInvalidEntitiesException(): void
+    public function test_products_invalid_entities_exception(): void
     {
         $this->expectException(XmlException::class);
         $this->expectExceptionMessageRegExp('/Entity \'bull\' not defined/');
@@ -53,7 +53,7 @@ class ProductsTest extends TestCase
         $document->save(__DIR__ . '/output/products.xml');
     }
 
-    public function testProductsInvalidAddObjectException(): void
+    public function test_products_invalid_add_object_exception(): void
     {
         $this->expectException(XmlException::class);
         $this->expectExceptionMessage('Unable to create product node containing invalid XML (variation123)');
@@ -72,11 +72,11 @@ class ProductsTest extends TestCase
     /**
      * @dataProvider setSitemapDataProvider
      */
-    public function testSetSitemap(array $params, array $expectedElements): void
+    public function test_set_sitemap(array $params, array $expectedElements): void
     {
         $element = new Product('PRODUCT123');
         $element->setSitemap(...$params);
-        $this->assertEquals($expectedElements, $element->getElements());
+        $this->assertSame($expectedElements, $element->getElements());
     }
 
     public function setSitemapDataProvider(): array
@@ -85,9 +85,9 @@ class ProductsTest extends TestCase
             [
                 ['0.5'],
                 [
-                    'sitemap-priority'        => '0.5',
                     'sitemap-included-flag'   => true,
                     'sitemap-changefrequency' => 'weekly',
+                    'sitemap-priority'        => '0.5',
                 ],
             ],
             [
@@ -106,7 +106,7 @@ class ProductsTest extends TestCase
         ];
     }
 
-    public function testInvalidSitemapPriority(): void
+    public function test_invalid_sitemap_priority(): void
     {
         $this->expectException(XmlException::class);
         $this->expectExceptionMessage('Sitemap priority must be 1.0 or less');

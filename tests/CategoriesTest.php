@@ -8,7 +8,7 @@ class CategoriesTest extends TestCase
 {
     use FixtureHelper;
 
-    public function testCategoriesXml(): void
+    public function test_categories_xml(): void
     {
         $document = new Document('TestCatalog');
 
@@ -35,7 +35,7 @@ class CategoriesTest extends TestCase
         $this->assertEqualXMLStructure($sampleXml->firstChild, $outputXml->firstChild);
     }
 
-    public function testAssignmentsXml(): void
+    public function test_assignments_xml(): void
     {
         $document = new Document('TestCatalog');
 
@@ -67,7 +67,7 @@ class CategoriesTest extends TestCase
         $this->assertEqualXMLStructure($sampleXml->firstChild, $outputXml->firstChild);
     }
 
-    public function testCategoriesDeletedXml(): void
+    public function test_categories_deleted_xml(): void
     {
         $document = new Document('TestCatalog');
 
