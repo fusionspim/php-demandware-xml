@@ -2,9 +2,9 @@
 namespace DemandwareXml\Test\Writer;
 
 use DateTimeImmutable;
+use DemandwareXml\Test\FixtureHelper;
 use DemandwareXml\Writer\Entity\{CustomAttribute, DeletedProduct, Product};
 use DemandwareXml\Writer\Xml\XmlWriter;
-use DemandwareXml\Test\FixtureHelper;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

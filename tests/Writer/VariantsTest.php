@@ -1,9 +1,9 @@
 <?php
 namespace DemandwareXml\Test\Writer;
 
+use DemandwareXml\Test\FixtureHelper;
 use DemandwareXml\Writer\Entity\Variant;
 use DemandwareXml\Writer\Xml\XmlWriter;
-use DemandwareXml\Test\FixtureHelper;
 use PHPUnit\Framework\TestCase;
 
 class VariantsTest extends TestCase

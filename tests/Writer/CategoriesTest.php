@@ -2,9 +2,9 @@
 namespace DemandwareXml\Test\Writer;
 
 use DateTimeImmutable;
+use DemandwareXml\Test\FixtureHelper;
 use DemandwareXml\Writer\Entity\{Assignment, Category, CustomAttribute, DeletedAssignment, DeletedCategory};
 use DemandwareXml\Writer\Xml\XmlWriter;
-use DemandwareXml\Test\FixtureHelper;
 use PHPUnit\Framework\TestCase;
 
 class CategoriesTest extends TestCase
