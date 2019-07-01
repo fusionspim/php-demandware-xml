@@ -381,16 +381,16 @@
         },
         {
             "name": "fusionspim/php-cs-fixer-config",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fusionspim/php-cs-fixer-config.git",
-                "reference": "b966968c21b732a90b72cae7991c789241ea23a6"
+                "reference": "a1d4280d167ab632827dee770f6de96349973cee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fusionspim/php-cs-fixer-config/zipball/b966968c21b732a90b72cae7991c789241ea23a6",
-                "reference": "b966968c21b732a90b72cae7991c789241ea23a6",
+                "url": "https://api.github.com/repos/fusionspim/php-cs-fixer-config/zipball/a1d4280d167ab632827dee770f6de96349973cee",
+                "reference": "a1d4280d167ab632827dee770f6de96349973cee",
                 "shasum": ""
             },
             "require": {
@@ -412,7 +412,7 @@
                 "configuration",
                 "php-cs-fixer"
             ],
-            "time": "2019-06-02T14:52:23+00:00"
+            "time": "2019-06-03T12:36:23+00:00"
         },
         {
             "name": "myclabs/deep-copy",
