@@ -1,2 +1,4 @@
 <?php
-return FusionsPim\PhpCsFixer\Factory::fromDefaults();
+return FusionsPim\PhpCsFixer\Factory::fromDefaults([
+    'date_time_immutable' => false // Needed for tests
+]);

@@ -20,7 +20,9 @@ class Parser
     {
         if (! file_exists($this->file)) {
             throw new XmlException('XML file does not exist: ' . basename($this->file));
-        } elseif (! is_readable($this->file)) {
+        }
+
+        if (! is_readable($this->file)) {
             throw new XmlException('XML file is not readable: ' . basename($this->file));
         }
 
