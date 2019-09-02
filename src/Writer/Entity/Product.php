@@ -100,7 +100,7 @@ class Product implements WriteableEntityInteface
             return;
         }
 
-        if ($tax == 0) {
+        if (empty($tax)) {
             $tax = 'TAX_0';
         } else {
             $tax = number_format($tax, 2);
