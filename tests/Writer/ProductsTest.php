@@ -132,7 +132,7 @@ class ProductsTest extends TestCase
 
     protected function buildMinimalProductElement(): Product
     {
-        $element = new Product( 'PRD12340000');
+        $element = new Product('PRD12340000');
         $element->setDisplayName('Minimal Product');
         $element->setLongDescription('This minimal product tests how empty fields are output');
 
