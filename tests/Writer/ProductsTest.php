@@ -76,6 +76,7 @@ class ProductsTest extends TestCase
         $xml->startDocument();
         $xml->startCatalog('TestCatalog');
         $xml->writeEntity($this->buildProductElement());
+        $xml->writeEntity($this->buildMinimalProductElement());
         $xml->writeEntity($this->buildSetElement());
         $xml->writeEntity($this->buildBundleElement());
         $xml->writeEntity($this->buildVariationElement());
@@ -125,6 +126,15 @@ class ProductsTest extends TestCase
         }
 
         $element->setImages([mb_strtolower($type) . '-123.png']);
+
+        return $element;
+    }
+
+    protected function buildMinimalProductElement(): Product
+    {
+        $element = new Product( 'PRD12340000');
+        $element->setDisplayName('Minimal Product');
+        $element->setLongDescription('This minimal product tests how empty fields are output');
 
         return $element;
     }

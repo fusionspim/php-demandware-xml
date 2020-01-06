@@ -25,8 +25,8 @@ class ProductXmlWriter
         $this->writer->ifNotEmpty()->writeElementWithAttributes('display-name', $this->product->displayName, ['xml:lang' => 'x-default']);
         $this->writer->ifNotEmpty()->writeElementWithAttributes('long-description', XmlFormatter::sanitise($this->product->longDescription), ['xml:lang' => 'x-default']);
         $this->writer->ifNotEmpty()->writeElement('online-flag', XmlFormatter::fromBoolean($this->product->onlineFlag));
-        $this->writer->ifNotEmpty()->writeElement('online-from', XmlFormatter::fromDateTime($this->product->onlineFrom));
-        $this->writer->ifNotEmpty()->writeElement('online-to', XmlFormatter::fromDateTime($this->product->onlineTo));
+        $this->writer->writeElement('online-from', XmlFormatter::fromDateTime($this->product->onlineFrom));
+        $this->writer->writeElement('online-to', XmlFormatter::fromDateTime($this->product->onlineTo));
         $this->writer->ifNotEmpty()->writeElement('available-flag', XmlFormatter::fromBoolean($this->product->availableFlag));
         $this->writer->ifNotEmpty()->writeElement('searchable-flag', XmlFormatter::fromBoolean($this->product->searchableFlag));
         $this->writer->ifNotEmpty()->writeElement('searchable-if-unavailable-flag', XmlFormatter::fromBoolean($this->product->searchableIfUnavailableFlag));
