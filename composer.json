@@ -11,8 +11,8 @@
     "ext-xmlwriter": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "8.2.*",
-    "fusionspim/php-cs-fixer-config": "^4.1"
+    "fusionspim/php-cs-fixer-config": "^4.1",
+    "phpunit/phpunit": "^9.0"
   },
   "autoload": {
     "psr-4": { "DemandwareXml\\": "src" }
