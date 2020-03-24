@@ -4,7 +4,7 @@
   "keywords": ["demandware", "ecommerce", "export", "php", "xml"],
   "license": "MIT",
   "require": {
-    "php": ">=7.2",
+    "php": "^7.3",
     "ext-json": "*",
     "ext-SimpleXML": "*",
     "ext-xmlreader": "*",
