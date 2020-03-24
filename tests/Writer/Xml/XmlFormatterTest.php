@@ -25,7 +25,7 @@ class XmlFormatterTest extends TestCase
         $this->assertSame($expectedResult, XmlFormatter::fromBoolean($value));
     }
 
-    public function from_boolean_data_provider(): array
+    public function from_boolean_data_provider(): iterable
     {
         return [
             'null value'    => [null, ''],
@@ -44,7 +44,7 @@ class XmlFormatterTest extends TestCase
         $this->assertSame($expectedResult, XmlFormatter::fromDateTime($value));
     }
 
-    public function from_datetime_data_provider(): array
+    public function from_datetime_data_provider(): iterable
     {
         return [
             'null value'                => [null, ''],
@@ -61,7 +61,7 @@ class XmlFormatterTest extends TestCase
         $this->assertSame($expectedResult, XmlFormatter::fromType($value));
     }
 
-    public function from_type_data_provider(): array
+    public function from_type_data_provider(): iterable
     {
         $toStringClass = new class {
             public function __toString()
@@ -96,7 +96,7 @@ class XmlFormatterTest extends TestCase
         XmlFormatter::fromType($value);
     }
 
-    public function from_type_exception_data_provider(): array
+    public function from_type_exception_data_provider(): iterable
     {
         return [
             'array value' => [
@@ -121,7 +121,7 @@ class XmlFormatterTest extends TestCase
         $this->assertSame($expectedResult, XmlFormatter::isEmptyValue($value));
     }
 
-    public function is_empty_value_data_provider(): array
+    public function is_empty_value_data_provider(): iterable
     {
         return [
             'null value'         => [null, true],

@@ -4,15 +4,15 @@
   "keywords": ["demandware", "ecommerce", "export", "php", "xml"],
   "license": "MIT",
   "require": {
-    "php": ">=7.2",
+    "php": "^7.3",
     "ext-json": "*",
     "ext-SimpleXML": "*",
     "ext-xmlreader": "*",
     "ext-xmlwriter": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "8.2.*",
-    "fusionspim/php-cs-fixer-config": "^3.0"
+    "fusionspim/php-cs-fixer-config": "^4.1",
+    "phpunit/phpunit": "^9.0"
   },
   "autoload": {
     "psr-4": { "DemandwareXml\\": "src" }
