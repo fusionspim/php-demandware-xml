@@ -112,18 +112,14 @@ class ProductsTest extends TestCase
             'http://example.com/' . mb_strtolower($type) . '/123'
         );
 
-        $customAttributes = [
+        $element->addCustomAttributes([
             'type'         => 'Examples',
             'zzz'          => 'Should be exported last within custom-attributes',
             'primaryImage' => mb_strtolower($type) . '-123.png',
             'multiWow'     => ['so', 'such', 'many', 'much', 'very'],
             'boolTrue'     => true,
             'boolFalse'    => false,
-        ];
-
-        foreach ($customAttributes as $id => $value) {
-            $element->addCustomAttribute(new CustomAttribute($id, $value));
-        }
+        ]);
 
         $element->setImages([mb_strtolower($type) . '-123.png']);
 

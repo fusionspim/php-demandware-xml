@@ -161,6 +161,13 @@ class Product implements WriteableEntityInteface
         $this->customAttributes[$customAttribute->id] = $customAttribute;
     }
 
+    public function addCustomAttributes(array $map): void
+    {
+        foreach ($map as $id => $value) {
+            $this->addCustomAttribute(new CustomAttribute($id, $value));
+        }
+    }
+
     public function setSharedVariationAttributes(array $sharedVariationAttributes): void
     {
         $this->sharedVariationAttributes = $sharedVariationAttributes;
