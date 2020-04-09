@@ -32,15 +32,11 @@ class CategoriesTest extends TestCase
                 new DateTimeImmutable('2018-02-02 02:02:02')
             );
 
-            $customAttributes = [
+            $element->addCustomAttributes([
                 'itemsPerPage' => 30,
                 'promoMast'    => 'cat' . $index . '-banner.png',
                 'hasOffers'    => true,
-            ];
-
-            foreach ($customAttributes as $id => $value) {
-                $element->addCustomAttribute(new CustomAttribute($id, $value));
-            }
+            ]);
 
             $xml->writeEntity($element);
         }

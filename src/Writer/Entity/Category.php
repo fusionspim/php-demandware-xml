@@ -86,6 +86,13 @@ class Category implements WriteableEntityInteface
         $this->customAttributes[$customAttribute->id] = $customAttribute;
     }
 
+    public function addCustomAttributes(array $map): void
+    {
+        foreach ($map as $id => $value) {
+            $this->addCustomAttribute(new CustomAttribute($id, $value));
+        }
+    }
+
     public function write(XmlWriter $writer): void
     {
         (new CategoryXmlWriter($writer, $this))->write();
