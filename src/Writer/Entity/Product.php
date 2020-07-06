@@ -36,6 +36,7 @@ class Product implements WriteableEntityInteface
     public $setProducts               = null;
     public $classificationCategoryId;
     public $classificationCatalogId;
+    public $variationGroups           = [];
 
     public function __construct(string $id)
     {
@@ -220,6 +221,18 @@ class Product implements WriteableEntityInteface
     {
         $this->classificationCategoryId = $classificationCategoryId;
         $this->classificationCatalogId  = $classificationCatalogId;
+    }
+
+    public function addVariationGroups(array $variationGroups): void
+    {
+        foreach ($variationGroups as $variationGroup) {
+            $this->addVariationGroup($variationGroup);
+        }
+    }
+
+    public function addVariationGroup(string $variationGroup): void
+    {
+        $this->variationGroups[] = $variationGroup;
     }
 
     public function write(XmlWriter $writer): void

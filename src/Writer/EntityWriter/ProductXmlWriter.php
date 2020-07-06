@@ -42,6 +42,7 @@ class ProductXmlWriter
         $this->writeVariations();
         $this->writeBundleProducts();
         $this->writeSetProducts();
+        $this->writeVariationGroups();
         $this->writeClassificationCategory();
         $this->writer->endElement();
     }
@@ -223,5 +224,22 @@ class ProductXmlWriter
                 'catalog-id' => $this->product->classificationCatalogId,
             ]);
         }
+    }
+
+    public function writeVariationGroups(): void
+    {
+        if (count($this->product->variationGroups) === 0) {
+            return;
+        }
+
+        $this->writer->startElement('variation-groups');
+
+        foreach (array_unique($this->product->variationGroups) as $variationGroup) {
+            $this->writer->writeEmptyElementWithAttributes('variation-group', [
+                'product-id' => $variationGroup,
+            ]);
+        }
+
+        $this->writer->endElement();
     }
 }

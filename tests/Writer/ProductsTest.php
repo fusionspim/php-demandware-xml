@@ -148,6 +148,12 @@ class ProductsTest extends TestCase
             'SKU0000003' => true,
         ]);
 
+        $element->addVariationGroups([
+            'PRODUCT123-Red',
+            'PRODUCT123-Yellow',
+            'PRODUCT123-Green',
+        ]);
+
         return $element;
     }
 
