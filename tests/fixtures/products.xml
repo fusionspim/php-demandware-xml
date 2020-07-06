@@ -51,6 +51,11 @@
         <variant product-id="SKU0000003" default="true"/>
       </variants>
     </variations>
+    <variation-groups>
+      <variation-group product-id="PRODUCT123-Red"/>
+      <variation-group product-id="PRODUCT123-Yellow"/>
+      <variation-group product-id="PRODUCT123-Green"/>
+    </variation-groups>
     <classification-category catalog-id="TestCatalog">CAT123</classification-category>
   </product>
   <product product-id="PRD12340000">
