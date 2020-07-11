@@ -66,14 +66,14 @@ class XmlFormatter
         }
     }
 
-    // Checks whether a value is null, an empty array, or an empty multi-byte string.
+    // Checks whether a value is null, an empty array, or an empty string.
     public static function isEmptyValue($value): bool
     {
         if ($value === null || $value === []) {
             return true;
         }
 
-        if (is_string($value) && mb_strlen($value) === 0) {
+        if (is_string($value) && $value === '') {
             return true;
         }
 

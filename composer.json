@@ -11,7 +11,7 @@
     "ext-xmlwriter": "*"
   },
   "require-dev": {
-    "fusionspim/php-cs-fixer-config": "^4.1",
+    "fusionspim/php-cs-fixer-config": "^6.0",
     "phpunit/phpunit": "9.2.*"
   },
   "autoload": {
