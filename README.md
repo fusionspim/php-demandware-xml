@@ -10,7 +10,7 @@ A PHP library for working with Demandware XML files.
 
 ## Installation
 
-Run `composer require --dev fusionspim/php-demandware-xml`.
+Run `composer require fusionspim/php-demandware-xml`.
 
 ## Usage
 
