@@ -42,7 +42,6 @@ class ProductXmlWriter
         $this->writeVariations();
         $this->writeBundleProducts();
         $this->writeSetProducts();
-        $this->writeVariationGroups();
         $this->writeClassificationCategory();
         $this->writer->endElement();
     }
@@ -130,6 +129,7 @@ class ProductXmlWriter
         $this->writer->startElement('variations');
         $this->writeSharedVariationAttributes($attributes);
         $this->writeVariants($variants);
+        $this->writeVariationGroups();
         $this->writer->endElement();
     }
 
