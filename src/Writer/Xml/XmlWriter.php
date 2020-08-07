@@ -12,6 +12,8 @@ class XmlWriter extends PhpXmlWriter
     const INDENT_SPACE = ' ';
 
     private $notEmptyWriter;
+    private $bufferLimit = 100;
+    private $entityCount = 0;
 
     public function openFile(string $filename): bool
     {
@@ -19,6 +21,25 @@ class XmlWriter extends PhpXmlWriter
         $this->openUri($filename);
 
         return true;
+    }
+
+    public function initialise(string $catalogId): void
+    {
+        $this->setIndentDefaults();
+        $this->startDocument('1.0', 'UTF-8'); // @todo: Perhaps values should come from the XSD file?
+        $this->startCatalog($catalogId);
+    }
+
+    public function finalise(): void
+    {
+        $this->endCatalog();
+        $this->endDocument();
+        $this->flush();
+    }
+
+    public function setBufferLimit(int $bufferLimit): void
+    {
+        $this->bufferLimit = $bufferLimit;
     }
 
     public function setIndentDefaults(): bool
@@ -91,5 +112,14 @@ class XmlWriter extends PhpXmlWriter
     public function writeEntity(WriteableEntityInteface $entity): void
     {
         $entity->write($this);
+    }
+
+    public function writeFlushableEntity(WriteableEntityInteface $entity): void
+    {
+        $this->writeEntity($entity);
+
+        if (++$this->entityCount % $this->bufferLimit === 0) {
+            $this->flush();
+        }
     }
 }
