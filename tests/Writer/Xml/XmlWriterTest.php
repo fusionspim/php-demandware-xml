@@ -1,6 +1,7 @@
 <?php
 namespace DemandwareXml\Test\Writer\Xml;
 
+use DemandwareXml\Writer\Entity\Product;
 use DemandwareXml\Writer\Xml\XmlWriter;
 use PHPUnit\Framework\TestCase;
 
@@ -80,5 +81,64 @@ class XmlWriterTest extends TestCase
         $xml = $this->getMemoryXmlWriter();
         $xml->writeEmptyElementWithAttributes('test', ['foo' => 'bar']);
         $this->assertXmlStringEqualsXmlString('<test foo="bar"/>', $xml->outputMemory(true));
+    }
+
+    public function test_write_flushable_entity(): void
+    {
+        $output = TEST_OUTPUT_DIR . '/catalog_auto_flush.xml';
+
+        $xml = $this->getFileXmlWriter($output);
+        $xml->setBufferLimit(2);
+
+        $xml->writeFlushableEntity(new Product('PRD000001'));
+        $xml->writeFlushableEntity(new Product('PRD000002'));
+        $this->assertStringContainsString(
+            <<<XML
+            <product product-id="PRD000001">
+              <online-from></online-from>
+              <online-to></online-to>
+            </product>
+            <product product-id="PRD000002">
+              <online-from></online-from>
+              <online-to></online-to>
+            </product>
+            XML,
+            trim(file_get_contents($output))
+        );
+
+        $xml->writeFlushableEntity(new Product('PRD000003'));
+        $xml->writeFlushableEntity(new Product('PRD000004'));
+        $this->assertStringContainsString(
+            <<<XML
+            <product product-id="PRD000003">
+              <online-from></online-from>
+              <online-to></online-to>
+            </product>
+            <product product-id="PRD000004">
+              <online-from></online-from>
+              <online-to></online-to>
+            </product>
+            XML,
+            trim(file_get_contents($output))
+        );
+    }
+
+    public function test_initialise_and_finalise(): void
+    {
+        $output = TEST_OUTPUT_DIR . '/catalog_initialise_finalise.xml';
+
+        $xml = $this->getFileXmlWriter($output);
+        $xml->initialise('TestCatalog');
+        $xml->writeElement('test', 'FOOBAR');
+        $xml->finalise();
+
+        $this->assertXmlStringEqualsXmlString(
+            <<<XML
+            <catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">
+              <test>FOOBAR</test>
+            </catalog>
+            XML,
+            trim(file_get_contents($output))
+        );
     }
 }
