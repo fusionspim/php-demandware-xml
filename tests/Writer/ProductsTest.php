@@ -68,26 +68,6 @@ class ProductsTest extends TestCase
         $entity->setSitemap(42.5);
     }
 
-    public function test_null_online_dates(): void
-    {
-        $entity = $this->buildMinimalProductElement();
-        $entity->setOnlineFromTo(null, null);
-
-        $xml = new XmlWriter;
-        $xml->openMemory();
-        $xml->setIndentDefaults();
-        $xml->startDocument();
-        $xml->startCatalog('TestCatalog');
-        $xml->writeEntity($entity);
-        $xml->endCatalog();
-        $xml->endDocument();
-
-        $this->assertXmlStringEqualsXmlString(
-            $this->loadFixture('product-null-online-dates.xml'),
-            $xml->outputMemory(true)
-        );
-    }
-
     protected function buildDocument(): XmlWriter
     {
         $xml = new XmlWriter;

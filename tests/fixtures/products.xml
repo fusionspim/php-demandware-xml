@@ -61,8 +61,6 @@
   <product product-id="PRD12340000">
     <display-name xml:lang="x-default">Minimal Product</display-name>
     <long-description xml:lang="x-default">This minimal product tests how empty fields are output</long-description>
-    <online-from></online-from>
-    <online-to></online-to>
   </product>
   <product product-id="SET123">
     <upc>500000000001</upc>
