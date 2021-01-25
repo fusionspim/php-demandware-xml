@@ -6,13 +6,13 @@ use DateTimeInterface;
 // Converts values into strings suitable for XML output.
 class XmlFormatter
 {
-    const DATE_FORMAT_DEFAULT = 'Y-m-d\TH:i:s';
+    public const DATE_FORMAT_DEFAULT = 'Y-m-d\TH:i:s';
 
     /**
      * Sanitise a string for XML.
      *
-     * @link   http://www.phpwact.org/php/i18n/charsets#common_problem_areas_with_utf-8
-     * @link   http://www.xiven.com/weblog/2013/08/30/PHPInvalidUTF8InXMLRevisited
+     * @see   http://www.phpwact.org/php/i18n/charsets#common_problem_areas_with_utf-8
+     * @see   http://www.xiven.com/weblog/2013/08/30/PHPInvalidUTF8InXMLRevisited
      */
     public static function sanitise(?string $string): string
     {
@@ -60,7 +60,6 @@ class XmlFormatter
 
             case 'array':
                 throw new XmlFormatterException('Cannot convert array to a string');
-
             default:
                 return (string) $value;
         }
