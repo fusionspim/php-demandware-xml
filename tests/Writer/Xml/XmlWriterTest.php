@@ -93,32 +93,32 @@ class XmlWriterTest extends TestCase
         $xml->writeFlushableEntity(new Product('PRD000001'));
         $xml->writeFlushableEntity(new Product('PRD000002'));
         $this->assertStringContainsString(
-            <<<XML
-            <product product-id="PRD000001">
-              <online-from></online-from>
-              <online-to></online-to>
-            </product>
-            <product product-id="PRD000002">
-              <online-from></online-from>
-              <online-to></online-to>
-            </product>
-            XML,
+            <<<'XML'
+                <product product-id="PRD000001">
+                  <online-from></online-from>
+                  <online-to></online-to>
+                </product>
+                <product product-id="PRD000002">
+                  <online-from></online-from>
+                  <online-to></online-to>
+                </product>
+                XML,
             trim(file_get_contents($output))
         );
 
         $xml->writeFlushableEntity(new Product('PRD000003'));
         $xml->writeFlushableEntity(new Product('PRD000004'));
         $this->assertStringContainsString(
-            <<<XML
-            <product product-id="PRD000003">
-              <online-from></online-from>
-              <online-to></online-to>
-            </product>
-            <product product-id="PRD000004">
-              <online-from></online-from>
-              <online-to></online-to>
-            </product>
-            XML,
+            <<<'XML'
+                <product product-id="PRD000003">
+                  <online-from></online-from>
+                  <online-to></online-to>
+                </product>
+                <product product-id="PRD000004">
+                  <online-from></online-from>
+                  <online-to></online-to>
+                </product>
+                XML,
             trim(file_get_contents($output))
         );
     }
@@ -133,11 +133,11 @@ class XmlWriterTest extends TestCase
         $xml->finalise();
 
         $this->assertXmlStringEqualsXmlString(
-            <<<XML
-            <catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">
-              <test>FOOBAR</test>
-            </catalog>
-            XML,
+            <<<'XML'
+                <catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">
+                  <test>FOOBAR</test>
+                </catalog>
+                XML,
             trim(file_get_contents($output))
         );
     }
