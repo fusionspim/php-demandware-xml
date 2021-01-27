@@ -87,14 +87,14 @@ class XmlWriterTest extends TestCase
     {
         $xml = $this->getMemoryXmlWriter();
         $xml->nilIfEmpty()->writeElement('test');
-        $this->assertXmlStringEqualsXmlString('<test xsi:nil="true"/>', $xml->outputMemory(true));
+        $this->assertXmlStringEqualsXmlString('<test xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>', $xml->outputMemory(true));
     }
 
     public function test_write_nil_element_with_attributes(): void
     {
         $xml = $this->getMemoryXmlWriter();
         $xml->nilIfEmpty()->writeElementWithAttributes('test', null, ['other' => 'value']);
-        $this->assertXmlStringEqualsXmlString('<test other="value" xsi:nil="true"/>', $xml->outputMemory(true));
+        $this->assertXmlStringEqualsXmlString('<test other="value" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>', $xml->outputMemory(true));
     }
 
     public function test_write_flushable_entity(): void
@@ -110,12 +110,12 @@ class XmlWriterTest extends TestCase
         $this->assertStringContainsString(
             <<<'XML'
                 <product product-id="PRD000001">
-                  <online-from xsi:nil="true"/>
-                  <online-to xsi:nil="true"/>
+                  <online-from xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                  <online-to xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                 </product>
                 <product product-id="PRD000002">
-                  <online-from xsi:nil="true"/>
-                  <online-to xsi:nil="true"/>
+                  <online-from xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                  <online-to xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                 </product>
                 XML,
             trim(file_get_contents($output))
@@ -126,12 +126,12 @@ class XmlWriterTest extends TestCase
         $this->assertStringContainsString(
             <<<'XML'
                 <product product-id="PRD000003">
-                  <online-from xsi:nil="true"/>
-                  <online-to xsi:nil="true"/>
+                  <online-from xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                  <online-to xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                 </product>
                 <product product-id="PRD000004">
-                  <online-from xsi:nil="true"/>
-                  <online-to xsi:nil="true"/>
+                  <online-from xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                  <online-to xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                 </product>
                 XML,
             trim(file_get_contents($output))

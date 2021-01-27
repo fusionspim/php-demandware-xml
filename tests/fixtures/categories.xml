@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         catalog-id="TestCatalog">
+<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">
   <category category-id="CAT0">
     <display-name xml:lang="x-default">Socks</display-name>
     <online-flag>true</online-flag>
@@ -27,7 +25,7 @@
   <category category-id="CAT1">
     <display-name xml:lang="x-default">Death Stars</display-name>
     <online-flag>true</online-flag>
-    <online-from xsi:nil="true"/>
+    <online-from xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
     <online-to>2018-02-02T02:02:02</online-to>
     <parent>CAT0</parent>
     <template>cat-listings.html</template>
@@ -50,7 +48,7 @@
     <display-name xml:lang="x-default">Donuts</display-name>
     <online-flag>true</online-flag>
     <online-from>2018-01-01T01:01:01</online-from>
-    <online-to xsi:nil="true"/>
+    <online-to xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
     <parent>CAT0</parent>
     <template>cat-listings.html</template>
     <sitemap-included-flag>true</sitemap-included-flag>

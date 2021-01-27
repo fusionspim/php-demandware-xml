@@ -18,7 +18,6 @@ class CategoriesTest extends TestCase
         $xml->setIndentDefaults();
         $xml->startDocument();
         $xml->startCatalog('TestCatalog');
-        $xml->writeAttributeNS('xmlns', 'xsi', null, 'http://www.w3.org/2001/XMLSchema-instance');
 
         $categories = [
             'Socks' => [

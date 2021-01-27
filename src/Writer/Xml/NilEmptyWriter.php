@@ -34,6 +34,7 @@ class NilEmptyWriter
 
         if (XmlFormatter::isEmptyValue($content)) {
             $this->writeAttribute('xsi:nil', 'true');
+            $this->writeAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
         } else {
             $this->writer->text($content);
         }

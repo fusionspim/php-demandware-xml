@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         catalog-id="TestCatalog">
+<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">
   <product product-id="PRODUCT123">
     <upc>500000000000</upc>
     <min-order-quantity>1</min-order-quantity>
@@ -63,8 +61,8 @@
   <product product-id="PRD12340000">
     <display-name xml:lang="x-default">Minimal Product</display-name>
     <long-description xml:lang="x-default">This minimal product tests how empty fields are output</long-description>
-    <online-from xsi:nil="true"/>
-    <online-to xsi:nil="true"/>
+    <online-from xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+    <online-to xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
   </product>
   <product product-id="SET123">
     <upc>500000000001</upc>
