@@ -5,7 +5,7 @@ use DOMDocument;
 
 trait FixtureHelper
 {
-    protected function loadFixture(string $filename): DOMDocument
+    protected function loadFixture(string $filename): string
     {
         $dom                     = new DOMDocument('1.0', 'UTF-8');
         $dom->preserveWhiteSpace = false;
@@ -13,7 +13,7 @@ trait FixtureHelper
 
         $dom->load(TEST_FIXTURE_DIR . '/' . ltrim($filename, '/'));
 
-        return $dom;
+        return $dom->saveXML();
     }
 
     protected function loadJsonFixture(string $filename): array
