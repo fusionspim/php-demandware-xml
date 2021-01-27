@@ -12,6 +12,7 @@ class XmlWriter extends PhpXmlWriter
     public const INDENT_SPACE = ' ';
 
     private $notEmptyWriter;
+    private $nilEmptyWriter;
     private $bufferLimit = 100;
     private $entityCount = 0;
 
@@ -73,6 +74,15 @@ class XmlWriter extends PhpXmlWriter
         }
 
         return $this->notEmptyWriter;
+    }
+
+    public function nilIfEmpty(): NilEmptyWriter
+    {
+        if (! $this->nilEmptyWriter) {
+            $this->nilEmptyWriter = new NilEmptyWriter($this);
+        }
+
+        return $this->nilEmptyWriter;
     }
 
     public function writeElementWithAttributes($name, $content = null, array $attributes = []): bool
