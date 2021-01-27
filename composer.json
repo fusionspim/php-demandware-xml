@@ -18,8 +18,8 @@
   },
   "require-dev": {
     "ergebnis/composer-normalize": "^2.6",
-    "fusionspim/php-cs-fixer-config": "^6.0",
-    "phpunit/phpunit": "9.4.*"
+    "fusionspim/php-cs-fixer-config": "^7.1",
+    "phpunit/phpunit": "9.5.*"
   },
   "autoload": {
     "psr-4": {

@@ -93,20 +93,20 @@ class XmlWriterTest extends TestCase
         $xml->writeFlushableEntity(new Product('PRD000001'));
         $xml->writeFlushableEntity(new Product('PRD000002'));
         $this->assertStringContainsString(
-            <<<XML
-            <product product-id="PRD000001"/>
-            <product product-id="PRD000002"/>
-            XML,
+            <<<'XML'
+                <product product-id="PRD000001"/>
+                <product product-id="PRD000002"/>
+                XML,
             trim(file_get_contents($output))
         );
 
         $xml->writeFlushableEntity(new Product('PRD000003'));
         $xml->writeFlushableEntity(new Product('PRD000004'));
         $this->assertStringContainsString(
-            <<<XML
-            <product product-id="PRD000003"/>
-            <product product-id="PRD000004"/>
-            XML,
+            <<<'XML'
+                <product product-id="PRD000003"/>
+                <product product-id="PRD000004"/>
+                XML,
             trim(file_get_contents($output))
         );
     }
@@ -121,11 +121,11 @@ class XmlWriterTest extends TestCase
         $xml->finalise();
 
         $this->assertXmlStringEqualsXmlString(
-            <<<XML
-            <catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">
-              <test>FOOBAR</test>
-            </catalog>
-            XML,
+            <<<'XML'
+                <catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">
+                  <test>FOOBAR</test>
+                </catalog>
+                XML,
             trim(file_get_contents($output))
         );
     }

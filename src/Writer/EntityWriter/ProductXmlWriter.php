@@ -54,7 +54,7 @@ class ProductXmlWriter
     {
         if (! XmlFormatter::isEmptyValue($this->product->brand)) {
             $this->writer->writeElement('brand', $this->product->brand);
-        } elseif (! is_null($this->product->brand)) {
+        } elseif ($this->product->brand !== null) {
             $this->writer->writeEmptyElement('brand');
         }
     }
