@@ -92,10 +92,17 @@ class XmlWriterTest extends TestCase
 
         $xml->writeFlushableEntity(new Product('PRD000001'));
         $xml->writeFlushableEntity(new Product('PRD000002'));
+
         $this->assertStringContainsString(
             <<<'XML'
-                <product product-id="PRD000001"/>
-                <product product-id="PRD000002"/>
+                <product product-id="PRD000001">
+                  <online-from xsi:nil="true"/>
+                  <online-to xsi:nil="true"/>
+                </product>
+                <product product-id="PRD000002">
+                  <online-from xsi:nil="true"/>
+                  <online-to xsi:nil="true"/>
+                </product>
                 XML,
             trim(file_get_contents($output))
         );
@@ -104,8 +111,14 @@ class XmlWriterTest extends TestCase
         $xml->writeFlushableEntity(new Product('PRD000004'));
         $this->assertStringContainsString(
             <<<'XML'
-                <product product-id="PRD000003"/>
-                <product product-id="PRD000004"/>
+                <product product-id="PRD000003">
+                  <online-from xsi:nil="true"/>
+                  <online-to xsi:nil="true"/>
+                </product>
+                <product product-id="PRD000004">
+                  <online-from xsi:nil="true"/>
+                  <online-to xsi:nil="true"/>
+                </product>
                 XML,
             trim(file_get_contents($output))
         );
