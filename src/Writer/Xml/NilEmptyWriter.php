@@ -42,19 +42,4 @@ class NilEmptyWriter
 
         return true;
     }
-
-    public function writeEmptyElementWithAttributes($name, array $attributes = []): bool
-    {
-        $this->writer->startElement($name);
-
-        $this->writeAttribute('xsi:nil', 'true');
-
-        foreach ($attributes as $attrName => $attrContent) {
-            $this->writer->writeAttribute($attrName, $attrContent);
-        }
-
-        $this->writer->endElement();
-
-        return true;
-    }
 }

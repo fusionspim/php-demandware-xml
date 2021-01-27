@@ -83,6 +83,20 @@ class XmlWriterTest extends TestCase
         $this->assertXmlStringEqualsXmlString('<test foo="bar"/>', $xml->outputMemory(true));
     }
 
+    public function test_write_nil_element(): void
+    {
+        $xml = $this->getMemoryXmlWriter();
+        $xml->nilIfEmpty()->writeElement('test');
+        $this->assertXmlStringEqualsXmlString('<test xsi:nil="true"/>', $xml->outputMemory(true));
+    }
+
+    public function test_write_nil_element_with_attributes(): void
+    {
+        $xml = $this->getMemoryXmlWriter();
+        $xml->nilIfEmpty()->writeElementWithAttributes('test', null, ['other' => 'value']);
+        $this->assertXmlStringEqualsXmlString('<test other="value" xsi:nil="true"/>', $xml->outputMemory(true));
+    }
+
     public function test_write_flushable_entity(): void
     {
         $output = TEST_OUTPUT_DIR . '/catalog_auto_flush.xml';
