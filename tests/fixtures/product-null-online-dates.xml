@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">
-    <product product-id="PRD12340000">
-        <display-name xml:lang="x-default">Minimal Product</display-name>
-        <long-description xml:lang="x-default">This minimal product tests how empty fields are output</long-description>
-    </product>
-</catalog>

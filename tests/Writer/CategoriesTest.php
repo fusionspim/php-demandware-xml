@@ -3,7 +3,7 @@ namespace DemandwareXml\Test\Writer;
 
 use DateTimeImmutable;
 use DemandwareXml\Test\FixtureHelper;
-use DemandwareXml\Writer\Entity\{Assignment, Category, CustomAttribute, DeletedAssignment, DeletedCategory};
+use DemandwareXml\Writer\Entity\{Assignment, Category, DeletedAssignment, DeletedCategory};
 use DemandwareXml\Writer\Xml\XmlWriter;
 use PHPUnit\Framework\TestCase;
 
@@ -18,23 +18,48 @@ class CategoriesTest extends TestCase
         $xml->setIndentDefaults();
         $xml->startDocument();
         $xml->startCatalog('TestCatalog');
+        $xml->writeAttributeNS('xmlns', 'xsi', null, 'http://www.w3.org/2001/XMLSchema-instance');
+        
+        $categories = [
+            'Socks' => [
+                'index' => 0,
+                'dates' => [
+                    new DateTimeImmutable('2018-01-01 01:01:01'),
+                    new DateTimeImmutable('2018-02-02 02:02:02'),
+                ],
+            ],
+            'Death Stars' => [
+                'index' => 1,
+                'dates' => [
+                    null,
+                    new DateTimeImmutable('2018-02-02 02:02:02'),
+                ],
+            ],
+            'Donuts' => [
+                'index' => 2,
+                'dates' => [
+                    new DateTimeImmutable('2018-01-01 01:01:01'),
+                    null,
+                ],
+            ],
+        ];
 
-        foreach (['Socks', 'Death Stars', 'Donuts'] as $index => $example) {
-            $element = new Category('CAT' . $index);
-            $element->setDisplayName($example);
+        foreach ($categories as $title => $data) {
+            $element = new Category('CAT' . $data['index']);
+            $element->setDisplayName($title);
             $element->setParent('CAT0');
             $element->setTemplate('cat-listings.html');
             $element->setOnlineFlag(true);
             $element->setSitemap(0.2);
-            $element->setPageAttributes($example, 'Buy ' . $example, mb_strtolower($example), '/' . $example);
+            $element->setPageAttributes($title, 'Buy ' . $title, mb_strtolower($title), '/' . $title);
             $element->setOnlineFromTo(
-                new DateTimeImmutable('2018-01-01 01:01:01'),
-                new DateTimeImmutable('2018-02-02 02:02:02')
+                $data['dates'][0],
+                $data['dates'][1]
             );
 
             $element->addCustomAttributes([
                 'itemsPerPage' => 30,
-                'promoMast'    => 'cat' . $index . '-banner.png',
+                'promoMast'    => 'cat' . $data['index'] . '-banner.png',
                 'hasOffers'    => true,
             ]);
 
