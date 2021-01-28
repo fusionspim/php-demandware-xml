@@ -21,8 +21,8 @@ class CategoryXmlWriter
         $this->writer->ifNotEmpty()->writeAttribute('category-id', $this->category->id);
         $this->writer->ifNotEmpty()->writeElementWithAttributes('display-name', $this->category->displayName, ['xml:lang' => 'x-default']);
         $this->writer->ifNotEmpty()->writeElement('online-flag', XmlFormatter::fromBoolean($this->category->onlineFlag));
-        $this->writer->ifNotEmpty()->writeElement('online-from', XmlFormatter::fromDateTime($this->category->onlineFrom));
-        $this->writer->ifNotEmpty()->writeElement('online-to', XmlFormatter::fromDateTime($this->category->onlineTo));
+        $this->writer->nilIfEmpty()->writeElement('online-from', XmlFormatter::fromDateTime($this->category->onlineFrom));
+        $this->writer->nilIfEmpty()->writeElement('online-to', XmlFormatter::fromDateTime($this->category->onlineTo));
         $this->writer->ifNotEmpty()->writeElement('parent', $this->category->parentId);
         $this->writeTemplate();
         $this->writer->ifNotEmpty()->writeElement('sitemap-included-flag', XmlFormatter::fromBoolean($this->category->sitemapIncludedFlag));
