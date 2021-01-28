@@ -87,14 +87,14 @@ class XmlWriterTest extends TestCase
     {
         $xml = $this->getMemoryXmlWriter();
         $xml->nilIfEmpty()->writeElement('test');
-        $this->assertXmlStringEqualsXmlString('<test xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>', $xml->outputMemory(true));
+        $this->assertXmlStringEqualsXmlString('<test xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>', $xml->outputMemory(true));
     }
 
     public function test_write_nil_element_with_attributes(): void
     {
         $xml = $this->getMemoryXmlWriter();
         $xml->nilIfEmpty()->writeElementWithAttributes('test', null, ['other' => 'value']);
-        $this->assertXmlStringEqualsXmlString('<test other="value" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>', $xml->outputMemory(true));
+        $this->assertXmlStringEqualsXmlString('<test other="value" xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>', $xml->outputMemory(true));
     }
 
     public function test_write_flushable_entity(): void
