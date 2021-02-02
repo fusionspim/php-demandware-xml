@@ -23,22 +23,22 @@ class CategoriesTest extends TestCase
             'Socks' => [
                 'index' => 0,
                 'dates' => [
-                    new DateTimeImmutable('2018-01-01 01:01:01'),
-                    new DateTimeImmutable('2018-02-02 02:02:02'),
+                    'from' => new DateTimeImmutable('2018-01-01 01:01:01'),
+                    'to'   => new DateTimeImmutable('2018-02-02 02:02:02'),
                 ],
             ],
             'Death Stars' => [
                 'index' => 1,
                 'dates' => [
-                    null,
-                    new DateTimeImmutable('2018-02-02 02:02:02'),
+                    'from' => null,
+                    'to'   => new DateTimeImmutable('2018-02-02 02:02:02'),
                 ],
             ],
             'Donuts' => [
                 'index' => 2,
                 'dates' => [
-                    new DateTimeImmutable('2018-01-01 01:01:01'),
-                    null,
+                    'from' => new DateTimeImmutable('2018-01-01 01:01:01'),
+                    'to'   => null,
                 ],
             ],
         ];
@@ -52,8 +52,8 @@ class CategoriesTest extends TestCase
             $element->setSitemap(0.2);
             $element->setPageAttributes($title, 'Buy ' . $title, mb_strtolower($title), '/' . $title);
             $element->setOnlineFromTo(
-                $data['dates'][0],
-                $data['dates'][1]
+                $data['dates']['from'],
+                $data['dates']['to']
             );
 
             $element->addCustomAttributes([
