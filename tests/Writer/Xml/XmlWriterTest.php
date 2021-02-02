@@ -90,6 +90,20 @@ class XmlWriterTest extends TestCase
         $this->assertXmlStringEqualsXmlString('<test xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>', $xml->outputMemory(true));
     }
 
+    public function test_write_nil_element_with_empty_string(): void
+    {
+        $xml = $this->getMemoryXmlWriter();
+        $xml->nilIfEmpty()->writeElement('test', '');
+        $this->assertXmlStringEqualsXmlString('<test xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>', $xml->outputMemory(true));
+    }
+
+    public function test_write_nil_element_with_string(): void
+    {
+        $xml = $this->getMemoryXmlWriter();
+        $xml->nilIfEmpty()->writeElement('test', 'content');
+        $this->assertXmlStringEqualsXmlString('<test>content</test>', $xml->outputMemory(true));
+    }
+
     public function test_write_nil_element_with_attributes(): void
     {
         $xml = $this->getMemoryXmlWriter();
