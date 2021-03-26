@@ -72,18 +72,12 @@ class XmlFormatter
             return true;
         }
 
-        if (is_string($value) && $value === '') {
-            return true;
-        }
-
-        return false;
+        return (bool) (is_string($value) && $value === '');
     }
 
     // Filters out empty values from an array.
     public static function filterEmptyValues(array $values): array
     {
-        return array_filter($values, function ($value) {
-            return self::isEmptyValue($value) === false;
-        });
+        return array_filter($values, fn ($value) => self::isEmptyValue($value) === false);
     }
 }

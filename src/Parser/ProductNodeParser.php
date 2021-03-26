@@ -24,11 +24,7 @@ class ProductNodeParser implements NodeParserInterface
 
         $this->element = new SimpleXMLElement($this->reader->readOuterXml());
 
-        if (! isset($this->element->{'variations'})) {
-            return false;
-        }
-
-        return true;
+        return isset($this->element->{'variations'});
     }
 
     protected function getCommonDetails(SimpleXMLElement $element)
