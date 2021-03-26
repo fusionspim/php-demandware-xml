@@ -24,11 +24,7 @@ class SetNodeParser implements NodeParserInterface
 
         $this->element = new SimpleXMLElement($this->reader->readOuterXml());
 
-        if (! isset($this->element->{'product-set-products'})) {
-            return false;
-        }
-
-        return true;
+        return ! (! isset($this->element->{'product-set-products'}));
     }
 
     protected function getCommonDetails(SimpleXMLElement $element)
