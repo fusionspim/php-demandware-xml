@@ -24,11 +24,7 @@ class VariationNodeParser implements NodeParserInterface
 
         $this->element = new SimpleXMLElement($this->reader->readOuterXml());
 
-        if (isset($this->element->{'bundled-products'}) || isset($this->element->{'product-set-products'}) || isset($this->element->{'variations'})) {
-            return false;
-        }
-
-        return true;
+        return ! (isset($this->element->{'bundled-products'}) || isset($this->element->{'product-set-products'}) || isset($this->element->{'variations'}));
     }
 
     protected function getCommonDetails(SimpleXMLElement $element)
