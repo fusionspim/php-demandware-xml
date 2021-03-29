@@ -24,11 +24,7 @@ class BundleNodeParser implements NodeParserInterface
 
         $this->element = new SimpleXMLElement($this->reader->readOuterXml());
 
-        if (! isset($this->element->{'bundled-products'})) {
-            return false;
-        }
-
-        return true;
+        return isset($this->element->{'bundled-products'});
     }
 
     protected function getCommonDetails(SimpleXMLElement $element)
