@@ -72,7 +72,7 @@ class XmlFormatter
             return true;
         }
 
-        return (bool) (is_string($value) && $value === '');
+        return (is_string($value) && $value === '');
     }
 
     // Filters out empty values from an array.
