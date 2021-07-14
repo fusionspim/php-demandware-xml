@@ -10,11 +10,11 @@
   ],
   "license": "MIT",
   "require": {
-    "php": ">=7.4",
-    "ext-SimpleXML": "*",
-    "ext-json": "*",
-    "ext-xmlreader": "*",
-    "ext-xmlwriter": "*"
+    "php": "^7.4 || ^8.0",
+    "ext-SimpleXML": "^7.4 || ^8.0",
+    "ext-json": "^7.4 || ^8.0",
+    "ext-xmlreader": "^7.4 || ^8.0",
+    "ext-xmlwriter": "^7.4 || ^8.0"
   },
   "require-dev": {
     "ergebnis/composer-normalize": "^2.6",
