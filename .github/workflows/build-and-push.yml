@@ -7,6 +7,9 @@ on:
       - master
     paths:
       - 'docker/**'
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build-and-push:
