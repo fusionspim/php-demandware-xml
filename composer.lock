@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "286800ce9de53186cbe7c4e2f00b2cbc",
+    "content-hash": "adccf24f69826a585df69ee62ab9b530",
     "packages": [],
     "packages-dev": [
         {
@@ -684,19 +684,20 @@
         },
         {
             "name": "fusionspim/php-cs-fixer-config",
-            "version": "8.1",
+            "version": "9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fusionspim/php-cs-fixer-config.git",
-                "reference": "aaed179c807a56fc419732df65f56e5692a99a51"
+                "reference": "475731eb33502cbba4e03cd24ee2940d7dab61d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fusionspim/php-cs-fixer-config/zipball/aaed179c807a56fc419732df65f56e5692a99a51",
-                "reference": "aaed179c807a56fc419732df65f56e5692a99a51",
+                "url": "https://api.github.com/repos/fusionspim/php-cs-fixer-config/zipball/475731eb33502cbba4e03cd24ee2940d7dab61d9",
+                "reference": "475731eb33502cbba4e03cd24ee2940d7dab61d9",
                 "shasum": ""
             },
             "require": {
+                "friendsofphp/php-cs-fixer": "^3.1.0",
                 "kubawerlos/php-cs-fixer-custom-fixers": "^2.5",
                 "php": "^7.4 || ^8.0"
             },
@@ -720,9 +721,9 @@
             ],
             "support": {
                 "issues": "https://github.com/fusionspim/php-cs-fixer-config/issues",
-                "source": "https://github.com/fusionspim/php-cs-fixer-config/tree/8.1"
+                "source": "https://github.com/fusionspim/php-cs-fixer-config/tree/9.0"
             },
-            "time": "2021-09-03T12:28:18+00:00"
+            "time": "2021-09-09T10:22:19+00:00"
         },
         {
             "name": "justinrainbow/json-schema",

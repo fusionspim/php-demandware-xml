@@ -124,7 +124,7 @@ class Parser
                 if ($nodeParser->isMatch()) {
                     ['id' => $id, 'data' => $data] = $nodeParser->parse();
 
-                    if (in_array($index, $groupedByKey)) {
+                    if (in_array($index, $groupedByKey, true)) {
                         $this->parsed[$index][$id][] = $data;
                     } else {
                         $this->parsed[$index][$id] = $data;
