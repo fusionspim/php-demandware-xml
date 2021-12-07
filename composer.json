@@ -1,6 +1,7 @@
 {
   "name": "fusionspim/php-demandware-xml",
   "description": "PHP library for working with Demandware XML files",
+  "license": "MIT",
   "keywords": [
     "demandware",
     "ecommerce",
@@ -8,7 +9,6 @@
     "php",
     "xml"
   ],
-  "license": "MIT",
   "require": {
     "php": "^7.4 || ^8.0",
     "ext-SimpleXML": "^7.4 || ^8.0",
