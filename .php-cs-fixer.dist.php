@@ -8,4 +8,3 @@ return $config->setFinder(
     $config->getFinder()
         ->notName('rector.php')
 );
-
