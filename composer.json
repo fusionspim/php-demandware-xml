@@ -11,8 +11,9 @@
   ],
   "require": {
     "php": "^8.0",
-    "ext-SimpleXML": "^8.0",
     "ext-json": "^8.0",
+    "ext-libxml": "^8.0",
+    "ext-SimpleXML": "^8.0",
     "ext-xmlreader": "^8.0",
     "ext-xmlwriter": "^8.0"
   },
