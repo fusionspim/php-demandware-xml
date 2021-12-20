@@ -8,12 +8,10 @@ use XMLReader;
 
 class Parser
 {
-    protected $file;
-    protected $parsed = [];
+    protected array $parsed = [];
 
-    public function __construct(string $file)
+    public function __construct(protected string $file)
     {
-        $this->file = $file;
     }
 
     public function validate(bool $useSchema = true): bool
@@ -61,19 +59,13 @@ class Parser
 
     protected function libXmlErrorToException($error): XMLException
     {
-        switch ($error->level) {
-            case LIBXML_ERR_WARNING:
-                $level = 'Warning';
-                break;
-
-            case LIBXML_ERR_ERROR:
-                $level = 'Error';
-                break;
-
-            case LIBXML_ERR_FATAL:
-                $level = 'Fatal';
-                break;
-        }
+        $level = null;
+        $level = match ($error->level) {
+            LIBXML_ERR_WARNING => 'Warning',
+            LIBXML_ERR_ERROR   => 'Error',
+            LIBXML_ERR_FATAL   => 'Fatal',
+            default            => new XmlException($level . ': ' . trim($error->message) . ' in ' . basename($error->file) . ' on line ' . $error->line . ' column ' . $error->column, $error->code),
+        };
 
         return new XmlException($level . ': ' . trim($error->message) . ' in ' . basename($error->file) . ' on line ' . $error->line . ' column ' . $error->column, $error->code);
     }

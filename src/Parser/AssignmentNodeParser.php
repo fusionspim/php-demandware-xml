@@ -6,11 +6,8 @@ use XMLReader;
 
 class AssignmentNodeParser implements NodeParserInterface
 {
-    protected $reader;
-
-    public function __construct(XMLReader $reader)
+    public function __construct(protected XMLReader $reader)
     {
-        $this->reader = $reader;
     }
 
     public function isMatch(): bool

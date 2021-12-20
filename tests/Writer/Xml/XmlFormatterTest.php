@@ -7,6 +7,7 @@ use DemandwareXml\Writer\Xml\XmlFormatter;
 use DemandwareXml\Writer\Xml\XmlFormatterException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use Stringable;
 
 class XmlFormatterTest extends TestCase
 {
@@ -72,8 +73,8 @@ class XmlFormatterTest extends TestCase
 
     public function from_type_data_provider(): iterable
     {
-        $toStringClass = new class {
-            public function __toString()
+        $toStringClass = new class implements Stringable {
+            public function __toString(): string
             {
                 return 'TOSTRING';
             }

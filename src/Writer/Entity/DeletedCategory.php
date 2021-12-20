@@ -6,11 +6,8 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class DeletedCategory implements WriteableEntityInteface
 {
-    public $id;
-
-    public function __construct(string $id)
+    public function __construct(public string $id)
     {
-        $this->id = $id;
     }
 
     public function write(XmlWriter $writer): void

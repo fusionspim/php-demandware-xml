@@ -7,13 +7,10 @@ use XMLReader;
 class VariationNodeParser implements NodeParserInterface
 {
     use CommonDetailsNodeParserTrait;
+    protected SimpleXMLElement|null $element = null;
 
-    protected $reader;
-    protected $element;
-
-    public function __construct(XMLReader $reader)
+    public function __construct(protected XMLReader $reader)
     {
-        $this->reader = $reader;
     }
 
     public function isMatch(): bool

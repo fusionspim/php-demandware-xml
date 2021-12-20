@@ -6,13 +6,8 @@ use DemandwareXml\Writer\Xml\{XmlFormatter, XmlWriter};
 
 class CategoryXmlWriter
 {
-    private $writer;
-    private $category;
-
-    public function __construct(XmlWriter $writer, Category $category)
+    public function __construct(private XmlWriter $writer, private Category $category)
     {
-        $this->writer   = $writer;
-        $this->category = $category;
     }
 
     public function write(): void

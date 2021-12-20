@@ -6,13 +6,8 @@ use DemandwareXml\Writer\Xml\{XmlFormatter, XmlWriter};
 
 class CustomAttributeWriter
 {
-    private $writer;
-    private $customAttribute;
-
-    public function __construct(XmlWriter $writer, CustomAttribute $customAttribute)
+    public function __construct(private XmlWriter $writer, private CustomAttribute $customAttribute)
     {
-        $this->writer          = $writer;
-        $this->customAttribute = $customAttribute;
     }
 
     public function write(): void

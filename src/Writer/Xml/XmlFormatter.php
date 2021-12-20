@@ -14,14 +14,14 @@ class XmlFormatter
      * @see   http://www.phpwact.org/php/i18n/charsets#common_problem_areas_with_utf-8
      * @see   http://www.xiven.com/weblog/2013/08/30/PHPInvalidUTF8InXMLRevisited
      */
-    public static function sanitise(?string $string): string
+    public static function sanitise(string|null $string): string
     {
         // Only allow Tab (9), LF (10), CR (13), Space (32) - 55295, 57344 - 65533, 65536 - 1114111.
         return preg_replace('/[^\x{0009}\x{000A}\x{000D}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}\x{10000}-\x{10FFFF}]/u', ' ', $string);
     }
 
     // Convert a boolean into a string for use in XML output.
-    public static function fromBoolean(?bool $value): string
+    public static function fromBoolean(bool|null $value): string
     {
         if ($value === null) {
             return '';
@@ -31,7 +31,7 @@ class XmlFormatter
     }
 
     // Convert a DateTime object into a string for use in XML output.
-    public static function fromDateTime(?DateTimeInterface $value): string
+    public static function fromDateTime(DateTimeInterface|null $value): string
     {
         if ($value === null) {
             return '';

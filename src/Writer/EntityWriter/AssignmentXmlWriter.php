@@ -6,13 +6,8 @@ use DemandwareXml\Writer\Xml\{XmlFormatter, XmlWriter};
 
 class AssignmentXmlWriter
 {
-    private $writer;
-    private $assignment;
-
-    public function __construct(XmlWriter $writer, Assignment $assignment)
+    public function __construct(private XmlWriter $writer, private Assignment $assignment)
     {
-        $this->writer     = $writer;
-        $this->assignment = $assignment;
     }
 
     public function write(): void

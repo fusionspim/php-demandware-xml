@@ -8,39 +8,37 @@ use InvalidArgumentException;
 
 class Product implements WriteableEntityInteface
 {
-    public $id;
-    public $upc;
-    public $minOrderQuantity;
-    public $stepQuantity;
-    public $displayName;
-    public $longDescription;
-    public $onlineFlag;
-    public $onlineFrom;
-    public $onlineTo;
-    public $availableFlag;
-    public $searchableFlag;
-    public $searchableIfUnavailableFlag;
-    public $tax;
-    public $images                    = [];
-    public $imageViewType;
-    public $brand;
-    public $searchRank;
-    public $sitemapIncludedFlag;
-    public $sitemapChangeFrequency;
-    public $sitemapPriority;
-    public $pageAttributes            = [];
-    public $customAttributes          = [];
-    public $sharedVariationAttributes = [];
-    public $variants                  = [];
-    public $bundleProducts;
-    public $setProducts;
-    public $classificationCategoryId;
-    public $classificationCatalogId;
-    public $variationGroups           = [];
+    public string|null $upc = null;
+    public int|null $minOrderQuantity = null;
+    public int|null $stepQuantity = null;
+    public string|null $displayName = null;
+    public string|null $longDescription = null;
+    public bool|null $onlineFlag = null;
+    public DateTimeInterface|null $onlineFrom = null;
+    public DateTimeInterface|null $onlineTo = null;
+    public bool|null $availableFlag = null;
+    public bool|null $searchableFlag = null;
+    public bool|null $searchableIfUnavailableFlag = null;
+    public string|null $tax = null;
+    public array|null $images                    = [];
+    public string|null $imageViewType = null;
+    public string|null $brand = null;
+    public int|null $searchRank = null;
+    public bool|null $sitemapIncludedFlag = null;
+    public string|null $sitemapChangeFrequency = null;
+    public string|null $sitemapPriority = null;
+    public array $pageAttributes            = [];
+    public array $customAttributes          = [];
+    public array $sharedVariationAttributes = [];
+    public array $variants                  = [];
+    public array|null $bundleProducts = null;
+    public array|null $setProducts = null;
+    public string|null $classificationCategoryId = null;
+    public string|null $classificationCatalogId = null;
+    public array $variationGroups           = [];
 
-    public function __construct(string $id)
+    public function __construct(public string $id)
     {
-        $this->id = $id;
     }
 
     public function setUpc(string $upc): void
@@ -69,7 +67,7 @@ class Product implements WriteableEntityInteface
         $this->onlineFlag = $onlineFlag;
     }
 
-    public function setOnlineFromTo(?DateTimeInterface $from, ?DateTimeInterface $to): void
+    public function setOnlineFromTo(DateTimeInterface|null $from, DateTimeInterface|null $to): void
     {
         if ($from !== null) {
             $this->onlineFrom = $from;
@@ -80,7 +78,7 @@ class Product implements WriteableEntityInteface
         }
     }
 
-    public function setSearchableFlags(?bool $availableFlag, ?bool $searchableFlag, ?bool $searchableIfUnavailableFlag): void
+    public function setSearchableFlags(bool|null $availableFlag, bool|null $searchableFlag, bool|null $searchableIfUnavailableFlag): void
     {
         if ($availableFlag !== null) {
             $this->availableFlag = $availableFlag;
@@ -95,7 +93,7 @@ class Product implements WriteableEntityInteface
         }
     }
 
-    public function setTax(?float $tax): void
+    public function setTax(float|null $tax): void
     {
         if ($tax === null) {
             return;
@@ -133,7 +131,7 @@ class Product implements WriteableEntityInteface
         $this->searchRank = $searchRank;
     }
 
-    public function setSitemap(?float $sitemapPriority = null, bool $sitemapIncludedFlag = true, string $sitemapChangeFrequency = 'weekly'): void
+    public function setSitemap(float|null $sitemapPriority = null, bool $sitemapIncludedFlag = true, string $sitemapChangeFrequency = 'weekly'): void
     {
         if ($sitemapPriority !== null && $sitemapPriority > 1) {
             throw new InvalidArgumentException('Sitemap priority must be 1.0 or less');
@@ -147,7 +145,7 @@ class Product implements WriteableEntityInteface
         $this->sitemapChangeFrequency = $sitemapChangeFrequency;
     }
 
-    public function setPageAttributes(?string $pageTitle, ?string $pageDescription, ?string $pageKeywords, ?string $pageUrl): void
+    public function setPageAttributes(string|null $pageTitle, string|null $pageDescription, string|null $pageKeywords, string|null $pageUrl): void
     {
         $this->pageAttributes = [
             'page-title'       => $pageTitle,

@@ -6,12 +6,10 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class Variant implements WriteableEntityInteface
 {
-    public $id;
-    public $displayValues = [];
+    public array $displayValues = [];
 
-    public function __construct(string $id)
+    public function __construct(public string $id)
     {
-        $this->id = $id;
     }
 
     public function addDisplayValue(string $value, string $displayValue): void
