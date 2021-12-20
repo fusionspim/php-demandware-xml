@@ -8,17 +8,17 @@ use InvalidArgumentException;
 
 class Category implements WriteableEntityInteface
 {
-    public string|null $displayName = null;
-    public bool|null $onlineFlag = null;
-    public DateTimeInterface|null $onlineFrom = null;
-    public DateTimeInterface|null $onlineTo = null;
-    public string|null $parentId = null;
-    public string|null $template = null;
-    public bool|null $sitemapIncludedFlag = null;
+    public string|null $displayName            = null;
+    public bool|null $onlineFlag               = null;
+    public DateTimeInterface|null $onlineFrom  = null;
+    public DateTimeInterface|null $onlineTo    = null;
+    public string|null $parentId               = null;
+    public string|null $template               = null;
+    public bool|null $sitemapIncludedFlag      = null;
     public string|null $sitemapChangeFrequency = null;
-    public string|null $sitemapPriority = null;
-    public array $pageAttributes   = [];
-    public array $customAttributes = [];
+    public string|null $sitemapPriority        = null;
+    public array $pageAttributes               = [];
+    public array $customAttributes             = [];
 
     public function __construct(public string $id)
     {

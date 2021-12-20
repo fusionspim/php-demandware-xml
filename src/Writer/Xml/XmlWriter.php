@@ -13,8 +13,8 @@ class XmlWriter extends PhpXmlWriter
 
     private NotEmptyWriter|null $notEmptyWriter = null;
     private NilEmptyWriter|null $nilEmptyWriter = null;
-    private int $bufferLimit = 100;
-    private int $entityCount = 0;
+    private int $bufferLimit                    = 100;
+    private int $entityCount                    = 0;
 
     public function openFile(string $filename): bool
     {
