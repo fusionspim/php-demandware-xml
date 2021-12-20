@@ -59,15 +59,23 @@ class Parser
 
     protected function libXmlErrorToException($error): XMLException
     {
-        $level = null;
-        $level = match ($error->level) {
+        return new XmlException(sprintf(
+            '%s: %s in %s on line %s column %s',
+            $this->libXmlErrorLevelToString($error->level),
+            trim($error->message),
+            basename($error->file),
+            $error->line,
+            $error->column,
+        ), $error->code);
+    }
+
+    protected function libXmlErrorLevelToString(string $level): string
+    {
+        return match ($level) {
             LIBXML_ERR_WARNING => 'Warning',
             LIBXML_ERR_ERROR   => 'Error',
             LIBXML_ERR_FATAL   => 'Fatal',
-            default            => new XmlException($level . ': ' . trim($error->message) . ' in ' . basename($error->file) . ' on line ' . $error->line . ' column ' . $error->column, $error->code),
         };
-
-        return new XmlException($level . ': ' . trim($error->message) . ' in ' . basename($error->file) . ' on line ' . $error->line . ' column ' . $error->column, $error->code);
     }
 
     protected function validateNodeParserClass(string $class): void
