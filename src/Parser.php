@@ -69,7 +69,7 @@ class Parser
         ), $error->code);
     }
 
-    protected function libXmlErrorLevelToString(string $level): string
+    protected function libXmlErrorLevelToString(int $level): string
     {
         return match ($level) {
             LIBXML_ERR_WARNING => 'Warning',
