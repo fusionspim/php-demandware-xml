@@ -3,11 +3,8 @@ namespace DemandwareXml\Writer\Xml;
 
 class NotEmptyWriter
 {
-    private $writer;
-
-    public function __construct(XmlWriter $writer)
+    public function __construct(private XmlWriter $writer)
     {
-        $this->writer = $writer;
     }
 
     public function writeElement($name, $content = null): bool

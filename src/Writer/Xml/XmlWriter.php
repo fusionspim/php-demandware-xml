@@ -11,10 +11,10 @@ class XmlWriter extends PhpXmlWriter
     public const NAMESPACE    = 'http://www.demandware.com/xml/impex/catalog/2006-10-31';
     public const INDENT_SPACE = ' ';
 
-    private $notEmptyWriter;
-    private $nilEmptyWriter;
-    private $bufferLimit = 100;
-    private $entityCount = 0;
+    private NotEmptyWriter|null $notEmptyWriter = null;
+    private NilEmptyWriter|null $nilEmptyWriter = null;
+    private int $bufferLimit                    = 100;
+    private int $entityCount                    = 0;
 
     public function openFile(string $filename): bool
     {

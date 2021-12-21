@@ -8,12 +8,10 @@ class BundleNodeParser implements NodeParserInterface
 {
     use CommonDetailsNodeParserTrait;
 
-    protected $reader;
-    protected $element;
+    protected SimpleXMLElement|null $element = null;
 
-    public function __construct(XMLReader $reader)
+    public function __construct(protected XMLReader $reader)
     {
-        $this->reader = $reader;
     }
 
     public function isMatch(): bool

@@ -6,13 +6,8 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class VariantXmlWriter
 {
-    private $writer;
-    private $variant;
-
-    public function __construct(XmlWriter $writer, Variant $variant)
+    public function __construct(private XmlWriter $writer, private Variant $variant)
     {
-        $this->writer  = $writer;
-        $this->variant = $variant;
     }
 
     public function write(): void

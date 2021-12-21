@@ -8,11 +8,8 @@ class CategoryNodeParser implements NodeParserInterface
 {
     use CommonDetailsNodeParserTrait;
 
-    protected $reader;
-
-    public function __construct(XMLReader $reader)
+    public function __construct(protected XMLReader $reader)
     {
-        $this->reader = $reader;
     }
 
     public function isMatch(): bool

@@ -6,13 +6,8 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class DeletedProductXmlWriter
 {
-    private $writer;
-    private $product;
-
-    public function __construct(XmlWriter $writer, DeletedProduct $product)
+    public function __construct(private XmlWriter $writer, private DeletedProduct $product)
     {
-        $this->writer  = $writer;
-        $this->product = $product;
     }
 
     public function write(): void

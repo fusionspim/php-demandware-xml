@@ -8,12 +8,10 @@ use XMLReader;
 
 class Parser
 {
-    protected $file;
-    protected $parsed = [];
+    protected array $parsed = [];
 
-    public function __construct(string $file)
+    public function __construct(protected string $file)
     {
-        $this->file = $file;
     }
 
     public function validate(bool $useSchema = true): bool
@@ -61,21 +59,23 @@ class Parser
 
     protected function libXmlErrorToException($error): XMLException
     {
-        switch ($error->level) {
-            case LIBXML_ERR_WARNING:
-                $level = 'Warning';
-                break;
+        return new XmlException(sprintf(
+            '%s: %s in %s on line %s column %s',
+            $this->libXmlErrorLevelToString($error->level),
+            trim($error->message),
+            basename($error->file),
+            $error->line,
+            $error->column,
+        ), $error->code);
+    }
 
-            case LIBXML_ERR_ERROR:
-                $level = 'Error';
-                break;
-
-            case LIBXML_ERR_FATAL:
-                $level = 'Fatal';
-                break;
-        }
-
-        return new XmlException($level . ': ' . trim($error->message) . ' in ' . basename($error->file) . ' on line ' . $error->line . ' column ' . $error->column, $error->code);
+    protected function libXmlErrorLevelToString(string $level): string
+    {
+        return match ($level) {
+            LIBXML_ERR_WARNING => 'Warning',
+            LIBXML_ERR_ERROR   => 'Error',
+            LIBXML_ERR_FATAL   => 'Fatal',
+        };
     }
 
     protected function validateNodeParserClass(string $class): void

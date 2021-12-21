@@ -10,16 +10,18 @@
     "xml"
   ],
   "require": {
-    "php": "^7.4 || ^8.0",
-    "ext-SimpleXML": "^7.4 || ^8.0",
-    "ext-json": "^7.4 || ^8.0",
-    "ext-xmlreader": "^7.4 || ^8.0",
-    "ext-xmlwriter": "^7.4 || ^8.0"
+    "php": "^8.0",
+    "ext-SimpleXML": "^8.0",
+    "ext-json": "^8.0",
+    "ext-libxml": "^8.0",
+    "ext-xmlreader": "^8.0",
+    "ext-xmlwriter": "^8.0"
   },
   "require-dev": {
     "ergebnis/composer-normalize": "^2.6",
     "fusionspim/php-cs-fixer-config": "^9.0",
-    "phpunit/phpunit": "9.5.*"
+    "phpunit/phpunit": "9.5.*",
+    "rector/rector": "^0.12.8"
   },
   "autoload": {
     "psr-4": {
@@ -36,6 +38,7 @@
       "php-cs-fixer fix --config=.php-cs-fixer.dist.php",
       "composer normalize"
     ],
+    "fix-rector": "vendor/bin/rector process src tests",
     "test": [
       "phpunit --stop-on-failure --stop-on-error"
     ]
