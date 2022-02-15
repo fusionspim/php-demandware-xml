@@ -37,7 +37,6 @@
       "php-cs-fixer fix --config=.php-cs-fixer.dist.php",
       "composer normalize"
     ],
-    "fix-rector": "vendor/bin/rector process src tests",
     "test": [
       "phpunit --stop-on-failure --stop-on-error"
     ]
