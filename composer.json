@@ -20,8 +20,7 @@
   "require-dev": {
     "ergebnis/composer-normalize": "^2.6",
     "fusionspim/php-cs-fixer-config": "^10.0",
-    "phpunit/phpunit": "9.5.*",
-    "rector/rector": "^0.12.8"
+    "phpunit/phpunit": "9.5.*"
   },
   "autoload": {
     "psr-4": {
