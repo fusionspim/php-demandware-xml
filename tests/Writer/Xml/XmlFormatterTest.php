@@ -13,6 +13,9 @@ class XmlFormatterTest extends TestCase
 {
     /**
      * @dataProvider sanitise_data_provider
+     *
+     * @param mixed $value
+     * @param mixed $expectedResult
      */
     public function test_sanitise($value, $expectedResult): void
     {
