@@ -11,11 +11,20 @@ use Stringable;
 
 class XmlFormatterTest extends TestCase
 {
-    public function test_sanitise(): void
+    /**
+     * @dataProvider sanitise_data_provider
+     */
+    public function test_sanitise($value, $expectedResult): void
     {
-        $invalidChar = chr(30); // Record Separator.
+        $this->assertSame($expectedResult, XmlFormatter::sanitise($value));
+    }
 
-        $this->assertSame('Foo Bar', XmlFormatter::sanitise('Foo' . $invalidChar . 'Bar'));
+    public function sanitise_data_provider(): iterable
+    {
+        return [
+            'null'             => [null, ''],
+            'record separator' => ['Foo' . chr(30) . 'Bar', 'Foo Bar'],
+        ];
     }
 
     /**
