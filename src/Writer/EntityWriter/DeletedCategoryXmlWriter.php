@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Writer\EntityWriter;
 
 use DemandwareXml\Writer\Entity\DeletedCategory;
@@ -14,7 +15,7 @@ class DeletedCategoryXmlWriter
     {
         $this->writer->writeEmptyElementWithAttributes('category', [
             'category-id' => $this->category->id,
-            'mode'        => 'delete',
+            'mode' => 'delete',
         ]);
     }
 }

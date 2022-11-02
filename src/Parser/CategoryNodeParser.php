@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Parser;
 
 use SimpleXMLElement;
@@ -14,7 +15,7 @@ class CategoryNodeParser implements NodeParserInterface
 
     public function isMatch(): bool
     {
-        return ($this->reader->nodeType === XMLReader::ELEMENT && $this->reader->localName === 'category');
+        return $this->reader->nodeType === XMLReader::ELEMENT && $this->reader->localName === 'category';
     }
 
     protected function getCommonDetails(SimpleXMLElement $element)
@@ -27,7 +28,7 @@ class CategoryNodeParser implements NodeParserInterface
         $element = new SimpleXMLElement($this->reader->readOuterXml());
 
         return [
-            'id'   => (string) $element['category-id'],
+            'id' => (string) $element['category-id'],
             'data' => $this->getCommonDetails($element),
         ];
     }

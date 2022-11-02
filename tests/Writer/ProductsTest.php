@@ -1,9 +1,12 @@
 <?php
+
 namespace DemandwareXml\Test\Writer;
 
 use DateTimeImmutable;
 use DemandwareXml\Test\FixtureHelper;
-use DemandwareXml\Writer\Entity\{CustomAttribute, DeletedProduct, Product};
+use DemandwareXml\Writer\Entity\CustomAttribute;
+use DemandwareXml\Writer\Entity\DeletedProduct;
+use DemandwareXml\Writer\Entity\Product;
 use DemandwareXml\Writer\Xml\XmlWriter;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -90,10 +93,10 @@ class ProductsTest extends TestCase
     {
         $invalidChar = chr(30); // Record Separator.
 
-        $element = new Product(mb_strtoupper($type) . '123');
-        $element->setDisplayName($type . ' number 123');
-        $element->setLongDescription('<b>' . $type . '</b> The description for an <i>example</i> ' . mb_strtolower($type) . '! • Bullet' . $invalidChar . 'Point');
-        $element->setUpc('50000000000' . $number);
+        $element = new Product(mb_strtoupper($type).'123');
+        $element->setDisplayName($type.' number 123');
+        $element->setLongDescription('<b>'.$type.'</b> The description for an <i>example</i> '.mb_strtolower($type).'! • Bullet'.$invalidChar.'Point');
+        $element->setUpc('50000000000'.$number);
         $element->setQuantities(); // include, but use defaults
         $element->setSearchRank(1);
         $element->setBrand('SampleBrand™');
@@ -106,22 +109,22 @@ class ProductsTest extends TestCase
         );
 
         $element->setPageAttributes(
-            'Amazing ' . $type,
-            'Buy our ' . $type . ' today!',
-            $type . ', test, example',
-            'http://example.com/' . mb_strtolower($type) . '/123'
+            'Amazing '.$type,
+            'Buy our '.$type.' today!',
+            $type.', test, example',
+            'http://example.com/'.mb_strtolower($type).'/123'
         );
 
         $element->addCustomAttributes([
-            'type'         => 'Examples',
-            'zzz'          => 'Should be exported last within custom-attributes',
-            'primaryImage' => mb_strtolower($type) . '-123.png',
-            'multiWow'     => ['so', 'such', 'many', 'much', 'very'],
-            'boolTrue'     => true,
-            'boolFalse'    => false,
+            'type' => 'Examples',
+            'zzz' => 'Should be exported last within custom-attributes',
+            'primaryImage' => mb_strtolower($type).'-123.png',
+            'multiWow' => ['so', 'such', 'many', 'much', 'very'],
+            'boolTrue' => true,
+            'boolFalse' => false,
         ]);
 
-        $element->setImages([mb_strtolower($type) . '-123.png']);
+        $element->setImages([mb_strtolower($type).'-123.png']);
 
         return $element;
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Test\Writer\Xml;
 
 use DateTime;
@@ -14,8 +15,8 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider sanitise_data_provider
      *
-     * @param mixed $value
-     * @param mixed $expectedResult
+     * @param  mixed  $value
+     * @param  mixed  $expectedResult
      */
     public function test_sanitise($value, $expectedResult): void
     {
@@ -25,16 +26,16 @@ class XmlFormatterTest extends TestCase
     public function sanitise_data_provider(): iterable
     {
         return [
-            'null'             => [null, ''],
-            'record separator' => ['Foo' . chr(30) . 'Bar', 'Foo Bar'],
+            'null' => [null, ''],
+            'record separator' => ['Foo'.chr(30).'Bar', 'Foo Bar'],
         ];
     }
 
     /**
      * @dataProvider from_boolean_data_provider
      *
-     * @param mixed $value
-     * @param mixed $expectedResult
+     * @param  mixed  $value
+     * @param  mixed  $expectedResult
      */
     public function test_from_boolean($value, $expectedResult): void
     {
@@ -44,19 +45,19 @@ class XmlFormatterTest extends TestCase
     public function from_boolean_data_provider(): iterable
     {
         return [
-            'null value'    => [null, ''],
-            'true boolean'  => [true, 'true'],
+            'null value' => [null, ''],
+            'true boolean' => [true, 'true'],
             'false boolean' => [false, 'false'],
-            'truthy value'  => ['foobar', 'true'],
-            'falsey value'  => ['', 'false'],
+            'truthy value' => ['foobar', 'true'],
+            'falsey value' => ['', 'false'],
         ];
     }
 
     /**
      * @dataProvider from_datetime_data_provider
      *
-     * @param mixed $value
-     * @param mixed $expectedResult
+     * @param  mixed  $value
+     * @param  mixed  $expectedResult
      */
     public function test_from_datetime($value, $expectedResult): void
     {
@@ -66,8 +67,8 @@ class XmlFormatterTest extends TestCase
     public function from_datetime_data_provider(): iterable
     {
         return [
-            'null value'                => [null, ''],
-            'datetime object'           => [new Datetime('2001-02-03 04:04:06'), '2001-02-03T04:04:06'],
+            'null value' => [null, ''],
+            'datetime object' => [new Datetime('2001-02-03 04:04:06'), '2001-02-03T04:04:06'],
             'immutable datetime object' => [new DateTimeImmutable('2001-02-03 04:04:06'), '2001-02-03T04:04:06'],
         ];
     }
@@ -75,8 +76,8 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider from_type_data_provider
      *
-     * @param mixed $value
-     * @param mixed $expectedResult
+     * @param  mixed  $value
+     * @param  mixed  $expectedResult
      */
     public function test_from_type($value, $expectedResult): void
     {
@@ -85,7 +86,8 @@ class XmlFormatterTest extends TestCase
 
     public function from_type_data_provider(): iterable
     {
-        $toStringClass = new class implements Stringable {
+        $toStringClass = new class implements Stringable
+        {
             public function __toString(): string
             {
                 return 'TOSTRING';
@@ -93,26 +95,26 @@ class XmlFormatterTest extends TestCase
         };
 
         return [
-            'null value'                => [null, ''],
-            'string value'              => ['FOOBAR', 'FOOBAR'],
-            'int value'                 => [42, '42'],
-            'float value'               => [42.42, '42.42'],
-            'true boolean'              => [true, 'true'],
-            'false boolean'             => [false, 'false'],
-            'truthy value'              => ['foobar', 'foobar'],
-            'falsey value'              => ['', ''],
-            'datetime object'           => [new Datetime('2001-02-03 04:04:06'), '2001-02-03T04:04:06'],
+            'null value' => [null, ''],
+            'string value' => ['FOOBAR', 'FOOBAR'],
+            'int value' => [42, '42'],
+            'float value' => [42.42, '42.42'],
+            'true boolean' => [true, 'true'],
+            'false boolean' => [false, 'false'],
+            'truthy value' => ['foobar', 'foobar'],
+            'falsey value' => ['', ''],
+            'datetime object' => [new Datetime('2001-02-03 04:04:06'), '2001-02-03T04:04:06'],
             'immutable datetime object' => [new DateTimeImmutable('2001-02-03 04:04:06'), '2001-02-03T04:04:06'],
-            'object with __toString'    => [new $toStringClass, 'TOSTRING'],
+            'object with __toString' => [new $toStringClass, 'TOSTRING'],
         ];
     }
 
     /**
      * @dataProvider from_type_exception_data_provider
      *
-     * @param mixed $value
-     * @param mixed $expectedExceptionClass
-     * @param mixed $expectedExceptionMessage
+     * @param  mixed  $value
+     * @param  mixed  $expectedExceptionClass
+     * @param  mixed  $expectedExceptionMessage
      */
     public function test_from_type_exception($value, $expectedExceptionClass, $expectedExceptionMessage): void
     {
@@ -142,8 +144,8 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider is_empty_value_data_provider
      *
-     * @param mixed $value
-     * @param mixed $expectedResult
+     * @param  mixed  $value
+     * @param  mixed  $expectedResult
      */
     public function test_is_empty_value($value, $expectedResult): void
     {
@@ -153,16 +155,16 @@ class XmlFormatterTest extends TestCase
     public function is_empty_value_data_provider(): iterable
     {
         return [
-            'null value'         => [null, true],
+            'null value' => [null, true],
             'empty string value' => ['', true],
-            'empty array value'  => [[], true],
-            'string value'       => ['FOOBAR', false],
-            'int value'          => [42, false],
-            'float value'        => [42.42, false],
-            'true boolean'       => [true, false],
-            'false boolean'      => [false, false],
-            'array value'        => [['foo' => 'bar'], false],
-            'object'             => [new stdClass, false],
+            'empty array value' => [[], true],
+            'string value' => ['FOOBAR', false],
+            'int value' => [42, false],
+            'float value' => [42.42, false],
+            'true boolean' => [true, false],
+            'false boolean' => [false, false],
+            'array value' => [['foo' => 'bar'], false],
+            'object' => [new stdClass, false],
         ];
     }
 
@@ -171,24 +173,24 @@ class XmlFormatterTest extends TestCase
         $this->assertEqualsCanonicalizing(
             [
                 'string' => 'FOOBAR',
-                'int'    => 42,
-                'float'  => 42.42,
-                'true'   => true,
-                'false'  => false,
-                'array'  => ['foo' => 'bar'],
+                'int' => 42,
+                'float' => 42.42,
+                'true' => true,
+                'false' => false,
+                'array' => ['foo' => 'bar'],
                 'object' => new stdClass,
             ],
             XmlFormatter::filterEmptyValues([
-                'null'         => null,
+                'null' => null,
                 'empty-string' => '',
-                'empty-array'  => [],
-                'string'       => 'FOOBAR',
-                'int'          => 42,
-                'float'        => 42.42,
-                'true'         => true,
-                'false'        => false,
-                'array'        => ['foo' => 'bar'],
-                'object'       => new stdClass,
+                'empty-array' => [],
+                'string' => 'FOOBAR',
+                'int' => 42,
+                'float' => 42.42,
+                'true' => true,
+                'false' => false,
+                'array' => ['foo' => 'bar'],
+                'object' => new stdClass,
             ])
         );
     }
@@ -207,16 +209,16 @@ class XmlFormatterTest extends TestCase
             ]),
             array_values(
                 XmlFormatter::filterEmptyValues([
-                    'null'         => null,
+                    'null' => null,
                     'empty-string' => '',
-                    'empty-array'  => [],
-                    'string'       => 'FOOBAR',
-                    'int'          => 42,
-                    'float'        => 42.42,
-                    'true'         => true,
-                    'false'        => false,
-                    'array'        => ['foo' => 'bar'],
-                    'object'       => new stdClass,
+                    'empty-array' => [],
+                    'string' => 'FOOBAR',
+                    'int' => 42,
+                    'float' => 42.42,
+                    'true' => true,
+                    'false' => false,
+                    'array' => ['foo' => 'bar'],
+                    'object' => new stdClass,
                 ])
             )
         );

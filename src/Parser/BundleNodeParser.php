@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Parser;
 
 use SimpleXMLElement;
@@ -41,7 +42,7 @@ class BundleNodeParser implements NodeParserInterface
         }
 
         return [
-            'id'   => (string) $this->element['product-id'],
+            'id' => (string) $this->element['product-id'],
             'data' => $details,
         ];
     }

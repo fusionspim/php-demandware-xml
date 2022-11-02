@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Writer\Entity;
 
 use DateTimeInterface;
@@ -8,17 +9,27 @@ use InvalidArgumentException;
 
 class Category implements WriteableEntityInteface
 {
-    public string|null $displayName            = null;
-    public bool|null $onlineFlag               = null;
-    public DateTimeInterface|null $onlineFrom  = null;
-    public DateTimeInterface|null $onlineTo    = null;
-    public string|null $parentId               = null;
-    public string|null $template               = null;
-    public bool|null $sitemapIncludedFlag      = null;
+    public string|null $displayName = null;
+
+    public bool|null $onlineFlag = null;
+
+    public DateTimeInterface|null $onlineFrom = null;
+
+    public DateTimeInterface|null $onlineTo = null;
+
+    public string|null $parentId = null;
+
+    public string|null $template = null;
+
+    public bool|null $sitemapIncludedFlag = null;
+
     public string|null $sitemapChangeFrequency = null;
-    public string|null $sitemapPriority        = null;
-    public array $pageAttributes               = [];
-    public array $customAttributes             = [];
+
+    public string|null $sitemapPriority = null;
+
+    public array $pageAttributes = [];
+
+    public array $customAttributes = [];
 
     public function __construct(public string $id)
     {
@@ -65,17 +76,17 @@ class Category implements WriteableEntityInteface
             $this->sitemapPriority = number_format($sitemapPriority, 1);
         }
 
-        $this->sitemapIncludedFlag    = $sitemapIncludedFlag;
+        $this->sitemapIncludedFlag = $sitemapIncludedFlag;
         $this->sitemapChangeFrequency = $sitemapChangeFrequency;
     }
 
     public function setPageAttributes(string|null $pageTitle = null, string|null $pageDescription = null, string|null $pageKeywords = null, string|null $pageUrl = null): void
     {
         $this->pageAttributes = [
-            'page-title'       => $pageTitle,
+            'page-title' => $pageTitle,
             'page-description' => $pageDescription,
-            'page-keywords'    => $pageKeywords,
-            'page-url'         => $pageUrl,
+            'page-keywords' => $pageKeywords,
+            'page-url' => $pageUrl,
         ];
     }
 

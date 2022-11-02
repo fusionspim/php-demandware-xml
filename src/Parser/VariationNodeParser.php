@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Parser;
 
 use SimpleXMLElement;
@@ -7,6 +8,7 @@ use XMLReader;
 class VariationNodeParser implements NodeParserInterface
 {
     use CommonDetailsNodeParserTrait;
+
     protected SimpleXMLElement|null $element = null;
 
     public function __construct(protected XMLReader $reader)
@@ -32,7 +34,7 @@ class VariationNodeParser implements NodeParserInterface
     public function parse(): array
     {
         return [
-            'id'   => (string) $this->element['product-id'],
+            'id' => (string) $this->element['product-id'],
             'data' => $this->getCommonDetails($this->element),
         ];
     }

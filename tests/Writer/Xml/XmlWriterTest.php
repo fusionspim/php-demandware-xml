@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Test\Writer\Xml;
 
 use DemandwareXml\Writer\Entity\Product;
@@ -35,8 +36,8 @@ class XmlWriterTest extends TestCase
         $xml->endDocument();
 
         $this->assertXmlStringEqualsXmlString(
-            '<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">' .
-            '  <test>FOOBAR</test>' .
+            '<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">'.
+            '  <test>FOOBAR</test>'.
             '</catalog>',
             $xml->outputMemory(true)
         );
@@ -44,7 +45,7 @@ class XmlWriterTest extends TestCase
 
     public function test_simple_catalog_file(): void
     {
-        $output = TEST_OUTPUT_DIR . '/catalog_simple.xml';
+        $output = TEST_OUTPUT_DIR.'/catalog_simple.xml';
 
         $xml = $this->getFileXmlWriter($output);
         $xml->startDocument('1.0', 'UTF-8');
@@ -55,8 +56,8 @@ class XmlWriterTest extends TestCase
         $xml->flush(true);
 
         $this->assertXmlStringEqualsXmlString(
-            '<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">' .
-            '  <test>FOOBAR</test>' .
+            '<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="TestCatalog">'.
+            '  <test>FOOBAR</test>'.
             '</catalog>',
             file_get_contents($output)
         );
@@ -113,7 +114,7 @@ class XmlWriterTest extends TestCase
 
     public function test_write_flushable_entity(): void
     {
-        $output = TEST_OUTPUT_DIR . '/catalog_auto_flush.xml';
+        $output = TEST_OUTPUT_DIR.'/catalog_auto_flush.xml';
 
         $xml = $this->getFileXmlWriter($output);
         $xml->setBufferLimit(2);
@@ -154,7 +155,7 @@ class XmlWriterTest extends TestCase
 
     public function test_initialise_and_finalise(): void
     {
-        $output = TEST_OUTPUT_DIR . '/catalog_initialise_finalise.xml';
+        $output = TEST_OUTPUT_DIR.'/catalog_initialise_finalise.xml';
 
         $xml = $this->getFileXmlWriter($output);
         $xml->initialise('TestCatalog');
