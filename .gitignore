@@ -12,3 +12,4 @@ cs_fixer_tmp_*
 
 tests/output/*
 tests/coverage/*
+.pint.cache
