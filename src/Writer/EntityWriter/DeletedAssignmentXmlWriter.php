@@ -14,9 +14,9 @@ class DeletedAssignmentXmlWriter
     public function write(): void
     {
         $this->writer->writeEmptyElementWithAttributes('category-assignment', [
-            'product-id' => $this->assignment->productId,
+            'product-id'  => $this->assignment->productId,
             'category-id' => $this->assignment->categoryId,
-            'mode' => 'delete',
+            'mode'        => 'delete',
         ]);
     }
 }

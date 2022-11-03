@@ -42,7 +42,7 @@ class BundleNodeParser implements NodeParserInterface
         }
 
         return [
-            'id' => (string) $this->element['product-id'],
+            'id'   => (string) $this->element['product-id'],
             'data' => $details,
         ];
     }

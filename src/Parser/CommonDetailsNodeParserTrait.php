@@ -13,23 +13,23 @@ trait CommonDetailsNodeParserTrait
         if (! $skipAttributes) {
             $details = [
                 'attributes' => $this->customAttributes($element),
-                'page' => $this->pageAttributes($element),
+                'page'       => $this->pageAttributes($element),
             ];
         }
 
         $map = [
-            'description' => 'long-description',
-            'name' => 'display-name',
-            'start' => 'online-from',
-            'classification' => 'classification-category',
-            'online' => 'online-flag',
-            'searchable' => 'searchable-flag',
-            'parent' => 'parent',
-            'tax' => 'tax-class-id',
-            'brand' => 'brand',
-            'sitemap-included-flag' => 'sitemap-included-flag',
+            'description'             => 'long-description',
+            'name'                    => 'display-name',
+            'start'                   => 'online-from',
+            'classification'          => 'classification-category',
+            'online'                  => 'online-flag',
+            'searchable'              => 'searchable-flag',
+            'parent'                  => 'parent',
+            'tax'                     => 'tax-class-id',
+            'brand'                   => 'brand',
+            'sitemap-included-flag'   => 'sitemap-included-flag',
             'sitemap-changefrequency' => 'sitemap-changefrequency',
-            'sitemap-priority' => 'sitemap-priority',
+            'sitemap-priority'        => 'sitemap-priority',
         ];
 
         foreach ($map as $name => $source) {
@@ -94,7 +94,7 @@ trait CommonDetailsNodeParserTrait
         $attributes = [];
 
         foreach (['title', 'description', 'keywords', 'url'] as $part) {
-            $value = html_entity_decode(trim((string) $element->{'page-attributes'}->{'page-'.$part}));
+            $value = html_entity_decode(trim((string) $element->{'page-attributes'}->{'page-' . $part}));
 
             if ($value !== '') {
                 $attributes[$part] = $value;

@@ -117,7 +117,7 @@ class ProductXmlWriter
     private function writeVariations(): void
     {
         $attributes = XmlFormatter::filterEmptyValues($this->product->sharedVariationAttributes);
-        $variants = XmlFormatter::filterEmptyValues($this->product->variants);
+        $variants   = XmlFormatter::filterEmptyValues($this->product->variants);
 
         if (count($attributes) === 0 && count($variants) === 0) {
             return;
@@ -141,7 +141,7 @@ class ProductXmlWriter
         foreach ($attributes as $id) {
             $this->writer->writeEmptyElementWithAttributes('shared-variation-attribute', [
                 'variation-attribute-id' => $id,
-                'attribute-id' => $id,
+                'attribute-id'           => $id,
             ]);
         }
 

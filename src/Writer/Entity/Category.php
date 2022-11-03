@@ -76,17 +76,17 @@ class Category implements WriteableEntityInteface
             $this->sitemapPriority = number_format($sitemapPriority, 1);
         }
 
-        $this->sitemapIncludedFlag = $sitemapIncludedFlag;
+        $this->sitemapIncludedFlag    = $sitemapIncludedFlag;
         $this->sitemapChangeFrequency = $sitemapChangeFrequency;
     }
 
     public function setPageAttributes(string|null $pageTitle = null, string|null $pageDescription = null, string|null $pageKeywords = null, string|null $pageUrl = null): void
     {
         $this->pageAttributes = [
-            'page-title' => $pageTitle,
+            'page-title'       => $pageTitle,
             'page-description' => $pageDescription,
-            'page-keywords' => $pageKeywords,
-            'page-url' => $pageUrl,
+            'page-keywords'    => $pageKeywords,
+            'page-url'         => $pageUrl,
         ];
     }
 

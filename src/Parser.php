@@ -18,18 +18,18 @@ class Parser
     public function validate(bool $useSchema = true): bool
     {
         if (! file_exists($this->file)) {
-            throw new XmlException('XML file does not exist: '.basename($this->file));
+            throw new XmlException('XML file does not exist: ' . basename($this->file));
         }
 
         if (! is_readable($this->file)) {
-            throw new XmlException('XML file is not readable: '.basename($this->file));
+            throw new XmlException('XML file is not readable: ' . basename($this->file));
         }
 
         $previousErrors = libxml_use_internal_errors(true);
         libxml_clear_errors();
 
         set_error_handler(function (int $severity, string $message, string $file, int $line): void {
-            throw new XmlException($message.' in '.basename($file).' on line '.$line, $severity);
+            throw new XmlException($message . ' in ' . basename($file) . ' on line ' . $line, $severity);
         });
 
         try {
@@ -37,7 +37,7 @@ class Parser
             $reader->open($this->file);
 
             if ($useSchema) {
-                $reader->setSchema(realpath(__DIR__.'/../xsd/catalog.xsd'));
+                $reader->setSchema(realpath(__DIR__ . '/../xsd/catalog.xsd'));
             }
 
             while ($reader->read());
@@ -74,15 +74,15 @@ class Parser
     {
         return match ($level) {
             LIBXML_ERR_WARNING => 'Warning',
-            LIBXML_ERR_ERROR => 'Error',
-            LIBXML_ERR_FATAL => 'Fatal',
+            LIBXML_ERR_ERROR   => 'Error',
+            LIBXML_ERR_FATAL   => 'Fatal',
         };
     }
 
     protected function validateNodeParserClass(string $class): void
     {
         if (! is_subclass_of($class, NodeParserInterface::class)) {
-            throw new InvalidArgumentException('Node parser class "'.$class.'" must implement '.NodeParserInterface::class);
+            throw new InvalidArgumentException('Node parser class "' . $class . '" must implement ' . NodeParserInterface::class);
         }
     }
 

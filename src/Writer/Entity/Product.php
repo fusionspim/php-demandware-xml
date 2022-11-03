@@ -77,7 +77,7 @@ class Product implements WriteableEntityInteface
     public function setQuantities(int $minOrderQuantity = 1, int $stepQuantity = 1): void
     {
         $this->minOrderQuantity = $minOrderQuantity;
-        $this->stepQuantity = $stepQuantity;
+        $this->stepQuantity     = $stepQuantity;
     }
 
     public function setDisplayName(string $displayName): void
@@ -134,9 +134,9 @@ class Product implements WriteableEntityInteface
 
             // Not sure why this needs to have two underscores.
             if ($tax < 1) {
-                $tax = 'TAX__'.str_replace('0.', '', $tax);
+                $tax = 'TAX__' . str_replace('0.', '', $tax);
             } else {
-                $tax = 'TAX_'.str_replace('.', '_', $tax);
+                $tax = 'TAX_' . str_replace('.', '_', $tax);
             }
         }
 
@@ -146,7 +146,7 @@ class Product implements WriteableEntityInteface
     public function setImages(array $images, string $imageViewType = 'large'): void
     {
         $this->imageViewType = $imageViewType;
-        $this->images = $images;
+        $this->images        = $images;
     }
 
     public function setBrand(string $brand): void
@@ -169,17 +169,17 @@ class Product implements WriteableEntityInteface
             $this->sitemapPriority = number_format($sitemapPriority, 1);
         }
 
-        $this->sitemapIncludedFlag = $sitemapIncludedFlag;
+        $this->sitemapIncludedFlag    = $sitemapIncludedFlag;
         $this->sitemapChangeFrequency = $sitemapChangeFrequency;
     }
 
     public function setPageAttributes(string|null $pageTitle, string|null $pageDescription, string|null $pageKeywords, string|null $pageUrl): void
     {
         $this->pageAttributes = [
-            'page-title' => $pageTitle,
+            'page-title'       => $pageTitle,
             'page-description' => $pageDescription,
-            'page-keywords' => $pageKeywords,
-            'page-url' => $pageUrl,
+            'page-keywords'    => $pageKeywords,
+            'page-url'         => $pageUrl,
         ];
     }
 
@@ -246,7 +246,7 @@ class Product implements WriteableEntityInteface
     public function setClassificationCategory(string $classificationCategoryId, string $classificationCatalogId): void
     {
         $this->classificationCategoryId = $classificationCategoryId;
-        $this->classificationCatalogId = $classificationCatalogId;
+        $this->classificationCatalogId  = $classificationCatalogId;
     }
 
     public function addVariationGroups(array $variationGroups): void

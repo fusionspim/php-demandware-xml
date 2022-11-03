@@ -19,9 +19,9 @@
   },
   "require-dev": {
     "ergebnis/composer-normalize": "^2.6",
+    "fusionspim/pint-coding-style": "^1.0",
     "laravel/pint": "^1.2",
-    "phpunit/phpunit": "9.5.*",
-    "fusionspim/pint-coding-style": "^1.0"
+    "phpunit/phpunit": "9.5.*"
   },
   "autoload": {
     "psr-4": {
@@ -40,11 +40,11 @@
   },
   "scripts": {
     "fix": [
-      "fix-cs",
+      "composer fix-cs",
       "composer normalize"
     ],
     "fix-cs": [
-        "pint --config vendor/fusionspim/pint-coding-style/pint.json"
+      "pint --config vendor/fusionspim/pint-coding-style/pint.json"
     ],
     "test": [
       "phpunit --stop-on-failure --stop-on-error"

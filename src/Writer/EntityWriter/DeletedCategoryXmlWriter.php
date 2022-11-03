@@ -15,7 +15,7 @@ class DeletedCategoryXmlWriter
     {
         $this->writer->writeEmptyElementWithAttributes('category', [
             'category-id' => $this->category->id,
-            'mode' => 'delete',
+            'mode'        => 'delete',
         ]);
     }
 }

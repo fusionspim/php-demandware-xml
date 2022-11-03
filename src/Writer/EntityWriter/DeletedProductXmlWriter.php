@@ -15,7 +15,7 @@ class DeletedProductXmlWriter
     {
         $this->writer->writeEmptyElementWithAttributes('product', [
             'product-id' => $this->product->id,
-            'mode' => 'delete',
+            'mode'       => 'delete',
         ]);
     }
 }

@@ -28,33 +28,33 @@ class CategoriesTest extends TestCase
                 'index' => 0,
                 'dates' => [
                     'from' => new DateTimeImmutable('2018-01-01 01:01:01'),
-                    'to' => new DateTimeImmutable('2018-02-02 02:02:02'),
+                    'to'   => new DateTimeImmutable('2018-02-02 02:02:02'),
                 ],
             ],
             'Death Stars' => [
                 'index' => 1,
                 'dates' => [
                     'from' => null,
-                    'to' => new DateTimeImmutable('2018-02-02 02:02:02'),
+                    'to'   => new DateTimeImmutable('2018-02-02 02:02:02'),
                 ],
             ],
             'Donuts' => [
                 'index' => 2,
                 'dates' => [
                     'from' => new DateTimeImmutable('2018-01-01 01:01:01'),
-                    'to' => null,
+                    'to'   => null,
                 ],
             ],
         ];
 
         foreach ($categories as $title => $data) {
-            $element = new Category('CAT'.$data['index']);
+            $element = new Category('CAT' . $data['index']);
             $element->setDisplayName($title);
             $element->setParent('CAT0');
             $element->setTemplate('cat-listings.html');
             $element->setOnlineFlag(true);
             $element->setSitemap(0.2);
-            $element->setPageAttributes($title, 'Buy '.$title, mb_strtolower($title), '/'.$title);
+            $element->setPageAttributes($title, 'Buy ' . $title, mb_strtolower($title), '/' . $title);
             $element->setOnlineFromTo(
                 $data['dates']['from'],
                 $data['dates']['to']
@@ -62,8 +62,8 @@ class CategoriesTest extends TestCase
 
             $element->addCustomAttributes([
                 'itemsPerPage' => 30,
-                'promoMast' => 'cat'.$data['index'].'-banner.png',
-                'hasOffers' => true,
+                'promoMast'    => 'cat' . $data['index'] . '-banner.png',
+                'hasOffers'    => true,
             ]);
 
             $xml->writeEntity($element);
