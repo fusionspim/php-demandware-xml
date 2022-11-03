@@ -8,7 +8,6 @@ use XMLReader;
 class ProductNodeParser implements NodeParserInterface
 {
     use CommonDetailsNodeParserTrait;
-
     protected SimpleXMLElement|null $element = null;
 
     public function __construct(protected XMLReader $reader)

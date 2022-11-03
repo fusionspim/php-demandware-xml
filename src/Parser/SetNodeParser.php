@@ -8,7 +8,6 @@ use XMLReader;
 class SetNodeParser implements NodeParserInterface
 {
     use CommonDetailsNodeParserTrait;
-
     protected SimpleXMLElement $element = null;
 
     public function __construct(protected XMLReader $reader)

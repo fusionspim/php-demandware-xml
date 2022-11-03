@@ -9,17 +9,13 @@ use XMLWriter as PhpXmlWriter;
 // Enhances XMLWriter with additional functionality and Demandware specific formatting.
 class XmlWriter extends PhpXmlWriter
 {
-    public const NAMESPACE = 'http://www.demandware.com/xml/impex/catalog/2006-10-31';
-
+    public const NAMESPACE    = 'http://www.demandware.com/xml/impex/catalog/2006-10-31';
     public const INDENT_SPACE = ' ';
 
     private NotEmptyWriter|null $notEmptyWriter = null;
-
     private NilEmptyWriter|null $nilEmptyWriter = null;
-
-    private int $bufferLimit = 100;
-
-    private int $entityCount = 0;
+    private int $bufferLimit                    = 100;
+    private int $entityCount                    = 0;
 
     public function openFile(string $filename): bool
     {
