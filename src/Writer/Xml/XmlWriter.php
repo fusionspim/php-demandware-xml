@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Writer\Xml;
 
 use DemandwareXml\Writer\Entity\WriteableEntityInteface;

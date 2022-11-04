@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Writer\Xml;
 
 use DateTimeInterface;
@@ -31,7 +32,7 @@ class XmlFormatter
             return '';
         }
 
-        return ($value ? 'true' : 'false');
+        return $value ? 'true' : 'false';
     }
 
     // Convert a DateTime object into a string for use in XML output.
@@ -61,7 +62,6 @@ class XmlFormatter
                 }
 
                 throw new XmlFormatterException('Cannot convert object without __toString() method to a string');
-
             case 'array':
                 throw new XmlFormatterException('Cannot convert array to a string');
             default:
@@ -76,7 +76,7 @@ class XmlFormatter
             return true;
         }
 
-        return (is_string($value) && $value === '');
+        return is_string($value) && $value === '';
     }
 
     // Filters out empty values from an array.

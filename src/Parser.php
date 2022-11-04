@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml;
 
 use DemandwareXml\Parser\NodeParserInterface;

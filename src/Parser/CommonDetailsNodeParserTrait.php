@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Parser;
 
 use SimpleXMLElement;

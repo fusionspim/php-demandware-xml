@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Test\Writer\Xml;
 
 use DateTime;
@@ -14,8 +15,8 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider sanitise_data_provider
      *
-     * @param mixed $value
-     * @param mixed $expectedResult
+     * @param  mixed  $value
+     * @param  mixed  $expectedResult
      */
     public function test_sanitise($value, $expectedResult): void
     {
@@ -33,8 +34,8 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider from_boolean_data_provider
      *
-     * @param mixed $value
-     * @param mixed $expectedResult
+     * @param  mixed  $value
+     * @param  mixed  $expectedResult
      */
     public function test_from_boolean($value, $expectedResult): void
     {
@@ -55,8 +56,8 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider from_datetime_data_provider
      *
-     * @param mixed $value
-     * @param mixed $expectedResult
+     * @param  mixed  $value
+     * @param  mixed  $expectedResult
      */
     public function test_from_datetime($value, $expectedResult): void
     {
@@ -75,8 +76,8 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider from_type_data_provider
      *
-     * @param mixed $value
-     * @param mixed $expectedResult
+     * @param  mixed  $value
+     * @param  mixed  $expectedResult
      */
     public function test_from_type($value, $expectedResult): void
     {
@@ -85,7 +86,8 @@ class XmlFormatterTest extends TestCase
 
     public function from_type_data_provider(): iterable
     {
-        $toStringClass = new class implements Stringable {
+        $toStringClass = new class implements Stringable
+        {
             public function __toString(): string
             {
                 return 'TOSTRING';
@@ -110,9 +112,9 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider from_type_exception_data_provider
      *
-     * @param mixed $value
-     * @param mixed $expectedExceptionClass
-     * @param mixed $expectedExceptionMessage
+     * @param  mixed  $value
+     * @param  mixed  $expectedExceptionClass
+     * @param  mixed  $expectedExceptionMessage
      */
     public function test_from_type_exception($value, $expectedExceptionClass, $expectedExceptionMessage): void
     {
@@ -142,8 +144,8 @@ class XmlFormatterTest extends TestCase
     /**
      * @dataProvider is_empty_value_data_provider
      *
-     * @param mixed $value
-     * @param mixed $expectedResult
+     * @param  mixed  $value
+     * @param  mixed  $expectedResult
      */
     public function test_is_empty_value($value, $expectedResult): void
     {

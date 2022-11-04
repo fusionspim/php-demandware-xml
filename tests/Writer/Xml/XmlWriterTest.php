@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Test\Writer\Xml;
 
 use DemandwareXml\Writer\Entity\Product;

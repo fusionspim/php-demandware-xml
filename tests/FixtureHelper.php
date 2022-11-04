@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Test;
 
 use DOMDocument;

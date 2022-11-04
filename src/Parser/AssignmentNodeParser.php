@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Parser;
 
 use SimpleXMLElement;
@@ -12,7 +13,7 @@ class AssignmentNodeParser implements NodeParserInterface
 
     public function isMatch(): bool
     {
-        return ($this->reader->nodeType === XMLReader::ELEMENT && $this->reader->localName === 'category-assignment');
+        return $this->reader->nodeType === XMLReader::ELEMENT && $this->reader->localName === 'category-assignment';
     }
 
     public function parse(): array

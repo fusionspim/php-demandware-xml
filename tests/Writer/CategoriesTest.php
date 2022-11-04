@@ -1,9 +1,13 @@
 <?php
+
 namespace DemandwareXml\Test\Writer;
 
 use DateTimeImmutable;
 use DemandwareXml\Test\FixtureHelper;
-use DemandwareXml\Writer\Entity\{Assignment, Category, DeletedAssignment, DeletedCategory};
+use DemandwareXml\Writer\Entity\Assignment;
+use DemandwareXml\Writer\Entity\Category;
+use DemandwareXml\Writer\Entity\DeletedAssignment;
+use DemandwareXml\Writer\Entity\DeletedCategory;
 use DemandwareXml\Writer\Xml\XmlWriter;
 use PHPUnit\Framework\TestCase;
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Test\Writer;
 
 use DemandwareXml\Test\FixtureHelper;

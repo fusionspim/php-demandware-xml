@@ -1,4 +1,5 @@
 <?php
+
 namespace DemandwareXml\Writer\Entity;
 
 use DateTimeInterface;

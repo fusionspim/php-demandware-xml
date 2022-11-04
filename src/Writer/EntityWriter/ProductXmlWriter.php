@@ -1,8 +1,10 @@
 <?php
+
 namespace DemandwareXml\Writer\EntityWriter;
 
 use DemandwareXml\Writer\Entity\Product;
-use DemandwareXml\Writer\Xml\{XmlFormatter, XmlWriter};
+use DemandwareXml\Writer\Xml\XmlFormatter;
+use DemandwareXml\Writer\Xml\XmlWriter;
 
 class ProductXmlWriter
 {
