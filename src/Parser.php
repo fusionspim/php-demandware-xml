@@ -97,7 +97,7 @@ class Parser
             $nodeParser = new $class($reader);
 
             if ($nodeParser->isMatch()) {
-                ['id' => $id, 'data' => $data] = $nodeParser->parse();
+                ['id'     => $id, 'data' => $data] = $nodeParser->parse();
 
                 yield $id => $data;
             }

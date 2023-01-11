@@ -24,7 +24,7 @@ class CategoriesTest extends TestCase
         $xml->startCatalog('TestCatalog');
 
         $categories = [
-            'Socks' => [
+            'Socks'       => [
                 'index' => 0,
                 'dates' => [
                     'from' => new DateTimeImmutable('2018-01-01 01:01:01'),
@@ -38,7 +38,7 @@ class CategoriesTest extends TestCase
                     'to'   => new DateTimeImmutable('2018-02-02 02:02:02'),
                 ],
             ],
-            'Donuts' => [
+            'Donuts'      => [
                 'index' => 2,
                 'dates' => [
                     'from' => new DateTimeImmutable('2018-01-01 01:01:01'),

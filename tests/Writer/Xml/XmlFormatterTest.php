@@ -127,7 +127,7 @@ class XmlFormatterTest extends TestCase
     public function from_type_exception_data_provider(): iterable
     {
         return [
-            'array value' => [
+            'array value'               => [
                 ['foo' => 'bar'],
                 XmlFormatterException::class,
                 'Cannot convert array to a string',
