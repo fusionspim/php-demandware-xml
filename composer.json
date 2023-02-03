@@ -21,7 +21,7 @@
     "ergebnis/composer-normalize": "^2.6",
     "fusionspim/pint-coding-style": "^1.0",
     "laravel/pint": "^1.2",
-    "phpunit/phpunit": "9.5.*"
+    "phpunit/phpunit": "9.6.*"
   },
   "autoload": {
     "psr-4": {
