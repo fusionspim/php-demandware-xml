@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05ed84e3ec46c19f5a9a26e0915b0e26",
+    "content-hash": "755dc65f9629478c323cb438496a2f2d",
     "packages": [],
     "packages-dev": [
         {
@@ -466,37 +466,6 @@
                 "source": "https://github.com/ergebnis/json-schema-validator"
             },
             "time": "2022-12-10T14:50:15+00:00"
-        },
-        {
-            "name": "fusionspim/pint-coding-style",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fusionspim/pint-coding-style.git",
-                "reference": "f4f35667c8d59c3c7af6cb4a365435e0070fc140"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fusionspim/pint-coding-style/zipball/f4f35667c8d59c3c7af6cb4a365435e0070fc140",
-                "reference": "f4f35667c8d59c3c7af6cb4a365435e0070fc140",
-                "shasum": ""
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Configuration for Laravel Pint, as used by the Fusions PIM dev team",
-            "keywords": [
-                "Pint",
-                "configuration",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/fusionspim/pint-coding-style/issues",
-                "source": "https://github.com/fusionspim/pint-coding-style/tree/1.0.0"
-            },
-            "time": "2022-11-03T13:09:11+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
