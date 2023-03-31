@@ -1,52 +1,52 @@
 {
-  "name": "fusionspim/php-demandware-xml",
-  "description": "PHP library for working with Demandware XML files",
-  "license": "MIT",
-  "keywords": [
-    "demandware",
-    "ecommerce",
-    "export",
-    "php",
-    "xml"
-  ],
-  "require": {
-    "php": "^8.0",
-    "ext-SimpleXML": "^8.0",
-    "ext-json": "^8.0",
-    "ext-libxml": "^8.0",
-    "ext-xmlreader": "^8.0",
-    "ext-xmlwriter": "^8.0"
-  },
-  "require-dev": {
-    "ergebnis/composer-normalize": "^2.6",
-    "laravel/pint": "^1.2",
-    "phpunit/phpunit": "9.6.*"
-  },
-  "autoload": {
-    "psr-4": {
-      "DemandwareXml\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "DemandwareXml\\Test\\": "tests"
-    }
-  },
-  "config": {
-    "allow-plugins": {
-      "ergebnis/composer-normalize": true
-    }
-  },
-  "scripts": {
-    "fix": [
-      "composer fix-cs",
-      "composer normalize"
+    "name": "fusionspim/php-demandware-xml",
+    "description": "PHP library for working with Demandware XML files",
+    "license": "MIT",
+    "keywords": [
+        "demandware",
+        "ecommerce",
+        "export",
+        "php",
+        "xml"
     ],
-    "fix-cs": [
-      "pint"
-    ],
-    "test": [
-      "phpunit --stop-on-failure --stop-on-error"
-    ]
-  }
+    "require": {
+        "php": "^8.0",
+        "ext-SimpleXML": "^8.0",
+        "ext-json": "^8.0",
+        "ext-libxml": "^8.0",
+        "ext-xmlreader": "^8.0",
+        "ext-xmlwriter": "^8.0"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.6",
+        "laravel/pint": "^1.2",
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DemandwareXml\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DemandwareXml\\Test\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "scripts": {
+        "fix": [
+            "composer fix-cs",
+            "composer normalize"
+        ],
+        "fix-cs": [
+            "pint"
+        ],
+        "test": [
+            "phpunit --stop-on-failure --stop-on-error"
+        ]
+    }
 }
