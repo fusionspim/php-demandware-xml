@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 use Stringable;
 
-class XmlFormatterTest extends TestCase
+final class XmlFormatterTest extends TestCase
 {
     /**
      *

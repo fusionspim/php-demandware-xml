@@ -7,7 +7,7 @@ use DemandwareXml\Writer\Entity\Variant;
 use DemandwareXml\Writer\Xml\XmlWriter;
 use PHPUnit\Framework\TestCase;
 
-class VariantsTest extends TestCase
+final class VariantsTest extends TestCase
 {
     use FixtureHelper;
 

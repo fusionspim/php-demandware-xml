@@ -11,7 +11,7 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class ProductsTest extends TestCase
+final class ProductsTest extends TestCase
 {
     use FixtureHelper;
 

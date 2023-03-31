@@ -11,7 +11,7 @@ use DemandwareXml\Writer\Entity\DeletedCategory;
 use DemandwareXml\Writer\Xml\XmlWriter;
 use PHPUnit\Framework\TestCase;
 
-class CategoriesTest extends TestCase
+final class CategoriesTest extends TestCase
 {
     use FixtureHelper;
 
