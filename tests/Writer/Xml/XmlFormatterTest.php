@@ -2,6 +2,7 @@
 
 namespace DemandwareXml\Test\Writer\Xml;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use DateTime;
 use DateTimeImmutable;
 use DemandwareXml\Writer\Xml\XmlFormatter;
@@ -13,11 +14,11 @@ use Stringable;
 class XmlFormatterTest extends TestCase
 {
     /**
-     * @dataProvider sanitise_data_provider
      *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
+    #[DataProvider('sanitise_data_provider')]
     public function test_sanitise($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::sanitise($value));
@@ -32,11 +33,11 @@ class XmlFormatterTest extends TestCase
     }
 
     /**
-     * @dataProvider from_boolean_data_provider
      *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
+    #[DataProvider('from_boolean_data_provider')]
     public function test_from_boolean($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::fromBoolean($value));
@@ -54,11 +55,11 @@ class XmlFormatterTest extends TestCase
     }
 
     /**
-     * @dataProvider from_datetime_data_provider
      *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
+    #[DataProvider('from_datetime_data_provider')]
     public function test_from_datetime($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::fromDateTime($value));
@@ -74,11 +75,11 @@ class XmlFormatterTest extends TestCase
     }
 
     /**
-     * @dataProvider from_type_data_provider
      *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
+    #[DataProvider('from_type_data_provider')]
     public function test_from_type($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::fromType($value));
@@ -110,12 +111,12 @@ class XmlFormatterTest extends TestCase
     }
 
     /**
-     * @dataProvider from_type_exception_data_provider
      *
      * @param  mixed  $value
      * @param  mixed  $expectedExceptionClass
      * @param  mixed  $expectedExceptionMessage
      */
+    #[DataProvider('from_type_exception_data_provider')]
     public function test_from_type_exception($value, $expectedExceptionClass, $expectedExceptionMessage): void
     {
         $this->expectException($expectedExceptionClass);
@@ -142,11 +143,11 @@ class XmlFormatterTest extends TestCase
     }
 
     /**
-     * @dataProvider is_empty_value_data_provider
      *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
+    #[DataProvider('is_empty_value_data_provider')]
     public function test_is_empty_value($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::isEmptyValue($value));
