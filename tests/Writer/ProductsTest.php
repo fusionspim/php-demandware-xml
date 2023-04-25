@@ -91,11 +91,12 @@ class ProductsTest extends TestCase
 
     protected function buildBaseElement(string $type, int $number = 0): Product
     {
-        $invalidChar = chr(30); // Record Separator.
+        $invalidChar1 = chr(30); // Record Separator.
+        $invalidChar2 = chr(2);  // Start Of Text.
 
         $element = new Product(mb_strtoupper($type) . '123');
         $element->setDisplayName($type . ' number 123');
-        $element->setLongDescription('<b>' . $type . '</b> The description for an <i>example</i> ' . mb_strtolower($type) . '! • Bullet' . $invalidChar . 'Point');
+        $element->setLongDescription('<b>' . $type . '</b> The description for an <i>example</i> ' . mb_strtolower($type) . '! • Bullet' . $invalidChar1 . 'Point');
         $element->setUpc('50000000000' . $number);
         $element->setQuantities(); // include, but use defaults
         $element->setSearchRank(1);
@@ -117,7 +118,7 @@ class ProductsTest extends TestCase
 
         $element->addCustomAttributes([
             'type'         => 'Examples',
-            'zzz'          => 'Should be exported last within custom-attributes',
+            'zzz'          => 'Should be exported last within' . $invalidChar2 . 'custom-attributes',
             'primaryImage' => mb_strtolower($type) . '-123.png',
             'multiWow'     => ['so', 'such', 'many', 'much', 'very'],
             'boolTrue'     => true,
