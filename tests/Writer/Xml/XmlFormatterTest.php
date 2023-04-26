@@ -28,6 +28,7 @@ class XmlFormatterTest extends TestCase
         return [
             'null'             => [null, ''],
             'record separator' => ['Foo' . chr(30) . 'Bar', 'Foo Bar'],
+            'start of text'    => ['Foo' . chr(2) . 'Bar', 'Foo Bar'],
         ];
     }
 
