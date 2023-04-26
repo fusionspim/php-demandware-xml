@@ -63,10 +63,8 @@ class XmlFormatter
                 }
 
                 throw new XmlFormatterException('Cannot convert object without __toString() method to a string');
-
             case 'array':
                 throw new XmlFormatterException('Cannot convert array to a string');
-
             default:
                 return self::sanitise((string) $value);
         }
