@@ -2,11 +2,11 @@
 
 namespace DemandwareXml\Test\Writer\Xml;
 
-use PHPUnit\Framework\Attributes\DataProvider;
 use DateTime;
 use DateTimeImmutable;
 use DemandwareXml\Writer\Xml\XmlFormatter;
 use DemandwareXml\Writer\Xml\XmlFormatterException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Stringable;
@@ -14,7 +14,6 @@ use Stringable;
 final class XmlFormatterTest extends TestCase
 {
     /**
-     *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
@@ -34,7 +33,6 @@ final class XmlFormatterTest extends TestCase
     }
 
     /**
-     *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
@@ -56,7 +54,6 @@ final class XmlFormatterTest extends TestCase
     }
 
     /**
-     *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
@@ -76,7 +73,6 @@ final class XmlFormatterTest extends TestCase
     }
 
     /**
-     *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
@@ -112,7 +108,6 @@ final class XmlFormatterTest extends TestCase
     }
 
     /**
-     *
      * @param  mixed  $value
      * @param  mixed  $expectedExceptionClass
      * @param  mixed  $expectedExceptionMessage
@@ -144,7 +139,6 @@ final class XmlFormatterTest extends TestCase
     }
 
     /**
-     *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
