@@ -6,7 +6,7 @@ use DemandwareXml\Writer\Entity\Product;
 use DemandwareXml\Writer\Xml\XmlWriter;
 use PHPUnit\Framework\TestCase;
 
-final class XmlWriterTest extends TestCase
+class XmlWriterTest extends TestCase
 {
     private function getMemoryXmlWriter(): XmlWriter
     {

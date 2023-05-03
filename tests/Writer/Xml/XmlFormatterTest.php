@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 use Stringable;
 
-final class XmlFormatterTest extends TestCase
+class XmlFormatterTest extends TestCase
 {
     /**
      * @param  mixed  $value
