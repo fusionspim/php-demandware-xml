@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeImmutable;
 use DemandwareXml\Writer\Xml\XmlFormatter;
 use DemandwareXml\Writer\Xml\XmlFormatterException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Stringable;
@@ -13,17 +14,16 @@ use Stringable;
 class XmlFormatterTest extends TestCase
 {
     /**
-     * @dataProvider sanitise_data_provider
-     *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
+    #[DataProvider('sanitise_data_provider')]
     public function test_sanitise($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::sanitise($value));
     }
 
-    public function sanitise_data_provider(): iterable
+    public static function sanitise_data_provider(): iterable
     {
         return [
             'null'             => [null, ''],
@@ -33,17 +33,16 @@ class XmlFormatterTest extends TestCase
     }
 
     /**
-     * @dataProvider from_boolean_data_provider
-     *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
+    #[DataProvider('from_boolean_data_provider')]
     public function test_from_boolean($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::fromBoolean($value));
     }
 
-    public function from_boolean_data_provider(): iterable
+    public static function from_boolean_data_provider(): iterable
     {
         return [
             'null value'    => [null, ''],
@@ -55,17 +54,16 @@ class XmlFormatterTest extends TestCase
     }
 
     /**
-     * @dataProvider from_datetime_data_provider
-     *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
+    #[DataProvider('from_datetime_data_provider')]
     public function test_from_datetime($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::fromDateTime($value));
     }
 
-    public function from_datetime_data_provider(): iterable
+    public static function from_datetime_data_provider(): iterable
     {
         return [
             'null value'                => [null, ''],
@@ -75,17 +73,16 @@ class XmlFormatterTest extends TestCase
     }
 
     /**
-     * @dataProvider from_type_data_provider
-     *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
+    #[DataProvider('from_type_data_provider')]
     public function test_from_type($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::fromType($value));
     }
 
-    public function from_type_data_provider(): iterable
+    public static function from_type_data_provider(): iterable
     {
         $toStringClass = new class implements Stringable
         {
@@ -111,12 +108,11 @@ class XmlFormatterTest extends TestCase
     }
 
     /**
-     * @dataProvider from_type_exception_data_provider
-     *
      * @param  mixed  $value
      * @param  mixed  $expectedExceptionClass
      * @param  mixed  $expectedExceptionMessage
      */
+    #[DataProvider('from_type_exception_data_provider')]
     public function test_from_type_exception($value, $expectedExceptionClass, $expectedExceptionMessage): void
     {
         $this->expectException($expectedExceptionClass);
@@ -125,7 +121,7 @@ class XmlFormatterTest extends TestCase
         XmlFormatter::fromType($value);
     }
 
-    public function from_type_exception_data_provider(): iterable
+    public static function from_type_exception_data_provider(): iterable
     {
         return [
             'array value' => [
@@ -143,17 +139,16 @@ class XmlFormatterTest extends TestCase
     }
 
     /**
-     * @dataProvider is_empty_value_data_provider
-     *
      * @param  mixed  $value
      * @param  mixed  $expectedResult
      */
+    #[DataProvider('is_empty_value_data_provider')]
     public function test_is_empty_value($value, $expectedResult): void
     {
         $this->assertSame($expectedResult, XmlFormatter::isEmptyValue($value));
     }
 
-    public function is_empty_value_data_provider(): iterable
+    public static function is_empty_value_data_provider(): iterable
     {
         return [
             'null value'         => [null, true],
