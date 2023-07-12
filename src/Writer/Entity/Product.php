@@ -9,34 +9,34 @@ use InvalidArgumentException;
 
 class Product implements WriteableEntityInteface
 {
-    public string|null $upc                       = null;
-    public int|null $minOrderQuantity             = null;
-    public int|null $stepQuantity                 = null;
-    public string|null $displayName               = null;
-    public string|null $longDescription           = null;
-    public bool|null $onlineFlag                  = null;
-    public DateTimeInterface|null $onlineFrom     = null;
-    public DateTimeInterface|null $onlineTo       = null;
-    public bool|null $availableFlag               = null;
-    public bool|null $searchableFlag              = null;
-    public bool|null $searchableIfUnavailableFlag = null;
-    public string|null $tax                       = null;
-    public array|null $images                     = [];
-    public string|null $imageViewType             = null;
-    public string|null $brand                     = null;
-    public int|null $searchRank                   = null;
-    public bool|null $sitemapIncludedFlag         = null;
-    public string|null $sitemapChangeFrequency    = null;
-    public string|null $sitemapPriority           = null;
-    public array $pageAttributes                  = [];
-    public array $customAttributes                = [];
-    public array $sharedVariationAttributes       = [];
-    public array $variants                        = [];
-    public array|null $bundleProducts             = null;
-    public array|null $setProducts                = null;
-    public string|null $classificationCategoryId  = null;
-    public string|null $classificationCatalogId   = null;
-    public array $variationGroups                 = [];
+    public ?string $upc                       = null;
+    public ?int $minOrderQuantity             = null;
+    public ?int $stepQuantity                 = null;
+    public ?string $displayName               = null;
+    public ?string $longDescription           = null;
+    public ?bool $onlineFlag                  = null;
+    public ?DateTimeInterface $onlineFrom     = null;
+    public ?DateTimeInterface $onlineTo       = null;
+    public ?bool $availableFlag               = null;
+    public ?bool $searchableFlag              = null;
+    public ?bool $searchableIfUnavailableFlag = null;
+    public ?string $tax                       = null;
+    public ?array $images                     = [];
+    public ?string $imageViewType             = null;
+    public ?string $brand                     = null;
+    public ?int $searchRank                   = null;
+    public ?bool $sitemapIncludedFlag         = null;
+    public ?string $sitemapChangeFrequency    = null;
+    public ?string $sitemapPriority           = null;
+    public array $pageAttributes              = [];
+    public array $customAttributes            = [];
+    public array $sharedVariationAttributes   = [];
+    public array $variants                    = [];
+    public ?array $bundleProducts             = null;
+    public ?array $setProducts                = null;
+    public ?string $classificationCategoryId  = null;
+    public ?string $classificationCatalogId   = null;
+    public array $variationGroups             = [];
 
     public function __construct(public string $id)
     {
@@ -68,7 +68,7 @@ class Product implements WriteableEntityInteface
         $this->onlineFlag = $onlineFlag;
     }
 
-    public function setOnlineFromTo(DateTimeInterface|null $from, DateTimeInterface|null $to): void
+    public function setOnlineFromTo(?DateTimeInterface $from, ?DateTimeInterface $to): void
     {
         if ($from !== null) {
             $this->onlineFrom = $from;
@@ -79,7 +79,7 @@ class Product implements WriteableEntityInteface
         }
     }
 
-    public function setSearchableFlags(bool|null $availableFlag, bool|null $searchableFlag, bool|null $searchableIfUnavailableFlag): void
+    public function setSearchableFlags(?bool $availableFlag, ?bool $searchableFlag, ?bool $searchableIfUnavailableFlag): void
     {
         if ($availableFlag !== null) {
             $this->availableFlag = $availableFlag;
@@ -94,7 +94,7 @@ class Product implements WriteableEntityInteface
         }
     }
 
-    public function setTax(float|null $tax): void
+    public function setTax(?float $tax): void
     {
         if ($tax === null) {
             return;
@@ -132,7 +132,7 @@ class Product implements WriteableEntityInteface
         $this->searchRank = $searchRank;
     }
 
-    public function setSitemap(float|null $sitemapPriority = null, bool $sitemapIncludedFlag = true, string $sitemapChangeFrequency = 'weekly'): void
+    public function setSitemap(float $sitemapPriority = null, bool $sitemapIncludedFlag = true, string $sitemapChangeFrequency = 'weekly'): void
     {
         if ($sitemapPriority !== null && $sitemapPriority > 1) {
             throw new InvalidArgumentException('Sitemap priority must be 1.0 or less');
@@ -146,7 +146,7 @@ class Product implements WriteableEntityInteface
         $this->sitemapChangeFrequency = $sitemapChangeFrequency;
     }
 
-    public function setPageAttributes(string|null $pageTitle, string|null $pageDescription, string|null $pageKeywords, string|null $pageUrl): void
+    public function setPageAttributes(?string $pageTitle, ?string $pageDescription, ?string $pageKeywords, ?string $pageUrl): void
     {
         $this->pageAttributes = [
             'page-title'       => $pageTitle,

@@ -9,17 +9,17 @@ use InvalidArgumentException;
 
 class Category implements WriteableEntityInteface
 {
-    public string|null $displayName            = null;
-    public bool|null $onlineFlag               = null;
-    public DateTimeInterface|null $onlineFrom  = null;
-    public DateTimeInterface|null $onlineTo    = null;
-    public string|null $parentId               = null;
-    public string|null $template               = null;
-    public bool|null $sitemapIncludedFlag      = null;
-    public string|null $sitemapChangeFrequency = null;
-    public string|null $sitemapPriority        = null;
-    public array $pageAttributes               = [];
-    public array $customAttributes             = [];
+    public ?string $displayName            = null;
+    public ?bool $onlineFlag               = null;
+    public ?DateTimeInterface $onlineFrom  = null;
+    public ?DateTimeInterface $onlineTo    = null;
+    public ?string $parentId               = null;
+    public ?string $template               = null;
+    public ?bool $sitemapIncludedFlag      = null;
+    public ?string $sitemapChangeFrequency = null;
+    public ?string $sitemapPriority        = null;
+    public array $pageAttributes           = [];
+    public array $customAttributes         = [];
 
     public function __construct(public string $id)
     {
@@ -35,7 +35,7 @@ class Category implements WriteableEntityInteface
         $this->onlineFlag = $onlineFlag;
     }
 
-    public function setOnlineFromTo(DateTimeInterface|null $from, DateTimeInterface|null $to): void
+    public function setOnlineFromTo(?DateTimeInterface $from, ?DateTimeInterface $to): void
     {
         if ($from !== null) {
             $this->onlineFrom = $from;
@@ -56,7 +56,7 @@ class Category implements WriteableEntityInteface
         $this->template = $template;
     }
 
-    public function setSitemap(float|null $sitemapPriority = null, bool $sitemapIncludedFlag = true, string $sitemapChangeFrequency = 'weekly'): void
+    public function setSitemap(float $sitemapPriority = null, bool $sitemapIncludedFlag = true, string $sitemapChangeFrequency = 'weekly'): void
     {
         if ($sitemapPriority !== null && $sitemapPriority > 1) {
             throw new InvalidArgumentException('Sitemap priority must be 1.0 or less');
@@ -70,7 +70,7 @@ class Category implements WriteableEntityInteface
         $this->sitemapChangeFrequency = $sitemapChangeFrequency;
     }
 
-    public function setPageAttributes(string|null $pageTitle = null, string|null $pageDescription = null, string|null $pageKeywords = null, string|null $pageUrl = null): void
+    public function setPageAttributes(string $pageTitle = null, string $pageDescription = null, string $pageKeywords = null, string $pageUrl = null): void
     {
         $this->pageAttributes = [
             'page-title'       => $pageTitle,

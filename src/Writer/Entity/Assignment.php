@@ -7,7 +7,7 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class Assignment implements WriteableEntityInteface
 {
-    public bool|null $primary = null;
+    public ?bool $primary = null;
 
     public function __construct(public string $productId, public string $categoryId)
     {
