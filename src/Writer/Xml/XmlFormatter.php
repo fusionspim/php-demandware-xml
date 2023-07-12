@@ -16,7 +16,7 @@ class XmlFormatter
      * @see   http://www.phpwact.org/php/i18n/charsets#common_problem_areas_with_utf-8
      * @see   http://www.xiven.com/weblog/2013/08/30/PHPInvalidUTF8InXMLRevisited
      */
-    public static function sanitise(string|null $value): string
+    public static function sanitise(?string $value): string
     {
         if ($value === null) {
             return '';
@@ -27,7 +27,7 @@ class XmlFormatter
     }
 
     // Convert a boolean into a string for use in XML output.
-    public static function fromBoolean(bool|null $value): string
+    public static function fromBoolean(?bool $value): string
     {
         if ($value === null) {
             return '';
@@ -37,7 +37,7 @@ class XmlFormatter
     }
 
     // Convert a DateTime object into a string for use in XML output.
-    public static function fromDateTime(DateTimeInterface|null $value): string
+    public static function fromDateTime(?DateTimeInterface $value): string
     {
         if ($value === null) {
             return '';

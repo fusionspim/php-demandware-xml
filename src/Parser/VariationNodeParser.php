@@ -8,7 +8,7 @@ use XMLReader;
 class VariationNodeParser implements NodeParserInterface
 {
     use CommonDetailsNodeParserTrait;
-    protected SimpleXMLElement|null $element = null;
+    protected ?SimpleXMLElement $element = null;
 
     public function __construct(protected XMLReader $reader)
     {
