@@ -76,8 +76,8 @@ trait CommonDetailsNodeParserTrait
                 $value = trim((string) $attribute);
 
                 // Cast strings to booleans (only needed for single values, as multi-value booleans make no sense).
-                if ('true' === $value || 'false' === $value) {
-                    $value = ('true' === $value);
+                if ($value === 'true' || $value === 'false') {
+                    $value = ($value === 'true');
                 }
             }
 
