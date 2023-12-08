@@ -132,7 +132,7 @@ class Product implements WriteableEntityInteface
         $this->searchRank = $searchRank;
     }
 
-    public function setSitemap(float $sitemapPriority = null, bool $sitemapIncludedFlag = true, string $sitemapChangeFrequency = 'weekly'): void
+    public function setSitemap(?float $sitemapPriority = null, bool $sitemapIncludedFlag = true, string $sitemapChangeFrequency = 'weekly'): void
     {
         if ($sitemapPriority !== null && $sitemapPriority > 1) {
             throw new InvalidArgumentException('Sitemap priority must be 1.0 or less');

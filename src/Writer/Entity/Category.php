@@ -56,7 +56,7 @@ class Category implements WriteableEntityInteface
         $this->template = $template;
     }
 
-    public function setSitemap(float $sitemapPriority = null, bool $sitemapIncludedFlag = true, string $sitemapChangeFrequency = 'weekly'): void
+    public function setSitemap(?float $sitemapPriority = null, bool $sitemapIncludedFlag = true, string $sitemapChangeFrequency = 'weekly'): void
     {
         if ($sitemapPriority !== null && $sitemapPriority > 1) {
             throw new InvalidArgumentException('Sitemap priority must be 1.0 or less');
@@ -70,7 +70,7 @@ class Category implements WriteableEntityInteface
         $this->sitemapChangeFrequency = $sitemapChangeFrequency;
     }
 
-    public function setPageAttributes(string $pageTitle = null, string $pageDescription = null, string $pageKeywords = null, string $pageUrl = null): void
+    public function setPageAttributes(?string $pageTitle = null, ?string $pageDescription = null, ?string $pageKeywords = null, ?string $pageUrl = null): void
     {
         $this->pageAttributes = [
             'page-title'       => $pageTitle,
