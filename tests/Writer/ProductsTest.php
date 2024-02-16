@@ -71,7 +71,7 @@ class ProductsTest extends TestCase
         $entity->setSitemap(42.5);
     }
 
-    public function test_custom_attribute_limit(): void
+    public function test_custom_attribute_value_limit(): void
     {
         $entity = $this->buildMinimalProductElement();
         $entity->addCustomAttributes([
