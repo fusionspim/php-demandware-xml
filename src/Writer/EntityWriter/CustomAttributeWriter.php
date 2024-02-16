@@ -8,6 +8,8 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class CustomAttributeWriter
 {
+    public const MAX_VALUES = 200;
+
     public function __construct(private XmlWriter $writer, private CustomAttribute $customAttribute)
     {
     }
@@ -38,7 +40,8 @@ class CustomAttributeWriter
 
     private function writeMultiple(): void
     {
-        $values = XmlFormatter::filterEmptyValues($this->customAttribute->value);
+        // If more than 200 values are sent, Demandware will silently error and not update the product.
+        $values = array_slice(XmlFormatter::filterEmptyValues($this->customAttribute->value), 0, self::MAX_VALUES);
 
         if (count($values) > 0) {
             $this->writer->startElement('custom-attribute');

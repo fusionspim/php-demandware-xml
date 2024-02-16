@@ -7,6 +7,7 @@ use DemandwareXml\Test\FixtureHelper;
 use DemandwareXml\Writer\Entity\CustomAttribute;
 use DemandwareXml\Writer\Entity\DeletedProduct;
 use DemandwareXml\Writer\Entity\Product;
+use DemandwareXml\Writer\EntityWriter\CustomAttributeWriter;
 use DemandwareXml\Writer\Xml\XmlWriter;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -41,7 +42,7 @@ class ProductsTest extends TestCase
         );
     }
 
-    public function test_xml_escaping(): void
+    public function test_product_xml_escaping(): void
     {
         $entity = $this->buildProductElement();
         $entity->setDisplayName('Product number 123 &bull;');
@@ -62,6 +63,28 @@ class ProductsTest extends TestCase
         );
     }
 
+    public function test_product_custom_attribute_value_limit(): void
+    {
+        $entity = $this->buildMinimalProductElement();
+        $entity->addCustomAttributes([
+            'test' => ['', ...array_fill(0, CustomAttributeWriter::MAX_VALUES, 'test'), 'missing'],
+        ]);
+
+        $xml = new XmlWriter;
+        $xml->openMemory();
+        $xml->setIndentDefaults();
+        $xml->startDocument();
+        $xml->startCatalog('TestCatalog');
+        $xml->writeEntity($entity);
+        $xml->endCatalog();
+        $xml->endDocument();
+
+        $this->assertXmlStringEqualsXmlString(
+            $this->loadFixture('product-custom-attribute-value-limit.xml'),
+            $xml->outputMemory(true)
+        );
+    }
+
     public function test_invalid_sitemap_priority(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -69,16 +92,6 @@ class ProductsTest extends TestCase
 
         $entity = $this->buildProductElement();
         $entity->setSitemap(42.5);
-    }
-
-    public function test_custom_attribute_value_limit(): void
-    {
-        $entity = $this->buildMinimalProductElement();
-        $entity->addCustomAttributes([
-            'test' => array_fill(0, CustomAttribute::MAX_VALUES + 5, 'test'),
-        ]);
-
-        $this->assertCount(CustomAttribute::MAX_VALUES, $entity->customAttributes['test']->value);
     }
 
     protected function buildDocument(): XmlWriter
