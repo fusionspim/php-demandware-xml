@@ -75,10 +75,10 @@ class ProductsTest extends TestCase
     {
         $entity = $this->buildMinimalProductElement();
         $entity->addCustomAttributes([
-            'test' => array_fill(0, 205, 'test'),
+            'test' => array_fill(0, CustomAttribute::MAX_VALUES + 5, 'test'),
         ]);
 
-        $this->assertCount(200, $entity->customAttributes['test']->value);
+        $this->assertCount(CustomAttribute::MAX_VALUES, $entity->customAttributes['test']->value);
     }
 
     protected function buildDocument(): XmlWriter
