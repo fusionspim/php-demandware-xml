@@ -71,6 +71,16 @@ class ProductsTest extends TestCase
         $entity->setSitemap(42.5);
     }
 
+    public function test_custom_attribute_limit(): void
+    {
+        $entity = $this->buildMinimalProductElement();
+        $entity->addCustomAttributes([
+            'test' => array_fill(0, 205, 'test'),
+        ]);
+
+        $this->assertCount(200, $entity->customAttributes['test']->value);
+    }
+
     protected function buildDocument(): XmlWriter
     {
         $xml = new XmlWriter;
