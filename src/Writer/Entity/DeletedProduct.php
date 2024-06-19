@@ -7,9 +7,7 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class DeletedProduct implements WriteableEntityInteface
 {
-    public function __construct(public string $id)
-    {
-    }
+    public function __construct(public string $id) {}
 
     public function write(XmlWriter $writer): void
     {

@@ -9,9 +9,7 @@ class Assignment implements WriteableEntityInteface
 {
     public ?bool $primary = null;
 
-    public function __construct(public string $productId, public string $categoryId)
-    {
-    }
+    public function __construct(public string $productId, public string $categoryId) {}
 
     public function setPrimary(bool $primary): void
     {
