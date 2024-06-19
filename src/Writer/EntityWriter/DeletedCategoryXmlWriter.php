@@ -7,9 +7,7 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class DeletedCategoryXmlWriter
 {
-    public function __construct(private XmlWriter $writer, private DeletedCategory $category)
-    {
-    }
+    public function __construct(private XmlWriter $writer, private DeletedCategory $category) {}
 
     public function write(): void
     {

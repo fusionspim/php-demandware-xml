@@ -8,9 +8,7 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class CategoryXmlWriter
 {
-    public function __construct(private XmlWriter $writer, private Category $category)
-    {
-    }
+    public function __construct(private XmlWriter $writer, private Category $category) {}
 
     public function write(): void
     {

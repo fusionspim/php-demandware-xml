@@ -8,9 +8,7 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class ProductXmlWriter
 {
-    public function __construct(private XmlWriter $writer, private Product $product)
-    {
-    }
+    public function __construct(private XmlWriter $writer, private Product $product) {}
 
     public function write(): void
     {

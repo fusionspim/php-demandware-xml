@@ -21,9 +21,7 @@ class Category implements WriteableEntityInteface
     public array $pageAttributes           = [];
     public array $customAttributes         = [];
 
-    public function __construct(public string $id)
-    {
-    }
+    public function __construct(public string $id) {}
 
     public function setDisplayName(string $displayName): void
     {

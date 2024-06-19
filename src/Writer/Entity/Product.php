@@ -38,9 +38,7 @@ class Product implements WriteableEntityInteface
     public ?string $classificationCatalogId   = null;
     public array $variationGroups             = [];
 
-    public function __construct(public string $id)
-    {
-    }
+    public function __construct(public string $id) {}
 
     public function setUpc(string $upc): void
     {
