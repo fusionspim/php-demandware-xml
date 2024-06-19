@@ -7,7 +7,9 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class DeletedAssignmentXmlWriter
 {
-    public function __construct(private XmlWriter $writer, private DeletedAssignment $assignment) {}
+    public function __construct(private XmlWriter $writer, private DeletedAssignment $assignment)
+    {
+    }
 
     public function write(): void
     {

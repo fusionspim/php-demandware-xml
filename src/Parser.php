@@ -11,7 +11,9 @@ class Parser
 {
     protected array $parsed = [];
 
-    public function __construct(protected string $file) {}
+    public function __construct(protected string $file)
+    {
+    }
 
     public function validate(bool $useSchema = true): bool
     {

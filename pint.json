@@ -19,7 +19,8 @@
             "elements": {
                 "method": "one"
             }
-        }
+        },
+        "single_line_empty_body" : false
     },
     "exclude": [],
     "notPath": [

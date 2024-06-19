@@ -7,7 +7,9 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class VariantXmlWriter
 {
-    public function __construct(private XmlWriter $writer, private Variant $variant) {}
+    public function __construct(private XmlWriter $writer, private Variant $variant)
+    {
+    }
 
     public function write(): void
     {
