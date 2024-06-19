@@ -10,7 +10,9 @@ class CustomAttributeWriter
 {
     public const MAX_VALUES = 200;
 
-    public function __construct(private XmlWriter $writer, private CustomAttribute $customAttribute) {}
+    public function __construct(private XmlWriter $writer, private CustomAttribute $customAttribute)
+    {
+    }
 
     public function write(): void
     {

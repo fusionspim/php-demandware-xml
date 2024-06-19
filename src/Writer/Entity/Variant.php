@@ -9,7 +9,9 @@ class Variant implements WriteableEntityInteface
 {
     public array $displayValues = [];
 
-    public function __construct(public string $id) {}
+    public function __construct(public string $id)
+    {
+    }
 
     public function addDisplayValue(string $value, string $displayValue): void
     {

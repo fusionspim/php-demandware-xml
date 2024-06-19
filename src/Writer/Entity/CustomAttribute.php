@@ -7,7 +7,9 @@ use DemandwareXml\Writer\Xml\XmlWriter;
 
 class CustomAttribute implements WriteableEntityInteface
 {
-    public function __construct(public string $id, public $value = null) {}
+    public function __construct(public string $id, public $value = null)
+    {
+    }
 
     public function write(XmlWriter $writer): void
     {

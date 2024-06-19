@@ -10,7 +10,9 @@ class ProductNodeParser implements NodeParserInterface
     use CommonDetailsNodeParserTrait;
     protected ?SimpleXMLElement $element = null;
 
-    public function __construct(protected XMLReader $reader) {}
+    public function __construct(protected XMLReader $reader)
+    {
+    }
 
     public function isMatch(): bool
     {

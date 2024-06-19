@@ -9,7 +9,9 @@ class CategoryNodeParser implements NodeParserInterface
 {
     use CommonDetailsNodeParserTrait;
 
-    public function __construct(protected XMLReader $reader) {}
+    public function __construct(protected XMLReader $reader)
+    {
+    }
 
     public function isMatch(): bool
     {

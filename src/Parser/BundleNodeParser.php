@@ -11,7 +11,9 @@ class BundleNodeParser implements NodeParserInterface
 
     protected ?SimpleXMLElement $element = null;
 
-    public function __construct(protected XMLReader $reader) {}
+    public function __construct(protected XMLReader $reader)
+    {
+    }
 
     public function isMatch(): bool
     {
