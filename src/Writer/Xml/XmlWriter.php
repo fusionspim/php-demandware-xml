@@ -2,7 +2,7 @@
 
 namespace DemandwareXml\Writer\Xml;
 
-use DemandwareXml\Writer\Entity\WriteableEntityInteface;
+use DemandwareXml\Writer\Entity\WriteableEntityInterface;
 use SplFileObject;
 use XMLWriter as PhpXmlWriter;
 
@@ -120,12 +120,12 @@ class XmlWriter extends PhpXmlWriter
         return true;
     }
 
-    public function writeEntity(WriteableEntityInteface $entity): void
+    public function writeEntity(WriteableEntityInterface $entity): void
     {
         $entity->write($this);
     }
 
-    public function writeFlushableEntity(WriteableEntityInteface $entity): void
+    public function writeFlushableEntity(WriteableEntityInterface $entity): void
     {
         $this->writeEntity($entity);
 

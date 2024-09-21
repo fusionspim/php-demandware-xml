@@ -5,7 +5,7 @@ namespace DemandwareXml\Writer\Entity;
 use DemandwareXml\Writer\EntityWriter\AssignmentXmlWriter;
 use DemandwareXml\Writer\Xml\XmlWriter;
 
-class Assignment implements WriteableEntityInteface
+class Assignment implements WriteableEntityInterface
 {
     public ?bool $primary = null;
 

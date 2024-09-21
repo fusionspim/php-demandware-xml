@@ -7,7 +7,7 @@ use DemandwareXml\Writer\EntityWriter\CategoryXmlWriter;
 use DemandwareXml\Writer\Xml\XmlWriter;
 use InvalidArgumentException;
 
-class Category implements WriteableEntityInteface
+class Category implements WriteableEntityInterface
 {
     public ?string $displayName            = null;
     public ?bool $onlineFlag               = null;

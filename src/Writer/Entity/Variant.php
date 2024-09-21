@@ -5,7 +5,7 @@ namespace DemandwareXml\Writer\Entity;
 use DemandwareXml\Writer\EntityWriter\VariantXmlWriter;
 use DemandwareXml\Writer\Xml\XmlWriter;
 
-class Variant implements WriteableEntityInteface
+class Variant implements WriteableEntityInterface
 {
     public array $displayValues = [];
 
