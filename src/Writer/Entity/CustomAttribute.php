@@ -5,7 +5,7 @@ namespace DemandwareXml\Writer\Entity;
 use DemandwareXml\Writer\EntityWriter\CustomAttributeWriter;
 use DemandwareXml\Writer\Xml\XmlWriter;
 
-class CustomAttribute implements WriteableEntityInteface
+class CustomAttribute implements WriteableEntityInterface
 {
     public function __construct(public string $id, public $value = null)
     {

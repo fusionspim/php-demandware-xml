@@ -5,7 +5,7 @@ namespace DemandwareXml\Writer\Entity;
 use DemandwareXml\Writer\EntityWriter\DeletedCategoryXmlWriter;
 use DemandwareXml\Writer\Xml\XmlWriter;
 
-class DeletedCategory implements WriteableEntityInteface
+class DeletedCategory implements WriteableEntityInterface
 {
     public function __construct(public string $id)
     {

@@ -7,7 +7,7 @@ use DemandwareXml\Writer\EntityWriter\ProductXmlWriter;
 use DemandwareXml\Writer\Xml\XmlWriter;
 use InvalidArgumentException;
 
-class Product implements WriteableEntityInteface
+class Product implements WriteableEntityInterface
 {
     public ?string $upc                       = null;
     public ?int $minOrderQuantity             = null;
