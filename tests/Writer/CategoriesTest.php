@@ -54,7 +54,7 @@ class CategoriesTest extends TestCase
             $element->setTemplate('cat-listings.html');
             $element->setOnlineFlag(true);
             $element->setSitemap(0.2);
-            $element->setPageAttributes($title, 'Buy ' . $title, mb_strtolower($title), '/' . $title);
+            $element->setPageAttributes($title, 'Buy ' . $title, '/' . $title,mb_strtolower($title));
             $element->setOnlineFromTo(
                 $data['dates']['from'],
                 $data['dates']['to']

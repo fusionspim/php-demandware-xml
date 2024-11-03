@@ -146,7 +146,7 @@ class Product implements WriteableEntityInterface
         $this->sitemapChangeFrequency = $sitemapChangeFrequency;
     }
 
-    public function setPageAttributes(?string $pageTitle, ?string $pageDescription, ?string $pageKeywords, ?string $pageUrl): void
+    public function setPageAttributes(?string $pageTitle, ?string $pageDescription, ?string $pageUrl, ?string $pageKeywords): void
     {
         $this->pageAttributes = [
             'page-title'       => $pageTitle,
