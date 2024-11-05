@@ -135,8 +135,8 @@ class ProductsTest extends TestCase
         $element->setPageAttributes(
             'Amazing ' . $type,
             'Buy our ' . $type . ' today!',
+            'http://example.com/' . mb_strtolower($type) . '/123',
             $type . ', test, example',
-            'http://example.com/' . mb_strtolower($type) . '/123'
         );
 
         $element->addCustomAttributes([
