@@ -15,7 +15,7 @@ class Variant implements WriteableEntityInterface
 
     public function addDisplayValue(string $value, string $displayValue): void
     {
-        $this->displayValues[$value] = $displayValue;
+        $this->displayValues[$value] = mb_substr($displayValue, 0, 256);
     }
 
     public function write(XmlWriter $writer): void

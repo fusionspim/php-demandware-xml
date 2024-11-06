@@ -14,8 +14,9 @@ class VariantsTest extends TestCase
     public function test_variants_xml(): void
     {
         $variants = [
-            'colour' => ['red' => 'Red', 'blue' => 'Blue'],
-            'height' => ['H1' => 'Grande', 'H2' => 'Tall'],
+            'colour'      => ['red' => 'Red', 'blue' => 'Blue'],
+            'height'      => ['H1' => 'Grande', 'H2' => 'Tall'],
+            'description' => ['body' => 'Experience the UltraComfort Memory Foam Pillow, designed to support your neck and head with premium memory foam for ultimate comfort. The breathable, hypoallergenic cover keeps you cool all night. Perfect for any sleeping position, it promotes restful, refreshing sleep.'],
         ];
 
         $xml = new XmlWriter;
