@@ -10,12 +10,12 @@
         "xml"
     ],
     "require": {
-        "php": ">=8.2",
-        "ext-SimpleXML": "^8.2",
-        "ext-json": "^8.2",
-        "ext-libxml": "^8.2",
-        "ext-xmlreader": "^8.2",
-        "ext-xmlwriter": "^8.2"
+        "php": ">=8.4",
+        "ext-SimpleXML": "^8.4",
+        "ext-json": "^8.4",
+        "ext-libxml": "^8.4",
+        "ext-xmlreader": "^8.4",
+        "ext-xmlwriter": "^8.4"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
