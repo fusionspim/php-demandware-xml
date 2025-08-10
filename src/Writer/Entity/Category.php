@@ -37,13 +37,8 @@ class Category implements WriteableEntityInterface
 
     public function setOnlineFromTo(?DateTimeInterface $from, ?DateTimeInterface $to): void
     {
-        if ($from !== null) {
-            $this->onlineFrom = $from;
-        }
-
-        if ($to !== null) {
-            $this->onlineTo = $to;
-        }
+        $this->onlineFrom = $from;
+        $this->onlineTo   = $to;
     }
 
     public function setParent(string $parentId): void
