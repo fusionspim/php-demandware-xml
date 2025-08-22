@@ -18,7 +18,7 @@ class XmlException extends Exception
         parent::__construct($message, $code, $previous);
     }
 
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->url;
     }
