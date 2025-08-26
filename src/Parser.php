@@ -60,14 +60,6 @@ class Parser
 
     protected function libXmlErrorToException($error): XMLException
     {
-        if (
-            str_starts_with($error->message, 'PCDATA invalid Char value') &&
-            preg_match('/Char value (\d+)/', $error->message, $matches) &&
-            isset($matches[1])
-        ) {
-            $url = sprintf('https://www.fileformat.info/info/unicode/char/%d/index.htm', $matches[1]);
-        }
-
         return new XmlException(sprintf(
             '%s: %s in %s on line %s column %s',
             $this->libXmlErrorLevelToString($error->level),
@@ -75,7 +67,7 @@ class Parser
             basename($error->file),
             $error->line,
             $error->column,
-        ), $error->code, url: $url ?? null);
+        ), $error->code);
     }
 
     protected function libXmlErrorLevelToString(int $level): string
