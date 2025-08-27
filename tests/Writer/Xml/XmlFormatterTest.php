@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeImmutable;
 use DemandwareXml\Writer\Xml\XmlFormatter;
 use DemandwareXml\Writer\Xml\XmlFormatterException;
+use DemandwareXml\XmlException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -218,5 +219,18 @@ class XmlFormatterTest extends TestCase
                 ])
             )
         );
+    }
+
+    public function test_exception_contains_invalid_character_url(): void
+    {
+        $message = 'Fatal: PCDATA invalid Char value 30 at line 1';
+        $exception = new XmlException($message);
+        $this->assertSame(
+            'https://www.fileformat.info/info/unicode/char/30/index.htm',
+            $exception->getInvalidCharUrl()
+        );
+
+        $exceptionNoMatch = new XmlException('A different error');
+        $this->assertNull($exceptionNoMatch->getInvalidCharUrl());
     }
 }
