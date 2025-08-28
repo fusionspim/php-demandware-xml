@@ -1,11 +1,18 @@
 version: 2
 
 # https://docs.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
+# https://docs.github.com/en/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot
 updates:
   - package-ecosystem: "composer"
     open-pull-requests-limit: 1
     directory: "/"
     schedule:
       interval: "daily"
+    labels:
+      - "Dependencies"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly" # Enough for awareness, but assume we'd notice bugs (and aren't in a great rush for new features)
     labels:
       - "Dependencies"

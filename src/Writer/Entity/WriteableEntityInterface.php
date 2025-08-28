@@ -4,7 +4,7 @@ namespace DemandwareXml\Writer\Entity;
 
 use DemandwareXml\Writer\Xml\XmlWriter;
 
-interface WriteableEntityInteface
+interface WriteableEntityInterface
 {
     public function write(XmlWriter $writer): void;
 }

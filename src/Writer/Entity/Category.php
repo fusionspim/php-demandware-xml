@@ -7,7 +7,7 @@ use DemandwareXml\Writer\EntityWriter\CategoryXmlWriter;
 use DemandwareXml\Writer\Xml\XmlWriter;
 use InvalidArgumentException;
 
-class Category implements WriteableEntityInteface
+class Category implements WriteableEntityInterface
 {
     public ?string $displayName            = null;
     public ?bool $onlineFlag               = null;
@@ -37,13 +37,8 @@ class Category implements WriteableEntityInteface
 
     public function setOnlineFromTo(?DateTimeInterface $from, ?DateTimeInterface $to): void
     {
-        if ($from !== null) {
-            $this->onlineFrom = $from;
-        }
-
-        if ($to !== null) {
-            $this->onlineTo = $to;
-        }
+        $this->onlineFrom = $from;
+        $this->onlineTo   = $to;
     }
 
     public function setParent(string $parentId): void
@@ -70,7 +65,7 @@ class Category implements WriteableEntityInteface
         $this->sitemapChangeFrequency = $sitemapChangeFrequency;
     }
 
-    public function setPageAttributes(?string $pageTitle = null, ?string $pageDescription = null, ?string $pageKeywords = null, ?string $pageUrl = null): void
+    public function setPageAttributes(?string $pageTitle = null, ?string $pageDescription = null, ?string $pageUrl = null, ?string $pageKeywords = null): void
     {
         $this->pageAttributes = [
             'page-title'       => $pageTitle,

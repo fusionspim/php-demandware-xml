@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.2/phpunit.xsd"
-         backupGlobals="false"
-         colors="true"
-         processIsolation="false"
-         stopOnFailure="false"
-         bootstrap="./tests/bootstrap.php"
-         cacheDirectory=".phpunit.cache"
-         backupStaticProperties="false"
+    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+    executionOrder="defects"
+    colors="true"
+    bootstrap="./tests/bootstrap.php"
+    cacheDirectory=".phpunit.cache"
+    displayDetailsOnTestsThatTriggerErrors="true"
+    displayDetailsOnTestsThatTriggerWarnings="true"
+    displayDetailsOnTestsThatTriggerNotices="true"
+    displayDetailsOnTestsThatTriggerDeprecations="true"
 >
-  <coverage/>
   <testsuites>
-    <testsuite name="Fusions Test Suite">
+    <testsuite name="Unit">
       <directory>./tests</directory>
     </testsuite>
   </testsuites>
   <source>
     <include>
-      <directory>./src</directory>
+      <directory suffix=".php">./src</directory>
     </include>
   </source>
 </phpunit>

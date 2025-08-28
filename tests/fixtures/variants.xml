@@ -20,4 +20,11 @@
       </variation-attribute-value>
     </variation-attribute-values>
   </variation-attribute>
+  <variation-attribute attribute-id="description" variation-attribute-id="description">
+    <variation-attribute-values>
+      <variation-attribute-value value="body">
+        <display-value xml:lang="x-default">Experience the UltraComfort Memory Foam Pillow, designed to support your neck and head with premium memory foam for ultimate comfort. The breathable, hypoallergenic cover keeps you cool all night. Perfect for any sleeping position, it promotes restful, ref</display-value>
+      </variation-attribute-value>
+    </variation-attribute-values>
+  </variation-attribute>
 </catalog>

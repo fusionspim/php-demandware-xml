@@ -5,7 +5,7 @@ namespace DemandwareXml\Writer\Entity;
 use DemandwareXml\Writer\EntityWriter\VariantXmlWriter;
 use DemandwareXml\Writer\Xml\XmlWriter;
 
-class Variant implements WriteableEntityInteface
+class Variant implements WriteableEntityInterface
 {
     public array $displayValues = [];
 
@@ -15,7 +15,7 @@ class Variant implements WriteableEntityInteface
 
     public function addDisplayValue(string $value, string $displayValue): void
     {
-        $this->displayValues[$value] = $displayValue;
+        $this->displayValues[$value] = mb_substr($displayValue, 0, 256);
     }
 
     public function write(XmlWriter $writer): void

@@ -7,7 +7,7 @@ use DemandwareXml\Writer\EntityWriter\ProductXmlWriter;
 use DemandwareXml\Writer\Xml\XmlWriter;
 use InvalidArgumentException;
 
-class Product implements WriteableEntityInteface
+class Product implements WriteableEntityInterface
 {
     public ?string $upc                       = null;
     public ?int $minOrderQuantity             = null;
@@ -70,28 +70,15 @@ class Product implements WriteableEntityInteface
 
     public function setOnlineFromTo(?DateTimeInterface $from, ?DateTimeInterface $to): void
     {
-        if ($from !== null) {
-            $this->onlineFrom = $from;
-        }
-
-        if ($to !== null) {
-            $this->onlineTo = $to;
-        }
+        $this->onlineFrom = $from;
+        $this->onlineTo   = $to;
     }
 
     public function setSearchableFlags(?bool $availableFlag, ?bool $searchableFlag, ?bool $searchableIfUnavailableFlag): void
     {
-        if ($availableFlag !== null) {
-            $this->availableFlag = $availableFlag;
-        }
-
-        if ($searchableFlag !== null) {
-            $this->searchableFlag = $searchableFlag;
-        }
-
-        if ($searchableIfUnavailableFlag !== null) {
-            $this->searchableIfUnavailableFlag = $searchableIfUnavailableFlag;
-        }
+        $this->availableFlag               = $availableFlag;
+        $this->searchableFlag              = $searchableFlag;
+        $this->searchableIfUnavailableFlag = $searchableIfUnavailableFlag;
     }
 
     public function setTax(?float $tax): void
@@ -146,7 +133,7 @@ class Product implements WriteableEntityInteface
         $this->sitemapChangeFrequency = $sitemapChangeFrequency;
     }
 
-    public function setPageAttributes(?string $pageTitle, ?string $pageDescription, ?string $pageKeywords, ?string $pageUrl): void
+    public function setPageAttributes(?string $pageTitle = null, ?string $pageDescription = null, ?string $pageUrl = null, ?string $pageKeywords = null): void
     {
         $this->pageAttributes = [
             'page-title'       => $pageTitle,
@@ -188,7 +175,6 @@ class Product implements WriteableEntityInteface
         $this->variants = $variants;
     }
 
-    // Applies to bundles only.
     public function setBundleProducts(array $bundleProducts): void
     {
         foreach ($bundleProducts as $key => $value) {
@@ -204,7 +190,6 @@ class Product implements WriteableEntityInteface
         $this->bundleProducts = $bundleProducts;
     }
 
-    // Applies to sets only.
     public function setSetProducts(array $setProducts): void
     {
         foreach ($setProducts as $value) {

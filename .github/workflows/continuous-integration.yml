@@ -15,10 +15,9 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - '8.2'
-          - '8.3'
+          - '8.4'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - uses: shivammathur/setup-php@v2
         with:
@@ -28,7 +27,7 @@ jobs:
 
       - name: Restore Composer dependencies
         id: composer-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
