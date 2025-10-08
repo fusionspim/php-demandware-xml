@@ -221,6 +221,6 @@ class Product implements WriteableEntityInterface
 
     public function write(XmlWriter $writer): void
     {
-        (new ProductXmlWriter($writer, $this))->write();
+        new ProductXmlWriter($writer, $this)->write();
     }
 }

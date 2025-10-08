@@ -20,6 +20,6 @@ class Assignment implements WriteableEntityInterface
 
     public function write(XmlWriter $writer): void
     {
-        (new AssignmentXmlWriter($writer, $this))->write();
+        new AssignmentXmlWriter($writer, $this)->write();
     }
 }

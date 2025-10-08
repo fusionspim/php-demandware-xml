@@ -13,6 +13,6 @@ class CustomAttribute implements WriteableEntityInterface
 
     public function write(XmlWriter $writer): void
     {
-        (new CustomAttributeWriter($writer, $this))->write();
+        new CustomAttributeWriter($writer, $this)->write();
     }
 }

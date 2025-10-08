@@ -13,6 +13,6 @@ class DeletedAssignment implements WriteableEntityInterface
 
     public function write(XmlWriter $writer): void
     {
-        (new DeletedAssignmentXmlWriter($writer, $this))->write();
+        new DeletedAssignmentXmlWriter($writer, $this)->write();
     }
 }

@@ -13,6 +13,6 @@ class DeletedProduct implements WriteableEntityInterface
 
     public function write(XmlWriter $writer): void
     {
-        (new DeletedProductXmlWriter($writer, $this))->write();
+        new DeletedProductXmlWriter($writer, $this)->write();
     }
 }

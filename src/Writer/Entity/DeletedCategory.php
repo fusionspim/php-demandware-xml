@@ -13,6 +13,6 @@ class DeletedCategory implements WriteableEntityInterface
 
     public function write(XmlWriter $writer): void
     {
-        (new DeletedCategoryXmlWriter($writer, $this))->write();
+        new DeletedCategoryXmlWriter($writer, $this)->write();
     }
 }

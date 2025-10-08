@@ -8,7 +8,7 @@ use Stringable;
 // Converts values into strings suitable for XML output.
 class XmlFormatter
 {
-    public const DATE_FORMAT_DEFAULT = 'Y-m-d\TH:i:s';
+    public const string DATE_FORMAT_DEFAULT = 'Y-m-d\TH:i:s';
 
     /**
      * Sanitise a string for XML.
@@ -77,7 +77,7 @@ class XmlFormatter
             return true;
         }
 
-        return is_string($value) && $value === '';
+        return $value === '';
     }
 
     // Filters out empty values from an array.
