@@ -73,11 +73,7 @@ class XmlFormatter
     // Checks whether a value is null, an empty array, or an empty string.
     public static function isEmptyValue($value): bool
     {
-        if ($value === null || $value === []) {
-            return true;
-        }
-
-        return $value === '';
+        return $value === null || $value === [] || $value === '';
     }
 
     // Filters out empty values from an array.
