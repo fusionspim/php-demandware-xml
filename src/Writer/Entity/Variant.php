@@ -20,6 +20,6 @@ class Variant implements WriteableEntityInterface
 
     public function write(XmlWriter $writer): void
     {
-        (new VariantXmlWriter($writer, $this))->write();
+        new VariantXmlWriter($writer, $this)->write();
     }
 }

@@ -89,6 +89,6 @@ class Category implements WriteableEntityInterface
 
     public function write(XmlWriter $writer): void
     {
-        (new CategoryXmlWriter($writer, $this))->write();
+        new CategoryXmlWriter($writer, $this)->write();
     }
 }

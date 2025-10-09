@@ -11,9 +11,10 @@
     ],
     "require": {
         "php": ">=8.4",
-        "ext-SimpleXML": "^8.4",
         "ext-json": "^8.4",
         "ext-libxml": "^8.4",
+        "ext-mbstring": "^8.4",
+        "ext-simplexml": "^8.4",
         "ext-xmlreader": "^8.4",
         "ext-xmlwriter": "^8.4"
     },
@@ -43,7 +44,7 @@
             "composer normalize"
         ],
         "fix-cs": [
-            "pint"
+            "pint --parallel"
         ],
         "test": [
             "phpunit --stop-on-failure --stop-on-error"
