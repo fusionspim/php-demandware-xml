@@ -10,9 +10,13 @@ updates:
       interval: "daily"
     labels:
       - "Dependencies"
+    assignees:
+      - "MizouziE"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly" # Enough for awareness, but assume we'd notice bugs (and aren't in a great rush for new features)
     labels:
       - "Dependencies"
+    assignees:
+      - "MizouziE"
