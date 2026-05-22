@@ -68,7 +68,7 @@ class XmlFormatterTest extends TestCase
     {
         return [
             'null value'                => [null, ''],
-            'datetime object'           => [new Datetime('2001-02-03 04:04:06'), '2001-02-03T04:04:06'],
+            'datetime object'           => [new DateTime('2001-02-03 04:04:06'), '2001-02-03T04:04:06'],
             'immutable datetime object' => [new DateTimeImmutable('2001-02-03 04:04:06'), '2001-02-03T04:04:06'],
         ];
     }
@@ -102,7 +102,7 @@ class XmlFormatterTest extends TestCase
             'false boolean'             => [false, 'false'],
             'truthy value'              => ['foobar', 'foobar'],
             'falsey value'              => ['', ''],
-            'datetime object'           => [new Datetime('2001-02-03 04:04:06'), '2001-02-03T04:04:06'],
+            'datetime object'           => [new DateTime('2001-02-03 04:04:06'), '2001-02-03T04:04:06'],
             'immutable datetime object' => [new DateTimeImmutable('2001-02-03 04:04:06'), '2001-02-03T04:04:06'],
             'object with __toString'    => [new $toStringClass, 'TOSTRING'],
         ];
