@@ -6,3 +6,4 @@
 /vendor
 /tests/coverage/*
 /tests/output/*
+composer.lock
