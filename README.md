@@ -1,12 +1,10 @@
 # PHP Demandware XML
 
-A PHP library for working with Demandware XML files.
+A PHP library for working with Demandware XML files:
 
-**Exporting**: Supports category, product, variant and assignment files and allows elements to be added in the order that makes sense for your code - they'll be exported in the sequence specified by the XSD automatically, and custom attribute elements are ordered by attribute ids for consistency between exports.
-
-**Validation**: Automatically validates files up to 1Gb (against the included XSD schemas) after exporting.
-
-**Parsing**: Retrieve category, assignment, product, variation, set and bundle information from an XML file, either as an array, or yield using generators. Maps IDs to the more useful elements and, optionally, attributes.
+- **Exporting**: Supports category, product, variant and assignment files and allows elements to be added in the order that makes sense for your code - they'll be exported in the sequence specified by the XSD automatically, and custom attribute elements are ordered by attribute ids for consistency between exports.
+- **Validation**: Automatically validates files up to 1Gb (against the included XSD schemas) after exporting.
+- **Parsing**: Retrieve category, assignment, product, variation, set and bundle information from an XML file, either as an array, or yield using generators. Maps IDs to the more useful elements and, optionally, attributes.
 
 ## Installation
 
@@ -15,6 +13,10 @@ Run `composer require fusionspim/php-demandware-xml`.
 ## Usage
 
 See tests for examples on how to use, along with the files within `tests/fixtures` for output examples.
+
+## Development
+
+To ensure consistent linting/testing outcomes (locally and in CI), tools are pinned via `composer.lock`.
 
 ## Future plans
 
