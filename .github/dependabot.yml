@@ -4,12 +4,15 @@ version: 2
 # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot
 updates:
   - package-ecosystem: "composer"
-    open-pull-requests-limit: 1
     directory: "/"
     schedule:
       interval: "daily"
     cooldown:
       default-days: 7
+    groups:
+      composer:
+        patterns:
+          - "*"
     labels:
       - "Dependencies"
     assignees:
@@ -20,6 +23,10 @@ updates:
       interval: "monthly" # Enough for awareness, but assume we'd notice bugs (and aren't in a great rush for new features)
     cooldown:
       default-days: 7
+    groups:
+      github-actions:
+        patterns:
+          - "*"
     labels:
       - "Dependencies"
     assignees:
