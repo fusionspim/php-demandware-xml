@@ -1,0 +1,5 @@
+rules:
+  # Carried over from the app for parity, though inert here as we use no pull request actions.
+  # There it says to use gh CLI rather than the pr-action @see https://github.com/fusionspim/app/issues/26359
+  superfluous-actions:
+    disable: true
