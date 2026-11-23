@@ -1,4 +1,8 @@
 {
+    "PRD12340000": {
+        "description": "This minimal product tests how empty fields are output",
+        "name": "Minimal Product"
+    },
     "VARIATION123": {
         "brand": "SampleBrand™",
         "description": "<b>Variation<\/b> The description for an <i>example<\/i> variation! \u2022 Bullet Point",

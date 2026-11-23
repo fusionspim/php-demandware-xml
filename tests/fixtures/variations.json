@@ -1,4 +1,10 @@
 {
+    "PRD12340000": {
+        "attributes": [],
+        "description": "This minimal product tests how empty fields are output",
+        "name": "Minimal Product",
+        "page": []
+    },
     "VARIATION123": {
         "attributes": {
             "boolFalse": false,

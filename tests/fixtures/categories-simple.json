@@ -14,8 +14,7 @@
         "parent": "CAT0",
         "sitemap-changefrequency": "weekly",
         "sitemap-included-flag": "true",
-        "sitemap-priority": "0.2",
-        "start": "2018-01-01T01:01:01"
+        "sitemap-priority": "0.2"
     },
     "CAT2": {
         "name": "Donuts",
