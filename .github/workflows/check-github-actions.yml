@@ -38,8 +38,9 @@ jobs:
             instead of individual redirects
 
       - name: Run zizmor
-        uses: zizmorcore/zizmor-action@53290badfa369cb0bf7ad16342cb62c2fa47ac7b # v0.8.0
+        uses: zizmorcore/zizmor-action@bd12b495c90993a4301c73398142281a61499af3 # v0.9.0
         with:
           advanced-security: false # We don't currently pay for https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security
           config: .github/zizmor.yml
           persona: pedantic
+          strict-collection: true
