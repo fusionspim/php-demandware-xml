@@ -26,7 +26,7 @@ class XmlException extends Exception
     protected function parseInvalidChar(?string $message): ?string
     {
         if (preg_match('/^Fatal: PCDATA invalid Char value (\d+)/', $message, $matches)) {
-            return sprintf('https://www.fileformat.info/info/unicode/char/%d/index.htm', $matches[1]);
+            return sprintf('https://www.fileformat.info/info/unicode/char/%x/index.htm', $matches[1]);
         }
 
         return null;
