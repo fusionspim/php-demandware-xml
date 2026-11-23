@@ -226,7 +226,7 @@ class XmlFormatterTest extends TestCase
         $message   = 'Fatal: PCDATA invalid Char value 30 at line 1';
         $exception = new XmlException($message);
         $this->assertSame(
-            'https://www.fileformat.info/info/unicode/char/30/index.htm',
+            'https://www.fileformat.info/info/unicode/char/1e/index.htm',
             $exception->getInvalidCharUrl()
         );
 
