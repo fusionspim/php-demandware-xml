@@ -120,6 +120,8 @@ class XmlWriterTest extends TestCase
         $xml->setBufferLimit(2);
 
         $xml->writeFlushableEntity(new Product('PRD000001'));
+        $this->assertSame('', file_get_contents($output));
+
         $xml->writeFlushableEntity(new Product('PRD000002'));
 
         $this->assertStringContainsString(
@@ -137,6 +139,8 @@ class XmlWriterTest extends TestCase
         );
 
         $xml->writeFlushableEntity(new Product('PRD000003'));
+        $this->assertStringNotContainsString('PRD000003', file_get_contents($output));
+
         $xml->writeFlushableEntity(new Product('PRD000004'));
         $this->assertStringContainsString(
             <<<'XML'
