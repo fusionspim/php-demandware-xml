@@ -21,6 +21,7 @@
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
         "laravel/pint": "^1.14",
+        "pestphp/pest": "^5.3.7",
         "phpunit/phpunit": "^13.4.3"
     },
     "autoload": {
@@ -35,7 +36,8 @@
     },
     "config": {
         "allow-plugins": {
-            "ergebnis/composer-normalize": true
+            "ergebnis/composer-normalize": true,
+            "pestphp/pest-plugin": true
         }
     },
     "scripts": {
@@ -47,7 +49,7 @@
             "pint --parallel"
         ],
         "test": [
-            "phpunit --stop-on-failure --stop-on-error"
+            "pest --stop-on-failure --stop-on-error"
         ]
     }
 }

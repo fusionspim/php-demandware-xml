@@ -62,4 +62,4 @@ jobs:
         run: composer fix-cs -- --test
 
       - name: Run unit tests
-        run: vendor/bin/phpunit --stop-on-failure --stop-on-error
+        run: vendor/bin/pest --stop-on-failure --stop-on-error
