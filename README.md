@@ -1,5 +1,8 @@
 # PHP Demandware XML
 
+> [!WARNING]
+> This repository has been archived and is no longer maintained.
+
 A PHP library for working with Demandware XML files:
 
 - **Exporting**: Supports category, product, variant and assignment files and allows elements to be added in the order that makes sense for your code - they'll be exported in the sequence specified by the XSD automatically, and custom attribute elements are ordered by attribute ids for consistency between exports.
